@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.DefenceInputMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.DefenceInput">
+        <result column="seq_no" property="seqNo" />
+        <result column="defence_id" property="defenceId" />
+        <result column="defence_name" property="defenceName" />
+        <result column="controller_id" property="controllerId" />
+        <result column="input_device_id" property="inputDeviceId" />
+        <result column="point_type" property="pointType" />
+        <result column="point_num" property="pointNum" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        seq_no, defence_id, defence_name, controller_id, input_device_id, point_type, point_num, status, remark
+    </sql>
+
+</mapper>

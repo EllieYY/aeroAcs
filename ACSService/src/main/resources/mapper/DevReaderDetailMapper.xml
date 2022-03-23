@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.DevReaderDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.DevReaderDetail">
+        <id column="device_id" property="deviceId" />
+        <result column="device_type_id" property="deviceTypeId" />
+        <result column="device_scope_id" property="deviceScopeId" />
+        <result column="p_device_type_id" property="pDeviceTypeId" />
+        <result column="p_device_id" property="pDeviceId" />
+        <result column="controller_id" property="controllerId" />
+        <result column="area_id" property="areaId" />
+        <result column="device_name" property="deviceName" />
+        <result column="fix_address" property="fixAddress" />
+        <result column="reader_number" property="readerNumber" />
+        <result column="key_mode" property="keyMode" />
+        <result column="acr_number" property="acrNumber" />
+        <result column="pair_acr_number" property="pairAcrNumber" />
+        <result column="access_cfg" property="accessCfg" />
+        <result column="strk_sio" property="strkSio" />
+        <result column="strk_number" property="strkNumber" />
+        <result column="strike_time_min" property="strikeTimeMin" />
+        <result column="strike_time_max" property="strikeTimeMax" />
+        <result column="strike_mode" property="strikeMode" />
+        <result column="door_sio" property="doorSio" />
+        <result column="door_number" property="doorNumber" />
+        <result column="dc_held" property="dcHeld" />
+        <result column="rex0_sio" property="rex0Sio" />
+        <result column="rex0_number" property="rex0Number" />
+        <result column="rex1_sio" property="rex1Sio" />
+        <result column="rex1_number" property="rex1Number" />
+        <result column="rex0_tz" property="rex0Tz" />
+        <result column="rex1_tz" property="rex1Tz" />
+        <result column="altrdr_sio" property="altrdrSio" />
+        <result column="altrdr_number" property="altrdrNumber" />
+        <result column="altrdr_spec" property="altrdrSpec" />
+        <result column="cd_format" property="cdFormat" />
+        <result column="apb_mode" property="apbMode" />
+        <result column="apb_delay" property="apbDelay" />
+        <result column="apb_in" property="apbIn" />
+        <result column="apb_out" property="apbOut" />
+        <result column="spare" property="spare" />
+        <result column="actl_flags" property="actlFlags" />
+        <result column="offline_mode" property="offlineMode" />
+        <result column="default_mode" property="defaultMode" />
+        <result column="strk_t2" property="strkT2" />
+        <result column="dc_held2" property="dcHeld2" />
+        <result column="feature_type" property="featureType" />
+        <result column="filter_alarm" property="filterAlarm" />
+        <result column="status" property="status" />
+        <result column="kq_flag" property="kqFlag" />
+        <result column="remark" property="remark" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="open_over_flag" property="openOverFlag" />
+        <result column="alarm_memo" property="alarmMemo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        device_id, device_type_id, device_scope_id, p_device_type_id, p_device_id, controller_id, area_id, device_name, fix_address, reader_number, key_mode, acr_number, pair_acr_number, access_cfg, strk_sio, strk_number, strike_time_min, strike_time_max, strike_mode, door_sio, door_number, dc_held, rex0_sio, rex0_number, rex1_sio, rex1_number, rex0_tz, rex1_tz, altrdr_sio, altrdr_number, altrdr_spec, cd_format, apb_mode, apb_delay, apb_in, apb_out, spare, actl_flags, offline_mode, default_mode, strk_t2, dc_held2, feature_type, filter_alarm, status, kq_flag, remark, create_by, create_time, update_by, update_time, open_over_flag, alarm_memo
+    </sql>
+
+</mapper>

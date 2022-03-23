@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.CCardInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.CCardInfo">
+        <result column="card_no" property="cardNo" />
+        <result column="card_seq" property="cardSeq" />
+        <result column="pin" property="pin" />
+        <result column="card_type" property="cardType" />
+        <result column="effect_begin_time" property="effectBeginTime" />
+        <result column="effect_end_time" property="effectEndTime" />
+        <result column="holiday_begin_time" property="holidayBeginTime" />
+        <result column="holiday_end_time" property="holidayEndTime" />
+        <result column="temp_upgrade_begin_time" property="tempUpgradeBeginTime" />
+        <result column="temp_upgrade_end_time" property="tempUpgradeEndTime" />
+        <result column="times" property="times" />
+        <result column="apb_flag" property="apbFlag" />
+        <result column="additional_flag" property="additionalFlag" />
+        <result column="disabled_flag" property="disabledFlag" />
+        <result column="card_pwd_flag" property="cardPwdFlag" />
+        <result column="state" property="state" />
+        <result column="first_card_flag" property="firstCardFlag" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="apb_id" property="apbId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        card_no, card_seq, pin, card_type, effect_begin_time, effect_end_time, holiday_begin_time, holiday_end_time, temp_upgrade_begin_time, temp_upgrade_end_time, times, apb_flag, additional_flag, disabled_flag, card_pwd_flag, state, first_card_flag, create_by, create_time, update_by, update_time, apb_id
+    </sql>
+
+</mapper>

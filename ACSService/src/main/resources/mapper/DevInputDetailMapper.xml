@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.DevInputDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.DevInputDetail">
+        <id column="device_id" property="deviceId" />
+        <result column="device_type_id" property="deviceTypeId" />
+        <result column="device_scope_id" property="deviceScopeId" />
+        <result column="p_device_type_id" property="pDeviceTypeId" />
+        <result column="p_device_id" property="pDeviceId" />
+        <result column="controller_id" property="controllerId" />
+        <result column="input_type_id" property="inputTypeId" />
+        <result column="input" property="input" />
+        <result column="device_name" property="deviceName" />
+        <result column="status" property="status" />
+        <result column="shield_flag" property="shieldFlag" />
+        <result column="alarm_delay_flag" property="alarmDelayFlag" />
+        <result column="in_delay" property="inDelay" />
+        <result column="out_delay" property="outDelay" />
+        <result column="in_mode" property="inMode" />
+        <result column="mp_number" property="mpNumber" />
+        <result column="area_id" property="areaId" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        device_id, device_type_id, device_scope_id, p_device_type_id, p_device_id, controller_id, input_type_id, input, device_name, status, shield_flag, alarm_delay_flag, in_delay, out_delay, in_mode, mp_number, area_id, remark
+    </sql>
+
+</mapper>

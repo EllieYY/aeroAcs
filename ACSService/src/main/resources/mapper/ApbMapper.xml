@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.ApbMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.Apb">
+        <result column="apb_id" property="apbId" />
+        <result column="apb_name" property="apbName" />
+        <result column="controller_id" property="controllerId" />
+        <result column="curr_num_person" property="currNumPerson" />
+        <result column="max_num_person" property="maxNumPerson" />
+        <result column="max_num_event" property="maxNumEvent" />
+        <result column="min_num_event" property="minNumEvent" />
+        <result column="close_flag" property="closeFlag" />
+        <result column="apb_rule" property="apbRule" />
+        <result column="init_area" property="initArea" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        apb_id, apb_name, controller_id, curr_num_person, max_num_person, max_num_event, min_num_event, close_flag, apb_rule, init_area, status, remark, create_by, create_time, update_by, update_time
+    </sql>
+
+</mapper>

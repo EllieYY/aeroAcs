@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.CardFormatMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.CardFormat">
+        <result column="seq_no" property="seqNo" />
+        <result column="card_type" property="cardType" />
+        <result column="type_no" property="typeNo" />
+        <result column="facility" property="facility" />
+        <result column="offset" property="offset" />
+        <result column="function_id" property="functionId" />
+        <result column="min_digits" property="minDigits" />
+        <result column="max_digits" property="maxDigits" />
+        <result column="bits" property="bits" />
+        <result column="pe_ln" property="peLn" />
+        <result column="po_ln" property="poLn" />
+        <result column="fc_ln" property="fcLn" />
+        <result column="fc_loc" property="fcLoc" />
+        <result column="ch_ln" property="chLn" />
+        <result column="ch_loc" property="chLoc" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        seq_no, card_type, type_no, facility, offset, function_id, min_digits, max_digits, bits, pe_ln, po_ln, fc_ln, fc_loc, ch_ln, ch_loc
+    </sql>
+
+</mapper>

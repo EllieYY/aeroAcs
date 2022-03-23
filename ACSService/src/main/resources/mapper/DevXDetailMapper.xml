@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.DevXDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.DevXDetail">
+        <id column="device_id" property="deviceId" />
+        <result column="device_type_id" property="deviceTypeId" />
+        <result column="device_scope_id" property="deviceScopeId" />
+        <result column="controller_id" property="controllerId" />
+        <result column="device_name" property="deviceName" />
+        <result column="controller_port" property="controllerPort" />
+        <result column="address" property="address" />
+        <result column="model" property="model" />
+        <result column="sio_next_in" property="sioNextIn" />
+        <result column="sio_next_out" property="sioNextOut" />
+        <result column="sio_next_rdr" property="sioNextRdr" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        device_id, device_type_id, device_scope_id, controller_id, device_name, controller_port, address, model, sio_next_in, sio_next_out, sio_next_rdr, status, remark, create_by, create_time, update_by, update_time
+    </sql>
+
+</mapper>
