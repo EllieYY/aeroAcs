@@ -3,14 +3,13 @@ package com.wim.aero.acs.db.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * <p>
@@ -18,7 +17,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Ellie
- * @since 2022-03-22
+ * @since 2022-03-24
  */
 @Getter
 @Setter
@@ -66,9 +65,6 @@ public class DevControllerDetail implements Serializable {
 
     @TableField("fix_address")
     private String fixAddress;
-
-    @TableField("b_user_level")
-    private Integer bUserLevel;
 
     @TableField("status")
     private String status;

@@ -27,5 +27,12 @@
     <sql id="Base_Column_List">
         device_id, device_type_id, device_scope_id, controller_id, device_name, controller_port, address, model, sio_next_in, sio_next_out, sio_next_rdr, status, remark, create_by, create_time, update_by, update_time
     </sql>
+    <select id="selectAllByControllerId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dev_x_detail
+        where
+        controller_id = #{controllerId,jdbcType=NUMERIC}
+    </select>
 
 </mapper>

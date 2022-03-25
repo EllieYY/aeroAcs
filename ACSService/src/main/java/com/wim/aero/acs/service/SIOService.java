@@ -1,6 +1,21 @@
 package com.wim.aero.acs.service;
 
+import com.wim.aero.acs.db.entity.DevInputDetail;
+import com.wim.aero.acs.db.entity.DevOutputDetail;
+import com.wim.aero.acs.db.entity.DevReaderDetail;
+import com.wim.aero.acs.db.entity.DevXDetail;
+import com.wim.aero.acs.db.service.impl.DevInputDetailServiceImpl;
+import com.wim.aero.acs.db.service.impl.DevOutputDetailServiceImpl;
+import com.wim.aero.acs.db.service.impl.DevReaderDetailServiceImpl;
+import com.wim.aero.acs.db.service.impl.DevXDetailServiceImpl;
+import com.wim.aero.acs.protocol.device.*;
+import com.wim.aero.acs.protocol.device.reader.ACRConfig;
+import com.wim.aero.acs.protocol.device.reader.ReaderSpecification;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @title: SIOService
@@ -10,28 +25,80 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class SIOService {
+    private final DevXDetailServiceImpl sioDetailService;
+    private final DevInputDetailServiceImpl inputDetailService;
+    private final DevOutputDetailServiceImpl outputDetailService;
+    private final DevReaderDetailServiceImpl readerDetailService;
+    @Autowired
+    public SIOService(DevXDetailServiceImpl sioDetailService,
+                      DevInputDetailServiceImpl inputDetailService,
+                      DevOutputDetailServiceImpl outputDetailService,
+                      DevReaderDetailServiceImpl readerDetailService) {
+        this.sioDetailService = sioDetailService;
+        this.inputDetailService = inputDetailService;
+        this.outputDetailService = outputDetailService;
+        this.readerDetailService = readerDetailService;
+    }
 
-    public void configSio(int scpId, int sio) {
+    public void configSioForScp(int scpId) {
         // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器两个
-        // SIOPanel Configuration (Command 109) -- 报警板配置，不同类型不同配置
+        SIODriver driver1 = new SIODriver(scpId, 1, 1);
+        SIODriver driver2 = new SIODriver(scpId, 2, 2);
+
+        // 查找所有sio
+        List<DevXDetail> sioList = sioDetailService.getByScpId(scpId);
+        for (DevXDetail sio:sioList) {
+            // SIOPanel Configuration (Command 109)
+            SIOSpecification specification = SIOSpecification.fromDb(sio);
+            // TODO：组报文
+        }
+
+        List<Integer> pDeviceIds = sioList.stream().collect(ArrayList::new, (list, item) -> {
+            list.add(item.getDeviceId());
+        }, ArrayList::addAll);
+        pDeviceIds.add(scpId);   // 控制器的输入输出点及读卡器也要配置
+    }
+
+    public void inputConfig(List<Integer> ids) {
+        List<DevInputDetail> devInputDetails = inputDetailService.getByPDeviceIds(ids);
+        for (DevInputDetail input:devInputDetails) {
+            // Input Point Configuration (Command 110)
+            InputPointSpecification specification = InputPointSpecification.fromDb(input);
+            // TODO:组报文
+
+            // Monitor Point Configuration(Command113)
+            MonitorPointConfig config = MonitorPointConfig.fromDb(input);
+            // TODO:组报文
+
+        }
 
     }
 
-    public void inputConfig(int scpId, int sio) {
-        // Input Point Configuration (Command 110)
-        // Monitor Point Configuration(Command113)
+    public void outputConfig(List<Integer> ids) {
+        List<DevOutputDetail> devOutputDetails = outputDetailService.getByPDeviceIds(ids);
+        for (DevOutputDetail output:devOutputDetails) {
+            // OutputPointConfiguration (Command 111)
+            OutputPointSpecification specification = OutputPointSpecification.fromDb(output);
+            // TODO:组报文
 
+            // ControlPointConfiguration (Command 114)
+            ControlPointConfig config = ControlPointConfig.fromDb(output);
+            // TODO:组报文
+
+        }
     }
 
-    public void outputConfig(int scpId, int sio) {
-        // OutputPointConfiguration (Command 111)
-        // ControlPointConfiguration (Command 114)
+    public void readerConfig(List<Integer> ids) {
+        List<DevReaderDetail> readerDetails = readerDetailService.getByPDeviceIds(ids);
+        for (DevReaderDetail reader:readerDetails) {
+            // Card Reader Configuration(Command112)
+            ReaderSpecification specification = ReaderSpecification.fromDb(reader);
+            // TODO:组报文
 
-    }
-
-    public void readerConfig(int scpId, int sio) {
-        // Card Reader Configuration(Command112)
-        // Access Control Reader Configuration(Command115)
+            // Access Control Reader Configuration(Command115)
+            ACRConfig config = ACRConfig.fromDb(reader);
+            // TODO:组报文
+        }
 
     }
 }

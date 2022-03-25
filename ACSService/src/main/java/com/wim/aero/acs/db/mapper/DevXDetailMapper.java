@@ -1,4 +1,6 @@
 package com.wim.aero.acs.db.mapper;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 import com.wim.aero.acs.db.entity.DevXDetail;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -14,5 +16,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface DevXDetailMapper extends BaseMapper<DevXDetail> {
-
+    List<DevXDetail> selectAllByControllerId(@Param("controllerId") Integer controllerId);
 }

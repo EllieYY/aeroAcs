@@ -1,7 +1,15 @@
 server:
   port: 9250
 
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: 门禁后台接口
+  try-host: http://localhost:${server.port}
+
 mybatis-plus:
+  type-aliases-package: com.wim.aero.acs.db.**.entity
   mapper-locations: classpath:/mapper/*.xml
   global-config:
     db-config:

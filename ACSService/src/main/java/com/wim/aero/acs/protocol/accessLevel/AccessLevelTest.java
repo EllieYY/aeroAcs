@@ -2,8 +2,12 @@ package com.wim.aero.acs.protocol.accessLevel;
 
 import com.wim.aero.acs.db.entity.DAccessLevel;
 import com.wim.aero.acs.message.Operation;
+import com.wim.aero.acs.model.AccessLevelInfo;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @title: AccessLevelSpecification
@@ -64,13 +68,32 @@ public class AccessLevelTest extends Operation {
     private int nEscortCode; // Escort code of user at reader where the time zone is active:
 
     @CmdProp(index = 17)
-    private int operMode;
+    private int operMode = 0;
 
-    public static AccessLevelTest fromDb(DAccessLevel al) {
+    public static AccessLevelTest fromDb(AccessLevelInfo info) {
         AccessLevelTest result = new AccessLevelTest();
 
-        // TODO:数据获取逻辑待整理
-//        result.setNScpNumber();
+        result.setNScpNumber(info.getNScpNumber());
+        result.setNEscortCode(info.getNEscortCode());
+
+        Calendar calendar = Calendar.getInstance();
+        Date activeDate = info.getActiveDate();
+        calendar.setTime(activeDate);
+        result.setNActYear(calendar.get(Calendar.YEAR));
+        result.setNActMonth(calendar.get(Calendar.MONDAY));
+        result.setNActDay(calendar.get(Calendar.DATE));
+        result.setNActHh(calendar.get(Calendar.HOUR_OF_DAY));
+        result.setNActMn(calendar.get(Calendar.MINUTE));
+        result.setNActSs(calendar.get(Calendar.SECOND));
+
+        Date deactiveDate = info.getDeactiveDate();
+        calendar.setTime(deactiveDate);
+        result.setNDactYear(calendar.get(Calendar.YEAR));
+        result.setNDactMonth(calendar.get(Calendar.MONDAY));
+        result.setNDactDay(calendar.get(Calendar.DATE));
+        result.setNDactHh(calendar.get(Calendar.HOUR_OF_DAY));
+        result.setNDactMn(calendar.get(Calendar.MINUTE));
+        result.setNDactSs(calendar.get(Calendar.SECOND));
 
         return result;
     }

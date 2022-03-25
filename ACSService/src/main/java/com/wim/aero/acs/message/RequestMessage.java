@@ -1,5 +1,8 @@
 package com.wim.aero.acs.message;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class RequestMessage extends Message<Operation> {
     public RequestMessage() {
     }
@@ -15,6 +18,14 @@ public class RequestMessage extends Message<Operation> {
     @Override
     public Class getMessageBodyDecodeClass(int opcode) {
         return OperationType.fromOpCode(opcode).getOperationClazz();
+    }
+
+    public static String encode(int scpId, Operation operation) {
+        RequestMessage message = new RequestMessage(scpId, operation);
+        String msg = message.encode();
+
+        log.info("{} 报文 {}", scpId, msg);
+        return msg;
     }
 
 }

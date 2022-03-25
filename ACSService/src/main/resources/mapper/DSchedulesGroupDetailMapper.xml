@@ -15,4 +15,37 @@
         schedules_group_id, schedules_id, status, remark
     </sql>
 
+
+
+    <!--自定义结果集-->
+    <resultMap id="TimeZoneMap" type="com.wim.aero.acs.protocol.timezone.TimeZone">
+        <result column="groupId" property="number" />
+        <collection property="intervals"  ofType="com.wim.aero.acs.protocol.timezone.TimeInterval">
+            <result column="startTime" property="start" />
+            <result column="endTime" property="end" />
+            <result column="daymask" property="dayMask" />
+        </collection>
+    </resultMap>
+
+    <select id="selectByScpId" resultMap="TimeZoneMap">
+        select
+            a.schedules_group_id as groupId,
+            b.schedules_id as timeId,
+            datediff( minute , '12:00AM', c.begin_time ) as startTime,
+            datediff( minute , '12:00AM', c.end_time ) as endTime,
+            (1 * ISNULL(c.sun_flag, 0) +
+             2 * ISNULL(c.mon_flag, 0) +
+             4 * ISNULL(c.tues_flag, 0) +
+             8 * ISNULL(c.wed_flag, 0) +
+             16 * ISNULL(c.thu_flag, 0) +
+             32 * ISNULL(c.fri_flag, 0) +
+             64 * ISNULL(c.sat_flag, 0)) AS daymask
+        from d_access_level_door a, d_schedules_group_detail b
+        LEFT JOIN d_schedules c
+        ON b.schedules_id = c.schedules_id
+        where controller_id = #{scpId}
+            and a.schedules_group_id = b.schedules_group_id
+        order by c.schedules_id
+    </select>
+
 </mapper>

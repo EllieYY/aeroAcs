@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.DevControllerCommonAttributeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.DevControllerCommonAttribute">
+        <result column="auto_id" property="autoId" />
+        <result column="max_card_num" property="maxCardNum" />
+        <result column="apb_schedules_group_id" property="apbSchedulesGroupId" />
+        <result column="max_card_length" property="maxCardLength" />
+        <result column="max_pin" property="maxPin" />
+        <result column="additional_flag" property="additionalFlag" />
+        <result column="force_alarm_mode" property="forceAlarmMode" />
+        <result column="force_alarm_offset" property="forceAlarmOffset" />
+        <result column="enable_times_flag" property="enableTimesFlag" />
+        <result column="additional_access_flag" property="additionalAccessFlag" />
+        <result column="apb_control_flag" property="apbControlFlag" />
+        <result column="apb_time_flag" property="apbTimeFlag" />
+        <result column="card_invalid_flag" property="cardInvalidFlag" />
+        <result column="card_save_flag" property="cardSaveFlag" />
+        <result column="save_vacation_flag" property="saveVacationFlag" />
+        <result column="save_temp_flag" property="saveTempFlag" />
+        <result column="strong_pwd_flag" property="strongPwdFlag" />
+        <result column="elevator_floor_num" property="elevatorFloorNum" />
+        <result column="access_level_num" property="accessLevelNum" />
+        <result column="host_over_time" property="hostOverTime" />
+        <result column="sec_card_over_time" property="secCardOverTime" />
+        <result column="mor_card_over_time" property="morCardOverTime" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="b_user_level" property="bUserLevel" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        auto_id, max_card_num, apb_schedules_group_id, max_card_length, max_pin, additional_flag, force_alarm_mode, force_alarm_offset, enable_times_flag, additional_access_flag, apb_control_flag, apb_time_flag, card_invalid_flag, card_save_flag, save_vacation_flag, save_temp_flag, strong_pwd_flag, elevator_floor_num, access_level_num, host_over_time, sec_card_over_time, mor_card_over_time, status, remark, create_by, create_time, update_by, update_time, b_user_level
+    </sql>
+    <select id="selectTopOne" resultMap="BaseResultMap">
+        select
+        top 1
+        <include refid="Base_Column_List"/>
+        from dev_controller_common_attribute
+    </select>
+
+</mapper>

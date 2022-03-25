@@ -28,5 +28,14 @@
     <sql id="Base_Column_List">
         device_id, device_type_id, device_scope_id, p_device_type_id, p_device_id, controller_id, input_type_id, input, device_name, status, shield_flag, alarm_delay_flag, in_delay, out_delay, in_mode, mp_number, area_id, remark
     </sql>
+    <select id="selectAllByPDeviceIdList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dev_input_detail
+        where p_device_id IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>

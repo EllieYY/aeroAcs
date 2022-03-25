@@ -28,7 +28,7 @@ public class SqlServerGenerator {
 
     public static void main(String[] args) {
         List<String> tables = new ArrayList<>();
-//        tables.add("dev_controller_detail");
+        tables.add("dev_controller_detail");
 //        tables.add("dev_x_detail");
 //        tables.add("dev_input_detail");
 //        tables.add("dev_output_detail");
@@ -43,7 +43,8 @@ public class SqlServerGenerator {
 //        tables.add("d_schedules");
 //        tables.add("d_schedules_group_detail");
 //        tables.add("c_card_info");
-        tables.add("card_format");
+//        tables.add("card_format");
+        tables.add("dev_controller_common_attribute");
 
 
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)

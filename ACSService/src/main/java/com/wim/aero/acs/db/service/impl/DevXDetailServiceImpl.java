@@ -6,6 +6,8 @@ import com.wim.aero.acs.db.service.DevXDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -16,5 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DevXDetailServiceImpl extends ServiceImpl<DevXDetailMapper, DevXDetail> implements DevXDetailService {
-
+    public List<DevXDetail> getByScpId(int scpId) {
+        return this.baseMapper.selectAllByControllerId(scpId);
+    }
 }

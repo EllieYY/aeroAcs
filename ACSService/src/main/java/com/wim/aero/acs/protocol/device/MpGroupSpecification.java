@@ -29,10 +29,7 @@ public class MpGroupSpecification extends Operation {
     @CmdProp(index = 6)
     private List<MpType> nMpList;
 
-    public MpGroupSpecification(int scpNumber, int mpgNumber, List<MpType> nMpList) {
-        this.scpNumber = scpNumber;
-        this.mpgNumber = mpgNumber;
-        this.nMpList = nMpList;
-        this.nMpCount = nMpList.size();
+    public void updateMpCount() {
+        nMpCount = nMpList.size();
     }
 }

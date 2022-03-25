@@ -4,7 +4,10 @@ import com.wim.aero.acs.db.entity.DSchedulesGroupDetail;
 import com.wim.aero.acs.db.mapper.DSchedulesGroupDetailMapper;
 import com.wim.aero.acs.db.service.DSchedulesGroupDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wim.aero.acs.protocol.timezone.TimeZone;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +19,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DSchedulesGroupDetailServiceImpl extends ServiceImpl<DSchedulesGroupDetailMapper, DSchedulesGroupDetail> implements DSchedulesGroupDetailService {
-
+    public List<TimeZone> getTimeZones(int scpId) {
+        return baseMapper.selectByScpId(scpId);
+    }
 }

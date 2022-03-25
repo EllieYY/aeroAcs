@@ -6,6 +6,8 @@ import com.wim.aero.acs.db.service.DevInputDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -17,4 +19,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class DevInputDetailServiceImpl extends ServiceImpl<DevInputDetailMapper, DevInputDetail> implements DevInputDetailService {
 
+    /**
+     * 按上级设备查找输入点
+     * @param ids
+     * @return
+     */
+    public List<DevInputDetail> getByPDeviceIds(List<Integer> ids) {
+        return this.baseMapper.selectAllByPDeviceIdList(ids);
+    }
 }

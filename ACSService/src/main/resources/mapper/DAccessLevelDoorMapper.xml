@@ -19,4 +19,31 @@
         access_level_id, access_level_name, schedules_group_id, device_id, reader_number, acr_number, controller_id, status
     </sql>
 
+    <resultMap id="ALInfoMap" type="com.wim.aero.acs.model.AccessLevelInfo">
+        <result column="scpId" property="nScpNumber" />
+        <result column="alId" property="nAlvlnumber" />
+        <result column="activeDate" property="activeDate" />
+        <result column="deactiveDate" property="deactiveDate" />
+        <result column="nEscortCode" property="nEscortCode" />
+        <collection property="tzList" ofType="com.wim.aero.acs.model.ACRTz">
+            <result column="acrId" property="acrId" />
+            <result column="tzId" property="tz" />
+        </collection>
+    </resultMap>
+
+    <select id="selectAllByControllerId" resultMap="ALInfoMap">
+        select
+            a.controller_id as scpId,
+            a.access_level_id as alId,
+            a.schedules_group_id as tzId,
+            a.acr_number as acrId,
+            b.begin_date as activeDate,
+            b.end_date as deactiveDate,
+            b.flag as nEscortCode
+        from d_access_level_door a, d_access_level b
+        where
+        controller_id = #{controllerId,jdbcType=NUMERIC} and
+              a.access_level_id = b.access_level_id
+    </select>
+
 </mapper>

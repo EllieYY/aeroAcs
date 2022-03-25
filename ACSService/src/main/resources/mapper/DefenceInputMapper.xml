@@ -20,4 +20,22 @@
         seq_no, defence_id, defence_name, controller_id, input_device_id, point_type, point_num, status, remark
     </sql>
 
+
+    <resultMap id="MpGroupMap" type="com.wim.aero.acs.protocol.device.MpGroupSpecification">
+        <result column="controller_id" property="scpNumber" />
+        <result column="defence_id" property="mpgNumber" />
+        <collection property="nMpList" ofType="com.wim.aero.acs.protocol.device.MpType">
+            <result column="point_type" property="pointType" />
+            <result column="point_num" property="pointNum" />
+        </collection>
+    </resultMap>
+
+    <select id="selectAllByControllerId" resultMap="MpGroupMap">
+        select
+        controller_id, defence_id, point_type, point_num
+        from defence_input
+        where
+        controller_id = #{controllerId,jdbcType=NUMERIC}
+    </select>
+
 </mapper>

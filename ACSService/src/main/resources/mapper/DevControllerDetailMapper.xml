@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.DevControllerDetail">
-        <result column="device_id" property="deviceId" />
+        <id column="device_id" property="deviceId" />
         <result column="device_type_id" property="deviceTypeId" />
         <result column="device_scope_id" property="deviceScopeId" />
         <result column="device_name" property="deviceName" />
@@ -17,7 +17,6 @@
         <result column="wait_time" property="waitTime" />
         <result column="pwd" property="pwd" />
         <result column="fix_address" property="fixAddress" />
-        <result column="b_user_level" property="bUserLevel" />
         <result column="status" property="status" />
         <result column="remark" property="remark" />
         <result column="create_by" property="createBy" />
@@ -28,7 +27,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        device_id, device_type_id, device_scope_id, device_name, device_ip, device_mac, device_port, connect_type, cc_interval, cc_times, wait_time, pwd, fix_address, b_user_level, status, remark, create_by, create_time, update_by, update_time
+        device_id, device_type_id, device_scope_id, device_name, device_ip, device_mac, device_port, connect_type, cc_interval, cc_times, wait_time, pwd, fix_address, status, remark, create_by, create_time, update_by, update_time
     </sql>
     <select id="selectAllByDeviceId" resultMap="BaseResultMap">
         select

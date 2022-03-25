@@ -8,12 +8,11 @@ import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
 import com.wim.aero.acs.protocol.device.SCPDriver;
+import com.wim.aero.acs.service.AccessConfigService;
+import com.wim.aero.acs.service.ScpService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,24 +27,16 @@ import java.util.List;
 @RequestMapping("/test")
 public class TestController {
     @Autowired
-    DevControllerDetailMapper devControllerDetailMapper;
+    ScpService scpService;
+    @Autowired
+    AccessConfigService accessConfigService;
 
     @RequestMapping(value = "/scpInfo", method = {RequestMethod.POST})
-    public ResultBean<String> scpConfig() {
-        String scpIdStr = "20";
-//        String scpIdStr = jsonObject.get("scpId").toString();
+    public ResultBean<String> scpConfig(@RequestParam(value = "scpId", required = true) String scpIdStr) {
+
         int scpId = Integer.parseInt(scpIdStr);
-
-//        long count = devControllerDetailService.count();
-        List<DevControllerDetail> detailList = devControllerDetailMapper.selectAllByDeviceId(scpId);
-        for (DevControllerDetail detail:detailList) {
-            SCPDriver driver = SCPDriver.fromDb(detail);
-
-            // 报文编码
-            RequestMessage message = new RequestMessage(scpId, driver);
-            String msg = message.encode();
-            System.out.println(msg);
-        }
+//        scpService.configScp(scpId);
+        accessConfigService.mpGroupConfig(scpId);
 
         return ResultBeanUtil.makeOkResp("count = ");
     }

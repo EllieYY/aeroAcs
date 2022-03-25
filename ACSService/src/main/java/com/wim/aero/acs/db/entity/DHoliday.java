@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -32,10 +34,10 @@ public class DHoliday implements Serializable {
     private String holidayName;
 
     @TableField("holiday_type")
-    private String holidayType;
+    private Integer holidayType;
 
     @TableField("begin_date")
-    private LocalDateTime beginDate;
+    private Date beginDate;
 
     @TableField("continued_day")
     private Integer continuedDay;
@@ -50,13 +52,13 @@ public class DHoliday implements Serializable {
     private String createBy;
 
     @TableField("create_time")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     @TableField("update_by")
     private String updateBy;
 
     @TableField("update_time")
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
 
 }

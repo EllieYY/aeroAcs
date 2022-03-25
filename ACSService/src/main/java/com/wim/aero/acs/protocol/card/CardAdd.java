@@ -4,6 +4,8 @@ import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -81,8 +83,12 @@ public class CardAdd extends Operation {
 //    User levels are not used for access rights, but used in triggers. Each value is a byte.
 
     @CmdProp(index = 56)
-    List<Integer> alvlPrec;   // 64. Precision access: levels up to 64 ACRs. Unused levels are marked as “0”.
+    List<Integer> alvlPrec = new ArrayList<>(Collections.nCopies(64, 0));   // 64. Precision access: levels up to 64 ACRs. Unused levels are marked as “0”.
 
     @CmdProp(index = 120)
     private int assetGroup = 0;
+
+//    public CardAdd fromDb() {
+//
+//    }
 }

@@ -26,5 +26,12 @@
     <sql id="Base_Column_List">
         apb_id, apb_name, controller_id, curr_num_person, max_num_person, max_num_event, min_num_event, close_flag, apb_rule, init_area, status, remark, create_by, create_time, update_by, update_time
     </sql>
+    <select id="selectAllByControllerId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from apb
+        where
+        controller_id = #{controllerId,jdbcType=NUMERIC}
+    </select>
 
 </mapper>

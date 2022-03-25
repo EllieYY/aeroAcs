@@ -6,6 +6,8 @@ import com.wim.aero.acs.db.service.DevReaderDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -16,5 +18,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DevReaderDetailServiceImpl extends ServiceImpl<DevReaderDetailMapper, DevReaderDetail> implements DevReaderDetailService {
-
+    /**
+     * 按上级设备查找读卡器
+     * @param ids
+     * @return
+     */
+    public List<DevReaderDetail> getByPDeviceIds(List<Integer> ids) {
+        return this.baseMapper.selectAllByPDeviceId(ids);
+    }
 }

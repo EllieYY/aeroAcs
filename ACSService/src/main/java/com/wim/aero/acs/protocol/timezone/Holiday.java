@@ -1,8 +1,12 @@
 package com.wim.aero.acs.protocol.timezone;
 
+import com.wim.aero.acs.db.entity.DHoliday;
 import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @title: Holiday
@@ -48,7 +52,23 @@ public class Holiday extends Operation {
     @CmdProp(index = 9)
     private int typeMask;
 
+    public static Holiday fronDb(int scpId, DHoliday holiday) {
+        Holiday result = new Holiday();
+        result.setScpNumber(scpId);
+        result.setExtend(holiday.getContinuedDay());
 
+        // 日期获取
+        Date date = holiday.getBeginDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        result.setYear(calendar.get(Calendar.YEAR));
+        result.setMonth(calendar.get(Calendar.MONDAY));
+        result.setDay(calendar.get(Calendar.DATE));
+
+        result.setTypeMask(holiday.getHolidayType());
+
+        return result;
+    }
 
 
 }
