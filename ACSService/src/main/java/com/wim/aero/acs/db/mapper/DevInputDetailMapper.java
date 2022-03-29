@@ -17,4 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DevInputDetailMapper extends BaseMapper<DevInputDetail> {
     List<DevInputDetail> selectAllByPDeviceIdList(@Param("list") List<Integer> idList);
+
+    List<DevInputDetail> selectAllByControllerId(@Param("controllerId") Integer controllerId);
 }

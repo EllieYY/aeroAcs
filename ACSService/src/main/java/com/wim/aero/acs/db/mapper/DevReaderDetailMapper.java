@@ -17,4 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DevReaderDetailMapper extends BaseMapper<DevReaderDetail> {
     List<DevReaderDetail> selectAllByPDeviceId(@Param("list") List<Integer> ids);
+
+    List<DevReaderDetail> selectAllByControllerId(@Param("controllerId") Integer controllerId);
 }

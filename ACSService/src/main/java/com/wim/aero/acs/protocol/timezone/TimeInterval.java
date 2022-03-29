@@ -26,4 +26,11 @@ public class TimeInterval {
      * End time in minutes from 12:00 am
      */
     private int end;
+
+    @Override
+    public String toString() {
+        return dayMask +
+                " " + start +
+                " " + end;
+    }
 }

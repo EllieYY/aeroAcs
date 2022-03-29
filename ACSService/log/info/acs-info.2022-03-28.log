@@ -1,0 +1,1279 @@
+2022-03-28 14:58:16 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 33612 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 14:58:16 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 14:58:19 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 14:58:19 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 14:58:19 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 14:58:19 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 14:58:20 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 14:58:20 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2872 ms
+2022-03-28 14:58:20 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 14:58:20 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 14:58:20 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 14:58:20 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:20 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 14:58:20 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:20 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 14:58:20 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:20 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 14:58:20 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:20 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 14:58:20 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:20 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 14:58:20 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:20 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 14:58:20 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:20 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 14:58:20 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:20 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 14:58:20 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 14:58:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 14:58:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 14:58:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 14:58:23 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 14:58:23 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 14:58:24 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 8.658 seconds (JVM running for 12.173)
+2022-03-28 14:58:54 INFO  http-nio-9250-exec-2 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 14:58:54 INFO  http-nio-9250-exec-2 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 14:58:54 INFO  http-nio-9250-exec-2 o.s.w.s.DispatcherServlet Completed initialization in 4 ms
+2022-03-28 14:58:55 ERROR http-nio-9250-exec-2 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+java.lang.NullPointerException: null
+	at com.wim.aero.acs.protocol.device.SCPDriver.fromDb(SCPDriver.java:67)
+	at com.wim.aero.acs.service.ScpService.createScp(ScpService.java:65)
+	at com.wim.aero.acs.service.ScpService.configScp(ScpService.java:51)
+	at com.wim.aero.acs.controller.ScpController.connectScp(ScpController.java:35)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2022-03-28 15:24:39 INFO  http-nio-9250-exec-3 c.w.a.a.s.ScpService 67 报文 1013 67 0 4 1 100 "192.168.1.1.1" "" 15000 0 0 0 0 ""
+2022-03-28 15:24:39 INFO  http-nio-9250-exec-3 c.w.a.a.s.ScpService 67 报文 1107 0 67 0 0 0 0 2 80000 32 615 388 64 32000 1024 1024 -28800 0 255 255 128 0 0 0 0 0 0
+2022-03-28 15:24:39 ERROR http-nio-9250-exec-3 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'create_time' from result set.  Cause: java.sql.SQLException: Error
+; uncategorized SQLException; SQL state [null]; error code [0]; Error; nested exception is java.sql.SQLException: Error
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
+	at com.sun.proxy.$Proxy74.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:89)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at com.sun.proxy.$Proxy76.selectTopOne(Unknown Source)
+	at com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl.getADSpecification(DevControllerCommonAttributeServiceImpl.java:20)
+	at com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl$$FastClassBySpringCGLIB$$1c9e3de6.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl$$EnhancerBySpringCGLIB$$58547344.getADSpecification(<generated>)
+	at com.wim.aero.acs.service.ScpService.scpSpecification(ScpService.java:77)
+	at com.wim.aero.acs.service.ScpService.configScp(ScpService.java:52)
+	at com.wim.aero.acs.controller.ScpController.connectScp(ScpController.java:35)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.sql.SQLException: Error
+	at com.alibaba.druid.pool.DruidDataSource.handleConnectionException(DruidDataSource.java:1758)
+	at com.alibaba.druid.pool.DruidPooledConnection.handleException(DruidPooledConnection.java:133)
+	at com.alibaba.druid.pool.DruidPooledStatement.checkException(DruidPooledStatement.java:82)
+	at com.alibaba.druid.pool.DruidPooledResultSet.checkException(DruidPooledResultSet.java:54)
+	at com.alibaba.druid.pool.DruidPooledResultSet.getObject(DruidPooledResultSet.java:1779)
+	at org.apache.ibatis.type.LocalDateTimeTypeHandler.getNullableResult(LocalDateTimeTypeHandler.java:38)
+	at org.apache.ibatis.type.LocalDateTimeTypeHandler.getNullableResult(LocalDateTimeTypeHandler.java:28)
+	at org.apache.ibatis.type.BaseTypeHandler.getResult(BaseTypeHandler.java:85)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.getPropertyMappingValue(DefaultResultSetHandler.java:512)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.applyPropertyMappings(DefaultResultSetHandler.java:481)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.getRowValue(DefaultResultSetHandler.java:405)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleRowValuesForSimpleResultMap(DefaultResultSetHandler.java:355)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleRowValues(DefaultResultSetHandler.java:329)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleResultSet(DefaultResultSetHandler.java:302)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleResultSets(DefaultResultSetHandler.java:195)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:76)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	... 56 common frames omitted
+Caused by: java.lang.AbstractMethodError: Receiver class com.microsoft.sqlserver.jdbc.SQLServerResultSet does not define or inherit an implementation of the resolved method abstract getObject(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object; of interface java.sql.ResultSet.
+	at com.alibaba.druid.pool.DruidPooledResultSet.getObject(DruidPooledResultSet.java:1777)
+	... 82 common frames omitted
+2022-03-28 15:24:57 INFO  http-nio-9250-exec-1 c.w.a.a.s.ScpService 67 报文 1013 67 0 4 1 100 "192.168.1.1.1" "" 15000 0 0 0 0 ""
+2022-03-28 15:24:57 INFO  http-nio-9250-exec-1 c.w.a.a.s.ScpService 67 报文 1107 0 67 0 0 0 0 2 80000 32 615 388 64 32000 1024 1024 -28800 0 255 255 128 0 0 0 0 0 0
+2022-03-28 15:24:57 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'create_time' from result set.  Cause: java.sql.SQLException: Error
+; uncategorized SQLException; SQL state [null]; error code [0]; Error; nested exception is java.sql.SQLException: Error
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
+	at com.sun.proxy.$Proxy74.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:89)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at com.sun.proxy.$Proxy76.selectTopOne(Unknown Source)
+	at com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl.getADSpecification(DevControllerCommonAttributeServiceImpl.java:20)
+	at com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl$$FastClassBySpringCGLIB$$1c9e3de6.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl$$EnhancerBySpringCGLIB$$58547344.getADSpecification(<generated>)
+	at com.wim.aero.acs.service.ScpService.scpSpecification(ScpService.java:77)
+	at com.wim.aero.acs.service.ScpService.configScp(ScpService.java:52)
+	at com.wim.aero.acs.controller.ScpController.connectScp(ScpController.java:35)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.sql.SQLException: Error
+	at com.alibaba.druid.pool.DruidDataSource.handleConnectionException(DruidDataSource.java:1758)
+	at com.alibaba.druid.pool.DruidPooledConnection.handleException(DruidPooledConnection.java:133)
+	at com.alibaba.druid.pool.DruidPooledStatement.checkException(DruidPooledStatement.java:82)
+	at com.alibaba.druid.pool.DruidPooledResultSet.checkException(DruidPooledResultSet.java:54)
+	at com.alibaba.druid.pool.DruidPooledResultSet.getObject(DruidPooledResultSet.java:1779)
+	at org.apache.ibatis.type.LocalDateTimeTypeHandler.getNullableResult(LocalDateTimeTypeHandler.java:38)
+	at org.apache.ibatis.type.LocalDateTimeTypeHandler.getNullableResult(LocalDateTimeTypeHandler.java:28)
+	at org.apache.ibatis.type.BaseTypeHandler.getResult(BaseTypeHandler.java:85)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.getPropertyMappingValue(DefaultResultSetHandler.java:512)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.applyPropertyMappings(DefaultResultSetHandler.java:481)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.getRowValue(DefaultResultSetHandler.java:405)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleRowValuesForSimpleResultMap(DefaultResultSetHandler.java:355)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleRowValues(DefaultResultSetHandler.java:329)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleResultSet(DefaultResultSetHandler.java:302)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleResultSets(DefaultResultSetHandler.java:195)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:76)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	... 56 common frames omitted
+Caused by: java.lang.AbstractMethodError: Receiver class com.microsoft.sqlserver.jdbc.SQLServerResultSet does not define or inherit an implementation of the resolved method abstract getObject(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object; of interface java.sql.ResultSet.
+	at com.alibaba.druid.pool.DruidPooledResultSet.getObject(DruidPooledResultSet.java:1777)
+	... 82 common frames omitted
+2022-03-28 15:26:18 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 17588 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 15:26:18 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 15:26:20 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 15:26:20 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 15:26:20 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 15:26:20 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 15:26:20 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 15:26:20 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1750 ms
+2022-03-28 15:26:20 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 15:26:20 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:21 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 15:26:21 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 15:26:23 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 15:26:23 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 15:26:23 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 5.779 seconds (JVM running for 7.819)
+2022-03-28 15:26:31 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 15:26:31 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 15:26:31 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 1 ms
+2022-03-28 15:26:32 INFO  http-nio-9250-exec-1 c.w.a.a.s.ScpService 67 报文 1013 67 0 4 1 100 "192.168.1.1.1" "" 15000 0 0 0 0 ""
+2022-03-28 22:28:59 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 29096 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:28:59 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:29:03 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:29:03 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:29:03 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:29:03 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:29:03 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:29:03 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3803 ms
+2022-03-28 22:29:03 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:29:03 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:29:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:05 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:29:05 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:29:08 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:29:08 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:29:09 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 11.963 seconds (JVM running for 15.198)
+2022-03-28 22:29:29 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:29:29 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:29:29 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 4 ms
+2022-03-28 22:29:31 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+java.lang.NullPointerException: null
+	at com.wim.aero.acs.protocol.device.SCPDriver.fromDb(SCPDriver.java:67)
+	at com.wim.aero.acs.service.ScpService.connectScp(ScpService.java:57)
+	at com.wim.aero.acs.controller.ScpController.connectScp(ScpController.java:46)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2022-03-28 22:30:19 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 8824 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:30:19 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:30:23 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:30:23 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:30:23 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:30:23 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:30:23 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:30:23 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3262 ms
+2022-03-28 22:30:23 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:30:23 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:30:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:30:27 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:30:27 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:30:28 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 9.782 seconds (JVM running for 11.879)
+2022-03-28 22:30:33 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:30:33 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:30:33 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-03-28 22:31:00 INFO  http-nio-9250-exec-4 c.w.a.a.m.RequestMessage 94 报文 1013 94 0 4 1 100 "192.168.0.1.1" "" 15000 0 0 0 0 ""
+2022-03-28 22:31:00 ERROR http-nio-9250-exec-4 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+java.lang.IllegalArgumentException: Illegal character in scheme name at index 0: 192.168.2.168:
+	at java.base/java.net.URI.create(URI.java:883)
+	at org.springframework.web.util.DefaultUriBuilderFactory$DefaultUriBuilder.createUri(DefaultUriBuilderFactory.java:411)
+	at org.springframework.web.util.DefaultUriBuilderFactory$DefaultUriBuilder.build(DefaultUriBuilderFactory.java:404)
+	at org.springframework.web.util.DefaultUriBuilderFactory.expand(DefaultUriBuilderFactory.java:154)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:710)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:98)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.controller.ScpController.connectScp(ScpController.java:49)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.net.URISyntaxException: Illegal character in scheme name at index 0: 192.168.2.168:
+	at java.base/java.net.URI$Parser.fail(URI.java:2913)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3084)
+	at java.base/java.net.URI$Parser.checkChar(URI.java:3094)
+	at java.base/java.net.URI$Parser.parse(URI.java:3109)
+	at java.base/java.net.URI.<init>(URI.java:600)
+	at java.base/java.net.URI.create(URI.java:881)
+	... 50 common frames omitted
+2022-03-28 22:33:43 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 18668 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:33:43 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:33:45 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:33:45 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:33:45 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:33:45 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:33:45 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:33:45 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2372 ms
+2022-03-28 22:33:46 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:33:46 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:46 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:33:46 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:33:50 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:33:50 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:33:50 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 8.07 seconds (JVM running for 9.201)
+2022-03-28 22:34:01 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:34:01 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:34:01 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-03-28 22:34:02 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1013 94 0 4 1 100 "192.168.0.1.1" "" 15000 0 0 0 0 ""
+2022-03-28 22:34:05 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.2.168:9090/cgi-bin/hisval.rsp": Connect to 192.168.2.168:9090 [/192.168.2.168] failed: connect timed out; nested exception is org.apache.http.conn.ConnectTimeoutException: Connect to 192.168.2.168:9090 [/192.168.2.168] failed: connect timed out
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:98)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.controller.ScpController.connectScp(ScpController.java:49)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.apache.http.conn.ConnectTimeoutException: Connect to 192.168.2.168:9090 [/192.168.2.168] failed: connect timed out
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:151)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:394)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 47 common frames omitted
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 60 common frames omitted
+2022-03-28 22:35:36 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 12580 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:35:36 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:35:39 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:35:39 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:35:39 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:35:39 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:35:40 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:35:40 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3691 ms
+2022-03-28 22:35:40 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:35:40 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:35:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:35:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:41 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:35:41 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:42 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:35:42 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:35:47 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:35:47 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:35:47 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 13.372 seconds (JVM running for 15.33)
+2022-03-28 22:35:59 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:35:59 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:35:59 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-03-28 22:35:59 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1107 0 94 0 0 0 0 2 80000 32 615 388 64 32000 1024 1024 -28800 0 255 255 128 0 0 0 0 0 0
+2022-03-28 22:36:00 ERROR http-nio-9250-exec-1 c.w.a.a.m.Message    未定义解码方法：formatList，消息解析失败
+java.lang.NoSuchMethodException: com.wim.aero.acs.util.ProtocolFiledUtil.FieldParser.formatList(java.lang.String)
+	at java.base/java.lang.Class.getDeclaredMethod(Class.java:2475)
+	at com.wim.aero.acs.message.Message.codec(Message.java:222)
+	at com.wim.aero.acs.message.Message.encodeMsgBody(Message.java:61)
+	at com.wim.aero.acs.message.Message.encode(Message.java:42)
+	at com.wim.aero.acs.message.RequestMessage.encode(RequestMessage.java:25)
+	at com.wim.aero.acs.service.ScpService.scpSpecification(ScpService.java:88)
+	at com.wim.aero.acs.service.ScpService.configScp(ScpService.java:69)
+	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:67)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2022-03-28 22:36:00 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1105 0 0 250000 32 1286 0 1 1 1 1 1 0 0 1 64 0 15 0 0 14 14 0 0 0
+2022-03-28 22:36:00 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 501 0 94 256 64
+2022-03-28 22:38:33 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 21644 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:38:33 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:38:34 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:38:34 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:38:34 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:38:34 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:38:35 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:38:35 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2040 ms
+2022-03-28 22:38:35 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:38:35 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:36 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:38:36 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:38:39 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:38:39 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:38:39 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 7.284 seconds (JVM running for 8.437)
+2022-03-28 22:38:44 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:38:44 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:38:44 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 6 ms
+2022-03-28 22:38:46 ERROR http-nio-9250-exec-1 c.w.a.a.m.Message    未定义解码方法：formatList，消息解析失败
+java.lang.NoSuchMethodException: com.wim.aero.acs.util.ProtocolFiledUtil.FieldParser.formatList(java.lang.String)
+	at java.base/java.lang.Class.getDeclaredMethod(Class.java:2475)
+	at com.wim.aero.acs.message.Message.codec(Message.java:222)
+	at com.wim.aero.acs.message.Message.encodeMsgBody(Message.java:61)
+	at com.wim.aero.acs.message.Message.encode(Message.java:42)
+	at com.wim.aero.acs.message.RequestMessage.encode(RequestMessage.java:25)
+	at com.wim.aero.acs.service.ScpService.scpSpecification(ScpService.java:88)
+	at com.wim.aero.acs.service.ScpService.configScp(ScpService.java:69)
+	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:67)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2022-03-28 22:38:46 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1105 0 0 250000 32 1286 0 1 1 1 1 1 0 0 1 64 0 15 0 0 14 14 0 0 0
+2022-03-28 22:38:46 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 501 0 94 256 64
+2022-03-28 22:39:35 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 31592 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:39:35 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:39:38 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:39:38 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:39:38 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:39:38 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:39:39 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:39:39 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2830 ms
+2022-03-28 22:39:39 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:39:39 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:39:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:39:43 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:39:43 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:39:44 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 9.811 seconds (JVM running for 12.293)
+2022-03-28 22:39:59 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:39:59 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:39:59 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 4 ms
+2022-03-28 22:39:59 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1107 0 94 0 0 0 0 2 80000 32 615 388 64 32000 1024 1024 -28800 0 255 255 128 0 0 0 0 0 0
+2022-03-28 22:40:00 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 501 0 94 256 64
+2022-03-28 22:44:56 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 32008 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:44:56 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:44:59 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:44:59 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:44:59 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:44:59 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:44:59 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:44:59 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3083 ms
+2022-03-28 22:44:59 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:45:00 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:00 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:45:00 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:01 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:45:01 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:45:04 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:45:04 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:45:04 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 10.015 seconds (JVM running for 12.684)
+2022-03-28 22:45:25 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:45:25 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:45:25 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 1 ms
+2022-03-28 22:45:25 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1107 0 94 0 0 0 0 2 80000 32 615 388 64 32000 1024 1024 -28800 0 255 255 128 0 0 0 0 0 0
+2022-03-28 22:45:26 ERROR http-nio-9250-exec-1 c.w.a.a.m.Message    未定义解码方法：formatList，消息解析失败
+java.lang.NoSuchMethodException: com.wim.aero.acs.util.ProtocolFiledUtil.FieldParser.formatList(java.lang.String)
+	at java.base/java.lang.Class.getDeclaredMethod(Class.java:2475)
+	at com.wim.aero.acs.message.Message.codec(Message.java:222)
+	at com.wim.aero.acs.message.Message.encodeMsgBody(Message.java:61)
+	at com.wim.aero.acs.message.Message.encode(Message.java:42)
+	at com.wim.aero.acs.message.RequestMessage.encode(RequestMessage.java:25)
+	at com.wim.aero.acs.service.ScpService.scpSpecification(ScpService.java:88)
+	at com.wim.aero.acs.service.ScpService.configScp(ScpService.java:69)
+	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:67)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2022-03-28 22:45:26 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1105 0 0 250000 32 1286 0 1 1 1 1 1 0 0 1 64 0 15 0 0 14 14 0 0 0
+2022-03-28 22:45:26 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 501 0 94 256 64
+2022-03-28 22:47:03 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 15128 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:47:03 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:47:05 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:47:05 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:47:05 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:47:05 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:47:06 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:47:06 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2140 ms
+2022-03-28 22:47:06 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:47:06 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:47:06 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:47:06 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:06 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:47:06 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:06 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:47:06 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:06 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:47:06 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:06 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:47:06 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:06 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:47:06 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:07 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:47:07 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:07 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:47:07 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:07 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:47:07 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:07 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:47:07 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:07 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:47:07 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:07 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:47:07 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:47:10 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:47:10 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:47:10 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 7.181 seconds (JVM running for 8.566)
+2022-03-28 22:48:03 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:48:03 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:48:03 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 6 ms
+2022-03-28 22:52:17 ERROR http-nio-9250-exec-1 c.w.a.a.m.Message    未定义解码方法：formatList，消息解析失败
+java.lang.NoSuchMethodException: com.wim.aero.acs.util.ProtocolFiledUtil.FieldParser.formatList(java.lang.String)
+	at java.base/java.lang.Class.getDeclaredMethod(Class.java:2475)
+	at com.wim.aero.acs.message.Message.codec(Message.java:222)
+	at com.wim.aero.acs.message.Message.encodeMsgBody(Message.java:61)
+	at com.wim.aero.acs.message.Message.encode(Message.java:42)
+	at com.wim.aero.acs.message.RequestMessage.encode(RequestMessage.java:25)
+	at com.wim.aero.acs.service.ScpService.scpSpecification(ScpService.java:88)
+	at com.wim.aero.acs.service.ScpService.configScp(ScpService.java:69)
+	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:67)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2022-03-28 22:52:17 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1105 0 0 250000 32 1286 0 1 1 1 1 1 0 0 1 64 0 15 0 0 14 14 0 0 0
+2022-03-28 22:52:17 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 501 0 94 256 64
+2022-03-28 22:52:18 INFO  SpringApplicationShutdownHook c.a.d.p.DruidDataSource {dataSource-1} closing ...
+2022-03-28 22:52:18 INFO  SpringApplicationShutdownHook c.a.d.p.DruidDataSource {dataSource-1} closed
+2022-03-28 22:52:26 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 32084 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:52:26 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:52:30 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:52:30 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:52:30 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:52:30 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:52:30 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:52:30 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3454 ms
+2022-03-28 22:52:30 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:52:31 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:52:31 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:32 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:52:32 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:52:35 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:52:36 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:52:36 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 11.436 seconds (JVM running for 12.725)
+2022-03-28 22:52:43 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:52:43 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:52:43 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 1 ms
+2022-03-28 22:52:44 ERROR http-nio-9250-exec-1 c.w.a.a.m.Message    未定义解码方法：formatList，消息解析失败
+java.lang.NoSuchMethodException: com.wim.aero.acs.util.ProtocolFiledUtil.FieldParser.formatList()
+	at java.base/java.lang.Class.getDeclaredMethod(Class.java:2475)
+	at com.wim.aero.acs.message.Message.codec(Message.java:222)
+	at com.wim.aero.acs.message.Message.encodeMsgBody(Message.java:61)
+	at com.wim.aero.acs.message.Message.encode(Message.java:42)
+	at com.wim.aero.acs.message.RequestMessage.encode(RequestMessage.java:25)
+	at com.wim.aero.acs.service.ScpService.scpSpecification(ScpService.java:88)
+	at com.wim.aero.acs.service.ScpService.configScp(ScpService.java:69)
+	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:67)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2022-03-28 22:52:44 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1105 0 0 250000 32 1286 0 1 1 1 1 1 0 0 1 64 0 15 0 0 14 14 0 0 0
+2022-03-28 22:52:44 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 501 0 94 256 64
+2022-03-28 22:57:45 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 4812 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 22:57:45 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 22:57:49 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 22:57:49 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:57:49 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 22:57:49 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 22:57:49 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 22:57:49 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3503 ms
+2022-03-28 22:57:49 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 22:57:50 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:50 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 22:57:50 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 22:57:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 22:57:54 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 22:57:54 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 22:57:54 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 9.676 seconds (JVM running for 10.858)
+2022-03-28 22:58:41 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 22:58:41 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 22:58:41 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 6 ms
+2022-03-28 22:58:42 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1105 0 0 250000 32 1286 0 1 1 1 1 1 0 0 1 64 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 14 14 0 0 0
+2022-03-28 22:58:42 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 501 0 94 256 64
+2022-03-28 23:00:10 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 30984 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 23:00:10 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 23:00:14 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 23:00:14 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 23:00:14 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 23:00:14 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 23:00:14 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 23:00:14 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3651 ms
+2022-03-28 23:00:14 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 23:00:15 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 23:00:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:16 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 23:00:16 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:00:19 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 23:00:19 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 23:00:19 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 10.777 seconds (JVM running for 13.19)
+2022-03-28 23:00:30 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 23:00:30 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 23:00:30 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 1 ms
+2022-03-28 23:00:30 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1107 0 94 0 0 0 0 2 80000 32 615 388 64 32000 1024 1024 -28800 0 255 255 128 0 0 0 0 0 0
+2022-03-28 23:00:30 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1105 0 0 250000 32 1286 0 1 1 1 1 1 0 0 1 64 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 14 14 0 0 0
+2022-03-28 23:00:30 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 501 0 94 256 64
+2022-03-28 23:00:30 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1102 0 0 1 11 12 32 0 1 1 0 1 0 1 1 1 1 0 0
+2022-03-28 23:00:30 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1102 0 0 2 113 12 32 0 1 1 1 1 1 1 0 0
+2022-03-28 23:00:30 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage 94 报文 1102 0 0 0 12 2 2 0 2 2 2 2 2 2 0 0
+2022-03-28 23:03:48 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 512 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-28 23:03:48 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-28 23:03:51 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-28 23:03:51 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-28 23:03:51 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-28 23:03:51 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-28 23:03:51 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-28 23:03:51 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2806 ms
+2022-03-28 23:03:51 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-28 23:03:52 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-28 23:03:52 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-28 23:03:52 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:52 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-28 23:03:52 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:52 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-28 23:03:52 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:52 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-28 23:03:52 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:52 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-28 23:03:52 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:53 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-28 23:03:53 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:53 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-28 23:03:53 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:53 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-28 23:03:53 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:53 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-28 23:03:53 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:53 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-28 23:03:53 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:53 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-28 23:03:53 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:54 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-28 23:03:54 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-28 23:03:58 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-28 23:03:58 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-28 23:03:59 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 11.338 seconds (JVM running for 12.416)
+2022-03-28 23:04:03 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-28 23:04:03 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-28 23:04:03 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-03-28 23:04:04 ERROR http-nio-9250-exec-1 c.w.a.a.c.ScpController 控制器95数据不存在。

@@ -4,6 +4,7 @@ import com.wim.aero.acs.db.entity.DevOutputDetail;
 import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 /**
  * mode
@@ -29,19 +30,19 @@ import lombok.Data;
 @Data
 public class OutputPointSpecification extends Operation {
     @CmdProp(index = 2)
-    private int lastModified = 0;
+    private Integer lastModified = 0;
 
     @CmdProp(index = 3)
-    private int scpNumber;
+    private Integer scpNumber;
 
     @CmdProp(index = 4)
-    private int sioNumber;
+    private Integer sioNumber;
 
     @CmdProp(index = 5)
-    private int output;  // 0 ~ nOutputs-1 (Command 109)
+    private Integer output;  // 0 ~ nOutputs-1 (Command 109)
 
     @CmdProp(index = 6)
-    private int mode;
+    private Integer mode;
 
     public static OutputPointSpecification fromDb(DevOutputDetail detail) {
         OutputPointSpecification result = new OutputPointSpecification();
@@ -50,7 +51,9 @@ public class OutputPointSpecification extends Operation {
         result.setOutput(detail.getOutput());
 
         // 暂时只使用值0和1
-        result.setMode(Integer.parseInt(detail.getModeFlag()));
+        if (StringUtils.hasText(detail.getModeFlag())) {
+            result.setMode(Integer.parseInt(detail.getModeFlag()));
+        }
 
         return result;
     }

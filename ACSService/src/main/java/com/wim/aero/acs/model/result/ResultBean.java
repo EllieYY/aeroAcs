@@ -1,6 +1,8 @@
 package com.wim.aero.acs.model.result;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,13 +13,17 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
+@ApiModel(value = "通用接口返回")
 public class ResultBean<T> {
+    @ApiModelProperty(value = "状态码", required = true)
     @JsonProperty("iret")
     private int code;
 
+    @ApiModelProperty(value = "返回信息", required = true)
     @JsonProperty("msg")
     private String msg;
 
+    @ApiModelProperty(value = "返回数据", required = true)
     @JsonProperty("data")
     private T data;
 

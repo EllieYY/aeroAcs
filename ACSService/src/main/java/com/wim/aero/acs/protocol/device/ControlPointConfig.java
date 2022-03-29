@@ -15,22 +15,22 @@ import lombok.Data;
 @Data
 public class ControlPointConfig extends Operation {
     @CmdProp(index = 2)
-    private int lastModified = 0;
+    private Integer lastModified = 0;
 
     @CmdProp(index = 3)
-    private int scpNumber;
+    private Integer scpNumber;
 
     @CmdProp(index = 4)
-    private int cpNumber; // 0 to nCp-1 (Command 1107)
+    private Integer cpNumber; // 0 to nCp-1 (Command 1107)
 
     @CmdProp(index = 5)
-    private int sioNumber; // -1 removes physical link to output point.
+    private Integer sioNumber; // -1 removes physical link to output point.
 
     @CmdProp(index = 6)
-    private int ouputNumber;
+    private Integer ouputNumber;
 
     @CmdProp(index = 7)
-    private int dfltPulse;     // 脉冲次数，每秒一次
+    private Integer dfltPulse;     // 脉冲次数，每秒一次
 
     public static  ControlPointConfig fromDb(DevOutputDetail detail) {
         ControlPointConfig result = new ControlPointConfig();

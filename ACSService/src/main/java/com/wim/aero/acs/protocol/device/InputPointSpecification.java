@@ -4,6 +4,7 @@ import com.wim.aero.acs.db.entity.DevInputDetail;
 import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 /**
  * icvtNum (conversionTable)
@@ -31,25 +32,25 @@ import lombok.Data;
 @Data
 public class InputPointSpecification extends Operation {
     @CmdProp(index = 2)
-    private int lastModified = 0;
+    private Integer lastModified = 0;
 
     @CmdProp(index = 3)
-    private int scpNumber;
+    private Integer scpNumber;
 
     @CmdProp(index = 4)
-    private int sioNumber;
+    private Integer sioNumber;
 
     @CmdProp(index = 5)
-    private int input; // 0 ~ nInputs-1 (Command 109)
+    private Integer input; // 0 ~ nInputs-1 (Command 109)
 
     @CmdProp(index = 6)
-    private int icvtNum;
+    private Integer icvtNum;
 
     @CmdProp(index = 7)
-    private int debounce = 4;  // Recommended setting for REX is 2, and 4-6 for standard input
+    private Integer debounce = 4;  // Recommended setting for REX is 2, and 4-6 for standard input
 
     @CmdProp(index = 8)
-    private int holdTime = 5;  // 2 ~ 15
+    private Integer holdTime = 5;  // 2 ~ 15
 
     public static InputPointSpecification fromDb(DevInputDetail detail) {
         InputPointSpecification result = new InputPointSpecification();
@@ -57,7 +58,9 @@ public class InputPointSpecification extends Operation {
         result.setSioNumber(detail.getPDeviceId());
         result.setInput(detail.getInput());
 
-        result.setIcvtNum(Integer.parseInt(detail.getInMode()));
+        if (StringUtils.hasText(detail.getInMode())) {
+            result.setIcvtNum(Integer.parseInt(detail.getInMode()));
+        }
 
         return result;
     }

@@ -33,4 +33,43 @@
         card_no, card_seq, pin, card_type, effect_begin_time, effect_end_time, holiday_begin_time, holiday_end_time, temp_upgrade_begin_time, temp_upgrade_end_time, times, apb_flag, additional_flag, disabled_flag, card_pwd_flag, state, first_card_flag, create_by, create_time, update_by, update_time, apb_id
     </sql>
 
+    <resultMap id="CardInfoMap" type="com.wim.aero.acs.protocol.card.CardAdd">
+        <result column="card_no" property="cardNumber" />
+        <result column="pin" property="pin" />
+        <result column="apb_id" property="apbLoc" />
+        <result column="times" property="useCount" />
+        <result column="activeTime" property="actTime" />
+        <result column="deactiveTime" property="dactTime" />
+        <result column="holidayDate" property="vacDate" />
+        <result column="holidayDays" property="vacDays" />
+        <result column="tmpDate" property="tmpDate" />
+        <result column="tmpDays" property="tmpDays" />
+        <result column="flags" property="flags" />
+        <collection property="alvl" ofType="java.lang.Integer">
+            <result column="alId" />
+        </collection>
+    </resultMap>
+    <select id="selectAllByCardNo" resultMap="BaseResultMap">
+        select
+            a.card_no, a.pin, a.apb_id, a.times,
+            DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_begin_time) as activeTime,
+            DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_end_time) as deactiveTime,
+            DATEDIFF ( day , '1900/01/01 00:00:00', a.holiday_begin_time) as holidayDate,
+            DATEDIFF ( day , a.holiday_begin_time, a.holiday_end_time) as holidayDays,
+            DATEDIFF ( day , '1900/01/01 00:00:00', a.temp_upgrade_begin_time) as tmpDate,
+            DATEDIFF ( day , a.temp_upgrade_begin_time, a.temp_upgrade_end_time) as tmpDays,
+            (1 + 2 * ISNULL(a.first_card_flag, 0) +
+             4 * ISNULL(a.apb_flag, 0) +
+             8 * ISNULL(a.disabled_flag, 0) +
+             16 * ISNULL(a.card_pwd_flag, 0))  as flags,
+            b.access_level_id as alId
+        from c_card_info a, d_employee_access_level b
+        where
+            a.card_no IN
+            <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+                #{id}
+            </foreach> and
+            a.card_no = b.card_no
+    </select>
+
 </mapper>

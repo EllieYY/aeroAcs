@@ -36,7 +36,7 @@ public class TestController {
 
         int scpId = Integer.parseInt(scpIdStr);
 //        scpService.configScp(scpId);
-        accessConfigService.mpGroupConfig(scpId);
+//        accessConfigService.mpGroupConfig(scpId);
 
         return ResultBeanUtil.makeOkResp("count = ");
     }

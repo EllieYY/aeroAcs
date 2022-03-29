@@ -16,19 +16,19 @@ import lombok.Data;
 public class WiegandCardFormat extends Operation {
 
     @CmdProp(index = 2)
-    private int lastModified = 0;
+    private Integer lastModified = 0;
 
     @CmdProp(index = 3)
-    private int nScpId;
+    private Integer nScpId;
 
     @CmdProp(index = 4)
-    private int number;   // Card format number (0-7). 跟页面设置不一样
+    private Integer number;   // Card format number (0-7). 跟页面设置不一样
 
     @CmdProp(index = 5)
-    private int facility;   // 工程码 Facility code, maximum value is 32 bits (long). Use -1 for not used.
+    private Integer facility;   // 工程码 Facility code, maximum value is 32 bits (long). Use -1 for not used.
 
     @CmdProp(index = 6)
-    private int offset;   // 卡偏移量 This number is a constant that is added to the ID number to allow
+    private Integer offset;   // 卡偏移量 This number is a constant that is added to the ID number to allow
 
     /** 卡类型
      * Define      | Value | Card format table
@@ -38,43 +38,43 @@ public class WiegandCardFormat extends Operation {
      * CFMT_F_MTA  |  3    | Not used
      */
     @CmdProp(index = 7)
-    private int functionId;
+    private Integer functionId;
 
     @CmdProp(index = 8)
-    private int flags;
+    private Integer flags;
 
     @CmdProp(index = 9)
-    private int bits; // 格式号？ Number of bits on the card
+    private Integer bits; // 格式号？ Number of bits on the card
 
     @CmdProp(index = 10)
-    private int peLn; // 偶校验长度 Number of bits to sum for even parity
+    private Integer peLn; // 偶校验长度 Number of bits to sum for even parity
 
     @CmdProp(index = 11)
-    private int peLoc; // Even parity starting bit address
+    private Integer peLoc; // Even parity starting bit address
 
     @CmdProp(index = 12)
-    private int poLn; // 奇校验长度 Number of bits to sum for odd parity
+    private Integer poLn; // 奇校验长度 Number of bits to sum for odd parity
 
     @CmdProp(index = 13)
-    private int poLoc; // Odd parity starting bit address
+    private Integer poLoc; // Odd parity starting bit address
 
     @CmdProp(index = 14)
-    private int fcLn; // 工程码长度 Number of facility code bits
+    private Integer fcLn; // 工程码长度 Number of facility code bits
 
     @CmdProp(index = 15)
-    private int fcLoc; // 工程码开始位 Facility code starting bit address
+    private Integer fcLoc; // 工程码开始位 Facility code starting bit address
 
     @CmdProp(index = 16)
-    private int chLn; // 卡号长度 Number of cardholder ID bits
+    private Integer chLn; // 卡号长度 Number of cardholder ID bits
 
     @CmdProp(index = 17)
-    private int chLoc; // 卡号开始位 Cardholder ID starting bit address (ms bit)
+    private Integer chLoc; // 卡号开始位 Cardholder ID starting bit address (ms bit)
 
     @CmdProp(index = 18)
-    private int icLn = 0;  // Number of issue code bits
+    private Integer icLn = 0;  // Number of issue code bits
 
     @CmdProp(index = 19)
-    private int icLoc = 0;
+    private Integer icLoc = 0;
 
     public static WiegandCardFormat fromDb(CardFormat cardFormat) {
         WiegandCardFormat result = new WiegandCardFormat();

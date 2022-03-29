@@ -39,13 +39,22 @@ public class AccessLevelExtended extends Operation {
         result.setScpNumber(info.getNScpNumber());
         result.setAlvlNumber(info.getNAlvlnumber());
 
-        List<ACRTz> acrTzList = info.getTzList();
-        List<Integer> tzList = Arrays.asList(new Integer[64]);
-        for (Integer item:tzList) {
-
+        // 初始化0
+        List<Integer> tzList = new ArrayList<>();
+        for (int i = 0; i < 64; i++) {
+            tzList.add(0);
         }
 
-
+        // 对应读写器编号位置填对应时间组编号
+        List<ACRTz> acrTzList = info.getTzList();
+        for(ACRTz item:acrTzList) {
+            int tzNo = item.getTz();
+            int acrNo = item.getAcrId();
+            if (acrNo >= 0 && acrNo < 64) {
+                tzList.set(acrNo, tzNo);
+            }
+        }
+        result.setTz(tzList);
 
         return result;
     }

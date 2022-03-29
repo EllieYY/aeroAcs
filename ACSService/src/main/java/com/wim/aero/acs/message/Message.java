@@ -58,7 +58,7 @@ public abstract class Message<T extends MessageBody> {
                 // 空值处理
                 fieldValObj = Optional.ofNullable(fieldValObj).orElse(sParam.getDefaultVal());
 
-                fieldVal = (String)codec(fieldValObj, codecMethod);
+                fieldVal = (String)codec(fieldValObj, codecMethod, field.getType());
                 fieldVal = (fieldVal == null) ? "" : fieldVal;
 
             } catch (IllegalAccessException e) {
@@ -174,7 +174,7 @@ public abstract class Message<T extends MessageBody> {
                     Object val = StringUtils.hasText(fieldValStr) ? null : fieldValStr;
 
                     // 字段解码
-                    val = codec(fieldValStr, codecMethod);
+                    val = codec(fieldValStr, codecMethod, field.getType());
 
                     field.set(body, val);
                 } catch (IllegalAccessException e) {
@@ -208,7 +208,7 @@ public abstract class Message<T extends MessageBody> {
         return sParams;
     }
 
-    private Object codec(Object fieldVal, String codecMethod) {
+    private Object codec(Object fieldVal, String codecMethod, Class<?> fileType) {
         Object val;
 
         // 字符串，无需转换
@@ -219,7 +219,7 @@ public abstract class Message<T extends MessageBody> {
 
         // 根据编码方法进行转换
         try {
-            Method method = FieldParser.class.getDeclaredMethod(codecMethod, String.class);
+            Method method = FieldParser.class.getDeclaredMethod(codecMethod, fileType);
             val = method.invoke(null, fieldVal);
         } catch (NoSuchMethodException e) {
             log.error("未定义解码方法：{}，消息解析失败", codecMethod, e);

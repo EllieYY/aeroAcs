@@ -88,7 +88,15 @@ public class CardAdd extends Operation {
     @CmdProp(index = 120)
     private int assetGroup = 0;
 
-//    public CardAdd fromDb() {
-//
-//    }
+    public void alListFix() {
+        int size = alvl.size();
+        if(alvl.size() > 32) {
+            alvl = alvl.subList(0, 32);
+        } else {
+            int length = 32 - size;
+            for (int i = 0; i < length; i++) {
+                alvl.add(0);
+            }
+        }
+    }
 }

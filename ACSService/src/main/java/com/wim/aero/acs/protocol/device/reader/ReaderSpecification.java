@@ -41,28 +41,28 @@ import lombok.Data;
 @Data
 public class ReaderSpecification extends Operation {
     @CmdProp(index = 2)
-    private int lastModified = 0;
+    private Integer lastModified = 0;
 
     @CmdProp(index = 3)
-    private int scpNumber;
+    private Integer scpNumber;
 
     @CmdProp(index = 4)
-    private int sioNumber;
+    private Integer sioNumber;
 
     @CmdProp(index = 5)
-    private int reader; // 0 to nReaders -1 (Command 109)
+    private Integer reader; // 0 to nReaders -1 (Command 109)
 
     @CmdProp(index = 6)
-    private int dtFmt = 0x01;
+    private Integer dtFmt = 0x01;  // 目前未做OSDP相关配置，默认韦根模式
 
     @CmdProp(index = 7)
-    private int keypadMode;
+    private Integer keypadMode;
 
     @CmdProp(index = 8)
-    private int ledDriveMode = 1;
+    private Integer ledDriveMode = 1;
 
     @CmdProp(index = 9)
-    private int osdpFlags = 0;
+    private Integer osdpFlags = 0;
 
     public static ReaderSpecification fromDb(DevReaderDetail detail) {
         ReaderSpecification result = new ReaderSpecification();
@@ -70,8 +70,6 @@ public class ReaderSpecification extends Operation {
         result.setSioNumber(detail.getPDeviceId());
         result.setReader(detail.getReaderNumber());
         result.setKeypadMode(detail.getKeyMode());
-
-        // TODO:目前未做OSDP相关配置，默认韦根模式
 
         return result;
     }

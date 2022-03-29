@@ -49,7 +49,7 @@ public class TimeZone extends Operation {
     @CmdProp(index = 8)
     private int intervalsNum; // 0~12
 
-    @CmdProp(index = 9)
+    @CmdProp(index = 9, enCodec = "formatTimeInterval")
     private List<TimeInterval> intervals;
 
     public void updateIntervalSize() {

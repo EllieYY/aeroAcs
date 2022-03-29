@@ -35,5 +35,12 @@
             #{id}
         </foreach>
     </select>
+    <select id="selectAllByControllerId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dev_output_detail
+        where
+        controller_id = #{controllerId,jdbcType=NUMERIC}
+    </select>
 
 </mapper>

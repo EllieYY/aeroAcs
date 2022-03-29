@@ -16,17 +16,29 @@
     <properties>
         <java.version>11</java.version>
         <springfox-swagger2-version>3.0.0</springfox-swagger2-version>
+        <httpClient.version>4.5.6</httpClient.version>
 <!--        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>-->
     </properties>
 
     <dependencies>
 
+<!--        <dependency>-->
+<!--            <groupId>io.springfox</groupId>-->
+<!--            <artifactId>springfox-boot-starter</artifactId>-->
+<!--            <version>${springfox-swagger2-version}</version>-->
+<!--        </dependency>-->
+
+        <!-- swagger2 -->
         <dependency>
             <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>${springfox-swagger2-version}</version>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>1.9.6</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -85,6 +97,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpClient.version}</version>
         </dependency>
 
     </dependencies>

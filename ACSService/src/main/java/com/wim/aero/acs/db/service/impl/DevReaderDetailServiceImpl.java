@@ -26,4 +26,13 @@ public class DevReaderDetailServiceImpl extends ServiceImpl<DevReaderDetailMappe
     public List<DevReaderDetail> getByPDeviceIds(List<Integer> ids) {
         return this.baseMapper.selectAllByPDeviceId(ids);
     }
+
+    /**
+     * 通过scpId查找
+     * @param scpId
+     * @return
+     */
+    public List<DevReaderDetail> getByScpId(int scpId) {
+        return this.baseMapper.selectAllByControllerId(scpId);
+    }
 }

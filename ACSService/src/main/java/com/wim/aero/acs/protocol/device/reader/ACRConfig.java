@@ -6,6 +6,7 @@ import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @title: ACRConfig
@@ -46,148 +47,147 @@ import java.util.List;
 @Data
 public class ACRConfig extends Operation {
     @CmdProp(index = 2)
-    private int lastModified = 0;
+    private Integer lastModified = 0;
 
     @CmdProp(index = 3)
-    private int scpNumber;
+    private Integer scpNumber;
 
     @CmdProp(index = 4)
-    private int acrNumber;
+    private Integer acrNumber;
 
     @CmdProp(index = 5)
-    private int accessCfg; // 读卡器类型
+    private Integer accessCfg; // 读卡器类型
 
     @CmdProp(index = 6)
-    private int pairAcrNumber; // Use -1 if not paired reader.
+    private Integer pairAcrNumber; // Use -1 if not paired reader.
 
     @CmdProp(index = 7)
-    private int rdrSio; // Reader link: the SIO number on the SCP that contains the reader. Use - 1 for not used.
+    private Integer rdrSio; // Reader link: the SIO number on the SCP that contains the reader. Use - 1 for not used.
 
     @CmdProp(index = 8)
-    private int rdrNumber;  // 0 ~ nReaders-1
+    private Integer rdrNumber;  // 0 ~ nReaders-1
 
     // 锁
     @CmdProp(index = 9)
-    private int strkSio; // Strike link: the SIO number on the SCP that contains the strike relay. 0 ~nSio -1. Use -1 for not used.
+    private Integer strkSio; // Strike link: the SIO number on the SCP that contains the strike relay. 0 ~nSio -1. Use -1 for not used.
 
     @CmdProp(index = 10)
-    private int strkNumber; // Strike link: Relay number on the specified SIO (strk_sio). 0 ~ nOutputs -1. Use -1 for not used.
+    private Integer strkNumber; // Strike link: Relay number on the specified SIO (strk_sio). 0 ~ nOutputs -1. Use -1 for not used.
 
     @CmdProp(index = 11)
-    private int strikeTimeMin; // 开门时间 Minimum strike activation time, in seconds. A typical value is 1 second; valid values are 1 to
+    private Integer strikeTimeMin; // 开门时间 Minimum strike activation time, in seconds. A typical value is 1 second; valid values are 1 to
 
 
     @CmdProp(index = 12)
-    private int strikeTimeMax; // 开门提示时间 IMaximum strike activation, in seconds; valid values are strike_t_min to 255.
+    private Integer strikeTimeMax; // 开门提示时间 IMaximum strike activation, in seconds; valid values are strike_t_min to 255.
 
 
     @CmdProp(index = 13)
-    private int strikeMode; // 门磁上电
+    private Integer strikeMode; // 门磁上电
 
     // 门
 
     @CmdProp(index = 14)
-    private int doorSio = -1;  //Door contact link: the SIO number on the SCP that contains the input. 0 ~  nSio -1. Use -1 for not used.
+    private Integer doorSio = -1;  //Door contact link: the SIO number on the SCP that contains the input. 0 ~  nSio -1. Use -1 for not used.
 
     @CmdProp(index = 15)
-    private int doorNumber = -1; // Door contact link: Input number on the specified SIO (door_sio). 0 ~ nInputs -1. Use -1 for not used.
+    private Integer doorNumber = -1; // Door contact link: Input number on the specified SIO (door_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     @CmdProp(index = 16)
-    private int dcHeld; // Delay before held open alarm is reported (2 second units). Valid values are 1 to 32767.
+    private Integer dcHeld; // Delay before held open alarm is reported (2 second units). Valid values are 1 to 32767.
 
     // 出门按钮
     @CmdProp(index = 17)
-    private int rex0Sio = -1; //Rex-0 link: the SIO number on the SCP that contains the input. 0~nSio -1. Use -1 for not used.
+    private Integer rex0Sio = -1; //Rex-0 link: the SIO number on the SCP that contains the input. 0~nSio -1. Use -1 for not used.
 
     @CmdProp(index = 18)
-    private int rex0Number = -1; // Rex-0 link: Input number on the specified SIO (rex0_sio). 0 ~ nInputs -1. Use -1 for not used.
+    private Integer rex0Number = -1; // Rex-0 link: Input number on the specified SIO (rex0_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     // REX 1 is normally not used.
     @CmdProp(index = 19)
-    private int rex1Sio = -1; // Rex-1 link: the SIO number on the SCP that contains the input. 0 ~ nSio -1. Use -1 for not configured.
+    private Integer rex1Sio = -1; // Rex-1 link: the SIO number on the SCP that contains the input. 0 ~ nSio -1. Use -1 for not configured.
 
     @CmdProp(index = 20)
-    private int rex1Number = -1; //Rex-1 link: Input number on the specified SIO (rex1_sio). 0 ~ nInputs -1. Use -1 for not used.
+    private Integer rex1Number = -1; //Rex-1 link: Input number on the specified SIO (rex1_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     @CmdProp(index = 21)
-    private int rex0TzMask = 0; //Time zone for disabling rex0 and rex1. Set to 0 to not disable the rex on a time zone.
+    private Integer rex0TzMask = 0; //Time zone for disabling rex0 and rex1. Set to 0 to not disable the rex on a time zone.
 
     @CmdProp(index = 22)
-    private int rex1TzMask = 0;
+    private Integer rex1TzMask = 0;
 
     @CmdProp(index = 23)
-    private int altrdrSio = -1; // Alternate reader link: the SIO number on the SCP that contains the reader. Use -1 for not used.
+    private Integer altrdrSio = -1; // Alternate reader link: the SIO number on the SCP that contains the reader. Use -1 for not used.
 
     @CmdProp(index = 24)
-    private int altrdrNumber = -1; // 0 ~ nReaders
+    private Integer altrdrNumber = -1; // 0 ~ nReaders
 
     @CmdProp(index = 25)
-    private int altrdrSpec;
+    private Integer altrdrSpec;
 
     @CmdProp(index = 26)
-    private int cdFormat;  // 卡格式目录
+    private Integer cdFormat;  // 卡格式目录
 
     @CmdProp(index = 27)
-    private int apbMode;
+    private Integer apbMode;
 
     @CmdProp(index = 28)
-    private int apbIn;
+    private Integer apbIn;
 
     @CmdProp(index = 29)
-    private int apbTo;
+    private Integer apbTo;
 
     @CmdProp(index = 30)
-    private int spare;
+    private Integer spare;
 
     @CmdProp(index = 31)
-    private int actlFlags;
+    private Integer actlFlags;
 
     @CmdProp(index = 32)
-    private int offlineMode;
+    private Integer offlineMode;
 
     @CmdProp(index = 33)
-    private int defaultMode;
+    private Integer defaultMode;
 
     @CmdProp(index = 34)
-    private int defaultLedMode;
+    private Integer defaultLedMode;
 
     @CmdProp(index = 35)
-    private int preAlarm = 0;
+    private Integer preAlarm = 0;
 
     @CmdProp(index = 36)
-    private int apbDelay;   // apb延时 0~65535，seconds
+    private Integer apbDelay;   // apb延时 0~65535，seconds
 
     @CmdProp(index = 37)
-    private int strkT2;   // ADA开门时间
+    private Integer strkT2;   // ADA开门时间
 
     @CmdProp(index = 38)
-    private int dcHeld2;   // ADA开门过长报警时间
-
+    private Integer dcHeld2;   // ADA开门过长报警时间
 
     // 暂时不用
     @CmdProp(index = 39)
-    private int strkFollowPulse = 0;
+    private Integer strkFollowPulse = 0;
     @CmdProp(index = 40)
-    private int strkFollowDelay = 0;
+    private Integer strkFollowDelay = 0;
     @CmdProp(index = 41)
-    private int nAuthModFlags = 0;
+    private Integer nAuthModFlags = 0;
 
     @CmdProp(index = 42)
-    private int nExtFeatureType = 0;
+    private Integer nExtFeatureType = 0;
 
     @CmdProp(index = 43)
-    private int iIPBSio = -1; // SIO ID for Interior Push Button (not needed for native locksets). Set to -1 when not used.
+    private Integer iIPBSio = -1; // SIO ID for Interior Push Button (not needed for native locksets). Set to -1 when not used.
     @CmdProp(index = 44)
-    private int iIPBNumber = 0; // Input number for Interior Push Button (not needed for native locksets)
+    private Integer iIPBNumber = 0; // Input number for Interior Push Button (not needed for native locksets)
     @CmdProp(index = 45)
-    private int iIPBLongPress = 0; // IPB long-press, 0-15 seconds (if applicable)
+    private Integer iIPBLongPress = 0; // IPB long-press, 0-15 seconds (if applicable)
     @CmdProp(index = 46)
-    private int iIPBOutSio = 0; // SIO ID for IPB indicator output (not needed for native locksets). Set to -1 when not used.
+    private Integer iIPBOutSio = 0; // SIO ID for IPB indicator output (not needed for native locksets). Set to -1 when not used.
     @CmdProp(index = 47)
-    private int iIPBOutNum = 0;
+    private Integer iIPBOutNum = 0;
 
     @CmdProp(index = 48)
-    private int dfofFilterTime;  // 0~65535
+    private Integer dfofFilterTime;  // 0~65535
 
     public static ACRConfig fromDb(DevReaderDetail detail) {
         ACRConfig result = new ACRConfig();
@@ -217,7 +217,7 @@ public class ACRConfig extends Operation {
         result.setRex1TzMask(detail.getRex1Tz());
 
         // 备用读卡器启用配置
-        int altrdrSpec = detail.getAltrdrSpec();
+        int altrdrSpec = Optional.ofNullable(detail.getAltrdrSpec()).orElse(0);
         if (altrdrSpec != 0) {
             result.setAltrdrSio(detail.getAltrdrSio());
             result.setAltrdrNumber(detail.getAltrdrNumber());

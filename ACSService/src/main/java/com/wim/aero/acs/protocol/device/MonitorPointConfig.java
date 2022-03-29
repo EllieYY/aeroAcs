@@ -4,6 +4,7 @@ import com.wim.aero.acs.db.entity.DevInputDetail;
 import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 /**
  * @title: MpSpecification
@@ -15,19 +16,19 @@ import lombok.Data;
 public class MonitorPointConfig extends Operation {
 
     @CmdProp(index = 2)
-    private int lastModified = 0;
+    private Integer lastModified = 0;
 
     @CmdProp(index = 3)
-    private int scpNumber;
+    private Integer scpNumber;
 
     @CmdProp(index = 4)
-    private int mpNumber;  // 0 to nMp-1 (Command 1107)
+    private Integer mpNumber;  // 0 to nMp-1 (Command 1107)
 
     @CmdProp(index = 5)
-    private int sioNumber;   // -1 removes physical link to input point.
+    private Integer sioNumber;   // -1 removes physical link to input point.
 
     @CmdProp(index = 6)
-    private int inputNumber;
+    private Integer inputNumber;
 
     /**
      * Define   Value    Log function code meaning
@@ -36,7 +37,7 @@ public class MonitorPointConfig extends Operation {
      * MPLG_2   0x02     Do not log contact change-of-state if masked and no fault-to-fault changes
      */
     @CmdProp(index = 7)
-    private int logFuncCode = 0x02;
+    private Integer logFuncCode = 0x02;
 
     /**
      * 0 = Normal mode (no exit or entry delay)
@@ -44,17 +45,17 @@ public class MonitorPointConfig extends Operation {
      * 2 = Latching mode   封闭型继电器
      */
     @CmdProp(index = 8)
-    private int mode = 0;
+    private Integer mode = 0;
 
     /**
      * 0 - no delay
      * max - 65535 seconds
      */
     @CmdProp(index = 9)
-    private int delayEntry = 0;
+    private Integer delayEntry = 0;
 
     @CmdProp(index = 10)
-    private int delayExit = 0;
+    private Integer delayExit = 0;
 
     public static MonitorPointConfig fromDb(DevInputDetail detail) {
         MonitorPointConfig result = new MonitorPointConfig();
@@ -63,12 +64,14 @@ public class MonitorPointConfig extends Operation {
         result.setInputNumber(detail.getInput());
         result.setMpNumber(detail.getInput());
 
-        int mode = Integer.parseInt(detail.getAlarmDelayFlag());
-        if (mode != 0) {
-            mode = 2;
-            result.setMode(mode);
-            result.setDelayEntry(detail.getInDelay());
-            result.setDelayExit(detail.getOutDelay());
+        if (StringUtils.hasText(detail.getAlarmDelayFlag())) {
+            int mode = Integer.parseInt(detail.getAlarmDelayFlag());
+            if (mode != 0) {
+                mode = 2;
+                result.setMode(mode);
+                result.setDelayEntry(detail.getInDelay());
+                result.setDelayExit(detail.getOutDelay());
+            }
         }
 
         return result;

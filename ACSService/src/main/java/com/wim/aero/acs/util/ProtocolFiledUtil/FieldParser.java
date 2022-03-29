@@ -1,6 +1,11 @@
 package com.wim.aero.acs.util.ProtocolFiledUtil;
 
+import com.wim.aero.acs.protocol.timezone.TimeInterval;
+import lombok.val;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @title: FieldParser
@@ -19,6 +24,14 @@ public class FieldParser {
 
     public static String formatStr(String val) {
         return "\"" + val + "\"";
+    }
+
+    public static String formatList(List<Integer> val) {
+        return String.join(" ", val.stream().map(String::valueOf).collect(Collectors.toList()));
+    }
+
+    public static String formatTimeInterval(List<TimeInterval> valList) {
+        return String.join(" ", valList.stream().map(TimeInterval::toString).collect(Collectors.toList()));
     }
 
 }
