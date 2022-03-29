@@ -6129,3 +6129,796 @@ Caused by: java.lang.NullPointerException: null
 2022-03-29 16:04:33 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-03-29 16:04:33 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
 2022-03-29 16:04:33 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-03-29 16:07:09 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 27684 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:07:09 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:07:11 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-29 16:07:11 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:07:11 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-29 16:07:11 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-29 16:07:11 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-29 16:07:11 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1855 ms
+2022-03-29 16:07:11 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-29 16:07:11 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:12 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-29 16:07:12 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:07:14 INFO  main s.d.s.w.PropertySourcedRequestMappingHandlerMapping Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-03-29 16:07:14 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:07:14 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-29 16:07:14 INFO  main s.d.s.w.p.DocumentationPluginsBootstrapper Context refreshed
+2022-03-29 16:07:14 INFO  main s.d.s.w.p.DocumentationPluginsBootstrapper Found 1 custom documentation plugin(s)
+2022-03-29 16:07:14 INFO  main s.d.s.w.s.ApiListingReferenceScanner Scanning for api listing references
+2022-03-29 16:07:14 INFO  main s.d.s.w.r.o.CachingOperationNameGenerator Generating unique operation named: scpConfigUsingPOST_1
+2022-03-29 16:07:14 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 5.839 seconds (JVM running for 8.128)
+2022-03-29 16:07:21 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-29 16:07:21 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-29 16:07:21 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 4 ms
+2022-03-29 16:23:23 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 34196 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:23:23 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:23:23 WARN  main o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+2022-03-29 16:23:23 INFO  main o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-03-29 16:23:23 ERROR main o.s.b.SpringApplication Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:457)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.findCandidateComponents(ClassPathScanningCandidateComponentProvider.java:316)
+	at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.doScan(ClassPathBeanDefinitionScanner.java:276)
+	at org.springframework.context.annotation.ComponentScanAnnotationParser.parse(ComponentScanAnnotationParser.java:128)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:296)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:304)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:207)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:175)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at com.wim.aero.acs.AcsserviceApplication.main(AcsserviceApplication.java:13)
+Caused by: java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:331)
+	at org.springframework.context.annotation.ConditionEvaluator.getCondition(ConditionEvaluator.java:124)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:96)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:88)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:71)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isConditionMatch(ClassPathScanningCandidateComponentProvider.java:512)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(ClassPathScanningCandidateComponentProvider.java:495)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:430)
+	... 29 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: springfox/documentation/common/ClassPresentInClassPathCondition
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1016)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:174)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:800)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:698)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:621)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:579)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:398)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:324)
+	... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: springfox.documentation.common.ClassPresentInClassPathCondition
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 49 common frames omitted
+2022-03-29 16:32:06 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 27368 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:32:06 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:32:07 WARN  main o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+2022-03-29 16:32:07 INFO  main o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-03-29 16:32:07 ERROR main o.s.b.SpringApplication Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:457)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.findCandidateComponents(ClassPathScanningCandidateComponentProvider.java:316)
+	at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.doScan(ClassPathBeanDefinitionScanner.java:276)
+	at org.springframework.context.annotation.ComponentScanAnnotationParser.parse(ComponentScanAnnotationParser.java:128)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:296)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:304)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:207)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:175)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at com.wim.aero.acs.AcsserviceApplication.main(AcsserviceApplication.java:15)
+Caused by: java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:331)
+	at org.springframework.context.annotation.ConditionEvaluator.getCondition(ConditionEvaluator.java:124)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:96)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:88)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:71)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isConditionMatch(ClassPathScanningCandidateComponentProvider.java:512)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(ClassPathScanningCandidateComponentProvider.java:495)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:430)
+	... 29 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: springfox/documentation/common/ClassPresentInClassPathCondition
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1016)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:174)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:800)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:698)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:621)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:579)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:398)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:324)
+	... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: springfox.documentation.common.ClassPresentInClassPathCondition
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 49 common frames omitted
+2022-03-29 16:34:08 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 16360 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:34:08 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:34:09 WARN  main o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+2022-03-29 16:34:09 INFO  main o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-03-29 16:34:09 ERROR main o.s.b.SpringApplication Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:457)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.findCandidateComponents(ClassPathScanningCandidateComponentProvider.java:316)
+	at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.doScan(ClassPathBeanDefinitionScanner.java:276)
+	at org.springframework.context.annotation.ComponentScanAnnotationParser.parse(ComponentScanAnnotationParser.java:128)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:296)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:304)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:207)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:175)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at com.wim.aero.acs.AcsserviceApplication.main(AcsserviceApplication.java:15)
+Caused by: java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:331)
+	at org.springframework.context.annotation.ConditionEvaluator.getCondition(ConditionEvaluator.java:124)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:96)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:88)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:71)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isConditionMatch(ClassPathScanningCandidateComponentProvider.java:512)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(ClassPathScanningCandidateComponentProvider.java:495)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:430)
+	... 29 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: springfox/documentation/common/ClassPresentInClassPathCondition
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1016)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:174)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:800)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:698)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:621)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:579)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:398)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:324)
+	... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: springfox.documentation.common.ClassPresentInClassPathCondition
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 49 common frames omitted
+2022-03-29 16:35:27 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 34568 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:35:27 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:35:28 WARN  main o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+2022-03-29 16:35:28 INFO  main o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-03-29 16:35:28 ERROR main o.s.b.SpringApplication Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:457)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.findCandidateComponents(ClassPathScanningCandidateComponentProvider.java:316)
+	at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.doScan(ClassPathBeanDefinitionScanner.java:276)
+	at org.springframework.context.annotation.ComponentScanAnnotationParser.parse(ComponentScanAnnotationParser.java:128)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:296)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:304)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:207)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:175)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at com.wim.aero.acs.AcsserviceApplication.main(AcsserviceApplication.java:15)
+Caused by: java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:331)
+	at org.springframework.context.annotation.ConditionEvaluator.getCondition(ConditionEvaluator.java:124)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:96)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:88)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:71)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isConditionMatch(ClassPathScanningCandidateComponentProvider.java:512)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(ClassPathScanningCandidateComponentProvider.java:495)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:430)
+	... 29 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: springfox/documentation/common/ClassPresentInClassPathCondition
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1016)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:174)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:800)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:698)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:621)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:579)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:398)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:324)
+	... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: springfox.documentation.common.ClassPresentInClassPathCondition
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 49 common frames omitted
+2022-03-29 16:38:07 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 10968 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:38:07 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:38:08 WARN  main o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+2022-03-29 16:38:08 INFO  main o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-03-29 16:38:08 ERROR main o.s.b.SpringApplication Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/E:/maven-repository/io/springfox/springfox-spring-webmvc/3.0.0/springfox-spring-webmvc-3.0.0.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]; nested exception is java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:457)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.findCandidateComponents(ClassPathScanningCandidateComponentProvider.java:316)
+	at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.doScan(ClassPathBeanDefinitionScanner.java:276)
+	at org.springframework.context.annotation.ComponentScanAnnotationParser.parse(ComponentScanAnnotationParser.java:128)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:296)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:600)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:311)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:304)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:207)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:175)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at com.wim.aero.acs.AcsserviceApplication.main(AcsserviceApplication.java:15)
+Caused by: java.lang.IllegalArgumentException: Unresolvable class definition for class [springfox.documentation.spring.web.OnServletBasedWebApplication]
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:331)
+	at org.springframework.context.annotation.ConditionEvaluator.getCondition(ConditionEvaluator.java:124)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:96)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:88)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:71)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isConditionMatch(ClassPathScanningCandidateComponentProvider.java:512)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(ClassPathScanningCandidateComponentProvider.java:495)
+	at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.scanCandidateComponents(ClassPathScanningCandidateComponentProvider.java:430)
+	... 29 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: springfox/documentation/common/ClassPresentInClassPathCondition
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1016)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:174)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:800)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:698)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:621)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:579)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:398)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+	at org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:324)
+	... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: springfox.documentation.common.ClassPresentInClassPathCondition
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 49 common frames omitted
+2022-03-29 16:40:39 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 6224 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:40:39 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:40:43 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-29 16:40:43 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:40:43 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-29 16:40:43 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-29 16:40:43 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-29 16:40:43 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3681 ms
+2022-03-29 16:40:43 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-29 16:40:43 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-29 16:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:40:48 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:40:48 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-29 16:40:48 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 11.63 seconds (JVM running for 14.647)
+2022-03-29 16:41:01 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-29 16:41:01 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-29 16:41:01 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 4 ms
+2022-03-29 16:46:26 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 29412 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:46:26 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:46:28 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-29 16:46:28 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:46:28 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-29 16:46:28 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-29 16:46:28 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-29 16:46:28 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1843 ms
+2022-03-29 16:46:28 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-29 16:46:29 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:29 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-29 16:46:29 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:46:31 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-03-29 16:46:31 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-03-29 16:46:31 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:46:31 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-29 16:46:32 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.252 seconds (JVM running for 8.432)
+2022-03-29 16:48:26 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-29 16:48:26 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-29 16:48:26 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 1 ms
+2022-03-29 16:49:10 ERROR http-nio-9250-exec-7 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.wim.aero.acs.model.request.ScpRequest` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (108); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `com.wim.aero.acs.model.request.ScpRequest` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (108)
+ at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 1]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:391)
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:343)
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:185)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:160)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:133)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `com.wim.aero.acs.model.request.ScpRequest` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (108)
+ at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1728)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleMissingInstantiator(DeserializationContext.java:1353)
+	at com.fasterxml.jackson.databind.deser.ValueInstantiator.createFromInt(ValueInstantiator.java:324)
+	at com.fasterxml.jackson.databind.deser.std.StdValueInstantiator.createFromInt(StdValueInstantiator.java:376)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromNumber(BeanDeserializerBase.java:1442)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeOther(BeanDeserializer.java:198)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:186)
+	at com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:322)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4674)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3682)
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:380)
+	... 43 common frames omitted
+2022-03-29 16:50:34 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 28416 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:50:34 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:50:36 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-29 16:50:36 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:50:36 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-29 16:50:36 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-29 16:50:36 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-29 16:50:36 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1967 ms
+2022-03-29 16:50:36 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-29 16:50:37 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:37 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-29 16:50:37 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:50:39 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-03-29 16:50:39 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-03-29 16:50:40 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:50:40 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-29 16:50:40 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.643 seconds (JVM running for 10.317)
+2022-03-29 16:51:45 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 12956 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:51:45 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:51:47 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-29 16:51:47 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:51:47 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-29 16:51:47 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-29 16:51:47 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-29 16:51:47 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2196 ms
+2022-03-29 16:51:47 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-29 16:51:47 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-29 16:51:47 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-29 16:51:47 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:47 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-29 16:51:47 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:48 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-29 16:51:48 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:51:50 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-03-29 16:51:50 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-03-29 16:51:50 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:51:50 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-29 16:51:50 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.523 seconds (JVM running for 8.718)
+2022-03-29 16:51:53 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-29 16:51:53 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-29 16:51:53 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 3 ms
+2022-03-29 16:51:53 WARN  http-nio-9250-exec-1 o.s.w.s.PageNotFound No mapping for GET /favicon.ico
+2022-03-29 16:52:27 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 22392 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:52:27 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:52:29 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-29 16:52:29 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:52:29 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-29 16:52:29 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-29 16:52:29 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-29 16:52:29 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1961 ms
+2022-03-29 16:52:29 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-29 16:52:30 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:30 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-29 16:52:30 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:32 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-03-29 16:52:32 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-03-29 16:52:33 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:52:33 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-29 16:52:33 WARN  main o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'documentationPluginsBootstrapper'; nested exception is java.lang.NullPointerException
+2022-03-29 16:52:33 INFO  main c.a.d.p.DruidDataSource {dataSource-1} closing ...
+2022-03-29 16:52:33 INFO  main c.a.d.p.DruidDataSource {dataSource-1} closed
+2022-03-29 16:52:34 INFO  main o.a.c.h.Http11NioProtocol Pausing ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:52:34 INFO  main o.a.c.c.StandardService Stopping service [Tomcat]
+2022-03-29 16:52:34 INFO  main o.a.c.h.Http11NioProtocol Stopping ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:52:34 INFO  main o.a.c.h.Http11NioProtocol Destroying ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:52:34 INFO  main o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-03-29 16:52:34 ERROR main o.s.b.SpringApplication Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'documentationPluginsBootstrapper'; nested exception is java.lang.NullPointerException
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:181)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at com.wim.aero.acs.AcsserviceApplication.main(AcsserviceApplication.java:15)
+Caused by: java.lang.NullPointerException: null
+	at springfox.documentation.spring.web.WebMvcPatternsRequestConditionWrapper.getPatterns(WebMvcPatternsRequestConditionWrapper.java:56)
+	at springfox.documentation.RequestHandler.sortedPaths(RequestHandler.java:113)
+	at springfox.documentation.spi.service.contexts.Orderings.lambda$byPatternsCondition$3(Orderings.java:89)
+	at java.base/java.util.Comparator.lambda$comparing$77a9974f$1(Comparator.java:469)
+	at java.base/java.util.TimSort.countRunAndMakeAscending(TimSort.java:355)
+	at java.base/java.util.TimSort.sort(TimSort.java:220)
+	at java.base/java.util.Arrays.sort(Arrays.java:1515)
+	at java.base/java.util.ArrayList.sort(ArrayList.java:1750)
+	at java.base/java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:392)
+	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:258)
+	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:258)
+	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:258)
+	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:258)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:485)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider.requestHandlers(WebMvcRequestHandlerProvider.java:81)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
+	at springfox.documentation.spring.web.plugins.AbstractDocumentationPluginsBootstrapper.withDefaults(AbstractDocumentationPluginsBootstrapper.java:107)
+	at springfox.documentation.spring.web.plugins.AbstractDocumentationPluginsBootstrapper.buildContext(AbstractDocumentationPluginsBootstrapper.java:91)
+	at springfox.documentation.spring.web.plugins.AbstractDocumentationPluginsBootstrapper.bootstrapDocumentationPlugins(AbstractDocumentationPluginsBootstrapper.java:82)
+	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.start(DocumentationPluginsBootstrapper.java:100)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178)
+	... 14 common frames omitted
+2022-03-29 16:52:52 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 31884 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:52:52 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:52:54 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-29 16:52:54 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:52:54 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-29 16:52:54 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-29 16:52:54 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-29 16:52:54 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1882 ms
+2022-03-29 16:52:54 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-29 16:52:54 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-29 16:52:54 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-29 16:52:54 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:54 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-29 16:52:54 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-29 16:52:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:52:57 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-03-29 16:52:57 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-03-29 16:52:57 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:52:57 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-29 16:52:57 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.334 seconds (JVM running for 8.541)
+2022-03-29 16:53:04 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-29 16:53:04 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-29 16:53:04 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-03-29 16:55:12 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 25116 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 16:55:12 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 16:55:14 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-29 16:55:14 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:55:14 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-29 16:55:14 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-29 16:55:14 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-29 16:55:14 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2210 ms
+2022-03-29 16:55:14 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-29 16:55:14 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:15 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-29 16:55:15 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 16:55:17 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-03-29 16:55:17 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-03-29 16:55:17 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-29 16:55:17 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-29 16:55:17 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 7.053 seconds (JVM running for 8.42)
+2022-03-29 16:55:25 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-29 16:55:25 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-29 16:55:25 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
