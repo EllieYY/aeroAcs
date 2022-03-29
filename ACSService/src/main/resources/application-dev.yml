@@ -1,0 +1,42 @@
+server:
+  port: 9251
+
+swagger:
+  enable: true
+
+mybatis-plus:
+  type-aliases-package: com.wim.aero.acs.db.**.entity
+  mapper-locations: classpath:/mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      table-underline: true
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+
+spring:
+  profiles:
+    active: "@profiles.active@"
+  jackson:
+    time-zone: GMT+8
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:sqlserver://113.57.214.58:14339;databaseName=ykt
+    username: sa
+    password: iafc@2022
+  application:
+    name: microservice-provider
+
+httppool:
+  maxTotal: 200
+  defaultMaxPerRoute: 100
+  connectTimeout: 3000
+  connectionRequestTimeout: 3000
+  socketTimeout: 3000
+  validateAfterInactivity: 2000
+
+comm-service-info:
+  url: https://192.168.2.72:7087
+
+

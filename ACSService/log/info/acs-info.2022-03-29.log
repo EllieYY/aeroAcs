@@ -6922,3 +6922,46 @@ Caused by: java.lang.NullPointerException: null
 2022-03-29 16:55:25 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-03-29 16:55:25 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
 2022-03-29 16:55:25 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-03-29 21:40:32 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 34424 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-03-29 21:40:32 INFO  main c.w.a.a.AcsserviceApplication No active profile set, falling back to 1 default profile: "default"
+2022-03-29 21:40:41 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-03-29 21:40:41 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-03-29 21:40:41 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-03-29 21:40:41 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-29 21:40:41 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-03-29 21:40:41 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 8390 ms
+2022-03-29 21:40:41 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-03-29 21:40:42 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-03-29 21:40:42 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-03-29 21:40:42 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:43 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-03-29 21:40:43 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:44 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-03-29 21:40:44 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-03-29 21:40:47 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.9.101:9250/swagger-ui.html
+2022-03-29 21:40:47 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.9.101:9250/doc.html
+2022-03-29 21:40:48 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-03-29 21:40:48 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-03-29 21:40:48 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 17.258 seconds (JVM running for 18.635)
+2022-03-29 21:40:50 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-29 21:40:50 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-03-29 21:40:50 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 4 ms
+2022-03-29 21:40:52 WARN  http-nio-9250-exec-1 o.s.w.s.PageNotFound No mapping for GET /favicon.ico
