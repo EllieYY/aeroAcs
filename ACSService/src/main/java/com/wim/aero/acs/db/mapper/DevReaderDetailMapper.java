@@ -1,5 +1,7 @@
 package com.wim.aero.acs.db.mapper;
 import java.util.List;
+
+import com.wim.aero.acs.model.AcrStrikeInfo;
 import org.apache.ibatis.annotations.Param;
 
 import com.wim.aero.acs.db.entity.DevReaderDetail;
@@ -19,4 +21,6 @@ public interface DevReaderDetailMapper extends BaseMapper<DevReaderDetail> {
     List<DevReaderDetail> selectAllByPDeviceId(@Param("list") List<Integer> ids);
 
     List<DevReaderDetail> selectAllByControllerId(@Param("controllerId") Integer controllerId);
+
+    AcrStrikeInfo selectStrikeByDeviceId(@Param("deviceId") Integer deviceId);
 }

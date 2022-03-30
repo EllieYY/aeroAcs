@@ -21,7 +21,7 @@ public class ResultBeanUtil {
     }
 
     public static <T> ResultBean<T> makeParamErrResp() {
-        return new ResultBean<T>(RespCode.PARAM_ERR);
+        return new ResultBean<T>(RespCode.ERROR_PARAM);
     }
 
     public static <T> ResultBean<T> makeCustomErrResp(String msg) {

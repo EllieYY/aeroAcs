@@ -20,6 +20,7 @@
     <!--自定义结果集-->
     <resultMap id="TimeZoneMap" type="com.wim.aero.acs.protocol.timezone.TimeZone">
         <result column="groupId" property="number" />
+        <result column="scpId" property="nScpId" />
         <collection property="intervals"  ofType="com.wim.aero.acs.protocol.timezone.TimeInterval">
             <result column="startTime" property="start" />
             <result column="endTime" property="end" />
@@ -29,6 +30,7 @@
 
     <select id="selectByScpId" resultMap="TimeZoneMap">
         select
+            controller_id as scpId,
             a.schedules_group_id as groupId,
             b.schedules_id as timeId,
             datediff( minute , '12:00AM', c.begin_time ) as startTime,

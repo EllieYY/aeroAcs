@@ -3,11 +3,10 @@ package com.wim.aero.acs.model.result;
 
 public enum RespCode {
     SUCCESS(0, "请求成功"),
-    FAIL(-233, "请求失败"),
-    PARAM_ERR(-1, "参数异常"),
-    INNER_ERR(-1, "服务器内部错误"),
-    METER_RATE_ERR(-2, "电表倍率有效期冲突");
-
+    FAIL(9009, "未知错误"),
+    INVALID_PARAM(1001, "无效参数"),
+    ERROR_PARAM(1002, "错误参数"),
+    INNER_ERR(9001, "服务内部错误");
 
     private int code;
     private String msg;

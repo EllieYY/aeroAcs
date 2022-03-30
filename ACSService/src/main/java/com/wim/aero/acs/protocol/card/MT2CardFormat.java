@@ -67,8 +67,9 @@ public class MT2CardFormat extends Operation {
     @CmdProp(index = 16)
     private int icLoc = 0;
 
-    public static MT2CardFormat fromDb(CardFormat cardFormat) {
+    public static MT2CardFormat fromDb(int scpId, CardFormat cardFormat) {
         MT2CardFormat result = new MT2CardFormat();
+        result.setNScpId(scpId);
         result.setNumber(cardFormat.getTypeNo());
         result.setFacility(cardFormat.getFacility());
         result.setOffset(cardFormat.getOffset());

@@ -31,7 +31,7 @@ public class AccessLevelExtended extends Operation {
     private int operMode = 0;
 
     //6-69 tz
-    @CmdProp(index = 6)
+    @CmdProp(index = 6, enCodec = "formatList")
     List<Integer> tz; // Time zone number for each ACR (up to 64 ACRs). Set the time zone to 0 to never enable access
 
     public static AccessLevelExtended fromDb(AccessLevelInfo info) {

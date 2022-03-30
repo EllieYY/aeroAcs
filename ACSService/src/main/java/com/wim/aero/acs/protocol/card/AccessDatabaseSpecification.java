@@ -87,8 +87,9 @@ public class AccessDatabaseSpecification extends Operation {
     @CmdProp(index = 42)
     private Integer adbFlags = 0;   // Flags field for specifying additional flags
 
-    public static AccessDatabaseSpecification fromDb(DevControllerCommonAttribute detail) {
+    public static AccessDatabaseSpecification fromDb(int nScpID, DevControllerCommonAttribute detail) {
         AccessDatabaseSpecification result = new AccessDatabaseSpecification();
+        result.setNScpID(nScpID);
         result.setNCards(detail.getMaxCardNum());
         result.setNAlvl(detail.getAccessLevelNum());
 

@@ -117,7 +117,7 @@ public class ResultBeanExceptionHandler {
     @ExceptionHandler(ParamException.class)
     public ResultBean<?> handleException(ParamException e) {
         log.error("参数异常:", e);
-        return ResultBeanUtil.makeResp(RespCode.PARAM_ERR, e.toString(), null);
+        return ResultBeanUtil.makeResp(RespCode.ERROR_PARAM, e.toString(), null);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

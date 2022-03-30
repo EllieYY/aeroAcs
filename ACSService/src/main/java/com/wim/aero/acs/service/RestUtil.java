@@ -1,21 +1,19 @@
 package com.wim.aero.acs.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wim.aero.acs.aop.excption.ServiceException;
 import com.wim.aero.acs.config.CommServiceInfo;
-import com.wim.aero.acs.model.rest.ScpCmd;
-import com.wim.aero.acs.model.rest.ScpCmdResponse;
+import com.wim.aero.acs.model.command.ScpCmd;
+import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.result.HttpResult;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayOutputStream;
@@ -30,7 +28,7 @@ import java.util.zip.Deflater;
  * @Author : Ellie
  */
 @Slf4j
-@Component
+@Service
 public class RestUtil {
     private final RestTemplate restTemplate;
     private final CommServiceInfo commServiceInfo;
@@ -75,6 +73,40 @@ public class RestUtil {
         return null;
     }
 
+    /**
+     * 发送多条指令
+     * @param cmd
+     * @return
+     */
+    public List<ScpCmdResponse> sendMultiCmd(List<ScpCmd> cmdList) {
+        String url = commServiceInfo.getUrl() + "/MultiCmd";
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        String cmdStr = "";
+        try {
+            cmdStr = mapper.writeValueAsString(cmdList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        log.info("[sendMultiCmd]- {}", cmdStr);
+
+        HttpResult result = post(url, cmdStr);
+        if (result.getCode() > 300) {
+            log.error("{} - {}", result.getCode(), result.getBody());
+            throw new ServiceException("rest template error code:" + result.getCode());
+        }
+
+        try {
+            List<ScpCmdResponse> pts = mapper.readValue(result.getBody(), new TypeReference<List<ScpCmdResponse>>() {});
+            return pts;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
 
     /**

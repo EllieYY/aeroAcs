@@ -4,6 +4,7 @@ import com.wim.aero.acs.db.entity.DevReaderDetail;
 import com.wim.aero.acs.db.mapper.DevReaderDetailMapper;
 import com.wim.aero.acs.db.service.DevReaderDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wim.aero.acs.model.AcrStrikeInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,5 +35,14 @@ public class DevReaderDetailServiceImpl extends ServiceImpl<DevReaderDetailMappe
      */
     public List<DevReaderDetail> getByScpId(int scpId) {
         return this.baseMapper.selectAllByControllerId(scpId);
+    }
+
+    /**
+     * 查找锁的信息
+     * @param deviceId
+     * @return
+     */
+    public AcrStrikeInfo getAcrStrike(int deviceId) {
+        return this.baseMapper.selectStrikeByDeviceId(deviceId);
     }
 }

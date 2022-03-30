@@ -1,4 +1,4 @@
-package com.wim.aero.acs.protocol.device;
+package com.wim.aero.acs.protocol.device.mp;
 
 import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
@@ -26,7 +26,7 @@ public class MpGroupSpecification extends Operation {
     @CmdProp(index = 5)
     private int nMpCount;  // Number of monitor points in this group. Maximum value is 128.
 
-    @CmdProp(index = 6)
+    @CmdProp(index = 6, enCodec = "formatMpList")
     private List<MpType> nMpList;
 
     public void updateMpCount() {

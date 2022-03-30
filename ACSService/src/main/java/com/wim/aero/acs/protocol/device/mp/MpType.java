@@ -1,4 +1,4 @@
-package com.wim.aero.acs.protocol.device;
+package com.wim.aero.acs.protocol.device.mp;
 
 import lombok.Data;
 
@@ -20,4 +20,9 @@ import lombok.Data;
 public class MpType {
     private int pointType;
     private int pointNum;
+
+    @Override
+    public String toString() {
+        return pointType + " " + pointNum;
+    }
 }

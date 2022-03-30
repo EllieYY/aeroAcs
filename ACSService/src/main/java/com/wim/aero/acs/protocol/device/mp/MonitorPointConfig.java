@@ -1,4 +1,4 @@
-package com.wim.aero.acs.protocol.device;
+package com.wim.aero.acs.protocol.device.mp;
 
 import com.wim.aero.acs.db.entity.DevInputDetail;
 import com.wim.aero.acs.message.Operation;

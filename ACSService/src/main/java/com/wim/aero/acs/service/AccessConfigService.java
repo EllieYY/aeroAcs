@@ -5,15 +5,17 @@ import com.wim.aero.acs.db.entity.DHoliday;
 import com.wim.aero.acs.db.service.impl.*;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.AccessLevelInfo;
-import com.wim.aero.acs.model.rest.ScpCmd;
+import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
 import com.wim.aero.acs.protocol.card.CardAdd;
-import com.wim.aero.acs.protocol.device.MpGroupSpecification;
+import com.wim.aero.acs.protocol.device.mp.MpGroupSpecification;
 import com.wim.aero.acs.protocol.timezone.Holiday;
 import com.wim.aero.acs.protocol.timezone.TimeZone;
+import com.wim.aero.acs.util.IdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,11 +64,12 @@ public class AccessConfigService {
         List<AccessLevelInfo> list = accessLevelService.getByScpId(scpId);
         for(AccessLevelInfo item:list) {
             AccessLevelTest alTest = AccessLevelTest.fromDb(item);
-            // TODO:组报文
+            String alTestMsg = RequestMessage.encode(scpId, alTest);
+            cmdList.add(new ScpCmd(scpId, alTestMsg, IdUtil.nextId()));
 
             AccessLevelExtended alExtended = AccessLevelExtended.fromDb(item);
-            // TODO:组报文
-
+            String alExtendedMsg = RequestMessage.encode(scpId, alExtended);
+            cmdList.add(new ScpCmd(scpId, alExtendedMsg, IdUtil.nextId()));
         }
     }
 
@@ -76,8 +79,8 @@ public class AccessConfigService {
         List<DHoliday> list = holidayService.list();
         for(DHoliday holiday:list) {
             Holiday config = Holiday.fronDb(scpId, holiday);
-            // TODO:组报文
-
+            String configMsg = RequestMessage.encode(scpId, config);
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
         }
     }
 
@@ -86,17 +89,21 @@ public class AccessConfigService {
         List<TimeZone> list = schedulesGroupService.getTimeZones(scpId);
         for(TimeZone item:list) {
             item.updateIntervalSize();
-            // TODO:组报文
-            RequestMessage.encode(scpId, item);
+            String msg = RequestMessage.encode(scpId, item);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
         }
     }
 
+    @Async
     public void addCard(List<String> cards, List<ScpCmd> cmdList) {
         // command 8304
         List<CardAdd> cardAddList = cardInfoService.getByCardNo(cards);
         for(CardAdd item:cardAddList) {
             item.alListFix();
-            // TODO:组报文
+
+            int scpId = item.getScpNumber();
+            String msg = RequestMessage.encode(scpId, item);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
         }
     }
 
@@ -105,7 +112,8 @@ public class AccessConfigService {
         List<Apb> list = apbService.getByScpId(scpId);
         for(Apb item:list) {
             AccessAreaConfig config = AccessAreaConfig.fromDb(item);
-            // TODO:组报文
+            String configMsg = RequestMessage.encode(scpId, config);
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
         }
     }
 
@@ -114,9 +122,8 @@ public class AccessConfigService {
         List<MpGroupSpecification> list = defenceInputService.getByScpId(scpId);
         for(MpGroupSpecification item:list) {
             item.updateMpCount();
-            // TODO:组报文
-            RequestMessage.encode(scpId, item);
-
+            String msg = RequestMessage.encode(scpId, item);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
         }
     }
 

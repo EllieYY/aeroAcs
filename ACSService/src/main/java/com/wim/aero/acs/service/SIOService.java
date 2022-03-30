@@ -9,15 +9,23 @@ import com.wim.aero.acs.db.service.impl.DevOutputDetailServiceImpl;
 import com.wim.aero.acs.db.service.impl.DevReaderDetailServiceImpl;
 import com.wim.aero.acs.db.service.impl.DevXDetailServiceImpl;
 import com.wim.aero.acs.message.RequestMessage;
-import com.wim.aero.acs.model.rest.ScpCmd;
+import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.protocol.device.*;
+import com.wim.aero.acs.protocol.device.cp.ControlPointCommand;
+import com.wim.aero.acs.protocol.device.cp.ControlPointConfig;
+import com.wim.aero.acs.protocol.device.cp.OutputPointSpecification;
+import com.wim.aero.acs.protocol.device.mp.InputPointSpecification;
+import com.wim.aero.acs.protocol.device.mp.MonitorPointConfig;
+import com.wim.aero.acs.protocol.device.mp.MonitorPointMask;
 import com.wim.aero.acs.protocol.device.reader.ACRConfig;
+import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
+import com.wim.aero.acs.protocol.device.reader.AcrMode;
 import com.wim.aero.acs.protocol.device.reader.ReaderSpecification;
 import com.wim.aero.acs.util.IdUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,20 +35,23 @@ import java.util.List;
  * @description: SIO板配置及读卡器、报警点、控制点远程控制命令下发
  **/
 @Service
+@Slf4j
 public class SIOService {
     private final DevXDetailServiceImpl sioDetailService;
     private final DevInputDetailServiceImpl inputDetailService;
     private final DevOutputDetailServiceImpl outputDetailService;
     private final DevReaderDetailServiceImpl readerDetailService;
+    private final RestUtil restUtil;
     @Autowired
     public SIOService(DevXDetailServiceImpl sioDetailService,
                       DevInputDetailServiceImpl inputDetailService,
                       DevOutputDetailServiceImpl outputDetailService,
-                      DevReaderDetailServiceImpl readerDetailService) {
+                      DevReaderDetailServiceImpl readerDetailService, RestUtil restUtil) {
         this.sioDetailService = sioDetailService;
         this.inputDetailService = inputDetailService;
         this.outputDetailService = outputDetailService;
         this.readerDetailService = readerDetailService;
+        this.restUtil = restUtil;
     }
 
     public void configSioForScp(int scpId, List<ScpCmd> cmdList) {
@@ -73,6 +84,25 @@ public class SIOService {
         readerConfig(scpId, cmdList);
     }
 
+    /**
+     * 报警点设防和撤防
+     * @param isMask true撤防 false设防
+     */
+    public void maskMp(int scpId, int mpId, boolean isMask) {
+        MonitorPointMask mask = new MonitorPointMask(scpId, mpId, isMask);
+        String msg = RequestMessage.encode(scpId, mask);
+
+        log.info("[MP] scpId={}, msg={}", scpId, msg);
+
+        // TODO:向设备发送
+        restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
+    }
+
+    /**
+     * 输入点（报警点）配置
+     * @param scpId
+     * @param cmdList
+     */
     private void inputConfig(int scpId, List<ScpCmd> cmdList) {
         List<DevInputDetail> devInputDetails = inputDetailService.getByScpId(scpId);
         for (DevInputDetail input:devInputDetails) {
@@ -88,6 +118,29 @@ public class SIOService {
         }
     }
 
+
+    /**
+     * 控制点远程控制命令
+     * @param scpId
+     * @param cpId
+     * @param commandType
+     */
+    public void sendControlPointCommand(int scpId, int cpId, int commandType) {
+        ControlPointCommand command = new ControlPointCommand(scpId, cpId, commandType);
+        String msg = RequestMessage.encode(scpId, command);
+
+        log.info("[CP] scpId={}, msg={}", scpId, msg);
+
+        // TODO:向设备发送
+        restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
+    }
+
+
+    /**
+     * 输出点（控制点）配置
+     * @param scpId
+     * @param cmdList
+     */
     private void outputConfig(int scpId, List<ScpCmd> cmdList) {
         List<DevOutputDetail> devOutputDetails = outputDetailService.getByScpId(scpId);
         for (DevOutputDetail output:devOutputDetails) {
@@ -104,6 +157,11 @@ public class SIOService {
         }
     }
 
+    /**
+     * 读卡器（ACR）配置
+     * @param scpId
+     * @param cmdList
+     */
     private void readerConfig(int scpId, List<ScpCmd> cmdList) {
         List<DevReaderDetail> readerDetails = readerDetailService.getByScpId(scpId);
         for (DevReaderDetail reader:readerDetails) {
@@ -117,5 +175,21 @@ public class SIOService {
             String configMsg = RequestMessage.encode(scpId, config);
             cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
         }
+    }
+
+    /**
+     * 读卡器mode设置
+     * @param scpId
+     * @param acrId
+     * @param mode
+     */
+    public void setAcrMode(int scpId, int acrId, int mode) {
+        ACRModeConfig config = new ACRModeConfig(scpId, acrId, mode);
+        String msg = RequestMessage.encode(scpId, config);
+
+        log.info("[ACR Mode] scpId={}, msg={}", scpId, msg);
+
+        // TODO:向设备发送
+        restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
     }
 }

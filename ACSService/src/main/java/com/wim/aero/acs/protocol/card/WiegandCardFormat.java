@@ -76,8 +76,9 @@ public class WiegandCardFormat extends Operation {
     @CmdProp(index = 19)
     private Integer icLoc = 0;
 
-    public static WiegandCardFormat fromDb(CardFormat cardFormat) {
+    public static WiegandCardFormat fromDb(int scpiId, CardFormat cardFormat) {
         WiegandCardFormat result = new WiegandCardFormat();
+        result.setNScpId(scpiId);
         result.setNumber(cardFormat.getTypeNo());
         result.setFacility(cardFormat.getFacility());
         result.setOffset(cardFormat.getOffset());

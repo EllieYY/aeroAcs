@@ -1,8 +1,8 @@
 package com.wim.aero.acs.controller;
 
-import com.wim.aero.acs.model.request.ScpRequest;
-import com.wim.aero.acs.model.rest.ScpCmd;
-import com.wim.aero.acs.model.rest.ScpCmdResponse;
+import com.wim.aero.acs.model.request.ScpRequestInfo;
+import com.wim.aero.acs.model.command.ScpCmd;
+import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
 import com.wim.aero.acs.service.AccessConfigService;
@@ -10,8 +10,6 @@ import com.wim.aero.acs.service.RestUtil;
 import com.wim.aero.acs.service.SIOService;
 import com.wim.aero.acs.service.ScpService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +30,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping("/device/scp")
-@Api(value = "控制器配置及远程控制接口")
+@Api(tags = "控制器配置及远程控制接口")
 public class ScpController {
 
     private final ScpService scpService;
@@ -52,7 +50,7 @@ public class ScpController {
 
     @ApiOperation(value = "获取控制器连接信息-1013")
     @RequestMapping(value = "/connect", method = {RequestMethod.POST})
-    public ResultBean<String> connectScp(@RequestBody ScpRequest request) throws Exception {
+    public ResultBean<String> connectScp(@RequestBody ScpRequestInfo request) throws Exception {
         int scpId = request.getScpId();
         if (!scpService.isValidScpId(scpId)) {
             return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
@@ -80,7 +78,7 @@ public class ScpController {
      */
     @ApiOperation(value = "获取控制器配置报文")
     @RequestMapping(value = "/config", method = {RequestMethod.POST})
-    public List<ScpCmd> scpConfig(@RequestBody ScpRequest request) throws Exception {
+    public List<ScpCmd> scpConfig(@RequestBody ScpRequestInfo request) throws Exception {
         int scpId = request.getScpId();
         if (!scpService.isValidScpId(scpId)) {
             log.error("控制器{}数据不存在。", scpId);
@@ -107,8 +105,50 @@ public class ScpController {
      */
     @ApiOperation(value = "命令执行状态通知接口")
     @RequestMapping(value = "/cmd/notify", method = {RequestMethod.POST})
-    public void scpCmdNotify(@RequestBody List<ScpCmdResponse> request) {
+    public ResultBean<String> scpCmdNotify(@RequestBody List<ScpCmdResponse> request) {
         log.info(request.toString());
         // TODO:结果匹配
+
+        return ResultBeanUtil.makeOkResp(request.toString());
+    }
+
+    @ApiOperation(value = "控制器复位")
+    @RequestMapping(value = "/reset", method = {RequestMethod.POST})
+    public ResultBean<String> resetScp(@RequestBody ScpRequestInfo request) throws Exception {
+        // TODO:
+
+        return ResultBeanUtil.makeOkResp("控制器复位命令已下发");
+    }
+
+    @ApiOperation(value = "清除卡片")
+    @RequestMapping(value = "/card/clear", method = {RequestMethod.POST})
+    public ResultBean<String> clearCards(@RequestBody ScpRequestInfo request) throws Exception {
+        // TODO:
+
+        return ResultBeanUtil.makeOkResp("清除卡片命令已下发");
+    }
+
+    @ApiOperation(value = "下载卡片")
+    @RequestMapping(value = "/card/reload", method = {RequestMethod.POST})
+    public ResultBean<String> reloadCards(@RequestBody ScpRequestInfo request) throws Exception {
+        // TODO:
+
+        return ResultBeanUtil.makeOkResp("下载卡片命令已下发");
+    }
+
+    @ApiOperation(value = "提取事件")
+    @RequestMapping(value = "/events/extract", method = {RequestMethod.POST})
+    public ResultBean<String> extractEvents(@RequestBody ScpRequestInfo request) throws Exception {
+        // TODO:
+
+        return ResultBeanUtil.makeOkResp("提取事件命令已下发");
+    }
+
+    @ApiOperation(value = "执行过程")
+    @RequestMapping(value = "/process/act", method = {RequestMethod.POST})
+    public ResultBean<String> activeProcess(@RequestBody ScpRequestInfo request) throws Exception {
+        // TODO:
+
+        return ResultBeanUtil.makeOkResp("执行过程命令已下发");
     }
 }

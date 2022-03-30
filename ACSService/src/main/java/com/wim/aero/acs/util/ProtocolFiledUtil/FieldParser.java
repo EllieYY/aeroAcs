@@ -1,5 +1,6 @@
 package com.wim.aero.acs.util.ProtocolFiledUtil;
 
+import com.wim.aero.acs.protocol.device.mp.MpType;
 import com.wim.aero.acs.protocol.timezone.TimeInterval;
 import lombok.val;
 import org.springframework.util.StringUtils;
@@ -32,6 +33,10 @@ public class FieldParser {
 
     public static String formatTimeInterval(List<TimeInterval> valList) {
         return String.join(" ", valList.stream().map(TimeInterval::toString).collect(Collectors.toList()));
+    }
+
+    public static String formatMpList(List<MpType> valList) {
+        return String.join(" ", valList.stream().map(MpType::toString).collect(Collectors.toList()));
     }
 
 }

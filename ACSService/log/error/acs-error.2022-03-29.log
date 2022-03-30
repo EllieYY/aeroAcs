@@ -1,7 +1,7 @@
 2022-03-29 08:19:19 ERROR http-nio-9250-exec-1 c.w.a.a.c.ScpController 控制器95数据不存在。
 2022-03-29 08:19:32 ERROR http-nio-9250-exec-2 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
 java.lang.NullPointerException: null
-	at com.wim.aero.acs.protocol.device.InputPointSpecification.fromDb(InputPointSpecification.java:58)
+	at com.wim.aero.acs.protocol.device.mp.InputPointSpecification.fromDb(InputPointSpecification.java:58)
 	at com.wim.aero.acs.service.SIOService.inputConfig(SIOService.java:80)
 	at com.wim.aero.acs.service.SIOService.configSioForScp(SIOService.java:71)
 	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:76)
@@ -51,7 +51,7 @@ java.lang.NullPointerException: null
 java.lang.NumberFormatException: null
 	at java.base/java.lang.Integer.parseInt(Integer.java:614)
 	at java.base/java.lang.Integer.parseInt(Integer.java:770)
-	at com.wim.aero.acs.protocol.device.InputPointSpecification.fromDb(InputPointSpecification.java:60)
+	at com.wim.aero.acs.protocol.device.mp.InputPointSpecification.fromDb(InputPointSpecification.java:60)
 	at com.wim.aero.acs.service.SIOService.inputConfig(SIOService.java:80)
 	at com.wim.aero.acs.service.SIOService.configSioForScp(SIOService.java:71)
 	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:76)
@@ -99,7 +99,7 @@ java.lang.NumberFormatException: null
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-03-29 08:31:38 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
 java.lang.NullPointerException: null
-	at com.wim.aero.acs.protocol.device.MonitorPointConfig.fromDb(MonitorPointConfig.java:63)
+	at com.wim.aero.acs.protocol.device.mp.MonitorPointConfig.fromDb(MonitorPointConfig.java:63)
 	at com.wim.aero.acs.service.SIOService.inputConfig(SIOService.java:85)
 	at com.wim.aero.acs.service.SIOService.configSioForScp(SIOService.java:71)
 	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:76)
@@ -149,7 +149,7 @@ java.lang.NullPointerException: null
 java.lang.NumberFormatException: null
 	at java.base/java.lang.Integer.parseInt(Integer.java:614)
 	at java.base/java.lang.Integer.parseInt(Integer.java:770)
-	at com.wim.aero.acs.protocol.device.MonitorPointConfig.fromDb(MonitorPointConfig.java:66)
+	at com.wim.aero.acs.protocol.device.mp.MonitorPointConfig.fromDb(MonitorPointConfig.java:66)
 	at com.wim.aero.acs.service.SIOService.inputConfig(SIOService.java:85)
 	at com.wim.aero.acs.service.SIOService.configSioForScp(SIOService.java:71)
 	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:76)
@@ -197,7 +197,7 @@ java.lang.NumberFormatException: null
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-03-29 08:33:36 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
 java.lang.NullPointerException: null
-	at com.wim.aero.acs.protocol.device.OutputPointSpecification.fromDb(OutputPointSpecification.java:50)
+	at com.wim.aero.acs.protocol.device.cp.OutputPointSpecification.fromDb(OutputPointSpecification.java:50)
 	at com.wim.aero.acs.service.SIOService.outputConfig(SIOService.java:95)
 	at com.wim.aero.acs.service.SIOService.configSioForScp(SIOService.java:72)
 	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:76)
@@ -245,7 +245,7 @@ java.lang.NullPointerException: null
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-03-29 08:34:42 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
 java.lang.NullPointerException: null
-	at com.wim.aero.acs.protocol.device.ControlPointConfig.fromDb(ControlPointConfig.java:39)
+	at com.wim.aero.acs.protocol.device.cp.ControlPointConfig.fromDb(ControlPointConfig.java:39)
 	at com.wim.aero.acs.service.SIOService.outputConfig(SIOService.java:100)
 	at com.wim.aero.acs.service.SIOService.configSioForScp(SIOService.java:72)
 	at com.wim.aero.acs.controller.ScpController.scpConfig(ScpController.java:76)
@@ -1630,7 +1630,7 @@ java.lang.NullPointerException: null
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-03-29 12:32:12 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
-org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class com.wim.aero.acs.model.rest.ScpCmdResponse]; nested exception is com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.wim.aero.acs.model.rest.ScpCmdResponse` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class com.wim.aero.acs.model.command.ScpCmdResponse]; nested exception is com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.wim.aero.acs.model.command.ScpCmdResponse` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
  at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 3, column: 9] (through reference chain: java.util.ArrayList[0])
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:388)
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:343)
@@ -1676,7 +1676,7 @@ org.springframework.http.converter.HttpMessageConversionException: Type definiti
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.wim.aero.acs.model.rest.ScpCmdResponse` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.wim.aero.acs.model.command.ScpCmdResponse` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
  at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 3, column: 9] (through reference chain: java.util.ArrayList[0])
 	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:67)
 	at com.fasterxml.jackson.databind.DeserializationContext.reportBadDefinition(DeserializationContext.java:1904)
@@ -1694,7 +1694,7 @@ Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:380)
 	... 43 common frames omitted
 2022-03-29 12:33:07 ERROR http-nio-9250-exec-2 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
-org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class com.wim.aero.acs.model.rest.ScpCmdResponse]; nested exception is com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.wim.aero.acs.model.rest.ScpCmdResponse` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class com.wim.aero.acs.model.command.ScpCmdResponse]; nested exception is com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.wim.aero.acs.model.command.ScpCmdResponse` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
  at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 3, column: 9] (through reference chain: java.util.ArrayList[0])
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:388)
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:343)
@@ -1740,7 +1740,7 @@ org.springframework.http.converter.HttpMessageConversionException: Type definiti
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.wim.aero.acs.model.rest.ScpCmdResponse` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.wim.aero.acs.model.command.ScpCmdResponse` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
  at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 3, column: 9] (through reference chain: java.util.ArrayList[0])
 	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:67)
 	at com.fasterxml.jackson.databind.DeserializationContext.reportBadDefinition(DeserializationContext.java:1904)
@@ -2407,7 +2407,7 @@ Caused by: java.lang.ClassNotFoundException: springfox.documentation.common.Clas
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
 	... 49 common frames omitted
 2022-03-29 16:49:10 ERROR http-nio-9250-exec-7 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
-org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.wim.aero.acs.model.request.ScpRequest` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (108); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `com.wim.aero.acs.model.request.ScpRequest` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (108)
+org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.wim.aero.acs.model.request.ScpRequestInfo` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (108); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `com.wim.aero.acs.model.request.ScpRequestInfo` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (108)
  at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 1]
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:391)
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:343)
@@ -2453,7 +2453,7 @@ org.springframework.http.converter.HttpMessageNotReadableException: JSON parse e
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `com.wim.aero.acs.model.request.ScpRequest` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (108)
+Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `com.wim.aero.acs.model.request.ScpRequestInfo` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (108)
  at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 1]
 	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
 	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1728)

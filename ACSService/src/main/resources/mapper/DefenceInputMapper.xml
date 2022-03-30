@@ -21,10 +21,10 @@
     </sql>
 
 
-    <resultMap id="MpGroupMap" type="com.wim.aero.acs.protocol.device.MpGroupSpecification">
+    <resultMap id="MpGroupMap" type="com.wim.aero.acs.protocol.device.mp.MpGroupSpecification">
         <result column="controller_id" property="scpNumber" />
         <result column="defence_id" property="mpgNumber" />
-        <collection property="nMpList" ofType="com.wim.aero.acs.protocol.device.MpType">
+        <collection property="nMpList" ofType="com.wim.aero.acs.protocol.device.mp.MpType">
             <result column="point_type" property="pointType" />
             <result column="point_num" property="pointNum" />
         </collection>

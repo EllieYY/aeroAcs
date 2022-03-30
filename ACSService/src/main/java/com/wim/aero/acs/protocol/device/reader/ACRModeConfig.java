@@ -1,5 +1,7 @@
 package com.wim.aero.acs.protocol.device.reader;
 
+import com.wim.aero.acs.message.Operation;
+import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
 /**
@@ -32,18 +34,41 @@ import lombok.Data;
  * |-------+-------------------------------------
  **/
 @Data
-public class ACRMode {
+public class ACRModeConfig extends Operation {
+    @CmdProp(index = 2)
     private int scpNumber;
+
+    @CmdProp(index = 3)
     private int acrNumber;
+
+    @CmdProp(index = 4)
     private int acrMode;
 
     // 预留字段
+    @CmdProp(index = 5)
     private int nAuthModFlags = 0; // Set to 0 - N/A.
+
+    @CmdProp(index = 6)
     private int nExtFeatureType;  // Used only with acr_mode 31.
+
+    @CmdProp(index = 7, defaultValue = "-1")
     private int iIPB_sio;  // SIO ID for Interior Push Button (not needed for native locksets). Set to -1 when not used.
+
+    @CmdProp(index = 8)
     private int iIPB_number; // Input number for Interior Push Button (not needed for native locksets)
+
+    @CmdProp(index = 9)
     private int iIPB_long_press; // IPB long-press, 0-15 seconds (if applicable)
+
+    @CmdProp(index = 10, defaultValue = "-1")
     private int iIPB_out_sio; // SIO ID for IPB indicator output (not needed for native locksets). Set to -1 when not used.
+
+    @CmdProp(index = 11)
     private int iIPB_out_num;
 
+    public ACRModeConfig(int scpNumber, int acrNumber, int acrMode) {
+        this.scpNumber = scpNumber;
+        this.acrNumber = acrNumber;
+        this.acrMode = acrMode;
+    }
 }

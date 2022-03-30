@@ -80,4 +80,19 @@
         controller_id = #{controllerId,jdbcType=NUMERIC}
     </select>
 
+
+
+    <resultMap id="AcrStrikeInfoMap" type="com.wim.aero.acs.model.AcrStrikeInfo">
+        <result column="controller_id" property="scpId" />
+        <result column="device_id" property="acrDeviceId" />
+        <result column="strk_number" property="strikeId" />
+    </resultMap>
+    <select id="selectStrikeByDeviceId" resultMap="AcrStrikeInfoMap">
+        select
+            device_id, controller_id, strk_number
+        from dev_reader_detail
+        where
+        device_id = #{deviceId,jdbcType=NUMERIC}
+    </select>
+
 </mapper>

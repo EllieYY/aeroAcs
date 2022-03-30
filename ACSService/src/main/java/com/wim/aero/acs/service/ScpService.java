@@ -6,9 +6,8 @@ import com.wim.aero.acs.db.entity.DevControllerDetail;
 import com.wim.aero.acs.db.service.impl.CardFormatServiceImpl;
 import com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl;
 import com.wim.aero.acs.db.service.impl.DevControllerDetailServiceImpl;
-import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.message.RequestMessage;
-import com.wim.aero.acs.model.rest.ScpCmd;
+import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.protocol.accessLevel.ElevatorALsSpecification;
 import com.wim.aero.acs.protocol.card.AccessDatabaseSpecification;
 import com.wim.aero.acs.protocol.card.MT2CardFormat;
@@ -85,7 +84,7 @@ public class ScpService {
 
         // Access Database Specification (Command 1105)
         DevControllerCommonAttribute detail = devControllerCommonAttributeService.getADSpecification();
-        AccessDatabaseSpecification adSpecification = AccessDatabaseSpecification.fromDb(detail);
+        AccessDatabaseSpecification adSpecification = AccessDatabaseSpecification.fromDb(scpId, detail);
         String adSpecificationMsg = RequestMessage.encode(scpId, adSpecification);
 
         // 命令组装
@@ -111,12 +110,12 @@ public class ScpService {
         List<CardFormat> list = cardFormatService.list();
         for (CardFormat item:list) {
             if (StringUtils.matchesCharacter(item.getCardType(), '0')) {   // 韦根卡
-                WiegandCardFormat cardFormat = WiegandCardFormat.fromDb(item);
+                WiegandCardFormat cardFormat = WiegandCardFormat.fromDb(scpId, item);
                 String msg = RequestMessage.encode(scpId, cardFormat);
                 // 命令组装
                 cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
             } else if (StringUtils.matchesCharacter(item.getCardType(), '1')) {  // 磁卡
-                MT2CardFormat cardFormat = MT2CardFormat.fromDb(item);
+                MT2CardFormat cardFormat = MT2CardFormat.fromDb(scpId, item);
                 String msg = RequestMessage.encode(scpId, cardFormat);
                 // 命令组装
                 cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));

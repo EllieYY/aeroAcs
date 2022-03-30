@@ -1,4 +1,4 @@
-package com.wim.aero.acs.protocol.device;
+package com.wim.aero.acs.protocol.device.mp;
 
 /**
  * @title: MpGroupCommand

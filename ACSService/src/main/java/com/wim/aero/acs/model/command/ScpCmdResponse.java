@@ -1,4 +1,4 @@
-package com.wim.aero.acs.model.rest;
+package com.wim.aero.acs.model.command;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

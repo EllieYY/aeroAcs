@@ -12,7 +12,7 @@ import lombok.Data;
  **/
 @Data
 @ApiModel(value = "控制器参数")
-public class ScpRequest {
+public class ScpRequestInfo {
     @ApiModelProperty(value = "控制器id")
     private int scpId;
 }

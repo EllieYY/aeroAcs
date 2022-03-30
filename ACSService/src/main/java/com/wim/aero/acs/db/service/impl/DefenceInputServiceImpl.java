@@ -4,7 +4,7 @@ import com.wim.aero.acs.db.entity.DefenceInput;
 import com.wim.aero.acs.db.mapper.DefenceInputMapper;
 import com.wim.aero.acs.db.service.DefenceInputService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.wim.aero.acs.protocol.device.MpGroupSpecification;
+import com.wim.aero.acs.protocol.device.mp.MpGroupSpecification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
