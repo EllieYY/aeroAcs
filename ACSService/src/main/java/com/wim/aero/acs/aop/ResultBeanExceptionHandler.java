@@ -6,6 +6,8 @@ import com.wim.aero.acs.aop.excption.ServiceException;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.ResourceAccessException;
 
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
@@ -28,9 +31,9 @@ import java.util.List;
  * @Description : 异常处理AOP
  * @Author : Ellie
  */
+@Slf4j
 @RestControllerAdvice
 public class ResultBeanExceptionHandler {
-    private final Logger log = LoggerFactory.getLogger(ResultBeanExceptionHandler.class);
 
     /**
      * 参数绑定错误时跳转到该处理器处理
@@ -125,6 +128,20 @@ public class ResultBeanExceptionHandler {
     public ResultBean<?> handleException(RuntimeException exception, HttpServletResponse response) {
 
         log.error("其他异常", exception);
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        Throwable throwable = exception;
+        while (throwable.getCause() != null) {
+            throwable = throwable.getCause();
+        }
+
+        return ResultBeanUtil.makeResp(exception);
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(ConnectTimeoutException.class)
+    public ResultBean<?> handleException(ResourceAccessException exception, HttpServletResponse response) {
+
+        log.error("通信服务异常", exception);
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         Throwable throwable = exception;
         while (throwable.getCause() != null) {

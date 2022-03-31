@@ -26,7 +26,7 @@ public class CardAdd extends Operation {
     private int flags;
 
     @CmdProp(index = 5)
-    private int cardNumber;
+    private String cardNumber;
 
     @CmdProp(index = 6)
     private int issueCode;
@@ -34,7 +34,7 @@ public class CardAdd extends Operation {
     @CmdProp(index = 7)
     private int pin;
 
-    @CmdProp(index = 8)
+    @CmdProp(index = 8, enCodec = "formatList")
     private List<Integer> alvl;   // 32
 
     @CmdProp(index = 40)
@@ -77,12 +77,12 @@ public class CardAdd extends Operation {
     @CmdProp(index = 47)
     private int tmpDays;
 
-    @CmdProp(index = 48)
-    private List<Integer> userLevel;    // 8
+    @CmdProp(index = 48, enCodec = "formatList")
+    private List<Integer> userLevel = new ArrayList<>(Collections.nCopies(8, 0));    // 8
 //    The user level, for command entry. See Command 1141: Extended User Command Configuration.
 //    User levels are not used for access rights, but used in triggers. Each value is a byte.
 
-    @CmdProp(index = 56)
+    @CmdProp(index = 56, enCodec = "formatList")
     List<Integer> alvlPrec = new ArrayList<>(Collections.nCopies(64, 0));   // 64. Precision access: levels up to 64 ACRs. Unused levels are marked as “0”.
 
     @CmdProp(index = 120)
@@ -98,5 +98,6 @@ public class CardAdd extends Operation {
                 alvl.add(0);
             }
         }
+
     }
 }

@@ -75,7 +75,7 @@ public class RestUtil {
 
     /**
      * 发送多条指令
-     * @param cmd
+     * @param cmdList
      * @return
      */
     public List<ScpCmdResponse> sendMultiCmd(List<ScpCmd> cmdList) {

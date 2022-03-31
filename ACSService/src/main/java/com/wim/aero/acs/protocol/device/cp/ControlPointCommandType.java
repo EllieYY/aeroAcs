@@ -1,9 +1,13 @@
 package com.wim.aero.acs.protocol.device.cp;
 
+import java.util.Arrays;
+
 public enum ControlPointCommandType {
-    Off(1),
-    On(2),
-    SinglePulse(3);
+    OFF(1),
+    ON(2),
+    SINGLE_PULSE(3),
+    REPEATING_PULSE(4),
+    UNKNOWN(-1);
 
     private int code;
     ControlPointCommandType(int code) {
@@ -12,5 +16,11 @@ public enum ControlPointCommandType {
 
     public int getCode() {
         return code;
+    }
+
+    public static ControlPointCommandType fromTypeCode(int code){
+        return Arrays.asList(ControlPointCommandType.values()).stream()
+                .filter(command -> command.getCode() == code)
+                .findFirst().orElse(ControlPointCommandType.UNKNOWN);
     }
 }

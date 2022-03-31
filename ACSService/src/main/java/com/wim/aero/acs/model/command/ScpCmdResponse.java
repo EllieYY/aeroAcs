@@ -28,7 +28,7 @@ public class ScpCmdResponse {
 
     @ApiModelProperty(value = "执行结果代码")
     @JsonProperty(value = "cmdSendResult")
-    private String code;
+    private int code;
 
     @ApiModelProperty(value = "执行结果描述")
     @JsonProperty(value = "summary")

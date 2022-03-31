@@ -59,11 +59,13 @@ public class Holiday extends Operation {
 
         // 日期获取
         Date date = holiday.getBeginDate();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        result.setYear(calendar.get(Calendar.YEAR));
-        result.setMonth(calendar.get(Calendar.MONDAY));
-        result.setDay(calendar.get(Calendar.DATE));
+        if (date != null) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            result.setYear(calendar.get(Calendar.YEAR));
+            result.setMonth(calendar.get(Calendar.MONDAY));
+            result.setDay(calendar.get(Calendar.DATE));
+        }
 
         result.setTypeMask(holiday.getHolidayType());
 

@@ -26,7 +26,7 @@ public class ScpCmd {
     @JsonProperty("streamId")
     private String streamId;
 
-    public ScpCmd(int scpId, String command, long streamId) {
+    public ScpCmd(int scpId, String command, String streamId) {
         this.scpId = String.valueOf(scpId);
         this.command = command;
         this.streamId = String.valueOf(streamId);

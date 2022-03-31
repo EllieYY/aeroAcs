@@ -49,7 +49,7 @@
             <result column="alId" />
         </collection>
     </resultMap>
-    <select id="selectAllByCardNo" resultMap="BaseResultMap">
+    <select id="selectAllByCardNo" resultMap="CardInfoMap">
         select
             a.card_no, a.pin, a.apb_id, a.times,
             DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_begin_time) as activeTime,
@@ -63,13 +63,14 @@
              8 * ISNULL(a.disabled_flag, 0) +
              16 * ISNULL(a.card_pwd_flag, 0))  as flags,
             b.access_level_id as alId
-        from c_card_info a, d_employee_access_level b
+        from c_card_info a
+        left join d_employee_access_level b
+        on a.card_no = b.card_no
         where
             a.card_no IN
             <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
                 #{id}
-            </foreach> and
-            a.card_no = b.card_no
+            </foreach>
     </select>
 
 </mapper>

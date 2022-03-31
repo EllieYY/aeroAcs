@@ -1,6 +1,7 @@
 package com.wim.aero.acs.protocol.card;
 
 import com.wim.aero.acs.message.Operation;
+import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
 /**
@@ -11,6 +12,9 @@ import lombok.Data;
  **/
 @Data
 public class CardDelete extends Operation {
+    @CmdProp(index = 2)
     private int scpNumber;
+
+    @CmdProp(index = 3)
     private int cardholderId;
 }

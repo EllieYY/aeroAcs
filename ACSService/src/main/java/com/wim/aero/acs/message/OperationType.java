@@ -1,18 +1,15 @@
 package com.wim.aero.acs.message;
 
-import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
-import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
-import com.wim.aero.acs.protocol.accessLevel.ElevatorALsConfiguration;
-import com.wim.aero.acs.protocol.accessLevel.ElevatorALsSpecification;
+import com.wim.aero.acs.protocol.accessLevel.*;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
 import com.wim.aero.acs.protocol.card.*;
 import com.wim.aero.acs.protocol.device.*;
+import com.wim.aero.acs.protocol.device.cp.ControlPointCommand;
 import com.wim.aero.acs.protocol.device.cp.ControlPointConfig;
 import com.wim.aero.acs.protocol.device.cp.OutputPointSpecification;
-import com.wim.aero.acs.protocol.device.mp.InputPointSpecification;
-import com.wim.aero.acs.protocol.device.mp.MonitorPointConfig;
-import com.wim.aero.acs.protocol.device.mp.MpGroupSpecification;
+import com.wim.aero.acs.protocol.device.mp.*;
 import com.wim.aero.acs.protocol.device.reader.ACRConfig;
+import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
 import com.wim.aero.acs.protocol.device.reader.ReaderSpecification;
 import com.wim.aero.acs.protocol.timezone.Holiday;
 import com.wim.aero.acs.protocol.timezone.TimeZone;
@@ -58,12 +55,20 @@ public enum OperationType {
     AL_LIST_2116(2116, AccessLevelExtended.class),
     AL_124(124, AccessLevelTest.class),
     EAL_502(502, ElevatorALsConfiguration.class),
+    READER_EL(1220, AccessLevelException.class),
 
     // 时间组
     HOLIDAY_1104(1104, Holiday.class),
     TIME_ZONE_3103(3103, TimeZone.class),
+
     /**-------------------------------------------------------------------------------*/
     /** 指令 */
+    SCP_REST(301, ScpReset.class),
+    MP_MASK(306, MonitorPointMask.class),
+    CP_COMMAND(307, ControlPointCommand.class),
+    ACR_MODE(308, ACRModeConfig.class),
+
+    MP_GROUP_MASK(321, MpGroupCommand.class),
 
     CARD_DEL(3305, CardDelete.class);
     /**-------------------------------------------------------------------------------*/

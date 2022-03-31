@@ -1,5 +1,6 @@
 package com.wim.aero.acs.controller;
 
+import com.wim.aero.acs.model.command.CmdDownloadInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
@@ -36,15 +37,18 @@ public class CardController {
 
     @ApiOperation(value = "添加卡片到控制器")
     @RequestMapping(value = "/add", method = {RequestMethod.POST})
-    public ResultBean<String> connectScp(@RequestBody List<String> cardNoList) throws Exception {
+    public ResultBean<List<CmdDownloadInfo>> connectScp(@RequestBody List<String> cardNoList) throws Exception {
         if (cardNoList.size() == 0) {
-            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, "卡片id列表为空。");
+            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
         }
 
         // 添加卡
-        List<ScpCmd> cmdList = new ArrayList<>();
-        accessConfigService.addCard(cardNoList, cmdList);
+        List<CmdDownloadInfo> result = accessConfigService.addCard(cardNoList);
+        if (result.size() > 0) {
+            log.info("下发失败卡片信息：{}", result);
+            ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, result);
+        }
 
-        return ResultBeanUtil.makeOkResp("已执行添加命令");
+        return ResultBeanUtil.makeOkResp();
     }
 }

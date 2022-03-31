@@ -1,5 +1,9 @@
 package com.wim.aero.acs.protocol.device.mp;
 
+import com.wim.aero.acs.message.Operation;
+import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
+import lombok.Data;
+
 /**
  * @title: MpGroupCommand
  * @author: Ellie
@@ -20,8 +24,17 @@ package com.wim.aero.acs.protocol.device.mp;
  * 5    Override arm:If the mask count > 1 then decrement the mask count by one, otherwise if
  *      the mask count is 1 unmask all monitor points and set the mask count to zero
  **/
-public class MpGroupCommand {
+@Data
+public class MpGroupCommand extends Operation {
+    @CmdProp(index = 2)
     private int scpNumber;
+
+    @CmdProp(index = 3)
     private int mpgNumber;
+
+    @CmdProp(index = 4)
     private int command;
+
+    @CmdProp(index = 5)
+    private int arg;
 }

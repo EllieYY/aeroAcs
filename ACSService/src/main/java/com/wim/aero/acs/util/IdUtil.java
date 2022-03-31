@@ -1,5 +1,6 @@
 package com.wim.aero.acs.util;
 
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 public final class IdUtil {
@@ -10,8 +11,9 @@ public final class IdUtil {
         //no instance
     }
 
-    public static long nextId() {
-        return IDX.incrementAndGet();
+    public static String nextId() {
+//        return IDX.incrementAndGet();
+        return UUID.randomUUID().toString();
     }
 
 }

@@ -43,7 +43,7 @@ public class Swagger3Config {
         Docket docket = new Docket(DocumentationType.OAS_30)
                 // 非生产环境才开启swagger
 //                .enable(!active.equalsIgnoreCase(Constant.SPRING_PROFILES_ACTIVE_PRO))
-                .groupName("group1")
+                .groupName("测试分组")
                 .apiInfo(apiInfo())
                 // 设置自定义返回消息体
                 .globalResponses(HttpMethod.GET, globalResponse())

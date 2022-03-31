@@ -1,11 +1,14 @@
 package com.wim.aero.acs.service;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.db.entity.Apb;
 import com.wim.aero.acs.db.entity.DHoliday;
 import com.wim.aero.acs.db.service.impl.*;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.AccessLevelInfo;
+import com.wim.aero.acs.model.command.CmdDownloadInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
+import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
@@ -14,11 +17,15 @@ import com.wim.aero.acs.protocol.device.mp.MpGroupSpecification;
 import com.wim.aero.acs.protocol.timezone.Holiday;
 import com.wim.aero.acs.protocol.timezone.TimeZone;
 import com.wim.aero.acs.util.IdUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @title: AccessConfigService
@@ -26,6 +33,7 @@ import java.util.List;
  * @date: 2022/03/23 15:39
  * @description: 权限配置服务
  **/
+@Slf4j
 @Service
 public class AccessConfigService {
 
@@ -35,18 +43,20 @@ public class AccessConfigService {
     private final DefenceInputServiceImpl defenceInputService;
     private final DAccessLevelDoorServiceImpl accessLevelService;
     private final CCardInfoServiceImpl cardInfoService;
+    private final RestUtil restUtil;
     @Autowired
     public AccessConfigService(DHolidayServiceImpl holidayService,
                                DSchedulesGroupDetailServiceImpl schedulesGroupService,
                                ApbServiceImpl apbService, DefenceInputServiceImpl defenceInputService,
                                DAccessLevelDoorServiceImpl accessLevelService,
-                               CCardInfoServiceImpl cardInfoService) {
+                               CCardInfoServiceImpl cardInfoService, RestUtil restUtil) {
         this.holidayService = holidayService;
         this.schedulesGroupService = schedulesGroupService;
         this.apbService = apbService;
         this.defenceInputService = defenceInputService;
         this.accessLevelService = accessLevelService;
         this.cardInfoService = cardInfoService;
+        this.restUtil = restUtil;
     }
 
     public void alBasicConfig(int scpId, List<ScpCmd> cmdList) {
@@ -94,17 +104,45 @@ public class AccessConfigService {
         }
     }
 
-    @Async
-    public void addCard(List<String> cards, List<ScpCmd> cmdList) {
+    /**
+     *
+     * @param cards
+     * @return 发送失败的结果
+     */
+    public List<CmdDownloadInfo> addCard(List<String> cards) {
+        Map<String, CmdDownloadInfo> resultMap = new HashMap<>();
         // command 8304
+        List<ScpCmd> cmdList = new ArrayList<>();
         List<CardAdd> cardAddList = cardInfoService.getByCardNo(cards);
         for(CardAdd item:cardAddList) {
             item.alListFix();
 
             int scpId = item.getScpNumber();
             String msg = RequestMessage.encode(scpId, item);
-            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+            String streamId = IdUtil.nextId();
+            cmdList.add(new ScpCmd(scpId, msg, streamId));
+
+            resultMap.put(streamId, new CmdDownloadInfo(scpId, msg, streamId, item.getCardNumber()));
         }
+
+        // 下发到控制器
+        log.info(cmdList.toString());
+        List<CmdDownloadInfo> resultList = new ArrayList<>();
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        for (ScpCmdResponse response:responseList) {
+            int code = response.getCode();
+            String streamId = response.getStreamId();
+            if (code == Constants.REST_CODE_SUCCESS) {
+                resultMap.remove(streamId);
+            } else {
+                CmdDownloadInfo info = resultMap.get(streamId);
+                info.setCode(code);
+                info.setReason(response.getReason());
+                resultList.add(info);
+            }
+        }
+
+        return resultList;
     }
 
     public void apbConfig(int scpId, List<ScpCmd> cmdList) {

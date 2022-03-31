@@ -24,7 +24,7 @@ public class RequestMessage extends Message<Operation> {
         RequestMessage message = new RequestMessage(scpId, operation);
         String msg = message.encode();
 
-        log.info("{} 报文 {}", scpId, msg);
+        log.info("[SCP:{}] - {}", scpId, msg);
         return msg;
     }
 

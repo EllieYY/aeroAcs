@@ -368,3 +368,7 @@ Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot d
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:380)
 	... 43 common frames omitted
 2022-03-30 15:44:03 ERROR http-nio-9250-exec-3 c.w.a.a.c.ScpController 控制器108数据不存在。
+2022-03-30 16:45:10 ERROR http-nio-9250-exec-10 c.w.a.a.c.ScpController 控制器108数据不存在。
+2022-03-30 16:51:51 ERROR http-nio-9250-exec-3 c.w.a.a.c.ScpController 控制器108数据不存在。
+2022-03-30 16:54:34 ERROR http-nio-9250-exec-5 c.w.a.a.c.ScpController 控制器108数据不存在。
+2022-03-30 16:55:44 ERROR http-nio-9250-exec-7 c.w.a.a.c.ScpController 控制器108数据不存在。

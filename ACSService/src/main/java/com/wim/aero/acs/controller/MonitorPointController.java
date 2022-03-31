@@ -1,6 +1,8 @@
 package com.wim.aero.acs.controller;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.request.MpRequestInfo;
+import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
 import com.wim.aero.acs.service.SIOService;
@@ -35,9 +37,12 @@ public class MonitorPointController {
     @RequestMapping(value = "/alarm/point", method = {RequestMethod.POST})
     public ResultBean<String> pointMask(@RequestBody MpRequestInfo request) {
         log.info("[MpMask] {}", request);
-        sioService.maskMp(request.getScpId(), request.getMpId(), !request.isSetAlarm());
+        int code = sioService.maskMp(request.getScpId(), request.getMpId(), !request.isSetAlarm());
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("命令下发成功");
+        }
 
-        return ResultBeanUtil.makeOkResp("单点设防、撤防命令已下发");
+        return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
     }
 
 

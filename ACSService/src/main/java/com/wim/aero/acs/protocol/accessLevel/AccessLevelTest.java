@@ -76,24 +76,26 @@ public class AccessLevelTest extends Operation {
         result.setNScpNumber(info.getNScpNumber());
         result.setNEscortCode(info.getNEscortCode());
 
-        Calendar calendar = Calendar.getInstance();
-        Date activeDate = info.getActiveDate();
-        calendar.setTime(activeDate);
-        result.setNActYear(calendar.get(Calendar.YEAR));
-        result.setNActMonth(calendar.get(Calendar.MONDAY));
-        result.setNActDay(calendar.get(Calendar.DATE));
-        result.setNActHh(calendar.get(Calendar.HOUR_OF_DAY));
-        result.setNActMn(calendar.get(Calendar.MINUTE));
-        result.setNActSs(calendar.get(Calendar.SECOND));
+        if (info.getActiveDate() != null && info.getDeactiveDate() != null) {
+            Calendar calendar = Calendar.getInstance();
+            Date activeDate = info.getActiveDate();
+            calendar.setTime(activeDate);
+            result.setNActYear(calendar.get(Calendar.YEAR));
+            result.setNActMonth(calendar.get(Calendar.MONDAY));
+            result.setNActDay(calendar.get(Calendar.DATE));
+            result.setNActHh(calendar.get(Calendar.HOUR_OF_DAY));
+            result.setNActMn(calendar.get(Calendar.MINUTE));
+            result.setNActSs(calendar.get(Calendar.SECOND));
 
-        Date deactiveDate = info.getDeactiveDate();
-        calendar.setTime(deactiveDate);
-        result.setNDactYear(calendar.get(Calendar.YEAR));
-        result.setNDactMonth(calendar.get(Calendar.MONDAY));
-        result.setNDactDay(calendar.get(Calendar.DATE));
-        result.setNDactHh(calendar.get(Calendar.HOUR_OF_DAY));
-        result.setNDactMn(calendar.get(Calendar.MINUTE));
-        result.setNDactSs(calendar.get(Calendar.SECOND));
+            Date deactiveDate = info.getDeactiveDate();
+            calendar.setTime(deactiveDate);
+            result.setNDactYear(calendar.get(Calendar.YEAR));
+            result.setNDactMonth(calendar.get(Calendar.MONDAY));
+            result.setNDactDay(calendar.get(Calendar.DATE));
+            result.setNDactHh(calendar.get(Calendar.HOUR_OF_DAY));
+            result.setNDactMn(calendar.get(Calendar.MINUTE));
+            result.setNDactSs(calendar.get(Calendar.SECOND));
+        }
 
         return result;
     }
