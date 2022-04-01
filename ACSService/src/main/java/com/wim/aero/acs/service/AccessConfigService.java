@@ -5,7 +5,7 @@ import com.wim.aero.acs.db.entity.Apb;
 import com.wim.aero.acs.db.entity.DHoliday;
 import com.wim.aero.acs.db.service.impl.*;
 import com.wim.aero.acs.message.RequestMessage;
-import com.wim.aero.acs.model.AccessLevelInfo;
+import com.wim.aero.acs.model.db.AccessLevelInfo;
 import com.wim.aero.acs.model.command.CmdDownloadInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
@@ -19,7 +19,6 @@ import com.wim.aero.acs.protocol.timezone.TimeZone;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

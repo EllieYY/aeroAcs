@@ -1,4 +1,4 @@
-package com.wim.aero.acs.model;
+package com.wim.aero.acs.model.db;
 
 import lombok.Data;
 

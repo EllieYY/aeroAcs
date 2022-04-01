@@ -4,7 +4,7 @@ import com.wim.aero.acs.db.entity.DevReaderDetail;
 import com.wim.aero.acs.db.mapper.DevReaderDetailMapper;
 import com.wim.aero.acs.db.service.DevReaderDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.wim.aero.acs.model.AcrStrikeInfo;
+import com.wim.aero.acs.model.db.AcrStrikeInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -82,7 +82,7 @@
 
 
 
-    <resultMap id="AcrStrikeInfoMap" type="com.wim.aero.acs.model.AcrStrikeInfo">
+    <resultMap id="AcrStrikeInfoMap" type="com.wim.aero.acs.model.db.AcrStrikeInfo">
         <result column="controller_id" property="scpId" />
         <result column="device_id" property="acrDeviceId" />
         <result column="strk_number" property="strikeId" />

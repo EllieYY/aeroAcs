@@ -1,7 +1,7 @@
 package com.wim.aero.acs.db.mapper;
 import java.util.List;
 
-import com.wim.aero.acs.model.AccessLevelInfo;
+import com.wim.aero.acs.model.db.AccessLevelInfo;
 import org.apache.ibatis.annotations.Param;
 
 import com.wim.aero.acs.db.entity.DAccessLevelDoor;

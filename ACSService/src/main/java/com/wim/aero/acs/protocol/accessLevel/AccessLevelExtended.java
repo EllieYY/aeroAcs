@@ -1,13 +1,12 @@
 package com.wim.aero.acs.protocol.accessLevel;
 
 import com.wim.aero.acs.message.Operation;
-import com.wim.aero.acs.model.ACRTz;
-import com.wim.aero.acs.model.AccessLevelInfo;
+import com.wim.aero.acs.model.db.ACRTz;
+import com.wim.aero.acs.model.db.AccessLevelInfo;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

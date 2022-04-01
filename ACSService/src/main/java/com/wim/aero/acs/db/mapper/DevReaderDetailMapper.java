@@ -1,7 +1,7 @@
 package com.wim.aero.acs.db.mapper;
 import java.util.List;
 
-import com.wim.aero.acs.model.AcrStrikeInfo;
+import com.wim.aero.acs.model.db.AcrStrikeInfo;
 import org.apache.ibatis.annotations.Param;
 
 import com.wim.aero.acs.db.entity.DevReaderDetail;

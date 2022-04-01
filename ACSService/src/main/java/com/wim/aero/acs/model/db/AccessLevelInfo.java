@@ -1,6 +1,5 @@
-package com.wim.aero.acs.model;
+package com.wim.aero.acs.model.db;
 
-import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
 import java.util.Date;

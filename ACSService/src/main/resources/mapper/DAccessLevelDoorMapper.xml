@@ -19,13 +19,13 @@
         access_level_id, access_level_name, schedules_group_id, device_id, reader_number, acr_number, controller_id, status
     </sql>
 
-    <resultMap id="ALInfoMap" type="com.wim.aero.acs.model.AccessLevelInfo">
+    <resultMap id="ALInfoMap" type="com.wim.aero.acs.model.db.AccessLevelInfo">
         <result column="scpId" property="nScpNumber" />
         <result column="alId" property="nAlvlnumber" />
         <result column="activeDate" property="activeDate" />
         <result column="deactiveDate" property="deactiveDate" />
         <result column="nEscortCode" property="nEscortCode" />
-        <collection property="tzList" ofType="com.wim.aero.acs.model.ACRTz">
+        <collection property="tzList" ofType="com.wim.aero.acs.model.db.ACRTz">
             <result column="acrId" property="acrId" />
             <result column="tzId" property="tz" />
         </collection>

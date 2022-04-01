@@ -50,7 +50,7 @@ public class ScpController {
 
     @ApiOperation(value = "获取控制器连接信息-1013")
     @RequestMapping(value = "/connect", method = {RequestMethod.POST})
-    public ResultBean<String> connectScp(@RequestBody ScpRequestInfo request) throws Exception {
+    public ResultBean<String> connectScp(@RequestBody ScpRequestInfo request) {
         int scpId = request.getScpId();
         if (!scpService.isValidScpId(scpId)) {
             return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
@@ -78,7 +78,7 @@ public class ScpController {
      */
     @ApiOperation(value = "获取控制器配置报文")
     @RequestMapping(value = "/config", method = {RequestMethod.POST})
-    public List<ScpCmd> scpConfig(@RequestBody ScpRequestInfo request) throws Exception {
+    public List<ScpCmd> scpConfig(@RequestBody ScpRequestInfo request) {
         int scpId = request.getScpId();
         if (!scpService.isValidScpId(scpId)) {
             log.error("控制器{}数据不存在。", scpId);
@@ -98,7 +98,6 @@ public class ScpController {
 
 
     /**
-     * 通信服务与scp成功建立连接之后获取scp对应的配置信息
      * @param request
      * @return
      * @throws Exception
