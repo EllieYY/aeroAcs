@@ -51,10 +51,20 @@ public class ScpService {
         this.restUtil = restUtil;
     }
 
+    /**
+     * 控制器合法性判断
+     * @param scpId
+     * @return
+     */
     public boolean isValidScpId(int scpId) {
         return devControllerDetailService.validScp(scpId);
     }
 
+    /**
+     * 控制器通信连接
+     * @param scpId
+     * @return
+     */
     public ScpCmd connectScp(int scpId) {
         // Create SCP (Command 1013)
         DevControllerDetail detail = devControllerDetailService.getScpConfiguration(scpId);
@@ -65,7 +75,46 @@ public class ScpService {
     }
 
     /**
-     * 定义配置流程
+     * 控制器复位
+     * @param scpId
+     */
+    public int reset(int scpId) {
+        ScpReset operation = new ScpReset(scpId);
+        String msg = RequestMessage.encode(scpId, operation);
+
+        log.info("[SCP]复位 reset: scpId={}, msg={}", scpId, msg);
+
+        // 向设备发送
+        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
+
+        log.info("SCP复位失败，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
+
+        return response.getCode();
+    }
+
+    /**
+     * 清除卡片，但不改变卡片格式
+     * @param scpId
+     * @return
+     */
+    public int clearCards(int scpId) {
+        AccessDatabaseSpecification operation = AccessDatabaseSpecification.getCardsClearedModel(scpId);
+        String msg = RequestMessage.encode(scpId, operation);
+
+        log.info("[SCP]清除卡片 clear cards: scpId={}, msg={}", scpId, msg);
+
+        // 向设备发送
+        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        log.info("清除卡片，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
+
+        return response.getCode();
+    }
+
+
+
+
+    /**
+     * 控制器配置：定义配置流程
      * @param scpId
      */
     public List<ScpCmd> configScp(int scpId) {
@@ -82,6 +131,11 @@ public class ScpService {
     }
 
 
+    /**
+     * scp规格及数据库配置
+     * @param scpId
+     * @param cmdList
+     */
     private void scpSpecification(int scpId, List<ScpCmd> cmdList) {
         // SCPDevice Specification(Command 1107)
         SCPSpecification scpSpecification = new SCPSpecification(scpId);
@@ -97,6 +151,11 @@ public class ScpService {
         cmdList.add(new ScpCmd(scpId, adSpecificationMsg, IdUtil.nextId()));
     }
 
+    /**
+     * 梯控SCP配置
+     * @param scpId
+     * @param cmdList
+     */
     private void elevatorScpSpecification(int scpId, List<ScpCmd> cmdList) {
         // Command 501: Elevator Access Level Specification
         // TODO:电梯楼层数从数据表中获取 -- 暂未定义
@@ -128,23 +187,6 @@ public class ScpService {
         }
     }
 
-    /**
-     * 控制器复位
-     * @param scpId
-     */
-    public boolean reset(int scpId) {
-        ScpReset operation = new ScpReset(scpId);
-        String msg = RequestMessage.encode(scpId, operation);
 
-        log.info("[SCP] reset: scpId={}, msg={}", scpId, msg);
-
-        // 向设备发送
-        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        if (response.getCode() == Constants.REST_CODE_SUCCESS) {
-            return true;
-        }
-
-        return false;
-    }
 
 }

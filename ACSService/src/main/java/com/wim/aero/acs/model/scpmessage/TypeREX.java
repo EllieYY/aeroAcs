@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 /**
  * @title: TypeREX
  * @author: Ellie
@@ -17,6 +19,7 @@ package com.wim.aero.acs.model.scpmessage;
  * 8 - host request: Cannot complete due to Airlock Busy.
  * 9 - exit cycle: started
  **/
-public class TypeREX {
+@Data
+public class TypeREX extends TransactionBody {
     private int rex_number;				// rex that initiated the request (0 or 1)
 }

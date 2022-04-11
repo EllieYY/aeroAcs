@@ -20,6 +20,7 @@ import com.wim.aero.acs.protocol.device.cp.OutputPointSpecification;
 import com.wim.aero.acs.protocol.device.mp.InputPointSpecification;
 import com.wim.aero.acs.protocol.device.mp.MonitorPointConfig;
 import com.wim.aero.acs.protocol.device.mp.MonitorPointMask;
+import com.wim.aero.acs.protocol.device.mp.MpGroupCommand;
 import com.wim.aero.acs.protocol.device.reader.ACRConfig;
 import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
 import com.wim.aero.acs.protocol.device.reader.AcrMode;
@@ -57,6 +58,11 @@ public class SIOService {
         this.restUtil = restUtil;
     }
 
+    /**
+     * 硬件配置
+     * @param scpId
+     * @param cmdList
+     */
     public void configSioForScp(int scpId, List<ScpCmd> cmdList) {
         // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器两个
         SIODriver driver1 = new SIODriver(scpId, 1, 1);
@@ -88,14 +94,16 @@ public class SIOService {
     }
 
     /**
-     * 报警点设防和撤防
-     * @param isMask true撤防 false设防
+     * 读卡器mode设置
+     * @param scpId
+     * @param acrId
+     * @param mode
      */
-    public int maskMp(int scpId, int mpId, boolean isMask) {
-        MonitorPointMask mask = new MonitorPointMask(scpId, mpId, isMask);
-        String msg = RequestMessage.encode(scpId, mask);
+    public int setAcrMode(int scpId, int acrId, int mode) {
+        ACRModeConfig config = new ACRModeConfig(scpId, acrId, mode);
+        String msg = RequestMessage.encode(scpId, config);
 
-        log.info("[MP] scpId={}, msg={}", scpId, msg);
+        log.info("[ACR Mode] scpId={}, msg={}", scpId, msg);
 
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
@@ -103,6 +111,64 @@ public class SIOService {
 
         return response.getCode();
     }
+
+    /**
+     * 控制点远程控制命令
+     * @param scpId
+     * @param cpId
+     * @param type
+     */
+    public int sendControlPointCommand(int scpId, int cpId, ControlPointCommandType type) {
+        ControlPointCommand command = new ControlPointCommand(scpId, cpId, type.getCode());
+        String msg = RequestMessage.encode(scpId, command);
+
+        log.info("[CP] scpId={}, msg={}", scpId, msg);
+
+        // 向设备发送
+        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        log.info("[sendSingleCmd] response={}", response);
+
+        return response.getCode();
+    }
+
+    /**
+     * 报警点设防和撤防
+     * @param isMask true撤防 false设防
+     */
+    public int maskMp(int scpId, int mpId, boolean isMask) {
+        MonitorPointMask mask = new MonitorPointMask(scpId, mpId, isMask);
+        String msg = RequestMessage.encode(scpId, mask);
+
+        log.info("[MP - 设防/撤防] scpId={}, msg={}", scpId, msg);
+
+        // 向设备发送
+        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        log.info("[MP - 设防/撤防] response={}", response);
+
+        return response.getCode();
+    }
+
+    /**
+     * 防区一键撤防和设防
+     * @param scpId
+     * @param mpId
+     * @param isMask true撤防 false设防
+     * @return
+     */
+    public int maskMpg(int scpId, int mpId, boolean isMask) {
+        MpGroupCommand mask = MpGroupCommand.setMask(scpId, mpId, isMask);
+        String msg = RequestMessage.encode(scpId, mask);
+
+        log.info("[MPGroup - 设防/撤防] scpId={}, msg={}", scpId, msg);
+
+        // 向设备发送
+        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        log.info("[MPGroup - 设防/撤防] response={}", response);
+
+        return response.getCode();
+    }
+
+
 
     /**
      * 输入点（报警点）配置
@@ -122,26 +188,6 @@ public class SIOService {
             String configMsg = RequestMessage.encode(scpId, config);
             cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
         }
-    }
-
-
-    /**
-     * 控制点远程控制命令
-     * @param scpId
-     * @param cpId
-     * @param type
-     */
-    public int sendControlPointCommand(int scpId, int cpId, ControlPointCommandType type) {
-        ControlPointCommand command = new ControlPointCommand(scpId, cpId, type.getCode());
-        String msg = RequestMessage.encode(scpId, command);
-
-        log.info("[CP] scpId={}, msg={}", scpId, msg);
-
-        // 向设备发送
-        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        log.info("[sendSingleCmd] response={}", response);
-
-        return response.getCode();
     }
 
 
@@ -186,22 +232,5 @@ public class SIOService {
         }
     }
 
-    /**
-     * 读卡器mode设置
-     * @param scpId
-     * @param acrId
-     * @param mode
-     */
-    public int setAcrMode(int scpId, int acrId, int mode) {
-        ACRModeConfig config = new ACRModeConfig(scpId, acrId, mode);
-        String msg = RequestMessage.encode(scpId, config);
 
-        log.info("[ACR Mode] scpId={}, msg={}", scpId, msg);
-
-        // 向设备发送
-        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        log.info("[sendSingleCmd] response={}", response);
-
-        return response.getCode();
-    }
 }

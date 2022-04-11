@@ -36,5 +36,19 @@ public class MpGroupCommand extends Operation {
     private int command;
 
     @CmdProp(index = 5)
-    private int arg;
+    private int arg = 0;
+
+    // isMask true撤防 false设防
+    public static MpGroupCommand setMask(int scpNumber, int mpgNumber, boolean isMask) {
+        MpGroupCommand result = new MpGroupCommand();
+        result.setScpNumber(scpNumber);
+        result.setMpgNumber(mpgNumber);
+        result.setCommand(2);
+
+        if (isMask) {
+            result.setArg(1);
+        }
+
+        return result;
+    }
 }

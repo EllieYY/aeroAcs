@@ -150,4 +150,11 @@ public class ResultBeanExceptionHandler {
 
         return ResultBeanUtil.makeResp(exception);
     }
+
+    @ExceptionHandler(AssertionError.class)
+    public ResultBean<?> handleException(AssertionError exception, HttpServletResponse response) {
+
+        log.error("数据异常", exception);
+        return ResultBeanUtil.makeResp(RespCode.ERROR_PARAM, exception.getMessage());
+    }
 }

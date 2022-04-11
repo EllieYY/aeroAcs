@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 /**
  * @title: TypeCoS
  * @author: Ellie
@@ -15,7 +17,8 @@ package com.wim.aero.acs.model.scpmessage;
  * 6 - Exit delay in progress
  * 7 - Entry delay in progress
  **/
-public class TypeCoS {
+@Data
+public class TypeCoS extends TransactionBody {
     // status code byte encoding:
     //		0x07 - status mask: 0=inactive, 1=active, 2-7=supervisory fault codes:
     //				2==ground, 3==short, 4==open, 5==foreign voltage, 6==non-settling

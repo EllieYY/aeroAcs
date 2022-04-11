@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.EAccessRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.EAccessRecord">
+        <id column="seq_no" property="seqNo" />
+        <result column="event_index" property="eventIndex" />
+        <result column="events_time" property="eventsTime" />
+        <result column="controller_id" property="controllerId" />
+        <result column="event_source_type" property="eventSourceType" />
+        <result column="source_code" property="sourceCode" />
+        <result column="event_type" property="eventType" />
+        <result column="event_type_code" property="eventTypeCode" />
+        <result column="reader_id" property="readerId" />
+        <result column="card_no" property="cardNo" />
+        <result column="employee_no" property="employeeNo" />
+        <result column="employee_name" property="employeeName" />
+        <result column="dept_id" property="deptId" />
+        <result column="dept_name" property="deptName" />
+        <result column="ins_time" property="insTime" />
+        <result column="full_memo" property="fullMemo"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        seq_no,
+        event_index,
+        events_time,
+        controller_id,
+        event_source_type,
+        source_code,
+        event_type,
+        event_type_code,
+        reader_id,
+        card_no,
+        employee_no,
+        employee_name,
+        dept_id,
+        dept_name,
+        ins_time,
+        full_memo
+    </sql>
+
+</mapper>

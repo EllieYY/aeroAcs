@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -21,7 +23,8 @@ import java.util.List;
  * 10 - override arm command, MPG armed (mask_count is now zero)
  * 11 - override arm command, MPG did not arm, (mask_count decremented)
  **/
-public class TypeMPG {
+@Data
+public class TypeMPG extends TransactionBody {
     private int mask_count;			// current mask count of this MPG
     private int nActiveMps;			// number of active Monitor Points
     List<Integer> nMpList;		    // IntVB nMpList[10*2]; list of the first 10 active Point Pairs: "Type-Number"

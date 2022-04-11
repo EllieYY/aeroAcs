@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 /**
  * @title: TypeCardFull
  * @author: Ellie
@@ -24,11 +26,17 @@ package com.wim.aero.acs.model.scpmessage;
  * // 		17 - request granted: card granted access from cache, invalid facility code
  * // 		18 - request granted: card granted access from cache, invalid issue code
  **/
-public class TypeCardFull {
+@Data
+public class TypeCardFull extends TransactionBody implements AccessEvent {
     private int format_number;		// index to the format table that was used, negative if reverse
     private long facility_code;		// facility code
     private long cardholder_id;		// cardholder ID number
     private int	issue_code;			// issue code
     private int	floor_number;		// zero if not available (or not supported), else 1==first floor, ...
     private String encoded_card;	// encoded_card[32];Large encoded ID. (up to 32 bytes reported)
+
+    @Override
+    public String getCardHolder() {
+        return String.valueOf(cardholder_id);
+    }
 }

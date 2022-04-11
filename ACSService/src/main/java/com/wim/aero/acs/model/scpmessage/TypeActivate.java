@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 /**
  * @title: TypeActivate
  * @author: Ellie
@@ -14,6 +16,7 @@ package com.wim.aero.acs.model.scpmessage;
  * 6 - exit delay in progress
  * 7 - entry delay in progress
  **/
-public class TypeActivate {
+@Data
+public class TypeActivate extends TransactionBody {
 //    private int activationCount;   // 没有字段返回
 }

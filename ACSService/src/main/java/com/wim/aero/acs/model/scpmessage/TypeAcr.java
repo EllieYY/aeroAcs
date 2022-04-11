@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 /**
  * @title: TypeAcr
  * @author: Ellie
@@ -16,7 +18,8 @@ package com.wim.aero.acs.model.scpmessage;
  * 7 - card and PIN
  * 8 - PIN or card
  **/
-public class TypeAcr {
+@Data
+public class TypeAcr extends TransactionBody {
     private int actl_flags;			// image of CC_ACR::actl_flags
     private int prior_flags;		// flags prior to mode set
     private int prior_mode;			// mode prior to mode set

@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 /**
  * @title: TypeUseLimit
  * @author: Ellie
@@ -9,7 +11,8 @@ package com.wim.aero.acs.model.scpmessage;
  * transaction codes for tranUseLimit:
  * 1 - use limit changed, reporting new limit
  **/
-public class TypeUseLimit {
+@Data
+public class TypeUseLimit extends TransactionBody {
     private int ueeCount;				// the updated use count as a result of this access
     private long cardholderId;			// cardholder ID number
 }

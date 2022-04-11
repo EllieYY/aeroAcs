@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 /**
  * @title: TypeCardID
  * @author: Ellie
@@ -51,10 +53,16 @@ package com.wim.aero.acs.model.scpmessage;
  * // 		42 - request granted: known card granted access from cache
  * // 		43 - request denied: known card denied access from cache
  **/
-public class TypeCardID {
+@Data
+public class TypeCardID extends TransactionBody implements AccessEvent {
     private int	format_number;			// index to the format table that was used, negative if reverse read
     private long cardholder_id;			// cardholder ID number
     private int	floor_number;			// zero if not available (or not supported), else 1==first floor, ...
     private int	card_type_flags;		// Card type flags (bit-0 = escort, bit-1 = escort required)
     private int	elev_cab;				// Elevator cab number
+
+    @Override
+    public String getCardHolder() {
+        return String.valueOf(cardholder_id);
+    }
 }

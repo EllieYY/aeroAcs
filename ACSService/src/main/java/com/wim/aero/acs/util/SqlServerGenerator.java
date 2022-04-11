@@ -21,14 +21,14 @@ public class SqlServerGenerator {
      */
     private static final DataSourceConfig.Builder DATA_SOURCE_CONFIG = new DataSourceConfig
             .Builder(
-//            "jdbc:sqlserver://192.168.2.235;databaseName=ykt",
-            "jdbc:sqlserver://113.57.214.58:14339;databaseName=ykt",
+            "jdbc:sqlserver://192.168.2.235;databaseName=ykt",
+//            "jdbc:sqlserver://113.57.214.58:14339;databaseName=ykt",
             "sa",
             "iafc@2022");
 
     public static void main(String[] args) {
         List<String> tables = new ArrayList<>();
-        tables.add("dev_controller_detail");
+//        tables.add("dev_controller_detail");
 //        tables.add("dev_x_detail");
 //        tables.add("dev_input_detail");
 //        tables.add("dev_output_detail");
@@ -44,8 +44,10 @@ public class SqlServerGenerator {
 //        tables.add("d_schedules_group_detail");
 //        tables.add("c_card_info");
 //        tables.add("card_format");
-        tables.add("dev_controller_common_attribute");
-
+//        tables.add("dev_controller_common_attribute");
+        tables.add("e_access_record");
+        tables.add("e_alarm_record");
+        tables.add("e_log_record");
 
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)
                 .globalConfig(builder -> {

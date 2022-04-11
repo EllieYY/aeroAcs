@@ -1,5 +1,5 @@
 server:
-  port: 9251
+  port: 9250
 
 swagger:
   enable: true
@@ -15,14 +15,12 @@ mybatis-plus:
       logic-delete-value: 1
 
 spring:
-  profiles:
-    active: "@profiles.active@"
   jackson:
     time-zone: GMT+8
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 #    type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:sqlserver://113.57.214.58:14339;databaseName=ykt
+    url: jdbc:sqlserver://192.168.2.235;databaseName=ykt
     username: sa
     password: iafc@2022
   application:
@@ -36,7 +34,10 @@ httppool:
   socketTimeout: 3000
   validateAfterInactivity: 2000
 
+
+#url: http://192.168.2.234:5000
+
 comm-service-info:
-  url: https://192.168.2.72:7087
+  url: http://192.168.2.234:5000
 
 

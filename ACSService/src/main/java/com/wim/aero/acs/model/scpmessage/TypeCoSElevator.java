@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 /**
  * @title: TypeCoSElevator
  * @author: Ellie
@@ -11,7 +13,8 @@ package com.wim.aero.acs.model.scpmessage;
  * 2 - Floor Status is Public
  * 3 - Floor Status is Disabled
  **/
-public class TypeCoSElevator {
+@Data
+public class TypeCoSElevator extends TransactionBody {
     private byte prevFloorStatus;
     private byte floorNumber;
 }

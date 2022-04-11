@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -16,7 +18,8 @@ import java.util.List;
  * //  	5	- on-line: normal connection
  * //	6   - hexLoad report: ser_num is address loaded (-1 == last record)
  **/
-public class TypeSioComm {
+@Data
+public class TypeSioComm extends TransactionBody {
     //  0 - not configured
     //  1 - not tried: active, have not tried to poll it
     //  2 - off-line

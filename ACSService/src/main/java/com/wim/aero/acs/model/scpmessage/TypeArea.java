@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 /**
  * @title: TypeArea
  * @author: Ellie
@@ -16,7 +18,8 @@ package com.wim.aero.acs.model.scpmessage;
  * 7 - multi-occupancy mode change
  * 8 - multi-occupancy mode change could not be made - the area is not empty
  **/
-public class TypeArea {
+@Data
+public class TypeArea extends TransactionBody {
     //		1 - set if area is enabled (open)
     //     -- - the multi-occupancy mode is coded using bit-1 and bit 2
     //      0 - (both bit-1 and bit-2 are zero) multi-occupancy mode not enabled

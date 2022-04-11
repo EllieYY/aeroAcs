@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.EAlarmRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.EAlarmRecord">
+        <id column="seq_no" property="seqNo" />
+        <result column="event_index" property="eventIndex" />
+        <result column="events_time" property="eventsTime" />
+        <result column="controller_id" property="controllerId" />
+        <result column="event_source_type" property="eventSourceType" />
+        <result column="source_code" property="sourceCode" />
+        <result column="event_type" property="eventType" />
+        <result column="event_type_code" property="eventTypeCode" />
+        <result column="ins_time" property="insTime" />
+        <result column="deal_flag" property="dealFlag" />
+        <result column="full_memo" property="fullMemo"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        seq_no, event_index, events_time, controller_id, event_source_type, source_code, event_type, event_type_code, ins_time, deal_flag, full_memo
+    </sql>
+
+</mapper>

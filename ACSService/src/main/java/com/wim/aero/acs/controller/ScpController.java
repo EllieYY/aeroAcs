@@ -1,8 +1,10 @@
 package com.wim.aero.acs.controller;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
+import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
 import com.wim.aero.acs.service.AccessConfigService;
@@ -48,7 +50,7 @@ public class ScpController {
         this.restUtil = restUtil;
     }
 
-    @ApiOperation(value = "获取控制器连接信息-1013")
+    @ApiOperation(value = "硬件下载")
     @RequestMapping(value = "/connect", method = {RequestMethod.POST})
     public ResultBean<String> connectScp(@RequestBody ScpRequestInfo request) {
         int scpId = request.getScpId();
@@ -61,41 +63,14 @@ public class ScpController {
         // 通过restUtil发送
         ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
 
-        // TODO:结果校验
-
-        return ResultBeanUtil.makeOkResp("正在与scp建立连接...");
-    }
-
-//    @Operation(summary = "管理员更新用户", description = "管理员根据姓名更新用户")
-////    @ApiResponse(description = "返回更新的用户", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)))
-//    CommonResult<User> updateUser(@Parameter(schema = @Schema(implementation = User.class), required = true, description = "用户类") User user);
-
-    /**
-     * 通信服务与scp成功建立连接之后获取scp对应的配置信息
-     * @param request
-     * @return
-     * @throws Exception
-     */
-    @ApiOperation(value = "获取控制器配置报文")
-    @RequestMapping(value = "/config", method = {RequestMethod.POST})
-    public List<ScpCmd> scpConfig(@RequestBody ScpRequestInfo request) {
-        int scpId = request.getScpId();
-        if (!scpService.isValidScpId(scpId)) {
-            log.error("控制器{}数据不存在。", scpId);
-            return new ArrayList<>();
+        // 结果校验
+        if (response.getCode() == 0) {
+            return ResultBeanUtil.makeOkResp("正在与scp建立连接...");
+        } else {
+            return ResultBeanUtil.makeResp(RespCode.COMM_SERVICE_FAIL,
+                    response.getCode() + " - " + response.getReason());
         }
-        // TODO:修改scp状态 -- 数据库
-
-        // scp配置
-        List<ScpCmd> cmdList = scpService.configScp(scpId);
-        // sio及物理点位配置
-        sioService.configSioForScp(scpId, cmdList);
-        // 时间组、访问组配置
-        accessConfigService.alBasicConfig(scpId, cmdList);
-
-        return cmdList;
     }
-
 
     /**
      * @param request
@@ -114,17 +89,23 @@ public class ScpController {
     @ApiOperation(value = "控制器复位")
     @RequestMapping(value = "/reset", method = {RequestMethod.POST})
     public ResultBean<String> resetScp(@RequestBody ScpRequestInfo request) throws Exception {
-        // TODO:
-
-        return ResultBeanUtil.makeOkResp("控制器复位命令已下发");
+        int code = scpService.reset(request.getScpId());
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("控制器复位命令已下发");
+        } else {
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+        }
     }
 
     @ApiOperation(value = "清除卡片")
     @RequestMapping(value = "/card/clear", method = {RequestMethod.POST})
     public ResultBean<String> clearCards(@RequestBody ScpRequestInfo request) throws Exception {
-        // TODO:
-
-        return ResultBeanUtil.makeOkResp("清除卡片命令已下发");
+        int code = scpService.clearCards(request.getScpId());
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("清除卡片命令已下发");
+        } else {
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+        }
     }
 
     @ApiOperation(value = "下载卡片")
@@ -150,4 +131,31 @@ public class ScpController {
 
         return ResultBeanUtil.makeOkResp("执行过程命令已下发");
     }
+
+    /**
+     * 通信服务与scp成功建立连接之后获取scp对应的配置信息
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "通信后台使用 - 获取控制器配置报文")
+    @RequestMapping(value = "/config", method = {RequestMethod.POST})
+    public List<ScpCmd> scpConfig(@RequestBody ScpRequestInfo request) {
+        int scpId = request.getScpId();
+        if (!scpService.isValidScpId(scpId)) {
+            log.error("控制器{}数据不存在。", scpId);
+            return new ArrayList<>();
+        }
+        // TODO:修改scp状态 -- 数据库
+
+        // scp配置
+        List<ScpCmd> cmdList = scpService.configScp(scpId);
+        // sio及物理点位配置
+        sioService.configSioForScp(scpId, cmdList);
+        // 时间组、访问组配置
+        accessConfigService.alBasicConfig(scpId, cmdList);
+
+        return cmdList;
+    }
+
 }

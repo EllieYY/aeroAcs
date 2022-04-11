@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -10,7 +12,8 @@ import java.util.List;
  * transaction codes for tagTypeCoSElevatorAccess:
  * 1 - Elevator Access
  **/
-public class TypeCoSElevatorAccess {
+@Data
+public class TypeCoSElevatorAccess extends TransactionBody {
     private long cardholderId;
     private List<Byte> floors;
     private byte nnCardFormat;

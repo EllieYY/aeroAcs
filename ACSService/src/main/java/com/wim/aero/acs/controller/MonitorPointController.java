@@ -37,7 +37,7 @@ public class MonitorPointController {
     @RequestMapping(value = "/alarm/point", method = {RequestMethod.POST})
     public ResultBean<String> pointMask(@RequestBody MpRequestInfo request) {
         log.info("[MpMask] {}", request);
-        int code = sioService.maskMp(request.getScpId(), request.getMpId(), !request.isSetAlarm());
+        int code = sioService.maskMp(request.getScpId(), request.getId(), !request.isSetAlarm());
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("命令下发成功");
         }
@@ -46,6 +46,16 @@ public class MonitorPointController {
     }
 
 
-    //TODO：防区设防和撤防
+    @ApiOperation(value = "防区设防和撤防")
+    @RequestMapping(value = "/alarm/pointGroup", method = {RequestMethod.POST})
+    public ResultBean<String> mpGroupMask(@RequestBody MpRequestInfo request) {
+        log.info("[MpGroupMask] {}", request);
+        int code = sioService.maskMpg(request.getScpId(), request.getId(), !request.isSetAlarm());
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("命令下发成功");
+        }
+
+        return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+    }
 
 }

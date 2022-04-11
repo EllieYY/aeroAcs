@@ -17,8 +17,8 @@ public class MpRequestInfo {
     @ApiModelProperty(value = "控制器id")
     private int scpId;
 
-    @ApiModelProperty(value = "报警点逻辑id")
-    private int mpId;
+    @ApiModelProperty(value = "报警点/防区逻辑id")
+    private int id;
 
     @ApiModelProperty(value = "设防状态", example = "true - 设防， false - 撤防")
     private boolean setAlarm;

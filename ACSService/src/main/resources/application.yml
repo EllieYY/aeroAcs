@@ -19,6 +19,8 @@ mybatis-plus:
       logic-delete-value: 1
 
 spring:
+  profiles:
+    active: "@profiles.active@"
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 #    type: com.alibaba.druid.pool.DruidDataSource

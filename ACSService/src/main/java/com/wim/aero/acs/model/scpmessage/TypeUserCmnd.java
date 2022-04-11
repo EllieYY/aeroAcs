@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scpmessage;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,8 @@ import java.util.List;
  * transaction codes for tranTypeUserCmnd:
  * 1 - command entered by the user...
  **/
-public class TypeUserCmnd {
+@Data
+public class TypeUserCmnd extends TransactionBody {
     private int nKeys;				// number of user command digits entered
     private List<String> keys;		// keys[16]; null terminated string: '0' through '9'
 }

@@ -65,6 +65,7 @@ public class RestUtil {
 
         try {
             ScpCmdResponse pts = mapper.readValue(result.getBody(), ScpCmdResponse.class);
+            log.info(pts.toString());
             return pts;
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,6 +101,7 @@ public class RestUtil {
 
         try {
             List<ScpCmdResponse> pts = mapper.readValue(result.getBody(), new TypeReference<List<ScpCmdResponse>>() {});
+            log.info(pts.toString());
             return pts;
         } catch (Exception e) {
             e.printStackTrace();

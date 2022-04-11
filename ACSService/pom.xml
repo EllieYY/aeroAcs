@@ -102,7 +102,7 @@
             <id>dev</id>
             <properties>
                 <profiles.active>dev</profiles.active>
-                <modifier></modifier>
+                <modifier>-dev</modifier>
             </properties>
             <activation>
                 <!-- 默认的，不加参数时执行这个profile -->
@@ -165,10 +165,19 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
                 <excludes>
-                    <exclude>application-{profiles.active}.yml</exclude>
+                    <exclude>application*.yml</exclude>
                 </excludes>
+            </resource>
+            <resource>
+                <!--通过开启 filtering，maven 会将文件中的 @XX@ 替换 profile 中定义的 XX 变量/属性-->
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <!-- 保留选择的环境配置文件 -->
+                <includes>
+                    <include>application.yml</include>
+                    <include>application-${profiles.active}.yml</include>
+                </includes>
             </resource>
         </resources>
     </build>
