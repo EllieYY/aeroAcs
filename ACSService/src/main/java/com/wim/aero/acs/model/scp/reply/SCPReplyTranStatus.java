@@ -1,4 +1,4 @@
-package com.wim.aero.acs.model.scp.transaction;
+package com.wim.aero.acs.model.scp.reply;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,7 +12,7 @@ import lombok.Data;
  **/
 @Data
 @ApiModel(value = "transaction状态信息")
-public class SCPReplyTranStatus {
+public class SCPReplyTranStatus extends ReplyBody {
     @ApiModelProperty(value = "scpId")
     private int scpId;
 

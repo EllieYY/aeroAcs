@@ -9,7 +9,7 @@ import lombok.Data;
  * @description:
  **/
 @Data
-public class SCPReplyCmndStatus {
+public class SCPReplyCmndStatus extends ReplyBody {
     private int	status;				// command delivery status:
                                     // - 0 = FAILED (could not send, SCP off-line)
                                     // - 1 = OK (delivered and accepted),
@@ -19,5 +19,5 @@ public class SCPReplyCmndStatus {
 
     // the following block is included only if status==2 (NAK)
     // this extension includes the information that will be returned in the following NAK reply
-    private ScpReplyNAK nak;
+    private SCPReplyNAK nak;
 }

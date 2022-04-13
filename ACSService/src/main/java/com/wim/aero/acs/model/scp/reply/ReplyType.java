@@ -1,9 +1,5 @@
 package com.wim.aero.acs.model.scp.reply;
 
-import com.wim.aero.acs.model.scp.transaction.TransactionBody;
-import com.wim.aero.acs.model.scp.transaction.TypeCoS;
-import com.wim.aero.acs.model.scp.transaction.TypeSioComm;
-
 import java.util.function.Predicate;
 
 /**
@@ -13,29 +9,37 @@ import java.util.function.Predicate;
  * @description:
  **/
 public enum ReplyType {
+    REPLY_COMM_STATUS(0x02, SCPReplyCommStatus.class),
+    REPLY_NAK(0x03, SCPReplyNAK.class),
+    REPLY_ID_REPORT(0x04, SCPReplyIDReport.class),
 
-    SCP_LCL_COS(0x04, TypeCoS.class),
-    SIO_COMM_COS(0x04, TypeSioComm.class),
-    SIO_TMPR_COS(0x05, TypeCoS.class),
-    SIO_PWR_COS(0x06, TypeCoS.class),
-    SIO_MP_COS(0x07, TypeCoS.class),
-    SIO_CP_COS(0x08, TypeCoS.class),
-    ACR_ALT_TMPR_COS(0x15, TypeCoS.class);
+    REPLY_TRAN_STATUS(0x06, SCPReplyTranStatus.class),
+
+    REPLY_MSP1(0x08, SCPReplySrMsp1Drvr.class),
+    REPLY_SIO(0x09, SCPReplySrSio.class),
+    REPLY_MP(0x0A, SCPReplySrMp.class),
+    REPLY_CP(0x0B, SCPReplySrCp.class),
+    REPLY_ACR(0x0C, SCPReplySrAcr.class),
+    REPLY_TZ(0x0C, SCPReplySrTz.class),
+    REPLY_TV(0x0D, SCPReplySrTv.class),
+    REPLY_COMND_STATUS(0x0F, SCPReplyCmndStatus.class),
+    REPLY_MPG(0x10, SCPReplySrMpg.class),
+    REPLY_AREA(0x11, SCPReplySrArea.class);
 
     public int getTypeCode() {
         return typeCode;
     }
 
     private int typeCode;
-    private Class<? extends TransactionBody> transClazz;
+    private Class<? extends ReplyBody> replyClazz;
 
-    ReplyType(int typeCode, Class<? extends TransactionBody> transClazz) {
+    ReplyType(int typeCode, Class<? extends ReplyBody> replyClazz) {
         this.typeCode = typeCode;
-        this.transClazz = transClazz;
+        this.replyClazz = replyClazz;
     }
 
     public Class getTransClazz() {
-        return transClazz;
+        return replyClazz;
     }
 
     public static ReplyType fromCode(int typeCode){

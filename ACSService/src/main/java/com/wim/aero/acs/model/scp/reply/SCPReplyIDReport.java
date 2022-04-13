@@ -9,7 +9,7 @@ import lombok.Data;
  * @description:
  **/
 @Data
-public class SCPReplyIDReport {
+public class SCPReplyIDReport extends ReplyBody {
     private int  device_id;			// identification of the replying device (3=HID)
     private int  device_ver;			// hardware version: 27==X1100
     private int  sft_rev_major;		// software revision, major

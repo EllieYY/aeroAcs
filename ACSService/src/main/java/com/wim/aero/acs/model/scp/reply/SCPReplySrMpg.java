@@ -11,7 +11,7 @@ import java.util.List;
  * @description:
  **/
 @Data
-public class SCPReplySrMpg {
+public class SCPReplySrMpg extends ReplyBody {
     private int number;							// MPG number
     private int mask_count;						// mask count
     private int num_active;						// number of active MPs

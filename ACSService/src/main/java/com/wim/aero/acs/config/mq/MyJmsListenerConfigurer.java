@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.connection.CachingConnectionFactory;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.jms.support.destination.DestinationResolver;
 
 import javax.jms.ConnectionFactory;
@@ -23,12 +24,12 @@ import javax.jms.Destination;
 @Configuration
 @EnableJms
 public class MyJmsListenerConfigurer {
-    @Value("${spring.activemq.broker-url}")
-    private String activeMQURL;
-    @Value("${spring.activemq.user}")
-    private String userName;
-    @Value("${spring.activemq.password}")
-    private String password;
+//    @Value("${spring.activemq.broker-url}")
+//    private String activeMQURL;
+//    @Value("${spring.activemq.user}")
+//    private String userName;
+//    @Value("${spring.activemq.password}")
+//    private String password;
 
 //    @Value("${spring.pool.max-connections}")
 //    private int maxConnections;
@@ -39,7 +40,7 @@ public class MyJmsListenerConfigurer {
     /**
      * JMS 队列的监听容器工厂
      */
-    @Bean(name = "MyjmsQueueListener")
+    @Bean(name = "MyJmsQueueListener")
     public DefaultJmsListenerContainerFactory jmsQueueListenerContainerFactory(ConnectionFactory jmsConnectionFactory) {
         DefaultJmsListenerContainerFactory factory =
                 new DefaultJmsListenerContainerFactory();
@@ -62,7 +63,7 @@ public class MyJmsListenerConfigurer {
     /**
      * JMS 广播模式监听容器工厂
      */
-    @Bean(name = "MyjmsTopicListener")
+    @Bean(name = "MyJmsTopicListener")
     public DefaultJmsListenerContainerFactory jmsTopicListenerContainerFactory(ConnectionFactory jmsConnectionFactory) {
         DefaultJmsListenerContainerFactory factory =
                 new DefaultJmsListenerContainerFactory();
@@ -78,31 +79,36 @@ public class MyJmsListenerConfigurer {
     }
 
 
-    @Bean
-    public ConnectionFactory jmsConnectionFactory(){
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-
-        connectionFactory.setBrokerURL(activeMQURL);
-        connectionFactory.setUserName(userName);
-        connectionFactory.setPassword(password);
-        connectionFactory.setTrustAllPackages(true);
-        connectionFactory.setMaxThreadPoolSize(ActiveMQConnection.DEFAULT_THREAD_POOL_SIZE);
-        RedeliveryPolicy redeliveryPolicy = new RedeliveryPolicy();
-
-        //定义ReDelivery(重发机制)机制 ，重发时间间隔是100毫秒，最大重发次数是3次
-        //是否在每次尝试重新发送失败后,增长这个等待时间
-        redeliveryPolicy.setUseExponentialBackOff(true);
-        //重发次数,默认为6次   这里设置为1次
-        redeliveryPolicy.setMaximumRedeliveries(1);
-        //重发时间间隔,默认为1秒
-        redeliveryPolicy.setInitialRedeliveryDelay(1000);
-        //第一次失败后重新发送之前等待500毫秒,第二次失败再等待500 * 2毫秒,这里的2就是value
-        redeliveryPolicy.setBackOffMultiplier(2);
-        //最大传送延迟，只在useExponentialBackOff为true时有效（V5.5），假设首次重连间隔为10ms，倍数为2，那么第
-        //二次重连时间间隔为 20ms，第三次重连时间间隔为40ms，当重连时间间隔大的最大重连时间间隔时，以后每次重连时间间隔都为最大重连时间间隔。
-        redeliveryPolicy.setMaximumRedeliveryDelay(1000);
-        connectionFactory.setRedeliveryPolicy(redeliveryPolicy);
-
-        return connectionFactory;
-    }
+//    @Bean
+//    public JmsMessagingTemplate jmsMessagingTemplate() {
+//        return new JmsMessagingTemplate(jmsConnectionFactory());
+//    }
+//
+//    @Bean
+//    public ConnectionFactory jmsConnectionFactory(){
+//        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
+//
+//        connectionFactory.setBrokerURL(activeMQURL);
+//        connectionFactory.setUserName(userName);
+//        connectionFactory.setPassword(password);
+//        connectionFactory.setTrustAllPackages(true);
+//        connectionFactory.setMaxThreadPoolSize(ActiveMQConnection.DEFAULT_THREAD_POOL_SIZE);
+//        RedeliveryPolicy redeliveryPolicy = new RedeliveryPolicy();
+//
+//        //定义ReDelivery(重发机制)机制 ，重发时间间隔是100毫秒，最大重发次数是3次
+//        //是否在每次尝试重新发送失败后,增长这个等待时间
+//        redeliveryPolicy.setUseExponentialBackOff(true);
+//        //重发次数,默认为6次   这里设置为1次
+//        redeliveryPolicy.setMaximumRedeliveries(1);
+//        //重发时间间隔,默认为1秒
+//        redeliveryPolicy.setInitialRedeliveryDelay(1000);
+//        //第一次失败后重新发送之前等待500毫秒,第二次失败再等待500 * 2毫秒,这里的2就是value
+//        redeliveryPolicy.setBackOffMultiplier(2);
+//        //最大传送延迟，只在useExponentialBackOff为true时有效（V5.5），假设首次重连间隔为10ms，倍数为2，那么第
+//        //二次重连时间间隔为 20ms，第三次重连时间间隔为40ms，当重连时间间隔大的最大重连时间间隔时，以后每次重连时间间隔都为最大重连时间间隔。
+//        redeliveryPolicy.setMaximumRedeliveryDelay(1000);
+//        connectionFactory.setRedeliveryPolicy(redeliveryPolicy);
+//
+//        return connectionFactory;
+//    }
 }

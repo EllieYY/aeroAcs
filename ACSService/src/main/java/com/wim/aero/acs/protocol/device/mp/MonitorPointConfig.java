@@ -62,7 +62,7 @@ public class MonitorPointConfig extends Operation {
         result.setScpNumber(detail.getControllerId());
         result.setSioNumber(detail.getPDeviceId());
         result.setInputNumber(detail.getInput());
-        result.setMpNumber(detail.getInput());
+        result.setMpNumber(detail.getMpNumber());
 
         if (StringUtils.hasText(detail.getAlarmDelayFlag())) {
             int mode = Integer.parseInt(detail.getAlarmDelayFlag());

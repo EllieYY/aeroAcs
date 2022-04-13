@@ -1,6 +1,7 @@
 package com.wim.aero.acs.model.mq;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
  * @description:
  **/
 @Data
+@AllArgsConstructor
 public class LogMessage {
     private long eventIndex;
 
@@ -23,4 +25,6 @@ public class LogMessage {
     private int eventType;
     private int eventTypeCode;
     private String fullMemo;
+
+
 }

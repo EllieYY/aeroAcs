@@ -5,6 +5,9 @@ import com.wim.aero.acs.util.StringUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.Positive;
 
 /**
  * @title: ScpReplayNak
@@ -14,13 +17,15 @@ import lombok.Data;
  **/
 @Data
 @ApiModel(value = "SCP上报NAK信息")
-public class ScpReplyNAK {
+@Validated
+public class SCPReplyNAK extends ReplyBody {
     @ApiModelProperty(value = "控制器id")
     @JsonProperty("ScpId")
     private int scpId;
 
     @ApiModelProperty(value = "NAK原因代码")
     @JsonProperty("Reason")
+    @Positive
     private int reason;
 
     @ApiModelProperty(value = "NAK数据")

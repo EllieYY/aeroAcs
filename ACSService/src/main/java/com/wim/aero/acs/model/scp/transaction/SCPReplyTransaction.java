@@ -9,7 +9,9 @@ import com.wim.aero.acs.util.Long2DateDeserializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.Positive;
 import java.util.Date;
 
 /**
@@ -20,7 +22,8 @@ import java.util.Date;
  **/
 @Data
 @ApiModel(value = "SCPReplyTransaction信息")
-public class SCPReplyTransaction<T extends TransactionBody> {
+@Validated
+public class SCPReplyTransaction {
     @ApiModelProperty(value = "scpId")
     private int scpId;
 
@@ -47,16 +50,16 @@ public class SCPReplyTransaction<T extends TransactionBody> {
     @ApiModelProperty(value = "tranType对应结构体进行Json结构体序列化字符串")
     private String argJsonStr;
 
-    @ApiModelProperty(hidden = true)
-    @JsonIgnore
-    private T body;
+//    @ApiModelProperty(hidden = true)
+//    @JsonIgnore
+//    private T body;
 
-    // Json转换
-    public T updateTransactionBody() {
-        Class<T> bodyClazz = TransactionType.fromCode(this.sourceType, this.tranType).getTransClazz();
-        T body = JsonUtil.fromJson(argJsonStr, bodyClazz);
-        this.body = body;
-
-        return body;
-    }
+//    // Json转换
+//    public T updateTransactionBody() {
+//        Class<T> bodyClazz = TransactionType.fromCode(this.sourceType, this.tranType).getTransClazz();
+//        T body = JsonUtil.fromJson(argJsonStr, bodyClazz);
+//        this.body = body;
+//
+//        return body;
+//    }
 }

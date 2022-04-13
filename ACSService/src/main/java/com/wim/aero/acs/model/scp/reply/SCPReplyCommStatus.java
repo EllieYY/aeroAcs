@@ -9,7 +9,7 @@ import lombok.Data;
  * @description:
  **/
 @Data
-public class SCPReplyCommStatus {
+public class SCPReplyCommStatus extends ReplyBody {
     private int status;   // enSCPComm
     private int  error_code;   // enSCPCommErr
     private int  nChannelId;			// channel number - valid if status==enSCPComNoError

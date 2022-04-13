@@ -29,6 +29,11 @@ public class ResultBeanUtil {
         return new ResultBean<T>(RespCode.FAIL);
     }
 
+    public static <T> ResultBean<T> makePARAMErrResp(String msg) {
+        RespCode.ERROR_PARAM.setMsg(msg);
+        return new ResultBean<T>(RespCode.FAIL);
+    }
+
     public static <T> ResultBean<T> makeResp(int code, String msg) {
         ResultBean<T> resultBean = new ResultBean<T>();
         resultBean.setCode(code);

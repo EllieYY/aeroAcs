@@ -24,6 +24,12 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         //将所有/static/** 访问都映射到classpath:/static/ 目录下
         registry.addResourceHandler("/static/**")
                 .addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX +"/static/");
+
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
         super.addResourceHandlers(registry);
+
     }
 }

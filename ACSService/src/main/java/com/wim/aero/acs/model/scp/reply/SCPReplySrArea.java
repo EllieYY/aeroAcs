@@ -9,7 +9,7 @@ import lombok.Data;
  * @description:
  **/
 @Data
-public class SCPReplySrArea {
+public class SCPReplySrArea extends ReplyBody {
     private int number;				// Area number
     private int flags;				// status map
                                     //		1 - set if area is enabled (open)

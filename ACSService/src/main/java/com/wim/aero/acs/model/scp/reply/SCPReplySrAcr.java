@@ -1,12 +1,15 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import lombok.Data;
+
 /**
  * @title: SCPReplySrAcr
  * @author: Ellie
  * @date: 2022/04/13 11:34
  * @description:
  **/
-public class SCPReplySrAcr {
+@Data
+public class SCPReplySrAcr extends ReplyBody {
     private int number;				// ACR number
     private int mode;					// access control mode: C_308 encoded
     private int rdr_status;			// reader tamper  (TypeCoS::status)

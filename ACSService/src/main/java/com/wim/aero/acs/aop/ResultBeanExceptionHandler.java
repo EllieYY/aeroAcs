@@ -11,9 +11,13 @@ import org.apache.http.conn.ConnectTimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -76,8 +80,60 @@ public class ResultBeanExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResultBean<?> handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
         log.error("缺少请求参数", e);
-        return ResultBeanUtil.makeCustomErrResp("缺少请求参数");
+        return ResultBeanUtil.makePARAMErrResp("缺少请求参数");
     }
+
+    /**
+     * 缺少请求体异常处理器
+     *
+     * @param e 缺少请求体异常
+     * @return ResponseResult
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResultBean<?> parameterBodyMissingExceptionHandler(HttpMessageNotReadableException e) {
+        return ResultBeanUtil.makePARAMErrResp("参数体不能为空");
+    }
+
+    /**
+     * 参数效验异常处理器
+     *
+     * @param e 参数验证异常
+     * @return ResponseInfo
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResultBean<?> parameterExceptionHandler(MethodArgumentNotValidException e) {
+        BindingResult exceptions = e.getBindingResult();
+        // 判断异常中是否有错误信息，如果存在就使用异常中的消息，否则使用默认消息
+        if (exceptions.hasErrors()) {
+            List<ObjectError> errors = exceptions.getAllErrors();
+            if (!errors.isEmpty()) {
+                // 这里列出了全部错误参数，按正常逻辑，只需要第一条错误即可
+                FieldError fieldError = (FieldError) errors.get(0);
+                return ResultBeanUtil.makePARAMErrResp(fieldError.getDefaultMessage());
+            }
+        }
+        return ResultBeanUtil.makePARAMErrResp("error");
+    }
+
+//    /**
+//     * 自定义参数错误异常处理器
+//     *
+//     * @param e 自定义参数
+//     * @return ResponseInfo
+//     */
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ExceptionHandler({ParamaErrorException.class})
+//    public ResultBean<?> paramExceptionHandler(ParamaErrorException e) {
+//        //log.error("", e);
+//        // 判断异常中是否有错误信息，如果存在就使用异常中的消息，否则使用默认消息
+//        if (!StringUtils.hasText(e.getMessage())) {
+//            return ResultBeanUtil.makePARAMErrResp(e.getMessage());
+//        }
+//        return ResultBeanUtil.makePARAMErrResp("error");
+//    }
+
 
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)

@@ -1,5 +1,7 @@
 package com.wim.aero.acs.service;
 
+import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.command.ActiveMQMapMessage;
 import org.apache.activemq.command.ActiveMQObjectMessage;
@@ -10,6 +12,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Queue;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -24,13 +28,31 @@ import java.util.Date;
 public class QueueProducer {
     private final JmsMessagingTemplate jmsMessagingTemplate;
     private final ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    private final Queue accessQueue;
+    private final Queue alarmQueue;
+    private final Queue logQueue;
 
     @Autowired
-    public QueueProducer(JmsMessagingTemplate jmsMessagingTemplate, ThreadPoolTaskExecutor threadPoolTaskExecutor) {
+    public QueueProducer(JmsMessagingTemplate jmsMessagingTemplate, ThreadPoolTaskExecutor threadPoolTaskExecutor, Queue accessQueue, Queue alarmQueue, Queue logQueue) {
         this.jmsMessagingTemplate = jmsMessagingTemplate;
         this.threadPoolTaskExecutor = threadPoolTaskExecutor;
+        this.accessQueue = accessQueue;
+        this.alarmQueue = alarmQueue;
+        this.logQueue = logQueue;
     }
 
+    public void sendLogMessage(LogMessage logMessage) {
+        try {
+//            ActiveMQObjectMessage mqObjectMessage = new ActiveMQObjectMessage();
+//            mqObjectMessage.setJMSDestination(logQueue);
+//            mqObjectMessage.setObject(JsonUtil.toJson(logMessage));
+            String messageStr = JsonUtil.toJson(logMessage);
+            log.info("mq发送：{}", messageStr);
+            this.jmsMessagingTemplate.convertAndSend(logQueue, messageStr);
+        } catch (Throwable e) {
+            log.error("{}", e);
+        }
+    }
 
     public void sendMapMessage(String queueName, Object message) {
         threadPoolTaskExecutor.submit(() -> {

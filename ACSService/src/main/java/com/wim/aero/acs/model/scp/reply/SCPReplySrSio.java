@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -8,11 +10,12 @@ import java.util.List;
  * @date: 2022/04/13 11:33
  * @description:
  **/
-public class SCPReplySrSio {
+@Data
+public class SCPReplySrSio extends ReplyBody {
     private int number;				// SIO number
     private int com_status;			// comm status: encoded per tran codes for tranTypeSioComm
     private int msp1_dnum;			// MSP1 driver number (0, 1, ...)
-    // the following block is valid only if the SIO is on-line
+                                    // the following block is valid only if the SIO is on-line
     private long  com_retries;			// retries since power-up, cumulative
     private int ct_stat;				// cabinet tamper status: TranCoS::status encoded
     private int pw_stat;				// power monitor status: TranCoS::status encoded
