@@ -1,6 +1,8 @@
 package com.wim.aero.acs.db.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -24,8 +26,11 @@ public class CardFormat implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("seq_no")
+    @TableId(value = "seq_no", type = IdType.AUTO)
     private Integer seqNo;
+
+    @TableField("format_name")
+    private String formatName;
 
     @TableField("card_type")
     private String cardType;
@@ -54,8 +59,14 @@ public class CardFormat implements Serializable {
     @TableField("pe_ln")
     private Integer peLn;
 
+    @TableField("pe_loc")
+    private Integer peLoc;
+
     @TableField("po_ln")
     private Integer poLn;
+
+    @TableField("po_loc")
+    private Integer poLoc;
 
     @TableField("fc_ln")
     private Integer fcLn;
@@ -68,6 +79,12 @@ public class CardFormat implements Serializable {
 
     @TableField("ch_loc")
     private Integer chLoc;
+
+    @TableField("ic_ln")
+    private Integer icLn;
+
+    @TableField("ic_loc")
+    private Integer icLoc;
 
 
 }

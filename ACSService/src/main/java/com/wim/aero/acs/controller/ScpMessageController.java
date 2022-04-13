@@ -2,10 +2,9 @@ package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
-import com.wim.aero.acs.model.scpmessage.SCPReplyTranStatus;
-import com.wim.aero.acs.model.scpmessage.SCPReplyTransaction;
-import com.wim.aero.acs.model.scpmessage.ScpReplayNAK;
-import com.wim.aero.acs.model.scpmessage.TransactionBody;
+import com.wim.aero.acs.model.scp.transaction.SCPReplyTranStatus;
+import com.wim.aero.acs.model.scp.transaction.SCPReplyTransaction;
+import com.wim.aero.acs.model.scp.reply.ScpReplyNAK;
 import com.wim.aero.acs.service.TransactionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @Slf4j
-@RequestMapping("/device/scp")
+@RequestMapping("/message/scp")
 @Api(tags = "控制器消息上报接口")
 public class ScpMessageController {
 
@@ -40,8 +39,8 @@ public class ScpMessageController {
      * @throws Exception
      */
     @ApiOperation(value = "NAK消息上报")
-    @RequestMapping(value = "/message/nak", method = {RequestMethod.POST})
-    public ResultBean<String> scpNakNotify(@RequestBody ScpReplayNAK request) {
+    @RequestMapping(value = "/nak", method = {RequestMethod.POST})
+    public ResultBean<String> scpNakNotify(@RequestBody ScpReplyNAK request) {
         log.info(request.toString());
         // TODO:结果匹配
 
@@ -54,7 +53,7 @@ public class ScpMessageController {
      * @throws Exception
      */
     @ApiOperation(value = "transaction消息通知")
-    @RequestMapping(value = "/message/transaction", method = {RequestMethod.POST})
+    @RequestMapping(value = "/transaction", method = {RequestMethod.POST})
     public ResultBean<String> scpTransactionNotify(@RequestBody SCPReplyTransaction request) {
         log.info(request.toString());
 
@@ -68,7 +67,7 @@ public class ScpMessageController {
      * @throws Exception
      */
     @ApiOperation(value = "transaction状态通知")
-    @RequestMapping(value = "/message/transStatus", method = {RequestMethod.POST})
+    @RequestMapping(value = "/transStatus", method = {RequestMethod.POST})
     public ResultBean<String> scpTransStatusNotify(@RequestBody SCPReplyTranStatus request) {
         log.info(request.toString());
         // TODO:结果匹配

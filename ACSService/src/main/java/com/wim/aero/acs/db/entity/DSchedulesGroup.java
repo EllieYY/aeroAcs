@@ -1,6 +1,7 @@
 package com.wim.aero.acs.db.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -27,7 +28,7 @@ public class DSchedulesGroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("schedules_group_id")
+    @TableId("schedules_group_id")
     private Integer schedulesGroupId;
 
     @TableField("status")

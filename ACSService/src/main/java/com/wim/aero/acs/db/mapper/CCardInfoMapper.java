@@ -19,4 +19,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CCardInfoMapper extends BaseMapper<CCardInfo> {
     List<CardAdd> selectAllByCardNo(@Param("list") List<String> cardNoList);
+
+    List<CardAdd> selectAllByAccessLevels(@Param("list") List<Integer> alList);
 }

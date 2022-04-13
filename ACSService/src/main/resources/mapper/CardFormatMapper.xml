@@ -4,7 +4,8 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.CardFormat">
-        <result column="seq_no" property="seqNo" />
+        <id column="seq_no" property="seqNo" />
+        <result column="format_name" property="formatName" />
         <result column="card_type" property="cardType" />
         <result column="type_no" property="typeNo" />
         <result column="facility" property="facility" />
@@ -14,16 +15,20 @@
         <result column="max_digits" property="maxDigits" />
         <result column="bits" property="bits" />
         <result column="pe_ln" property="peLn" />
+        <result column="pe_loc" property="peLoc" />
         <result column="po_ln" property="poLn" />
+        <result column="po_loc" property="poLoc" />
         <result column="fc_ln" property="fcLn" />
         <result column="fc_loc" property="fcLoc" />
         <result column="ch_ln" property="chLn" />
         <result column="ch_loc" property="chLoc" />
+        <result column="ic_ln" property="icLn" />
+        <result column="ic_loc" property="icLoc" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        seq_no, card_type, type_no, facility, offset, function_id, min_digits, max_digits, bits, pe_ln, po_ln, fc_ln, fc_loc, ch_ln, ch_loc
+        seq_no, format_name, card_type, type_no, facility, "offset", function_id, min_digits, max_digits, bits, pe_ln, pe_loc, po_ln, po_loc, fc_ln, fc_loc, ch_ln, ch_loc, ic_ln, ic_loc
     </sql>
 
 </mapper>

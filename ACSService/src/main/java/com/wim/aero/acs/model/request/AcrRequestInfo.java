@@ -22,6 +22,6 @@ public class AcrRequestInfo {
     @ApiModelProperty(value = "锁对应输出点逻辑编号")
     private int strikeNo;
 
-    @ApiModelProperty(value = "控制命令", example = "")
+    @ApiModelProperty(value = "控制命令 1 - 关闭  2 - 打开or常开 3 - 常关", example = "")
     private int command;
 }

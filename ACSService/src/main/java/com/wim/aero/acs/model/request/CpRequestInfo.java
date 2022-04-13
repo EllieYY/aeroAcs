@@ -19,7 +19,7 @@ public class CpRequestInfo {
     @ApiModelProperty(value = "控制点逻辑id")
     private int cpId;
 
-    @ApiModelProperty(value = "控制命令类型", example = "1-关闭 2-打开 3-开关")
+    @ApiModelProperty(value = "控制命令类型 1-关闭 2-打开 3-开关")
     private int command;
 
 }

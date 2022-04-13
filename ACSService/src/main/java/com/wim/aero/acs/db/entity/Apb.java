@@ -1,13 +1,13 @@
 package com.wim.aero.acs.db.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +27,7 @@ public class Apb implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("apb_id")
+    @TableId(value = "apb_id", type = IdType.AUTO)
     private Integer apbId;
 
     @TableField("apb_name")

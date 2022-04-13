@@ -19,4 +19,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DAccessLevelDoorMapper extends BaseMapper<DAccessLevelDoor> {
     List<AccessLevelInfo> selectAllByControllerId(@Param("controllerId") Integer controllerId);
+
+    List<Integer> searchAccessLevelIdByControllerId(@Param("controllerId") Integer controllerId);
+
 }

@@ -4,19 +4,20 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.DAccessLevelDoor">
-        <result column="access_level_id" property="accessLevelId" />
+        <id column="access_level_id" property="accessLevelId" />
+        <id column="schedules_group_id" property="schedulesGroupId" />
+        <id column="device_id" property="deviceId" />
+        <id column="controller_id" property="controllerId" />
         <result column="access_level_name" property="accessLevelName" />
-        <result column="schedules_group_id" property="schedulesGroupId" />
-        <result column="device_id" property="deviceId" />
         <result column="reader_number" property="readerNumber" />
         <result column="acr_number" property="acrNumber" />
-        <result column="controller_id" property="controllerId" />
         <result column="status" property="status" />
+        <result column="device_name" property="deviceName" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        access_level_id, access_level_name, schedules_group_id, device_id, reader_number, acr_number, controller_id, status
+        access_level_id, access_level_name, schedules_group_id, device_id, reader_number, acr_number, controller_id, status, device_name
     </sql>
 
     <resultMap id="ALInfoMap" type="com.wim.aero.acs.model.db.AccessLevelInfo">
@@ -44,6 +45,12 @@
         where
         controller_id = #{controllerId,jdbcType=NUMERIC} and
               a.access_level_id = b.access_level_id
+    </select>
+    <select id="searchAccessLevelIdByControllerId" resultType="java.lang.Integer">
+        select access_level_id
+        from d_access_level_door
+        where controller_id = #{controllerId,jdbcType=NUMERIC}
+        group by access_level_id
     </select>
 
 </mapper>

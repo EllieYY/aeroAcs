@@ -1,6 +1,8 @@
 package com.wim.aero.acs.db.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -27,7 +29,7 @@ public class DHoliday implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("holiday_id")
+    @TableId(value = "holiday_id", type = IdType.AUTO)
     private Integer holidayId;
 
     @TableField("holiday_name")

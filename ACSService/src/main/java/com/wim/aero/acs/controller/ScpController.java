@@ -1,9 +1,11 @@
 package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.command.CmdDownloadInfo;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
+import com.wim.aero.acs.model.request.ScpStateNotify;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
@@ -77,7 +79,7 @@ public class ScpController {
      * @return
      * @throws Exception
      */
-    @ApiOperation(value = "命令执行状态通知接口")
+    @ApiOperation(value = "配置命令执行状态通知接口")
     @RequestMapping(value = "/cmd/notify", method = {RequestMethod.POST})
     public ResultBean<String> scpCmdNotify(@RequestBody List<ScpCmdResponse> request) {
         log.info(request.toString());
@@ -110,10 +112,13 @@ public class ScpController {
 
     @ApiOperation(value = "下载卡片")
     @RequestMapping(value = "/card/reload", method = {RequestMethod.POST})
-    public ResultBean<String> reloadCards(@RequestBody ScpRequestInfo request) throws Exception {
-        // TODO:
-
-        return ResultBeanUtil.makeOkResp("下载卡片命令已下发");
+    public ResultBean<List<CmdDownloadInfo>> reloadCards(@RequestBody ScpRequestInfo request) throws Exception {
+        List<CmdDownloadInfo> results = accessConfigService.downloadCards(request.getScpId());
+        if (results.size() > 0) {
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, results);
+        } else {
+            return ResultBeanUtil.makeOkResp();
+        }
     }
 
     @ApiOperation(value = "提取事件")
@@ -156,6 +161,25 @@ public class ScpController {
         accessConfigService.alBasicConfig(scpId, cmdList);
 
         return cmdList;
+    }
+
+    /**
+     * 状态通知
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "通信后台使用 - 控制器状态通知")
+    @RequestMapping(value = "/update/state", method = {RequestMethod.POST})
+    public ResultBean<String> scpStateUpdate(@RequestBody ScpStateNotify request) {
+        int scpId = request.getScpId();
+//        if (!scpService.isValidScpId(scpId)) {
+//            log.error("控制器{}数据不存在。", scpId);
+//            return new ArrayList<>();
+//        }
+        // TODO:修改scp状态 -- 数据库
+
+        return ResultBeanUtil.makeOkResp();
     }
 
 }

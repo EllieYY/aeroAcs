@@ -1,9 +1,10 @@
 package com.wim.aero.acs.db.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -25,7 +26,7 @@ public class CCardInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("card_no")
+    @TableId("card_no")
     private String cardNo;
 
     @TableField("card_seq")
@@ -34,6 +35,7 @@ public class CCardInfo implements Serializable {
     @TableField("pin")
     private String pin;
 
+    @ApiModelProperty("卡片类型")
     @TableField("card_type")
     private String cardType;
 
@@ -80,13 +82,13 @@ public class CCardInfo implements Serializable {
     private String createBy;
 
     @TableField("create_time")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     @TableField("update_by")
     private String updateBy;
 
     @TableField("update_time")
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     @TableField("apb_id")
     private Integer apbId;

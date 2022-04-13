@@ -87,7 +87,7 @@ public class ScpService {
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
 
-        log.info("SCP复位失败，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
+        log.info("SCP复位，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
 
         return response.getCode();
     }
@@ -122,7 +122,7 @@ public class ScpService {
         scpSpecification(scpId, cmdList);
 
         // 有梯控则配置
-        elevatorScpSpecification(scpId, cmdList);
+//        elevatorScpSpecification(scpId, cmdList);
 
         // 卡格式配置
         cardFormatConfig(scpId, cmdList);

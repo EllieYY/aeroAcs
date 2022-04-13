@@ -21,11 +21,13 @@
         <result column="create_time" property="createTime" />
         <result column="update_by" property="updateBy" />
         <result column="update_time" property="updateTime" />
+        <result column="con_status" property="conStatus" />
+        <result column="last_time" property="lastTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        device_id, device_type_id, device_scope_id, controller_id, device_name, controller_port, address, model, sio_next_in, sio_next_out, sio_next_rdr, status, remark, create_by, create_time, update_by, update_time
+        device_id, device_type_id, device_scope_id, controller_id, device_name, controller_port, address, model, sio_next_in, sio_next_out, sio_next_rdr, status, remark, create_by, create_time, update_by, update_time, con_status, last_time
     </sql>
     <select id="selectAllByControllerId" resultMap="BaseResultMap">
         select

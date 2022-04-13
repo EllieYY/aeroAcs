@@ -1,9 +1,9 @@
 2022-04-06 14:56:30 ERROR http-nio-9250-exec-1 o.a.c.c.C.[.[.[.[dispatcherServlet] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.AssertionError: no found type] with root cause
 java.lang.AssertionError: no found type
-	at com.wim.aero.acs.model.scpmessage.TransactionType.getTransactionType(TransactionType.java:87)
-	at com.wim.aero.acs.model.scpmessage.TransactionType.fromCode(TransactionType.java:76)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.getBody(SCPReplyTransaction.java:50)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.toString(SCPReplyTransaction.java:18)
+	at TransactionType.getTransactionType(TransactionType.java:87)
+	at TransactionType.fromCode(TransactionType.java:76)
+	at SCPReplyTransaction.getBody(SCPReplyTransaction.java:50)
+	at SCPReplyTransaction.toString(SCPReplyTransaction.java:18)
 	at com.wim.aero.acs.controller.ScpMessageController.scpTransactionNotify(ScpMessageController.java:54)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -49,10 +49,10 @@ java.lang.AssertionError: no found type
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-04-06 14:57:21 ERROR http-nio-9250-exec-1 o.a.c.c.C.[.[.[.[dispatcherServlet] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.AssertionError: no found type] with root cause
 java.lang.AssertionError: no found type
-	at com.wim.aero.acs.model.scpmessage.TransactionType.getTransactionType(TransactionType.java:87)
-	at com.wim.aero.acs.model.scpmessage.TransactionType.fromCode(TransactionType.java:76)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.getBody(SCPReplyTransaction.java:50)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.toString(SCPReplyTransaction.java:18)
+	at TransactionType.getTransactionType(TransactionType.java:87)
+	at TransactionType.fromCode(TransactionType.java:76)
+	at SCPReplyTransaction.getBody(SCPReplyTransaction.java:50)
+	at SCPReplyTransaction.toString(SCPReplyTransaction.java:18)
 	at com.wim.aero.acs.controller.ScpMessageController.scpTransactionNotify(ScpMessageController.java:54)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -98,10 +98,10 @@ java.lang.AssertionError: no found type
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-04-06 14:58:08 ERROR http-nio-9250-exec-1 o.a.c.c.C.[.[.[.[dispatcherServlet] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.AssertionError: no found type] with root cause
 java.lang.AssertionError: no found type
-	at com.wim.aero.acs.model.scpmessage.TransactionType.getTransactionType(TransactionType.java:87)
-	at com.wim.aero.acs.model.scpmessage.TransactionType.fromCode(TransactionType.java:76)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.getBody(SCPReplyTransaction.java:50)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.toString(SCPReplyTransaction.java:18)
+	at TransactionType.getTransactionType(TransactionType.java:87)
+	at TransactionType.fromCode(TransactionType.java:76)
+	at SCPReplyTransaction.getBody(SCPReplyTransaction.java:50)
+	at SCPReplyTransaction.toString(SCPReplyTransaction.java:18)
 	at com.wim.aero.acs.controller.ScpMessageController.scpTransactionNotify(ScpMessageController.java:54)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -147,10 +147,10 @@ java.lang.AssertionError: no found type
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-04-06 14:59:02 ERROR http-nio-9250-exec-1 o.a.c.c.C.[.[.[.[dispatcherServlet] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.AssertionError: no found type] with root cause
 java.lang.AssertionError: no found type
-	at com.wim.aero.acs.model.scpmessage.TransactionType.getTransactionType(TransactionType.java:87)
-	at com.wim.aero.acs.model.scpmessage.TransactionType.fromCode(TransactionType.java:76)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.getBody(SCPReplyTransaction.java:52)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.toString(SCPReplyTransaction.java:19)
+	at TransactionType.getTransactionType(TransactionType.java:87)
+	at TransactionType.fromCode(TransactionType.java:76)
+	at SCPReplyTransaction.getBody(SCPReplyTransaction.java:52)
+	at SCPReplyTransaction.toString(SCPReplyTransaction.java:19)
 	at com.wim.aero.acs.controller.ScpMessageController.scpTransactionNotify(ScpMessageController.java:54)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -196,10 +196,10 @@ java.lang.AssertionError: no found type
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-04-06 14:59:24 ERROR http-nio-9250-exec-2 o.a.c.c.C.[.[.[.[dispatcherServlet] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.AssertionError: no found type] with root cause
 java.lang.AssertionError: no found type
-	at com.wim.aero.acs.model.scpmessage.TransactionType.getTransactionType(TransactionType.java:87)
-	at com.wim.aero.acs.model.scpmessage.TransactionType.fromCode(TransactionType.java:76)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.getBody(SCPReplyTransaction.java:52)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.toString(SCPReplyTransaction.java:19)
+	at TransactionType.getTransactionType(TransactionType.java:87)
+	at TransactionType.fromCode(TransactionType.java:76)
+	at SCPReplyTransaction.getBody(SCPReplyTransaction.java:52)
+	at SCPReplyTransaction.toString(SCPReplyTransaction.java:19)
 	at com.wim.aero.acs.controller.ScpMessageController.scpTransactionNotify(ScpMessageController.java:54)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -245,9 +245,9 @@ java.lang.AssertionError: no found type
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-04-06 15:00:42 ERROR http-nio-9250-exec-1 o.a.c.c.C.[.[.[.[dispatcherServlet] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.AssertionError: no found type] with root cause
 java.lang.AssertionError: no found type
-	at com.wim.aero.acs.model.scpmessage.TransactionType.getTransactionType(TransactionType.java:87)
-	at com.wim.aero.acs.model.scpmessage.TransactionType.fromCode(TransactionType.java:76)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.getTransactionBody(SCPReplyTransaction.java:52)
+	at TransactionType.getTransactionType(TransactionType.java:87)
+	at TransactionType.fromCode(TransactionType.java:76)
+	at SCPReplyTransaction.getTransactionBody(SCPReplyTransaction.java:52)
 	at com.wim.aero.acs.controller.ScpMessageController.scpTransactionNotify(ScpMessageController.java:57)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -293,9 +293,9 @@ java.lang.AssertionError: no found type
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-04-06 15:11:08 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 数据异常
 java.lang.AssertionError: no found type
-	at com.wim.aero.acs.model.scpmessage.TransactionType.getTransactionType(TransactionType.java:87)
-	at com.wim.aero.acs.model.scpmessage.TransactionType.fromCode(TransactionType.java:76)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.getTransactionBody(SCPReplyTransaction.java:52)
+	at TransactionType.getTransactionType(TransactionType.java:87)
+	at TransactionType.fromCode(TransactionType.java:76)
+	at SCPReplyTransaction.getTransactionBody(SCPReplyTransaction.java:52)
 	at com.wim.aero.acs.controller.ScpMessageController.scpTransactionNotify(ScpMessageController.java:57)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -341,9 +341,9 @@ java.lang.AssertionError: no found type
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-04-06 15:12:23 ERROR http-nio-9250-exec-2 c.w.a.a.a.ResultBeanExceptionHandler 数据异常
 java.lang.AssertionError: no found type
-	at com.wim.aero.acs.model.scpmessage.TransactionType.getTransactionType(TransactionType.java:87)
-	at com.wim.aero.acs.model.scpmessage.TransactionType.fromCode(TransactionType.java:76)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.getTransactionBody(SCPReplyTransaction.java:52)
+	at TransactionType.getTransactionType(TransactionType.java:87)
+	at TransactionType.fromCode(TransactionType.java:76)
+	at SCPReplyTransaction.getTransactionBody(SCPReplyTransaction.java:52)
 	at com.wim.aero.acs.controller.ScpMessageController.scpTransactionNotify(ScpMessageController.java:57)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -389,9 +389,9 @@ java.lang.AssertionError: no found type
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-04-06 15:14:32 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 数据异常
 java.lang.AssertionError: 不支持的sourceType和tranType
-	at com.wim.aero.acs.model.scpmessage.TransactionType.getTransactionType(TransactionType.java:87)
-	at com.wim.aero.acs.model.scpmessage.TransactionType.fromCode(TransactionType.java:76)
-	at com.wim.aero.acs.model.scpmessage.SCPReplyTransaction.getTransactionBody(SCPReplyTransaction.java:52)
+	at TransactionType.getTransactionType(TransactionType.java:87)
+	at TransactionType.fromCode(TransactionType.java:76)
+	at SCPReplyTransaction.getTransactionBody(SCPReplyTransaction.java:52)
 	at com.wim.aero.acs.controller.ScpMessageController.scpTransactionNotify(ScpMessageController.java:57)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -437,7 +437,7 @@ java.lang.AssertionError: 不支持的sourceType和tranType
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2022-04-06 15:46:42 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
 org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Problem deserializing property 'time' (expected type: [simple type, class java.util.Date]; actual type: `java.lang.Long`), problem: argument type mismatch; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Problem deserializing property 'time' (expected type: [simple type, class java.util.Date]; actual type: `java.lang.Long`), problem: argument type mismatch
- at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 4, column: 13] (through reference chain: com.wim.aero.acs.model.scpmessage.SCPReplyTransaction["time"])
+ at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 4, column: 13] (through reference chain: SCPReplyTransaction["time"])
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:391)
 	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:343)
 	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:185)
@@ -483,7 +483,7 @@ org.springframework.http.converter.HttpMessageNotReadableException: JSON parse e
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:834)
 Caused by: com.fasterxml.jackson.databind.JsonMappingException: Problem deserializing property 'time' (expected type: [simple type, class java.util.Date]; actual type: `java.lang.Long`), problem: argument type mismatch
- at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 4, column: 13] (through reference chain: com.wim.aero.acs.model.scpmessage.SCPReplyTransaction["time"])
+ at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 4, column: 13] (through reference chain: SCPReplyTransaction["time"])
 	at com.fasterxml.jackson.databind.JsonMappingException.from(JsonMappingException.java:276)
 	at com.fasterxml.jackson.databind.deser.SettableBeanProperty._throwAsIOE(SettableBeanProperty.java:609)
 	at com.fasterxml.jackson.databind.deser.impl.MethodProperty.deserializeAndSet(MethodProperty.java:143)

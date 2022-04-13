@@ -22,4 +22,9 @@ public class CCardInfoServiceImpl extends ServiceImpl<CCardInfoMapper, CCardInfo
     public List<CardAdd> getByCardNo(List<String> cardNoList) {
         return this.baseMapper.selectAllByCardNo(cardNoList);
     }
+
+    public List<CardAdd> getByAccessLevels(List<Integer> alList) {
+        return this.baseMapper.selectAllByAccessLevels(alList);
+    }
+
 }

@@ -1,8 +1,10 @@
 package com.wim.aero.acs.db.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -47,6 +49,9 @@ public class DAccessLevelDoor implements Serializable {
 
     @TableField("status")
     private String status;
+
+    @TableField("device_name")
+    private String deviceName;
 
 
 }

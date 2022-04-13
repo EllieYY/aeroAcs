@@ -75,11 +75,23 @@
             <version>3.5.1</version>
         </dependency>
 
+
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/sqljdbc4 -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>sqljdbc4</artifactId>
             <version>4.0</version>
+        </dependency>
+
+
+        <!--activemq依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.messaginghub</groupId>
+            <artifactId>pooled-jms</artifactId>
         </dependency>
 
         <dependency>

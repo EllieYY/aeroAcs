@@ -148,7 +148,7 @@ public class ResultBeanExceptionHandler {
             throwable = throwable.getCause();
         }
 
-        return ResultBeanUtil.makeResp(exception);
+        return ResultBeanUtil.makeResp(RespCode.COMM_SERVICE_FAIL, exception.getMessage());
     }
 
     @ExceptionHandler(AssertionError.class)

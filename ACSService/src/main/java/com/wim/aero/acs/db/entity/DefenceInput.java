@@ -1,6 +1,8 @@
 package com.wim.aero.acs.db.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -24,7 +26,7 @@ public class DefenceInput implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("seq_no")
+    @TableId(value = "seq_no", type = IdType.AUTO)
     private Integer seqNo;
 
     @TableField("defence_id")

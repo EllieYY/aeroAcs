@@ -551,3 +551,1340 @@ Caused by: java.net.SocketTimeoutException: connect timed out
 2022-04-11 09:26:29 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage [SCP:129] - 1104 0 129 -1 2022 5 3 3 1
 2022-04-11 09:26:29 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage [SCP:129] - 1104 0 129 -1 2022 3 3 3 0
 2022-04-11 09:26:29 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage [SCP:129] - 1104 0 129 -1 2022 3 21 1 0
+2022-04-11 10:27:52 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 14372 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 10:27:52 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 10:27:54 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 10:27:54 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:27:54 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 10:27:54 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 10:27:55 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 10:27:55 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2307 ms
+2022-04-11 10:27:55 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 10:27:55 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 10:27:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-04-11 10:27:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-04-11 10:27:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-04-11 10:27:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 10:27:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-04-11 10:27:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 10:27:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 10:27:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 10:27:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:55 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 10:27:55 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:56 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 10:27:56 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:56 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 10:27:56 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:56 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-04-11 10:27:56 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:27:57 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 10:27:57 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 10:27:58 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:27:58 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 10:27:58 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 7.367 seconds (JVM running for 11.097)
+2022-04-11 10:28:03 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-11 10:28:03 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-04-11 10:28:03 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-04-11 10:37:13 INFO  http-nio-9250-exec-7 c.w.a.a.m.RequestMessage [SCP:120] - 308 120 12 1 0 0 0 0 0 0 0
+2022-04-11 10:37:13 INFO  http-nio-9250-exec-7 c.w.a.a.s.SIOService [ACR Mode] scpId=120, msg=308 120 12 1 0 0 0 0 0 0 0
+2022-04-11 10:37:13 INFO  http-nio-9250-exec-7 c.w.a.a.s.RestUtil   [sendSingleCmd]- {"scpId":"120","scpCommand":"308 120 12 1 0 0 0 0 0 0 0","streamId":"7900f54e-f1c2-45d6-9f6a-0aa77606e5e0"}
+2022-04-11 10:37:13 INFO  http-nio-9250-exec-7 c.w.a.a.s.RestUtil   [Post]http://192.168.2.234:5000/SingleCmd - {"scpId":"120","scpCommand":"308 120 12 1 0 0 0 0 0 0 0","streamId":"7900f54e-f1c2-45d6-9f6a-0aa77606e5e0"}
+2022-04-11 10:37:15 ERROR http-nio-9250-exec-7 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.2.234:5000/SingleCmd": Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:136)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.service.SIOService.setAcrMode(SIOService.java:109)
+	at com.wim.aero.acs.controller.ACRController.doorClose(ACRController.java:67)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:394)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 61 common frames omitted
+2022-04-11 10:40:24 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 20320 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 10:40:24 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 10:40:26 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 10:40:26 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:40:26 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 10:40:26 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 10:40:26 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 10:40:26 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1957 ms
+2022-04-11 10:40:26 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 10:40:26 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 10:40:26 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-04-11 10:40:26 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:27 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-04-11 10:40:27 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:40:29 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 10:40:29 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 10:40:29 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:40:29 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 10:40:29 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.371 seconds (JVM running for 8.341)
+2022-04-11 10:40:33 INFO  http-nio-9250-exec-2 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-11 10:40:33 INFO  http-nio-9250-exec-2 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-04-11 10:40:33 INFO  http-nio-9250-exec-2 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-04-11 10:40:33 INFO  http-nio-9250-exec-2 c.w.a.a.m.RequestMessage [SCP:120] - 308 120 12 1 0 0 0 0 0 0 0
+2022-04-11 10:40:33 INFO  http-nio-9250-exec-2 c.w.a.a.s.SIOService [ACR Mode] scpId=120, msg=308 120 12 1 0 0 0 0 0 0 0
+2022-04-11 10:40:33 INFO  http-nio-9250-exec-2 c.w.a.a.s.RestUtil   [sendSingleCmd]- {"scpId":"120","scpCommand":"308 120 12 1 0 0 0 0 0 0 0","streamId":"983a7c83-b78c-4809-bba5-a2e817ed382f"}
+2022-04-11 10:40:33 INFO  http-nio-9250-exec-2 c.w.a.a.s.RestUtil   [Post]http://192.168.2.234:5000/SingleCmd - {"scpId":"120","scpCommand":"308 120 12 1 0 0 0 0 0 0 0","streamId":"983a7c83-b78c-4809-bba5-a2e817ed382f"}
+2022-04-11 10:40:35 ERROR http-nio-9250-exec-2 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.2.234:5000/SingleCmd": Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:136)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.service.SIOService.setAcrMode(SIOService.java:109)
+	at com.wim.aero.acs.controller.ACRController.doorClose(ACRController.java:67)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:394)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 61 common frames omitted
+2022-04-11 10:41:49 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 10828 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 10:41:49 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 10:41:51 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 10:41:51 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:41:51 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 10:41:51 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 10:41:51 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 10:41:51 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1962 ms
+2022-04-11 10:41:51 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 10:41:51 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 10:41:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-04-11 10:41:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-04-11 10:41:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-04-11 10:41:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 10:41:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-04-11 10:41:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 10:41:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 10:41:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 10:41:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:51 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 10:41:51 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:52 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 10:41:52 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:52 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 10:41:52 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:52 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-04-11 10:41:52 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:41:54 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 10:41:54 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 10:41:54 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:41:54 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 10:41:54 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.607 seconds (JVM running for 8.06)
+2022-04-11 10:42:00 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-11 10:42:00 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-04-11 10:42:00 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 1 ms
+2022-04-11 10:42:00 INFO  http-nio-9250-exec-1 c.w.a.a.m.RequestMessage [SCP:120] - 308 120 12 1 0 0 0 0 0 0 0
+2022-04-11 10:42:00 INFO  http-nio-9250-exec-1 c.w.a.a.s.SIOService [ACR Mode] scpId=120, msg=308 120 12 1 0 0 0 0 0 0 0
+2022-04-11 10:42:00 INFO  http-nio-9250-exec-1 c.w.a.a.s.RestUtil   [sendSingleCmd]- {"scpId":"120","scpCommand":"308 120 12 1 0 0 0 0 0 0 0","streamId":"03b85c9b-d72b-46ab-b4e1-9a78665cfb0d"}
+2022-04-11 10:42:00 INFO  http-nio-9250-exec-1 c.w.a.a.s.RestUtil   [Post]http://192.168.2.234:5000/SingleCmd - {"scpId":"120","scpCommand":"308 120 12 1 0 0 0 0 0 0 0","streamId":"03b85c9b-d72b-46ab-b4e1-9a78665cfb0d"}
+2022-04-11 10:42:02 ERROR http-nio-9250-exec-1 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.2.234:5000/SingleCmd": Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:136)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.service.SIOService.setAcrMode(SIOService.java:109)
+	at com.wim.aero.acs.controller.ACRController.doorClose(ACRController.java:67)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:394)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 61 common frames omitted
+2022-04-11 10:47:02 INFO  http-nio-9250-exec-5 c.w.a.a.m.RequestMessage [SCP:120] - 307 120 1 1 0 0 0
+2022-04-11 10:47:02 INFO  http-nio-9250-exec-5 c.w.a.a.s.SIOService [CP] scpId=120, msg=307 120 1 1 0 0 0
+2022-04-11 10:47:02 INFO  http-nio-9250-exec-5 c.w.a.a.s.RestUtil   [sendSingleCmd]- {"scpId":"120","scpCommand":"307 120 1 1 0 0 0","streamId":"479eadd2-580f-4073-951b-6679bb45cfb2"}
+2022-04-11 10:47:02 INFO  http-nio-9250-exec-5 c.w.a.a.s.RestUtil   [Post]http://192.168.2.234:5000/SingleCmd - {"scpId":"120","scpCommand":"307 120 1 1 0 0 0","streamId":"479eadd2-580f-4073-951b-6679bb45cfb2"}
+2022-04-11 10:47:04 ERROR http-nio-9250-exec-5 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.2.234:5000/SingleCmd": Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:136)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.service.SIOService.sendControlPointCommand(SIOService.java:128)
+	at com.wim.aero.acs.controller.ACRController.doorOpen(ACRController.java:49)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:394)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 61 common frames omitted
+2022-04-11 10:47:26 INFO  http-nio-9250-exec-7 c.w.a.a.m.RequestMessage [SCP:120] - 307 120 1 3 0 0 0
+2022-04-11 10:47:26 INFO  http-nio-9250-exec-7 c.w.a.a.s.SIOService [CP] scpId=120, msg=307 120 1 3 0 0 0
+2022-04-11 10:47:26 INFO  http-nio-9250-exec-7 c.w.a.a.s.RestUtil   [sendSingleCmd]- {"scpId":"120","scpCommand":"307 120 1 3 0 0 0","streamId":"9c9ba101-4f76-45ea-95a6-e018c20c1d82"}
+2022-04-11 10:47:26 INFO  http-nio-9250-exec-7 c.w.a.a.s.RestUtil   [Post]http://192.168.2.234:5000/SingleCmd - {"scpId":"120","scpCommand":"307 120 1 3 0 0 0","streamId":"9c9ba101-4f76-45ea-95a6-e018c20c1d82"}
+2022-04-11 10:47:28 ERROR http-nio-9250-exec-7 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.2.234:5000/SingleCmd": Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:136)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.service.SIOService.sendControlPointCommand(SIOService.java:128)
+	at com.wim.aero.acs.controller.ACRController.doorOpen(ACRController.java:49)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:394)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 61 common frames omitted
+2022-04-11 10:48:01 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 23928 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 10:48:01 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 10:48:03 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 10:48:04 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:48:04 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 10:48:04 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 10:48:04 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 10:48:04 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 3019 ms
+2022-04-11 10:48:04 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 10:48:04 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 10:48:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-04-11 10:48:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-04-11 10:48:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-04-11 10:48:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:04 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 10:48:04 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:05 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-04-11 10:48:05 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:05 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 10:48:05 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:05 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 10:48:05 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:05 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 10:48:05 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:05 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 10:48:05 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:05 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 10:48:05 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:05 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 10:48:05 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:05 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-04-11 10:48:05 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:48:07 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 10:48:07 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 10:48:07 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:48:07 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 10:48:08 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 8.338 seconds (JVM running for 10.928)
+2022-04-11 10:48:10 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-11 10:48:10 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-04-11 10:48:10 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 1 ms
+2022-04-11 10:50:35 INFO  http-nio-9250-exec-5 c.w.a.a.m.RequestMessage [SCP:120] - 307 120 2 3 0 0 0
+2022-04-11 10:50:35 INFO  http-nio-9250-exec-5 c.w.a.a.s.SIOService [CP] scpId=120, msg=307 120 2 3 0 0 0
+2022-04-11 10:50:35 INFO  http-nio-9250-exec-5 c.w.a.a.s.RestUtil   [sendSingleCmd]- {"scpId":"120","scpCommand":"307 120 2 3 0 0 0","streamId":"ed60efc5-38f6-40ae-a52f-655af054a109"}
+2022-04-11 10:50:35 INFO  http-nio-9250-exec-5 c.w.a.a.s.RestUtil   [Post]http://192.168.2.234:5000/SingleCmd - {"scpId":"120","scpCommand":"307 120 2 3 0 0 0","streamId":"ed60efc5-38f6-40ae-a52f-655af054a109"}
+2022-04-11 10:50:37 ERROR http-nio-9250-exec-5 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.2.234:5000/SingleCmd": Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:136)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.service.SIOService.sendControlPointCommand(SIOService.java:128)
+	at com.wim.aero.acs.controller.ControlPointController.cpCommand(ControlPointController.java:47)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:394)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 61 common frames omitted
+2022-04-11 10:53:04 INFO  http-nio-9250-exec-6 c.w.a.a.c.MonitorPointController [MpMask] MpRequestInfo(scpId=120, id=3, setAlarm=false)
+2022-04-11 10:53:04 INFO  http-nio-9250-exec-6 c.w.a.a.m.RequestMessage [SCP:120] - 306 120 3 1
+2022-04-11 10:53:04 INFO  http-nio-9250-exec-6 c.w.a.a.s.SIOService [MP - 设防/撤防] scpId=120, msg=306 120 3 1
+2022-04-11 10:53:04 INFO  http-nio-9250-exec-6 c.w.a.a.s.RestUtil   [sendSingleCmd]- {"scpId":"120","scpCommand":"306 120 3 1","streamId":"8f4e0384-0d93-4e06-9aab-fb09ed479130"}
+2022-04-11 10:53:04 INFO  http-nio-9250-exec-6 c.w.a.a.s.RestUtil   [Post]http://192.168.2.234:5000/SingleCmd - {"scpId":"120","scpCommand":"306 120 3 1","streamId":"8f4e0384-0d93-4e06-9aab-fb09ed479130"}
+2022-04-11 10:53:06 ERROR http-nio-9250-exec-6 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.2.234:5000/SingleCmd": Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:136)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.service.SIOService.maskMp(SIOService.java:145)
+	at com.wim.aero.acs.controller.MonitorPointController.pointMask(MonitorPointController.java:40)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:394)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 61 common frames omitted
+2022-04-11 10:53:47 INFO  http-nio-9250-exec-2 c.w.a.a.c.MonitorPointController [MpGroupMask] MpRequestInfo(scpId=120, id=3, setAlarm=false)
+2022-04-11 10:53:47 INFO  http-nio-9250-exec-2 c.w.a.a.m.RequestMessage [SCP:120] - 321 120 3 2 1
+2022-04-11 10:53:47 INFO  http-nio-9250-exec-2 c.w.a.a.s.SIOService [MPGroup - 设防/撤防] scpId=120, msg=321 120 3 2 1
+2022-04-11 10:53:47 INFO  http-nio-9250-exec-2 c.w.a.a.s.RestUtil   [sendSingleCmd]- {"scpId":"120","scpCommand":"321 120 3 2 1","streamId":"2f7d9814-fce8-4fff-8438-df02d52859cf"}
+2022-04-11 10:53:47 INFO  http-nio-9250-exec-2 c.w.a.a.s.RestUtil   [Post]http://192.168.2.234:5000/SingleCmd - {"scpId":"120","scpCommand":"321 120 3 2 1","streamId":"2f7d9814-fce8-4fff-8438-df02d52859cf"}
+2022-04-11 10:53:49 ERROR http-nio-9250-exec-2 c.w.a.a.a.ResultBeanExceptionHandler 其他异常
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.2.234:5000/SingleCmd": Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:468)
+	at com.wim.aero.acs.service.RestUtil.post(RestUtil.java:136)
+	at com.wim.aero.acs.service.RestUtil.sendSingleCmd(RestUtil.java:60)
+	at com.wim.aero.acs.service.SIOService.maskMpg(SIOService.java:165)
+	at com.wim.aero.acs.controller.MonitorPointController.mpGroupMask(MonitorPointController.java:53)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.2.234:5000 [/192.168.2.234] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:394)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 61 common frames omitted
+2022-04-11 10:58:09 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 8160 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 10:58:09 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 10:58:12 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 10:58:12 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:58:12 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 10:58:12 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 10:58:12 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 10:58:12 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2377 ms
+2022-04-11 10:58:12 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 10:58:12 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-04-11 10:58:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 10:58:15 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 10:58:15 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 10:58:16 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 10:58:16 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 10:58:16 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 8.224 seconds (JVM running for 10.503)
+2022-04-11 13:46:10 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 24916 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 13:46:10 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 13:46:12 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 13:46:12 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 13:46:12 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 13:46:12 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 13:46:12 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 13:46:12 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2100 ms
+2022-04-11 13:46:13 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 13:46:13 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.Apb".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.Apb ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CCardInfo".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CCardInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.CardFormat".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.CardFormat ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevel".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:13 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 13:46:13 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:14 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.EleLevelReader".
+2022-04-11 13:46:14 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.EleLevelReader ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 13:46:15 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 13:46:15 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 13:46:16 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 13:46:16 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 13:46:16 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.887 seconds (JVM running for 8.992)
+2022-04-11 13:46:18 INFO  http-nio-9250-exec-1 o.a.c.c.C.[.[.[/]    Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-11 13:46:18 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Initializing Servlet 'dispatcherServlet'
+2022-04-11 13:46:18 INFO  http-nio-9250-exec-1 o.s.w.s.DispatcherServlet Completed initialization in 2 ms
+2022-04-11 14:29:30 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 1216 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 14:29:30 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 14:29:31 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 14:29:31 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 14:29:31 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 14:29:31 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 14:29:32 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 14:29:32 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1353 ms
+2022-04-11 14:29:32 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 14:29:32 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 14:29:32 WARN  main o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ACRController' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\controller\ACRController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'SIOService' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\service\SIOService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 14:29:32 INFO  main c.a.d.p.DruidDataSource {dataSource-1} closing ...
+2022-04-11 14:29:32 INFO  main c.a.d.p.DruidDataSource {dataSource-1} closed
+2022-04-11 14:29:32 INFO  main o.a.c.c.StandardService Stopping service [Tomcat]
+2022-04-11 14:29:32 INFO  main o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-11 14:29:32 ERROR main o.s.b.SpringApplication Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ACRController' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\controller\ACRController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'SIOService' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\service\SIOService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at com.wim.aero.acs.AcsserviceApplication.main(AcsserviceApplication.java:15)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'SIOService' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\service\SIOService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 19 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:659)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 33 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1534)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1417)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	... 48 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1519)
+	... 59 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 72 common frames omitted
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.buildSqlSessionFactory(MybatisSqlSessionFactoryBean.java:562)
+	at com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.afterPropertiesSet(MybatisSqlSessionFactoryBean.java:433)
+	at com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.getObject(MybatisSqlSessionFactoryBean.java:628)
+	at com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration.sqlSessionFactory(MybatisPlusAutoConfiguration.java:219)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 73 common frames omitted
+Caused by: com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at com.baomidou.mybatisplus.core.toolkit.ExceptionUtils.mpe(ExceptionUtils.java:49)
+	at com.baomidou.mybatisplus.core.metadata.TableInfoHelper.initTableFields(TableInfoHelper.java:307)
+	at com.baomidou.mybatisplus.core.metadata.TableInfoHelper.initTableInfo(TableInfoHelper.java:176)
+	at com.baomidou.mybatisplus.core.metadata.TableInfoHelper.initTableInfo(TableInfoHelper.java:153)
+	at com.baomidou.mybatisplus.core.injector.AbstractSqlInjector.inspectInject(AbstractSqlInjector.java:48)
+	at com.baomidou.mybatisplus.core.MybatisMapperAnnotationBuilder.parserInjector(MybatisMapperAnnotationBuilder.java:132)
+	at com.baomidou.mybatisplus.core.MybatisMapperAnnotationBuilder.parse(MybatisMapperAnnotationBuilder.java:122)
+	at com.baomidou.mybatisplus.core.MybatisMapperRegistry.addMapper(MybatisMapperRegistry.java:95)
+	at com.baomidou.mybatisplus.core.MybatisConfiguration.addMapper(MybatisConfiguration.java:126)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.bindMapperForNamespace(XMLMapperBuilder.java:432)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:97)
+	at com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.buildSqlSessionFactory(MybatisSqlSessionFactoryBean.java:560)
+	... 81 common frames omitted
+2022-04-11 14:30:40 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 24268 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 14:30:40 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 14:30:42 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 14:30:43 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 14:30:43 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 14:30:43 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 14:30:43 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 14:30:43 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2137 ms
+2022-04-11 14:30:43 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 14:30:43 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 14:30:43 WARN  main o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ACRController' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\controller\ACRController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'SIOService' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\service\SIOService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 14:30:43 INFO  main c.a.d.p.DruidDataSource {dataSource-1} closing ...
+2022-04-11 14:30:43 INFO  main c.a.d.p.DruidDataSource {dataSource-1} closed
+2022-04-11 14:30:43 INFO  main o.a.c.c.StandardService Stopping service [Tomcat]
+2022-04-11 14:30:43 INFO  main o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-11 14:30:43 ERROR main o.s.b.SpringApplication Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ACRController' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\controller\ACRController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'SIOService' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\service\SIOService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at com.wim.aero.acs.AcsserviceApplication.main(AcsserviceApplication.java:15)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'SIOService' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\service\SIOService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 19 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:659)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 33 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'devXDetailMapper' defined in file [D:\08_aero\00_code\ACSService\target\classes\com\wim\aero\acs\db\mapper\DevXDetailMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1534)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1417)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	... 48 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1519)
+	... 59 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 72 common frames omitted
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\08_aero\00_code\ACSService\target\classes\mapper\DAccessLevelDoorMapper.xml]'; nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.buildSqlSessionFactory(MybatisSqlSessionFactoryBean.java:562)
+	at com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.afterPropertiesSet(MybatisSqlSessionFactoryBean.java:433)
+	at com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.getObject(MybatisSqlSessionFactoryBean.java:628)
+	at com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration.sqlSessionFactory(MybatisPlusAutoConfiguration.java:219)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 73 common frames omitted
+Caused by: com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: @TableId can't more than one in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+	at com.baomidou.mybatisplus.core.toolkit.ExceptionUtils.mpe(ExceptionUtils.java:49)
+	at com.baomidou.mybatisplus.core.metadata.TableInfoHelper.initTableFields(TableInfoHelper.java:307)
+	at com.baomidou.mybatisplus.core.metadata.TableInfoHelper.initTableInfo(TableInfoHelper.java:176)
+	at com.baomidou.mybatisplus.core.metadata.TableInfoHelper.initTableInfo(TableInfoHelper.java:153)
+	at com.baomidou.mybatisplus.core.injector.AbstractSqlInjector.inspectInject(AbstractSqlInjector.java:48)
+	at com.baomidou.mybatisplus.core.MybatisMapperAnnotationBuilder.parserInjector(MybatisMapperAnnotationBuilder.java:132)
+	at com.baomidou.mybatisplus.core.MybatisMapperAnnotationBuilder.parse(MybatisMapperAnnotationBuilder.java:122)
+	at com.baomidou.mybatisplus.core.MybatisMapperRegistry.addMapper(MybatisMapperRegistry.java:95)
+	at com.baomidou.mybatisplus.core.MybatisConfiguration.addMapper(MybatisConfiguration.java:126)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.bindMapperForNamespace(XMLMapperBuilder.java:432)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:97)
+	at com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.buildSqlSessionFactory(MybatisSqlSessionFactoryBean.java:560)
+	... 81 common frames omitted
+2022-04-11 14:38:36 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 20888 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 14:38:36 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 14:38:38 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 14:38:38 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 14:38:38 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 14:38:38 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 14:38:39 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 14:38:39 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2097 ms
+2022-04-11 14:38:39 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 14:38:39 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 14:38:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 14:38:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:38:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 14:38:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:38:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 14:38:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:38:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 14:38:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:38:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 14:38:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:38:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 14:38:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:38:40 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 14:38:40 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:38:42 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 14:38:42 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 14:38:42 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 14:38:42 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 14:38:43 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 7.1 seconds (JVM running for 9.301)
+2022-04-11 14:41:43 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 12976 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 14:41:43 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 14:41:46 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 14:41:46 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 14:41:46 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 14:41:46 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 14:41:46 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 14:41:46 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2419 ms
+2022-04-11 14:41:46 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 14:41:46 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 14:41:47 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 14:41:47 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:41:47 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 14:41:47 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:41:47 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 14:41:47 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:41:47 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 14:41:47 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:41:47 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 14:41:47 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:41:47 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 14:41:47 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:41:47 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 14:41:47 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:41:49 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 14:41:49 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 14:41:50 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 14:41:50 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 14:41:50 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 7.626 seconds (JVM running for 9.407)
+2022-04-11 14:42:28 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 22148 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 14:42:28 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 14:42:30 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 14:42:30 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 14:42:30 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 14:42:30 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 14:42:30 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 14:42:30 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2159 ms
+2022-04-11 14:42:31 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 14:42:31 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 14:42:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 14:42:31 WARN  main c.g.j.m.b.MppSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:42:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 14:42:31 WARN  main c.g.j.m.b.MppSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:42:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 14:42:31 WARN  main c.g.j.m.b.MppSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:42:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 14:42:31 WARN  main c.g.j.m.b.MppSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:42:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 14:42:31 WARN  main c.g.j.m.b.MppSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:42:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 14:42:31 WARN  main c.g.j.m.b.MppSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:42:31 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 14:42:31 WARN  main c.g.j.m.b.MppSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 14:42:33 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 14:42:33 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 14:42:33 INFO  main c.g.j.m.c.PlusConfig mpp.utilBasePath is null no util alias for xml
+2022-04-11 14:42:33 ERROR main c.g.j.m.c.PlusConfig mpp.entityBasePath is null skip scan result map
+2022-04-11 14:42:34 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 14:42:34 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 14:42:34 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.804 seconds (JVM running for 8.193)
+2022-04-11 16:05:21 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 15596 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 16:05:21 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 16:05:23 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 16:05:23 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 16:05:23 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 16:05:23 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 16:05:23 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 16:05:23 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1815 ms
+2022-04-11 16:05:23 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 16:05:23 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 16:05:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 16:05:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:05:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DHoliday".
+2022-04-11 16:05:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DHoliday ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:05:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 16:05:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:05:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroup".
+2022-04-11 16:05:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroup ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:05:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 16:05:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:05:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 16:05:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:05:24 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 16:05:24 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:05:26 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 16:05:26 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 16:05:26 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 16:05:26 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 16:05:27 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.274 seconds (JVM running for 8.009)
+2022-04-11 16:09:37 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 16752 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 16:09:37 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 16:09:38 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 16:09:38 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 16:09:38 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 16:09:38 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 16:09:38 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 16:09:38 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1383 ms
+2022-04-11 16:09:38 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 16:09:39 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 16:09:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 16:09:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:09:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 16:09:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:09:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedules".
+2022-04-11 16:09:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedules ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:09:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DefenceInput".
+2022-04-11 16:09:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DefenceInput ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:09:39 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 16:09:39 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:09:41 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 16:09:41 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 16:09:41 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 16:09:41 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 16:09:42 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 5.531 seconds (JVM running for 6.654)
+2022-04-11 16:11:00 INFO  main c.w.a.a.AcsserviceApplication Starting AcsserviceApplication using Java 11.0.10 on DESKTOP-SPKKHPB with PID 20576 (D:\08_aero\00_code\ACSService\target\classes started by ansen in D:\08_aero\00_code\ACSService)
+2022-04-11 16:11:00 INFO  main c.w.a.a.AcsserviceApplication The following 1 profile is active: "dev"
+2022-04-11 16:11:02 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port(s): 9250 (http)
+2022-04-11 16:11:02 INFO  main o.a.c.h.Http11NioProtocol Initializing ProtocolHandler ["http-nio-9250"]
+2022-04-11 16:11:02 INFO  main o.a.c.c.StandardService Starting service [Tomcat]
+2022-04-11 16:11:02 INFO  main o.a.c.c.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-11 16:11:02 INFO  main o.a.c.c.C.[.[.[/]    Initializing Spring embedded WebApplicationContext
+2022-04-11 16:11:02 INFO  main o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 1919 ms
+2022-04-11 16:11:02 INFO  main c.a.d.s.b.a.DruidDataSourceAutoConfigure Init DruidDataSource
+2022-04-11 16:11:02 INFO  main c.a.d.p.DruidDataSource {dataSource-1} inited
+2022-04-11 16:11:02 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DAccessLevelDoor".
+2022-04-11 16:11:02 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DAccessLevelDoor ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:11:03 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DSchedulesGroupDetail".
+2022-04-11 16:11:03 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DSchedulesGroupDetail ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:11:03 WARN  main c.b.m.c.m.TableInfoHelper Can not find table primary key in Class: "com.wim.aero.acs.db.entity.DevControllerCommonAttribute".
+2022-04-11 16:11:03 WARN  main c.b.m.c.i.DefaultSqlInjector class com.wim.aero.acs.db.entity.DevControllerCommonAttribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2022-04-11 16:11:05 INFO  main c.w.a.a.c.Swagger3Config Swagger3接口文档地址: http://192.168.2.147:9250/swagger-ui.html
+2022-04-11 16:11:05 INFO  main c.w.a.a.c.Swagger3Config Knife4j增强接口文档地址: http://192.168.2.147:9250/doc.html
+2022-04-11 16:11:05 INFO  main o.a.c.h.Http11NioProtocol Starting ProtocolHandler ["http-nio-9250"]
+2022-04-11 16:11:05 INFO  main o.s.b.w.e.t.TomcatWebServer Tomcat started on port(s): 9250 (http) with context path ''
+2022-04-11 16:11:05 INFO  main c.w.a.a.AcsserviceApplication Started AcsserviceApplication in 6.214 seconds (JVM running for 7.327)

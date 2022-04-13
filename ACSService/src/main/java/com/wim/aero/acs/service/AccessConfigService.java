@@ -58,6 +58,11 @@ public class AccessConfigService {
         this.restUtil = restUtil;
     }
 
+    /**
+     * 权限访问 - 相关配置
+     * @param scpId
+     * @param cmdList
+     */
     public void alBasicConfig(int scpId, List<ScpCmd> cmdList) {
         addHolidays(scpId, cmdList);
         addTimeZone(scpId, cmdList);
@@ -67,52 +72,41 @@ public class AccessConfigService {
         mpGroupConfig(scpId, cmdList);
     }
 
-    public void accessLevelConfig(int scpId, List<ScpCmd> cmdList) {
-        // Command 2116: Access Level Configuration Extended
-        // Command 124
-        List<AccessLevelInfo> list = accessLevelService.getByScpId(scpId);
-        for(AccessLevelInfo item:list) {
-            AccessLevelTest alTest = AccessLevelTest.fromDb(item);
-            String alTestMsg = RequestMessage.encode(scpId, alTest);
-            cmdList.add(new ScpCmd(scpId, alTestMsg, IdUtil.nextId()));
+    /**
+     * 下载卡片
+     * @param scpId
+     */
+    public List<CmdDownloadInfo> downloadCards(int scpId) {
+        // d_access_level_door通过scpId查找访问级别access_level_id
+        // 获取访问权限
+        List<Integer> alList = accessLevelService.getALsByScpId(scpId);
 
-            AccessLevelExtended alExtended = AccessLevelExtended.fromDb(item);
-            String alExtendedMsg = RequestMessage.encode(scpId, alExtended);
-            cmdList.add(new ScpCmd(scpId, alExtendedMsg, IdUtil.nextId()));
-        }
+        // d_employee_access_level找到access_level_id和card_no集合，left join c_card_info
+        List<CardAdd> cardAddList = cardInfoService.getByAccessLevels(alList);
+
+        return packageCardMessages(cardAddList);
     }
 
-    // 所有假日下到控制器中
-    public void addHolidays(int scpId, List<ScpCmd> cmdList) {
-        // Command 1104: Holiday Configuration
-        List<DHoliday> list = holidayService.list();
-        for(DHoliday holiday:list) {
-            Holiday config = Holiday.fronDb(scpId, holiday);
-            String configMsg = RequestMessage.encode(scpId, config);
-            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
-        }
-    }
-
-    public void addTimeZone(int scpId, List<ScpCmd> cmdList) {
-        // command 3103
-        List<TimeZone> list = schedulesGroupService.getTimeZones(scpId);
-        for(TimeZone item:list) {
-            item.updateIntervalSize();
-            String msg = RequestMessage.encode(scpId, item);
-            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        }
-    }
 
     /**
-     *
+     * 添加卡片
      * @param cards
      * @return 发送失败的结果
      */
     public List<CmdDownloadInfo> addCard(List<String> cards) {
+        List<CardAdd> cardAddList = cardInfoService.getByCardNo(cards);
+        return packageCardMessages(cardAddList);
+    }
+
+    /**
+     * 报文打包
+     * @param cardAddList
+     * @return 发送失败的结果
+     */
+    public List<CmdDownloadInfo> packageCardMessages(List<CardAdd> cardAddList) {
         Map<String, CmdDownloadInfo> resultMap = new HashMap<>();
         // command 8304
         List<ScpCmd> cmdList = new ArrayList<>();
-        List<CardAdd> cardAddList = cardInfoService.getByCardNo(cards);
         for(CardAdd item:cardAddList) {
             item.alListFix();
 
@@ -144,7 +138,62 @@ public class AccessConfigService {
         return resultList;
     }
 
-    public void apbConfig(int scpId, List<ScpCmd> cmdList) {
+    /**
+     * 访问级别配置
+     * @param scpId
+     * @param cmdList
+     */
+    private void accessLevelConfig(int scpId, List<ScpCmd> cmdList) {
+        // Command 2116: Access Level Configuration Extended
+        // Command 124
+        List<AccessLevelInfo> list = accessLevelService.getByScpId(scpId);
+        for(AccessLevelInfo item:list) {
+            AccessLevelTest alTest = AccessLevelTest.fromDb(item);
+            String alTestMsg = RequestMessage.encode(scpId, alTest);
+            cmdList.add(new ScpCmd(scpId, alTestMsg, IdUtil.nextId()));
+
+            AccessLevelExtended alExtended = AccessLevelExtended.fromDb(item);
+            String alExtendedMsg = RequestMessage.encode(scpId, alExtended);
+            cmdList.add(new ScpCmd(scpId, alExtendedMsg, IdUtil.nextId()));
+        }
+    }
+
+    /**
+     * 假日配置
+     * @param scpId
+     * @param cmdList
+     */
+    private void addHolidays(int scpId, List<ScpCmd> cmdList) {
+        // Command 1104: Holiday Configuration
+        List<DHoliday> list = holidayService.list();
+        for(DHoliday holiday:list) {
+            Holiday config = Holiday.fronDb(scpId, holiday);
+            String configMsg = RequestMessage.encode(scpId, config);
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
+        }
+    }
+
+    /**
+     * 时间组配置
+     * @param scpId
+     * @param cmdList
+     */
+    public void addTimeZone(int scpId, List<ScpCmd> cmdList) {
+        // command 3103
+        List<TimeZone> list = schedulesGroupService.getTimeZones(scpId);
+        for(TimeZone item:list) {
+            item.updateIntervalSize();
+            String msg = RequestMessage.encode(scpId, item);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+    }
+
+    /**
+     * apb配置
+     * @param scpId
+     * @param cmdList
+     */
+    private void apbConfig(int scpId, List<ScpCmd> cmdList) {
         // command 1121
         List<Apb> list = apbService.getByScpId(scpId);
         for(Apb item:list) {
@@ -154,7 +203,12 @@ public class AccessConfigService {
         }
     }
 
-    public void mpGroupConfig(int scpId, List<ScpCmd> cmdList) {
+    /**
+     * 防区配置
+     * @param scpId
+     * @param cmdList
+     */
+    private void mpGroupConfig(int scpId, List<ScpCmd> cmdList) {
         // command 120
         List<MpGroupSpecification> list = defenceInputService.getByScpId(scpId);
         for(MpGroupSpecification item:list) {
@@ -168,7 +222,7 @@ public class AccessConfigService {
      * 电梯级别配置
      * @param scpId
      */
-    public void elevatorAccessLevelConfig(int scpId, List<ScpCmd> cmdList) {
+    private void elevatorAccessLevelConfig(int scpId, List<ScpCmd> cmdList) {
         // command 502
     }
 

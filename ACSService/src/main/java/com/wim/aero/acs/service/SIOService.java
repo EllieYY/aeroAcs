@@ -103,11 +103,11 @@ public class SIOService {
         ACRModeConfig config = new ACRModeConfig(scpId, acrId, mode);
         String msg = RequestMessage.encode(scpId, config);
 
-        log.info("[ACR Mode] scpId={}, msg={}", scpId, msg);
+        log.info("[ACR Mode]常开常闭 scpId={}, msg={}", scpId, msg);
 
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        log.info("[sendSingleCmd] response={}", response);
+        log.info("[ACR Mode]常开常闭 response={}", response);
 
         return response.getCode();
     }
@@ -122,11 +122,11 @@ public class SIOService {
         ControlPointCommand command = new ControlPointCommand(scpId, cpId, type.getCode());
         String msg = RequestMessage.encode(scpId, command);
 
-        log.info("[CP] scpId={}, msg={}", scpId, msg);
+        log.info("[CP]控制点命令发送 scpId={}, msg={}", scpId, msg);
 
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        log.info("[sendSingleCmd] response={}", response);
+        log.info("[CP]控制点命令发送 response={}", response);
 
         return response.getCode();
     }
