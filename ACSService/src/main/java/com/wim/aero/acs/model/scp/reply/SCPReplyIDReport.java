@@ -2,11 +2,13 @@ package com.wim.aero.acs.model.scp.reply;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @title: SCPReplyIDReport
  * @author: Ellie
  * @date: 2022/04/13 11:31
- * @description:
+ * @description: type = 4
  **/
 @Data
 public class SCPReplyIDReport extends ReplyBody {
@@ -26,17 +28,22 @@ public class SCPReplyIDReport extends ReplyBody {
     private int  firmware_advisory;	// 0==no firmware action, 1==must reset first, 2==starting load
     private int  scp_in_1;			// Scp local monitor "IN 1" state
     private int  scp_in_2;			// Scp local monitor "IN 2" state
-    private long   adb_max;				// Not used
-    private long   adb_active;			// Not used
-    private long   bio1_max;			// Not used
-    private long   bio1_active;			// Not used
-    private long   bio2_max;			// Not used
-    private long   bio2_active;			// Not used
-    private int  nOemCode;			// Not used
+//    private long   adb_max;				// Not used
+//    private long   adb_active;			// Not used
+//    private long   bio1_max;			// Not used
+//    private long   bio1_active;			// Not used
+//    private long   bio2_max;			// Not used
+//    private long   bio2_active;			// Not used
+//    private int  nOemCode;			// Not used
     private byte   config_flags;        // Configuration flags.  (Bit-0 = Needs CC_SCP_SCP configuration, SCP not yet known to driver)
-    private String   mac_addr;			// MAC Address, if applicable, LSB first.
+    private String mac_addr;			// MAC Address, if applicable, LSB first.
     private int   tls_status;			// TLS status
     private byte   oper_mode;			// Current Operating Mode
     private int  scp_in_3;			// Scp local monitor "IN 3" state
     private long   cumulative_bld_cnt;	// Cumulative build count
+
+    @Override
+    public void process() {
+
+    }
 }

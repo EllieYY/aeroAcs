@@ -50,7 +50,7 @@ public class SIODriver extends Operation {
     private int portNumber;
 
     @CmdProp(index = 6)
-    private int baudRate = -1;
+    private int baudRate = 38400;
 
     @CmdProp(index = 7)
     private int replyTime = 0;

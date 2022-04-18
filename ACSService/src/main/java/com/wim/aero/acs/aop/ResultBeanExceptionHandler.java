@@ -8,12 +8,9 @@ import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.conn.ConnectTimeoutException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -80,7 +77,7 @@ public class ResultBeanExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResultBean<?> handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
         log.error("缺少请求参数", e);
-        return ResultBeanUtil.makePARAMErrResp("缺少请求参数");
+        return ResultBeanUtil.makeParamErrResp("缺少请求参数");
     }
 
     /**
@@ -92,7 +89,7 @@ public class ResultBeanExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResultBean<?> parameterBodyMissingExceptionHandler(HttpMessageNotReadableException e) {
-        return ResultBeanUtil.makePARAMErrResp("参数体不能为空");
+        return ResultBeanUtil.makeParamErrResp("参数体不能为空");
     }
 
     /**
@@ -111,10 +108,10 @@ public class ResultBeanExceptionHandler {
             if (!errors.isEmpty()) {
                 // 这里列出了全部错误参数，按正常逻辑，只需要第一条错误即可
                 FieldError fieldError = (FieldError) errors.get(0);
-                return ResultBeanUtil.makePARAMErrResp(fieldError.getDefaultMessage());
+                return ResultBeanUtil.makeParamErrResp(fieldError.getDefaultMessage());
             }
         }
-        return ResultBeanUtil.makePARAMErrResp("error");
+        return ResultBeanUtil.makeParamErrResp("error");
     }
 
 //    /**

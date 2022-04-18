@@ -55,7 +55,7 @@ public class AccessDatabaseSpecification extends Operation {
     @CmdProp(index = 12)
     private String bUpgradeDate;
     @CmdProp(index = 13)
-    private String bUserLevel; // Valid values are 0-7.
+    private Integer bUserLevel; // Valid values are 0-7.
     @CmdProp(index = 14)
     private String bUseLimit; // Valid values are 0 or 1.
     @CmdProp(index = 15)
@@ -114,7 +114,7 @@ public class AccessDatabaseSpecification extends Operation {
         result.setBDeactDate(detail.getCardInvalidFlag());
         result.setBVacationDate(detail.getSaveVacationFlag());
         result.setBUpgradeDate(detail.getSaveTempFlag());
-//        result.setBUserLevel(detail.get);
+        result.setBUserLevel(detail.getBUserLevel());
         result.setBUseLimit(detail.getEnableTimesFlag());
         result.setBSupportTimeApb(detail.getApbTimeFlag());
         result.setNHostResponseTimeout(detail.getHostOverTime());
@@ -122,7 +122,7 @@ public class AccessDatabaseSpecification extends Operation {
         result.setNMultiCardTimeout(detail.getMorCardOverTime());
 
         // 附加权限设置 -- 暂不启用，如果设置，默认按最大读卡器个数来
-        if (StringUtils.hasText(detail.getAdditionalAccessFlag())){
+        if (StringUtils.hasText(detail.getAdditionalAccessFlag()) && detail.getAdditionalAccessFlag().equals("1")){
             result.setNTz(64);
         }
 

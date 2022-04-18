@@ -15,9 +15,15 @@ public class SCPReplyCmndStatus extends ReplyBody {
                                     // - 1 = OK (delivered and accepted),
                                     // - 2 = NAK'd (command rejected by the SCP)
 
-    private long	sequence_number;	// sequence number assigned when posted
+    private long sequence_number;	// sequence number assigned when posted
 
     // the following block is included only if status==2 (NAK)
     // this extension includes the information that will be returned in the following NAK reply
-    private SCPReplyNAK nak;
+    private SCPReplyNAKStr nak;    // SCPReplyNAK
+
+
+    @Override
+    public void process() {
+
+    }
 }

@@ -15,4 +15,9 @@ public class SCPReplySrMsp1Drvr extends ReplyBody {
     private int mode;					// mode: 0 == disabled, 1 == enabled
     private long  baud_rate;			// (word) baud rate  eg.: 1200, ..., 38400
     private int throughput;			// i/o transactions per second (approx)
+
+    @Override
+    public void process() {
+
+    }
 }

@@ -15,4 +15,7 @@ import lombok.Data;
 public class ScpRequestInfo {
     @ApiModelProperty(value = "控制器id")
     private int scpId;
+
+    @ApiModelProperty(value = "任务id")
+    private int taskId;
 }

@@ -30,7 +30,7 @@ public class DevControllerCommonAttribute implements Serializable {
     private Integer autoId;
 
     @TableField("max_card_num")
-    private Integer maxCardNum;
+    private Integer maxCardNum = 10000;
 
     @TableField("apb_schedules_group_id")
     private Integer apbSchedulesGroupId;

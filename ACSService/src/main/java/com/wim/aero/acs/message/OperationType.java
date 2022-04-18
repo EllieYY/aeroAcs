@@ -1,5 +1,6 @@
 package com.wim.aero.acs.message;
 
+import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
 import com.wim.aero.acs.protocol.accessLevel.*;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
 import com.wim.aero.acs.protocol.card.*;
@@ -27,6 +28,7 @@ public enum OperationType {
     /** 配置 */
     // 设备基本配置
     SCP_Driver_1013(1013, SCPDriver.class),
+    DST(1116, DaylightSavingTimeConfiguration.class),
     SCP_CONFIG_1107(1107, SCPSpecification.class),
     SCP_SIO_108(108, SIODriver.class),
     ADS_1105(1105, AccessDatabaseSpecification.class),

@@ -101,7 +101,7 @@ public class RestUtil {
 
         try {
             List<ScpCmdResponse> pts = mapper.readValue(result.getBody(), new TypeReference<List<ScpCmdResponse>>() {});
-            log.info(pts.toString());
+//            log.info(pts.toString());
             return pts;
         } catch (Exception e) {
             e.printStackTrace();

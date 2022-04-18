@@ -30,4 +30,9 @@ public class SCPReplyTranStatus extends ReplyBody {
 
     @ApiModelProperty(value = "disabled")
     private int disabled;		// non-zero if disabled with (Command_303)
+
+    @Override
+    public void process() {
+
+    }
 }

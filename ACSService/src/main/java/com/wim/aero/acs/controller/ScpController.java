@@ -2,6 +2,7 @@ package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.command.CmdDownloadInfo;
+import com.wim.aero.acs.model.command.CommandInfo;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
@@ -9,10 +10,7 @@ import com.wim.aero.acs.model.request.ScpStateNotify;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
-import com.wim.aero.acs.service.AccessConfigService;
-import com.wim.aero.acs.service.RestUtil;
-import com.wim.aero.acs.service.SIOService;
-import com.wim.aero.acs.service.ScpService;
+import com.wim.aero.acs.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -41,15 +39,18 @@ public class ScpController {
     private final SIOService sioService;
     private final AccessConfigService accessConfigService;
     private final RestUtil restUtil;
+    private final RequestPendingCenter requestPendingCenter;
     @Autowired
     public ScpController(ScpService scpService,
                          SIOService sioService,
                          AccessConfigService accessConfigService,
-                         RestUtil restUtil) {
+                         RestUtil restUtil,
+                         RequestPendingCenter requestPendingCenter) {
         this.scpService = scpService;
         this.sioService = sioService;
         this.accessConfigService = accessConfigService;
         this.restUtil = restUtil;
+        this.requestPendingCenter = requestPendingCenter;
     }
 
     @ApiOperation(value = "硬件下载")
@@ -60,17 +61,21 @@ public class ScpController {
             return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
         }
 
-        ScpCmd cmd = scpService.connectScp(scpId);
+        // 命令组装+记录
+        List<ScpCmd> cmdList = scpService.connectScp(scpId);
+        requestPendingCenter.add(request.getTaskId(), cmdList);
 
-        // 通过restUtil发送
-        ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
+        // 命令发送+反馈
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        log.info("硬件下载：{}", responseList.toString());
+        List<CommandInfo> failCmdList = requestPendingCenter.updateSeq(responseList);
 
-        // 结果校验
-        if (response.getCode() == 0) {
+        // 结果反馈给页面
+        if (failCmdList.size() == 0) {
             return ResultBeanUtil.makeOkResp("正在与scp建立连接...");
         } else {
-            return ResultBeanUtil.makeResp(RespCode.COMM_SERVICE_FAIL,
-                    response.getCode() + " - " + response.getReason());
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL,
+                    failCmdList.toString());
         }
     }
 
@@ -79,10 +84,24 @@ public class ScpController {
      * @return
      * @throws Exception
      */
-    @ApiOperation(value = "配置命令执行状态通知接口")
+    @ApiOperation(value = "配置命令执行状态列表通知接口")
+    @RequestMapping(value = "/cmd/notify/list", method = {RequestMethod.POST})
+    public ResultBean<String> scpCmdNotifyList(@RequestBody List<ScpCmdResponse> request) {
+//        log.info("执行结果。{}", request.toString());
+        // TODO:结果匹配
+
+        return ResultBeanUtil.makeOkResp(request.toString());
+    }
+
+    /**
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "单条配置命令执行状态通知接口")
     @RequestMapping(value = "/cmd/notify", method = {RequestMethod.POST})
-    public ResultBean<String> scpCmdNotify(@RequestBody List<ScpCmdResponse> request) {
-        log.info(request.toString());
+    public ResultBean<String> scpCmdNotify(@RequestBody ScpCmdResponse request) {
+//        log.info("执行结果。{}", request.toString());
         // TODO:结果匹配
 
         return ResultBeanUtil.makeOkResp(request.toString());
@@ -90,7 +109,7 @@ public class ScpController {
 
     @ApiOperation(value = "控制器复位")
     @RequestMapping(value = "/reset", method = {RequestMethod.POST})
-    public ResultBean<String> resetScp(@RequestBody ScpRequestInfo request) throws Exception {
+    public ResultBean<String> resetScp(@RequestBody ScpRequestInfo request) {
         int code = scpService.reset(request.getScpId());
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("控制器复位命令已下发");
@@ -101,7 +120,7 @@ public class ScpController {
 
     @ApiOperation(value = "清除卡片")
     @RequestMapping(value = "/card/clear", method = {RequestMethod.POST})
-    public ResultBean<String> clearCards(@RequestBody ScpRequestInfo request) throws Exception {
+    public ResultBean<String> clearCards(@RequestBody ScpRequestInfo request) {
         int code = scpService.clearCards(request.getScpId());
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("清除卡片命令已下发");
@@ -112,7 +131,7 @@ public class ScpController {
 
     @ApiOperation(value = "下载卡片")
     @RequestMapping(value = "/card/reload", method = {RequestMethod.POST})
-    public ResultBean<List<CmdDownloadInfo>> reloadCards(@RequestBody ScpRequestInfo request) throws Exception {
+    public ResultBean<List<CmdDownloadInfo>> reloadCards(@RequestBody ScpRequestInfo request) {
         List<CmdDownloadInfo> results = accessConfigService.downloadCards(request.getScpId());
         if (results.size() > 0) {
             return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, results);
@@ -123,7 +142,7 @@ public class ScpController {
 
     @ApiOperation(value = "提取事件")
     @RequestMapping(value = "/events/extract", method = {RequestMethod.POST})
-    public ResultBean<String> extractEvents(@RequestBody ScpRequestInfo request) throws Exception {
+    public ResultBean<String> extractEvents(@RequestBody ScpRequestInfo request) {
         // TODO:
 
         return ResultBeanUtil.makeOkResp("提取事件命令已下发");
@@ -131,7 +150,7 @@ public class ScpController {
 
     @ApiOperation(value = "执行过程")
     @RequestMapping(value = "/process/act", method = {RequestMethod.POST})
-    public ResultBean<String> activeProcess(@RequestBody ScpRequestInfo request) throws Exception {
+    public ResultBean<String> activeProcess(@RequestBody ScpRequestInfo request) {
         // TODO:
 
         return ResultBeanUtil.makeOkResp("执行过程命令已下发");
@@ -155,11 +174,16 @@ public class ScpController {
 
         // scp配置
         List<ScpCmd> cmdList = scpService.configScp(scpId);
-        // sio及物理点位配置
-        sioService.configSioForScp(scpId, cmdList);
-        // 时间组、访问组配置
-        accessConfigService.alBasicConfig(scpId, cmdList);
+//        // sio及物理点位配置
+//        sioService.configSioForScp(scpId, cmdList);
+//        // 时间组、访问组配置
+//        accessConfigService.alBasicConfig(scpId, cmdList);
 
+
+        for (ScpCmd cmd:cmdList) {
+            System.out.println(cmd.getCommand());
+//            log.info("[SCP:{}] - {}", scpId, cmd.getCommand());
+        }
         return cmdList;
     }
 

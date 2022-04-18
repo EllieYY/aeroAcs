@@ -13,4 +13,9 @@ public class SCPReplySrMp extends ReplyBody {
     private int first;				// number of the first Monitor Point
     private int count;				// number of MP status entries
     private String status;			// MP status (trl07 encoded)
+
+    @Override
+    public void process() {
+
+    }
 }

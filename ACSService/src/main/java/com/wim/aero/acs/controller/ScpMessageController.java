@@ -11,7 +11,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +42,10 @@ public class ScpMessageController {
     @ApiOperation(value = "NAK消息上报")
     @RequestMapping(value = "/nak", method = {RequestMethod.POST})
     public ResultBean<String> scpNakNotify(@RequestBody SCPReplyNAK request) {
+        if (request.getScpId() <= 0) {
+            return ResultBeanUtil.makeParamInvalidResp(request.toString());
+        }
+
         log.info(request.toString());
         // TODO:结果匹配
 
@@ -57,8 +60,11 @@ public class ScpMessageController {
     @ApiOperation(value = "ScpReply消息上报")
     @RequestMapping(value = "/reply", method = {RequestMethod.POST})
     public ResultBean<String> scpReplyNotify(@RequestBody SCPReply request) {
-
+        if (request.getScpId() <= 0) {
+            return ResultBeanUtil.makeParamInvalidResp(request.toString());
+        }
         log.info(request.toString());
+
         // 数据处理
         scpMessageService.dealScpeply(request);
 
@@ -73,6 +79,11 @@ public class ScpMessageController {
     @ApiOperation(value = "transaction消息通知")
     @RequestMapping(value = "/transaction", method = {RequestMethod.POST})
     public ResultBean<String> scpTransactionNotify(@RequestBody SCPReplyTransaction request) {
+        if (request.getScpId() <= 0) {
+            return ResultBeanUtil.makeParamInvalidResp(request.toString());
+        }
+
+
         log.info(request.toString());
 
         scpMessageService.dealTransaction(request);
@@ -87,6 +98,10 @@ public class ScpMessageController {
     @ApiOperation(value = "transaction状态通知")
     @RequestMapping(value = "/transStatus", method = {RequestMethod.POST})
     public ResultBean<String> scpTransStatusNotify(@RequestBody SCPReplyTranStatus request) {
+        if (request.getScpId() <= 0) {
+            return ResultBeanUtil.makeParamInvalidResp(request.toString());
+        }
+
         log.info(request.toString());
         // TODO:结果匹配
 

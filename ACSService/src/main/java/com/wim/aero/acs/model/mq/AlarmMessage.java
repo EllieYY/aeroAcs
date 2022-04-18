@@ -1,21 +1,20 @@
 package com.wim.aero.acs.model.mq;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
 
 /**
- * @title: AccessMessage
+ * @title: AlarmMessage
  * @author: Ellie
- * @date: 2022/04/13 11:13
+ * @date: 2022/04/14 10:58
  * @description:
  **/
 @Data
 @AllArgsConstructor
-public class AccessMessage {
+public class AlarmMessage {
     private long eventIndex;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -25,6 +24,5 @@ public class AccessMessage {
     private int sourceCode;
     private int eventType;
     private int eventTypeCode;
-    private String cardNo;
     private String fullMemo;
 }

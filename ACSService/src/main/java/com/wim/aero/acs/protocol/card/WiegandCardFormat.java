@@ -71,10 +71,10 @@ public class WiegandCardFormat extends Operation {
     private Integer chLoc; // 卡号开始位 Cardholder ID starting bit address (ms bit)
 
     @CmdProp(index = 18)
-    private Integer icLn = 0;  // Number of issue code bits
+    private Integer icLn;  // Number of issue code bits
 
     @CmdProp(index = 19)
-    private Integer icLoc = 0;
+    private Integer icLoc;
 
     public static WiegandCardFormat fromDb(int scpiId, CardFormat cardFormat) {
         WiegandCardFormat result = new WiegandCardFormat();
@@ -86,16 +86,17 @@ public class WiegandCardFormat extends Operation {
 
         result.setBits(cardFormat.getBits());
         result.setPeLn(cardFormat.getPeLn());
+        result.setPeLoc(cardFormat.getPeLoc());
         result.setPoLn(cardFormat.getPoLn());
-
-        // TODO:考虑在页面增加配置
-//        result.setPeLoc(cardFormat.getPeLoc());
-//        result.setPoLoc(cardFormat.getPoLoc());
+        result.setPoLoc(cardFormat.getPoLoc());
 
         result.setFcLn(cardFormat.getFcLn());
         result.setFcLoc(cardFormat.getFcLoc());
         result.setChLn(cardFormat.getChLn());
         result.setChLoc(cardFormat.getChLoc());
+
+        result.setIcLn(cardFormat.getIcLn());
+        result.setIcLoc(cardFormat.getIcLoc());
 
         return result;
     }

@@ -19,4 +19,9 @@ public class SCPReplySrTz extends ReplyBody {
                                     // 0x01 mask == tz active
                                     // 0x02 mask == time based scan state
                                     // 0x04 mask == time scan override
+
+    @Override
+    public void process() {
+
+    }
 }

@@ -21,6 +21,10 @@ public class ScpCmdResponse {
     @JsonProperty(value = "streamId")
     private String streamId;
 
+    @ApiModelProperty(value = "控制器报文序号")
+    @JsonProperty(value = "sequenceNumber")
+    private String sequenceNumber;
+
     @ApiModelProperty(value = "时间 yyyy-MM-dd HH:mm:ss")
     @JsonProperty(value = "date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

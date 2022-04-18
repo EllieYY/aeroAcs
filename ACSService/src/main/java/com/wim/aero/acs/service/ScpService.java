@@ -1,6 +1,6 @@
 package com.wim.aero.acs.service;
 
-import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.config.DSTConfig;
 import com.wim.aero.acs.db.entity.CardFormat;
 import com.wim.aero.acs.db.entity.DevControllerCommonAttribute;
 import com.wim.aero.acs.db.entity.DevControllerDetail;
@@ -8,8 +8,10 @@ import com.wim.aero.acs.db.service.impl.CardFormatServiceImpl;
 import com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl;
 import com.wim.aero.acs.db.service.impl.DevControllerDetailServiceImpl;
 import com.wim.aero.acs.message.RequestMessage;
+import com.wim.aero.acs.model.DST;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
+import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
 import com.wim.aero.acs.protocol.accessLevel.ElevatorALsSpecification;
 import com.wim.aero.acs.protocol.card.AccessDatabaseSpecification;
 import com.wim.aero.acs.protocol.card.MT2CardFormat;
@@ -23,7 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.lang.invoke.ConstantCallSite;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,15 +41,19 @@ public class ScpService {
     private final DevControllerCommonAttributeServiceImpl devControllerCommonAttributeService;
     private final CardFormatServiceImpl cardFormatService;
     private final RestUtil restUtil;
+    private final DSTConfig dstConfig;
 
     @Autowired
     public ScpService(DevControllerDetailServiceImpl devControllerDetailService,
                       DevControllerCommonAttributeServiceImpl devControllerCommonAttributeService,
-                      CardFormatServiceImpl cardFormatService, RestUtil restUtil) {
+                      CardFormatServiceImpl cardFormatService,
+                      RestUtil restUtil,
+                      DSTConfig dstConfig) {
         this.devControllerDetailService = devControllerDetailService;
         this.devControllerCommonAttributeService = devControllerCommonAttributeService;
         this.cardFormatService = cardFormatService;
         this.restUtil = restUtil;
+        this.dstConfig = dstConfig;
     }
 
     /**
@@ -65,13 +70,25 @@ public class ScpService {
      * @param scpId
      * @return
      */
-    public ScpCmd connectScp(int scpId) {
+    public List<ScpCmd> connectScp(int scpId) {
+        List<ScpCmd> result = new ArrayList<>();
+
         // Create SCP (Command 1013)
         DevControllerDetail detail = devControllerDetailService.getScpConfiguration(scpId);
         SCPDriver driver = SCPDriver.fromDb(detail);
         String msg = RequestMessage.encode(scpId, driver);
+        result.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
 
-        return new ScpCmd(scpId, msg, IdUtil.nextId());
+        // 1116
+//        List<DST> dstList = dstConfig.getList();
+//        for (DST dst:dstList) {
+//            DaylightSavingTimeConfiguration config = new DaylightSavingTimeConfiguration(
+//                    scpId, dst.getStart(), dst.getEnd());
+//            String dstMsg = RequestMessage.encode(scpId, config);
+//            result.add(new ScpCmd(scpId, dstMsg, IdUtil.nextId()));
+//        }
+
+        return result;
     }
 
     /**

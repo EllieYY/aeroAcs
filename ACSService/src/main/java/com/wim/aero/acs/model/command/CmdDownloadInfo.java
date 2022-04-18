@@ -14,14 +14,16 @@ public class CmdDownloadInfo {
     private int scpId;
     private String msg;
     private String streamId;
-    private String cardNo;
+    private long seqNo;
     private String reason;
     private int code;
+    private String cardNo;
 
-    public CmdDownloadInfo(int scpId, String msg, String streamId, String cardNo) {
+    public CmdDownloadInfo(int scpId, String msg, String streamId, long seqNo, int code) {
         this.scpId = scpId;
         this.msg = msg;
         this.streamId = streamId;
-        this.cardNo = cardNo;
+        this.seqNo = seqNo;
+        this.code = code;
     }
 }

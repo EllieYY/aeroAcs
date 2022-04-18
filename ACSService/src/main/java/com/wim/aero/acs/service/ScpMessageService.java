@@ -7,7 +7,10 @@ import com.wim.aero.acs.db.entity.ELogRecord;
 import com.wim.aero.acs.db.service.impl.EAccessRecordServiceImpl;
 import com.wim.aero.acs.db.service.impl.EAlarmRecordServiceImpl;
 import com.wim.aero.acs.db.service.impl.ELogRecordServiceImpl;
+import com.wim.aero.acs.model.mq.AccessMessage;
+import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.model.scp.reply.EnScpReplyType;
 import com.wim.aero.acs.model.scp.reply.ReplyBody;
 import com.wim.aero.acs.model.scp.reply.ReplyType;
 import com.wim.aero.acs.model.scp.reply.SCPReply;
@@ -70,7 +73,6 @@ public class ScpMessageService {
         TransactionBody body = JsonUtil.fromJson(transaction.getArgJsonStr(), bodyClazz);
 
 
-
         // 访问事件
         if (sourceType == Constants.tranSrcACR && (
             tranType == Constants.tranTypeCardFull ||
@@ -90,15 +92,29 @@ public class ScpMessageService {
             log.info(record.toString());
             accessRecordService.save(record);
 
+            queueProducer.sendAccessMessage(
+                    new AccessMessage(
+                            index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
+                            accessEvent.toString()));
+
         } else if (sourceType == Constants.tranSrcMP) {   // 告警事件
             EAlarmRecord record = new EAlarmRecord(index, date, scpId, sourceType, sourceNum, tranType, tranCode, body.toString());
 
             log.info(record.toString());
             alarmRecordService.save(record);
+
+            queueProducer.sendAlarmMessage(
+                    new AlarmMessage(
+                            index, date, scpId, sourceType, sourceNum, tranType, tranCode, transaction.getArgJsonStr()));
+
         } else { // 日志事件
             ELogRecord record = new ELogRecord(index, date, scpId, sourceType, sourceNum, tranType, tranCode, body.toString());
             log.info(record.toString());
             logRecordService.save(record);
+
+            queueProducer.sendLogMessage(
+                    new LogMessage(
+                            index, date, scpId, sourceType, sourceNum, tranType, tranCode, transaction.getArgJsonStr()));
         }
 
     }
@@ -106,19 +122,29 @@ public class ScpMessageService {
 
     public void dealScpeply(SCPReply reply) {
         int type = reply.getType();
-        if (!ReplyType.isProtocolCode(type)) {
-            log.info("不支持的ScpReply类型 - {}", type);
-            return ;
+        EnScpReplyType enScpReplyType = EnScpReplyType.fromCode(type);
+        if (enScpReplyType == EnScpReplyType.enSCPReplyUnknown) {
+            log.info("不支持的ScpReply类型 {}", reply);
+            return;
         }
 
-        Class<ReplyBody> bodyClazz = ReplyType.fromCode(type).getTransClazz();
+        if (!ReplyType.isProtocolCode(enScpReplyType)) {
+            log.info("不支持的业务类型 - {}", reply);
+            return;
+        }
+
+        Class<ReplyBody> bodyClazz = ReplyType.fromCode(enScpReplyType).getTransClazz();
         ReplyBody body = JsonUtil.fromJson(reply.getContent(), bodyClazz);
 
         // TODO：更细致的业务处理
+        if (enScpReplyType == EnScpReplyType.enSCPReplyCommStatus) {   // 通信状态
+
+        } else if (enScpReplyType == EnScpReplyType.enSCPReplyCmndStatus) {   // 命令状态
+
+        }
 
 
-        log.info(body.toString());
-
+//        log.info(body.toString());
     }
 
 }

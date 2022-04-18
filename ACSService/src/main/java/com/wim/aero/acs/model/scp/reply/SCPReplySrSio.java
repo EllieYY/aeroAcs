@@ -43,4 +43,10 @@ public class SCPReplySrSio extends ReplyBody {
     private byte  nEncKeyStatus;		// Status of Master/Secret Key; 0=Not Loaded to EP, 1=Loaded, unverified, 2=Loaded, conflicts w/SIO, 3=Loaded, Verified, 4=AES256 Verified.
     private List<Integer>  mac_addr;			// 6 MAC Address, if applicable, LSB first.
     private int emg_stat;				// emergency switch status: TranCoS::status encoded
+
+
+    @Override
+    public void process() {
+
+    }
 }

@@ -115,7 +115,8 @@ public class AccessConfigService {
             String streamId = IdUtil.nextId();
             cmdList.add(new ScpCmd(scpId, msg, streamId));
 
-            resultMap.put(streamId, new CmdDownloadInfo(scpId, msg, streamId, item.getCardNumber()));
+            // TODO:
+//            resultMap.put(streamId, new CmdDownloadInfo(scpId, msg, streamId, 0, item.getCardNumber()));
         }
 
         // 下发到控制器

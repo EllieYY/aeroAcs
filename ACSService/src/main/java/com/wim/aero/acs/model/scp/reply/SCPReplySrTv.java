@@ -15,4 +15,9 @@ public class SCPReplySrTv extends ReplyBody {
     private int first;				// number of the first Trigger Variable
     private int count;				// number of TV status entries
     private List<Integer> status;	// 100 - TV status: set/clear
+
+    @Override
+    public void process() {
+
+    }
 }

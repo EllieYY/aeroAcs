@@ -21,4 +21,9 @@ public class SCPReplySrArea extends ReplyBody {
                                     //	  128 - set if this area has NOT been configured (no area checks are made!!!)
     private long  occupancy;			// occupancy count - standard users
     private long  occ_spc;				// occupancy count - special users
+
+    @Override
+    public void process() {
+
+    }
 }

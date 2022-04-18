@@ -26,4 +26,9 @@ public class SCPReplySrAcr extends ReplyBody {
     private int nHardwareType;			// Hardware Type in use.
     private String  nExtFeatureStatus;	// Features variable by type, first byte hardware-specific binary inputs by convention.
     private long  nAuthModFlags;
+
+    @Override
+    public void process() {
+
+    }
 }

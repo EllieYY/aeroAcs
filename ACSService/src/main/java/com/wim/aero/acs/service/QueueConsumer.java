@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class QueueConsumer {
 
-    @JmsListener(destination = "logQueue", containerFactory = "MyJmsQueueListener")
-    public void receiveMsg(String text) {
-        System.out.println("接收到消息 : "+text);
-    }
+//    @JmsListener(destination = "logQueue", containerFactory = "queueListener")
+//    public void receiveMsg(String text) {
+//        System.out.println("接收到消息 : "+text);
+//    }
 }
