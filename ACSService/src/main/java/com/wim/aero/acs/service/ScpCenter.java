@@ -27,9 +27,15 @@ public class ScpCenter {
     ScpService scpService;
     @Autowired
     static ScpService conScpService;
+    @Autowired
+    SIOService sioService;
+    @Autowired
+    static SIOService conSioService;
+
     @PostConstruct
     public void init() {
         conScpService = scpService;
+        conSioService = sioService;
     }
 
     // 添加scp
@@ -54,6 +60,9 @@ public class ScpCenter {
             // 上线后开始配置 -- 先验条件：设备处于初始化状态
             if (preStatus == ScpStatus.INIT || preStatus == ScpStatus.OFF_LINE) {
                 conScpService.configScp(scpId);
+                conSioService.configSioForScp(scpId);
+
+
             }
         }
     }

@@ -33,10 +33,10 @@ public class SCPReplyTransaction {
     private long serNum;			// serial number of this transaction
 
     @ApiModelProperty(value = "transaction时间，到1970秒数")
-    @JsonDeserialize(using = Long2DateDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+//    @JsonDeserialize(using = Long2DateDeserializer.class)
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @JsonProperty(value = "Time")
-    private Date time;				// time of the transaction, seconds, 1970-based
+    private long time;				// time of the transaction, seconds, 1970-based
 
     @ApiModelProperty(value = "sourceType")
     @JsonProperty(value = "SourceType")

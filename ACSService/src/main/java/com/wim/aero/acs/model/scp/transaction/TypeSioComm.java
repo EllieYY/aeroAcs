@@ -51,6 +51,6 @@ public class TypeSioComm extends TransactionBody {
     private int nOemCode;				// Not used
     private byte  nEncConfig;			// Master/Secret key currently in use on this SIO: 0=None, 1=AES Default Key, 2=AES Master/Secret Key, 3= PKI, 6=AES256 session key
     private byte  nEncKeyStatus;		// Status of Master/Secret Key; 0=Not Loaded, 1=Loaded, unverified, 2=Loaded, conflicts w/SIO, 3=Loaded, Verified, 4=AES256 Verified.
-    private List<Byte> mac_addr;			// mac_addr[6];MAC Address, if applicable, LSB first.
+    private String mac_addr;			// mac_addr[6];MAC Address, if applicable, LSB first.
 
 }

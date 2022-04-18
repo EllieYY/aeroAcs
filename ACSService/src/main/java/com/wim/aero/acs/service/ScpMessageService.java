@@ -51,17 +51,17 @@ public class ScpMessageService {
 
     public void dealTransaction(SCPReplyTransaction transaction) {
         int scpId = transaction.getScpId();
-        Date date = transaction.getTime();
+        Date date = new Date(transaction.getTime() * 1000);
         long index = transaction.getSerNum();
         int sourceType = transaction.getSourceType();
         int sourceNum = transaction.getSourceNumber();
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
-        //TODO:mq test
-        queueProducer.sendLogMessage(
-                new LogMessage(
-                        index, date, scpId, sourceType, sourceNum, tranType, tranCode, transaction.getArgJsonStr()));
+//        //TODO:mq test
+//        queueProducer.sendLogMessage(
+//                new LogMessage(
+//                        index, date, scpId, sourceType, sourceNum, tranType, tranCode, transaction.getArgJsonStr()));
 
         if (!TransactionType.isProtocolCode(sourceType, tranType)) {
             log.info("不支持的SCPReplyTransaction类型 - srcType:{}, tranType:{}", sourceType, tranType);
@@ -75,6 +75,8 @@ public class ScpMessageService {
 
         // 访问事件
         if (sourceType == Constants.tranSrcACR && (
+                tranType == Constants.tranTypeCardBin ||
+                        tranType == Constants.tranTypeCardBcd ||
             tranType == Constants.tranTypeCardFull ||
             tranType == Constants.tranTypeDblCardFull ||
             tranType == Constants.tranTypeI64CardFull ||

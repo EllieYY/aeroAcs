@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,9 +62,9 @@ public class SIOService {
     /**
      * 硬件配置
      * @param scpId
-     * @param cmdList
      */
-    public void configSioForScp(int scpId, List<ScpCmd> cmdList) {
+    public void configSioForScp(int scpId) {
+        List<ScpCmd> cmdList = new ArrayList<>();
         // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器两个
         SIODriver driver1 = new SIODriver(scpId, 1, 1);
         SIODriver driver2 = new SIODriver(scpId, 2, 2);
@@ -91,6 +92,14 @@ public class SIOService {
         inputConfig(scpId, cmdList);
         outputConfig(scpId, cmdList);
         readerConfig(scpId, cmdList);
+
+        for(ScpCmd cmd:cmdList) {
+            System.out.println(cmd);
+        }
+        // TODO:优化
+        RequestPendingCenter.add(0, cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        RequestPendingCenter.updateSeq(responseList);
     }
 
     /**

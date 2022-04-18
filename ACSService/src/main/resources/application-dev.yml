@@ -35,7 +35,7 @@ httppool:
   validateAfterInactivity: 2000
 
 
-#url: http://192.168.2.234:5000
+#url: https://192.168.2.72:5000
 
 comm-service-info:
   url: http://192.168.2.234:5000
