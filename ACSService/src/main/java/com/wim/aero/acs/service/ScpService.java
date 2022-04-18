@@ -12,6 +12,7 @@ import com.wim.aero.acs.model.DST;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
+import com.wim.aero.acs.protocol.TransactionLogSetting;
 import com.wim.aero.acs.protocol.accessLevel.ElevatorALsSpecification;
 import com.wim.aero.acs.protocol.card.AccessDatabaseSpecification;
 import com.wim.aero.acs.protocol.card.MT2CardFormat;
@@ -79,6 +80,8 @@ public class ScpService {
         String msg = RequestMessage.encode(scpId, driver);
         result.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
 
+        scpSpecification(scpId, result);
+
         // 1116
 //        List<DST> dstList = dstConfig.getList();
 //        for (DST dst:dstList) {
@@ -134,9 +137,14 @@ public class ScpService {
      * 控制器配置：定义配置流程
      * @param scpId
      */
-    public List<ScpCmd> configScp(int scpId) {
+    public void configScp(int scpId) {
         List<ScpCmd> cmdList = new ArrayList<>();
         scpSpecification(scpId, cmdList);
+
+        // 303打开
+        TransactionLogSetting operation = TransactionLogSetting.openLog(scpId);
+        String logMsg = RequestMessage.encode(scpId, operation);
+        cmdList.add(new ScpCmd(scpId, logMsg, IdUtil.nextId()));
 
         // 有梯控则配置
 //        elevatorScpSpecification(scpId, cmdList);
@@ -144,7 +152,16 @@ public class ScpService {
         // 卡格式配置
         cardFormatConfig(scpId, cmdList);
 
-        return cmdList;
+        log.info("[配置设备] scpId[{}]", scpId);
+
+        for(ScpCmd cmd:cmdList) {
+            System.out.println(cmd);
+        }
+
+        // TODO:优化
+        RequestPendingCenter.add(0, cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        RequestPendingCenter.updateSeq(responseList);
     }
 
 

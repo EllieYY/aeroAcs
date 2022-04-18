@@ -1,6 +1,7 @@
 package com.wim.aero.acs.model.scp.reply;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title: SCPReplySrArea
@@ -9,6 +10,7 @@ import lombok.Data;
  * @description:
  **/
 @Data
+@Slf4j
 public class SCPReplySrArea extends ReplyBody {
     private int number;				// Area number
     private int flags;				// status map
@@ -23,7 +25,13 @@ public class SCPReplySrArea extends ReplyBody {
     private long  occ_spc;				// occupancy count - special users
 
     @Override
-    public void process() {
+    public void process(int scpId) {
+        if (flags != 128) {
+            log.info("occupancy更新：scpId[{}], acr[{}], occupancyStd[{}], occupancySpc[{}]",
+                    scpId, number, occupancy, occ_spc);
+
+            // TODO:更新数据库
+        }
 
     }
 }

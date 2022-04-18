@@ -17,6 +17,8 @@ public enum TransactionType {
     SIO_MP_COS(0x07, 0x07, TypeCoS.class),
     SIO_CP_COS(0x08, 0x07, TypeCoS.class),
 
+    ACR_CARD_BIN(0x09, 0x03, TypeCardBin.class),
+    ACR_CARD_BCD(0x09, 0x04, TypeCardBcd.class),
     ACR_CARD_FULL(0x09, 0x05, TypeCardFull.class),
     ACR_DBL_CARD_FULL(0x09, 0x15, TypeCardFull.class),
     ACR_I64_CARD_FULL(0x09, 0x25, TypeCardFull.class),

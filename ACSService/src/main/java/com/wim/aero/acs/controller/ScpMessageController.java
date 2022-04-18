@@ -46,8 +46,8 @@ public class ScpMessageController {
             return ResultBeanUtil.makeParamInvalidResp(request.toString());
         }
 
-        log.info(request.toString());
-        // TODO:结果匹配
+//        log.info(request.toString());
+        // TODO:弃用该接口
 
         return ResultBeanUtil.makeOkResp(request.toString());
     }
@@ -102,9 +102,8 @@ public class ScpMessageController {
             return ResultBeanUtil.makeParamInvalidResp(request.toString());
         }
 
-        log.info(request.toString());
+//        log.info(request.toString());
         // TODO:结果匹配
-
 
         return ResultBeanUtil.makeOkResp(request.toString());
     }

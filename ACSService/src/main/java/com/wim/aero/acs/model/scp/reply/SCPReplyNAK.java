@@ -43,8 +43,8 @@ public class SCPReplyNAK extends ReplyBody {
 
 
     @Override
-    public void process() {
-
+    public void process(int scpId) {
+        // TODO:暂不处理
     }
 
 }

@@ -1,12 +1,13 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.service.RequestPendingCenter;
 import lombok.Data;
 
 /**
  * @title: SCPReplyCmndStatus
  * @author: Ellie
  * @date: 2022/04/13 11:34
- * @description:
+ * @description: type = 15
  **/
 @Data
 public class SCPReplyCmndStatus extends ReplyBody {
@@ -21,9 +22,13 @@ public class SCPReplyCmndStatus extends ReplyBody {
     // this extension includes the information that will be returned in the following NAK reply
     private SCPReplyNAKStr nak;    // SCPReplyNAK
 
-
     @Override
-    public void process() {
-
+    public void process(int scpId) {
+        // TODO:区分成功和失败的处理
+        int reason = -1;
+        if (status == 2) {
+            reason = Integer.parseInt(nak.getReason());
+        }
+        RequestPendingCenter.commandResponse(sequence_number, status, reason);
     }
 }

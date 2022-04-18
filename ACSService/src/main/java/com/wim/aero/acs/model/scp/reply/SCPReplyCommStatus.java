@@ -1,6 +1,9 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.service.ScpCenter;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 
 /**
  * @title: SCPReplyCommStatus
@@ -9,8 +12,12 @@ import lombok.Data;
  * @description: type=2
  **/
 @Data
+@Slf4j
 public class SCPReplyCommStatus extends ReplyBody {
     private int status;                     // enSCPComm
+                                            // 0 == enSCPCommUnknown,
+                                            // 1 == enSCPCommFailed,
+                                            // 2 == enSCPCommOk;
     private enSCPCommErr error_code;        // enSCPCommErr
     private int  nChannelId;			    // channel number - valid if status==enSCPComNoError
                                             // extended reporting for DualPort applications
@@ -20,7 +27,16 @@ public class SCPReplyCommStatus extends ReplyBody {
     private int	previous_alternate_comm;	// Not used
 
     @Override
-    public void process() {
+    public void process(int scpId) {
+        if (status == 2) {
+            log.info("[设备上线] - scpId:[{}], channelId[{}], curComm[{}], preComm[{}]",
+                    scpId, nChannelId, current_primary_comm, previous_primary_comm);
+            ScpCenter.scpOnline(scpId);
 
+        } else {
+            log.info("[设备离线] - scpId:[{}], status[{}], errorCode[{}], curComm[{}], preComm[{}]",
+                    scpId, status, error_code, current_primary_comm, previous_primary_comm);
+            ScpCenter.scpOffline(scpId);
+        }
     }
 }

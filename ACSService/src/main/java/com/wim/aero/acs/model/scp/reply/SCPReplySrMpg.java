@@ -1,6 +1,7 @@
 package com.wim.aero.acs.model.scp.reply;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @description:
  **/
 @Data
+@Slf4j
 public class SCPReplySrMpg extends ReplyBody {
     private int number;							// MPG number
     private int mask_count;						// mask count
@@ -18,7 +20,9 @@ public class SCPReplySrMpg extends ReplyBody {
     private List<Integer> active_mp_list;	// list of the active point pairs (Type-Num) (MAX_MP_PER_MPG)
 
     @Override
-    public void process() {
+    public void process(int scpId) {
+        // TODO:
 
+        log.info(this.toString());
     }
 }

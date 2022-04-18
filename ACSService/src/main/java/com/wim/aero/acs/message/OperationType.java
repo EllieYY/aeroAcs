@@ -1,6 +1,7 @@
 package com.wim.aero.acs.message;
 
 import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
+import com.wim.aero.acs.protocol.TransactionLogSetting;
 import com.wim.aero.acs.protocol.accessLevel.*;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
 import com.wim.aero.acs.protocol.card.*;
@@ -33,6 +34,7 @@ public enum OperationType {
     SCP_SIO_108(108, SIODriver.class),
     ADS_1105(1105, AccessDatabaseSpecification.class),
     EL_501(501, ElevatorALsSpecification.class),
+    TRANS_LOG(303, TransactionLogSetting.class),
 
     // sio
     SIO_109(109, SIOSpecification.class),

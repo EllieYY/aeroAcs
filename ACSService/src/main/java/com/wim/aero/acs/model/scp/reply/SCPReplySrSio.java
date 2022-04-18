@@ -1,6 +1,7 @@
 package com.wim.aero.acs.model.scp.reply;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -11,9 +12,17 @@ import java.util.List;
  * @description:
  **/
 @Data
+@Slf4j
 public class SCPReplySrSio extends ReplyBody {
     private int number;				// SIO number
     private int com_status;			// comm status: encoded per tran codes for tranTypeSioComm
+                                    //  	1	- comm disabled (result of host command)
+                                    //  	2	- off-line: timeout (no/bad response from unit)
+                                    //  	3	- off-line: invalid identification from SIO
+                                    //  	4	- off-line: Encryption could not be established
+                                    //  	5	- on-line: normal connection
+                                    //		6   - hexLoad report: ser_num is address loaded (-1 == last record)
+
     private int msp1_dnum;			// MSP1 driver number (0, 1, ...)
                                     // the following block is valid only if the SIO is on-line
     private long  com_retries;			// retries since power-up, cumulative
@@ -46,7 +55,12 @@ public class SCPReplySrSio extends ReplyBody {
 
 
     @Override
-    public void process() {
+    public void process(int scpId) {
+        log.info("sio状态：scpId[{}], sio[{}], msp1dNum[{}], comStatus[{}]",
+                scpId, number, msp1_dnum, com_status);
+
+
+        // TODO:更新sio状态及输入、输出、读卡器状态
 
     }
 }

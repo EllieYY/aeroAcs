@@ -7,5 +7,5 @@ package com.wim.aero.acs.model.scp.reply;
  * @description:
  **/
 public abstract class ReplyBody {
-    abstract public void process();
+    abstract public void process(int scpId);
 }

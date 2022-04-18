@@ -116,7 +116,6 @@ public class ScpMessageService {
                     new LogMessage(
                             index, date, scpId, sourceType, sourceNum, tranType, tranCode, transaction.getArgJsonStr()));
         }
-
     }
 
 
@@ -133,18 +132,13 @@ public class ScpMessageService {
             return;
         }
 
+        // 类型转换
         Class<ReplyBody> bodyClazz = ReplyType.fromCode(enScpReplyType).getTransClazz();
         ReplyBody body = JsonUtil.fromJson(reply.getContent(), bodyClazz);
 
-        // TODO：更细致的业务处理
-        if (enScpReplyType == EnScpReplyType.enSCPReplyCommStatus) {   // 通信状态
-
-        } else if (enScpReplyType == EnScpReplyType.enSCPReplyCmndStatus) {   // 命令状态
-
-        }
-
-
-//        log.info(body.toString());
+        // 业务处理
+        int scpId = reply.getScpId();
+        body.process(scpId);
     }
 
 }

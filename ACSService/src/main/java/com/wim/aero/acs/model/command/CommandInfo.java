@@ -18,7 +18,7 @@ public class CommandInfo {
     private long taskId;
     private String scpId;
     private int commandStatus;    // 命令状态：SCPReplyComnd错误码
-    private String reason;        // SCPReplyComnd返回内容
+    private int reason;        // SCPReplyComnd返回内容
     private Date cmdDate;         // 命令时间
     private int commCode;         // 控制器通信服务返回的错误码
 

@@ -1,5 +1,6 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.service.ScpCenter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -32,7 +33,7 @@ public class SCPReplyTranStatus extends ReplyBody {
     private int disabled;		// non-zero if disabled with (Command_303)
 
     @Override
-    public void process() {
-
+    public void process(int scpId) {
+        ScpCenter.updateTR(scpId, oldest, lastRprtd);
     }
 }

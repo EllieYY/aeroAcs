@@ -9,9 +9,10 @@ import java.util.function.Predicate;
  */
 public enum ScpStatus {
     UNKNOWN(0),    // 初始化
-    OFF_LINE(1),   // 离线
-    ON_LINE(2),    // 在线
-    CONFIG(3);     // 配置成功
+    INIT(1),
+    OFF_LINE(2),   // 离线
+    ON_LINE(3),    // 在线
+    CONFIG(4);     // 配置成功
 
     ScpStatus(int status) {
         this.status = status;

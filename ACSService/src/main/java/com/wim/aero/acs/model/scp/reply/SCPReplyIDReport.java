@@ -1,6 +1,7 @@
 package com.wim.aero.acs.model.scp.reply;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @description: type = 4
  **/
 @Data
+@Slf4j
 public class SCPReplyIDReport extends ReplyBody {
     private int  device_id;			// identification of the replying device (3=HID)
     private int  device_ver;			// hardware version: 27==X1100
@@ -43,7 +45,7 @@ public class SCPReplyIDReport extends ReplyBody {
     private long   cumulative_bld_cnt;	// Cumulative build count
 
     @Override
-    public void process() {
-
+    public void process(int scpId) {
+        log.info(this.toString());
     }
 }

@@ -2,6 +2,7 @@ package com.wim.aero.acs.model.scp.reply;
 
 import io.swagger.models.auth.In;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @description:
  **/
 @Data
+@Slf4j
 public class SCPReplySrTz extends ReplyBody {
     private int first;				// number of the first Timezone
     private int count;				// number of TZ status entries
@@ -21,7 +23,9 @@ public class SCPReplySrTz extends ReplyBody {
                                     // 0x04 mask == time scan override
 
     @Override
-    public void process() {
+    public void process(int scpId) {
 
+        // TODO:待处理
+        log.info(this.toString());
     }
 }

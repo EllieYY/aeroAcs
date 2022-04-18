@@ -2,6 +2,7 @@ package com.wim.aero.acs.service;
 
 //import io.netty.example.study.common.OperationResult;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.command.CmdDownloadInfo;
 import com.wim.aero.acs.model.command.CommandInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
@@ -18,18 +19,16 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class RequestPendingCenter {
     /** streamId和Command信息Map     */
-    private Map<String, CommandInfo> commandInfoMap = new ConcurrentHashMap<>();
+    static private Map<String, CommandInfo> commandInfoMap = new ConcurrentHashMap<>();
     /** streamId和seqId的Map        */
-    private Map<String, Long> streamSeqMap = new ConcurrentHashMap<>();
+    static private Map<String, Long> streamSeqMap = new ConcurrentHashMap<>();
 
     /** 命令集合添加 */
-    public void add(long taskId, List<ScpCmd> commandInfoList) {
+    public static void add(long taskId, List<ScpCmd> commandInfoList) {
         for (ScpCmd cmd:commandInfoList) {
             CommandInfo commandInfo = new CommandInfo(
                     taskId, cmd.getStreamId(), cmd.getScpId(), cmd.getCommand(), 0);
             //TODO：入库
-
-
 
             // 更新集合
             commandInfoMap.put(cmd.getStreamId(), commandInfo);
@@ -38,7 +37,7 @@ public class RequestPendingCenter {
     }
 
     /** 更新seqNo */
-    public List<CommandInfo> updateSeq(List<ScpCmdResponse> cmdResponseList) {
+    public static List<CommandInfo> updateSeq(List<ScpCmdResponse> cmdResponseList) {
         List<CommandInfo> result = new ArrayList<>();
         for (ScpCmdResponse response:cmdResponseList) {
             String streamId = response.getStreamId();
@@ -60,14 +59,14 @@ public class RequestPendingCenter {
             }
         }
 
-        log.info(streamSeqMap.toString());
-        log.info(commandInfoMap.toString());
+//        log.info(streamSeqMap.toString());
+//        log.info(commandInfoMap.toString());
 
         return result;
     }
 
-    /** 命令返回 */
-    public void commandResponse(long seqNo, int code, String reason) {
+    /** 控制器返回命令生效结果 */
+    public static void commandResponse(long seqNo, int code, int reason) {
         List<String> streamList = getStreamIdsBySeqId(seqNo);
         for (String key:streamList) {
             CommandInfo commandInfo = commandInfoMap.get(key);
@@ -76,13 +75,19 @@ public class RequestPendingCenter {
 
             // TODO:存库
 
+            log.info("[指令结果] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
+//            if (code != Constants.CMND_OK) {
+//                log.info("[失败指令] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
+//            }
+
             // 移除命令集合
-            removeStreamId(key);
+//            removeStreamId(key);
         }
     }
 
+
     /** 通过seqNo查找streamId列表 */
-    private List<String> getStreamIdsBySeqId(long seqId) {
+    private static List<String> getStreamIdsBySeqId(long seqId) {
         List<String> streamIdList = new ArrayList<>();
         for(Map.Entry<String, Long> entry : streamSeqMap.entrySet()){
             String streamId = entry.getKey();
@@ -94,7 +99,7 @@ public class RequestPendingCenter {
         return streamIdList;
     }
 
-    private void removeStreamId(String streamId) {
+    private static void removeStreamId(String streamId) {
         if (streamSeqMap.containsKey(streamId)) {
             streamSeqMap.remove(streamId);
         }

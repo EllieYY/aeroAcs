@@ -1,6 +1,7 @@
 package com.wim.aero.acs.model.scp.reply;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title: SCPReplySrAcr
@@ -9,6 +10,7 @@ import lombok.Data;
  * @description:
  **/
 @Data
+@Slf4j
 public class SCPReplySrAcr extends ReplyBody {
     private int number;				// ACR number
     private int mode;					// access control mode: C_308 encoded
@@ -28,7 +30,7 @@ public class SCPReplySrAcr extends ReplyBody {
     private long  nAuthModFlags;
 
     @Override
-    public void process() {
-
+    public void process(int scpId) {
+        log.info(this.toString());
     }
 }

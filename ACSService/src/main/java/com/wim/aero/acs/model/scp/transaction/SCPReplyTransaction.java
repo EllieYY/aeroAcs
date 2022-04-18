@@ -25,29 +25,37 @@ import java.util.Date;
 @Validated
 public class SCPReplyTransaction {
     @ApiModelProperty(value = "scpId")
+    @JsonProperty(value = "ScpId")
     private int scpId;
 
     @ApiModelProperty(value = "transaction序号")
+    @JsonProperty(value = "SerNum")
     private long serNum;			// serial number of this transaction
 
     @ApiModelProperty(value = "transaction时间，到1970秒数")
     @JsonDeserialize(using = Long2DateDeserializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonProperty(value = "Time")
     private Date time;				// time of the transaction, seconds, 1970-based
 
     @ApiModelProperty(value = "sourceType")
+    @JsonProperty(value = "SourceType")
     private int sourceType;		// see the "tranSrc..." definitions
 
     @ApiModelProperty(value = "sourceNumber")
+    @JsonProperty(value = "SourceNumber")
     private int sourceNumber;		// ...defines the element of tranSrc...
 
     @ApiModelProperty(value = "tranType")
+    @JsonProperty(value = "TranType")
     private int tranType;			// see the "tranType..." definitions
 
     @ApiModelProperty(value = "tranCode")
+    @JsonProperty(value = "TranCode")
     private int tranCode;			// ...defines the reason
 
     @ApiModelProperty(value = "tranType对应结构体进行Json结构体序列化字符串")
+    @JsonProperty(value = "ArgJsonStr")
     private String argJsonStr;
 
 //    @ApiModelProperty(hidden = true)

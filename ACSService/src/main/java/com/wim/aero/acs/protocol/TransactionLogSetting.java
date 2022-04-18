@@ -1,5 +1,8 @@
 package com.wim.aero.acs.protocol;
 
+import com.wim.aero.acs.message.Operation;
+import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -10,7 +13,16 @@ import lombok.Data;
  * 和SCP建立通信并正确配置之前，在1013种设置关闭，建立通信之后，通过此命令打开。
  **/
 @Data
-public class TransactionLogSetting {
+@AllArgsConstructor
+public class TransactionLogSetting extends Operation {
+    @CmdProp(index = 2)
     private int scpNumber;
+
+    @CmdProp(index = 3)
     private int tranIndex;  // -1 disable  -2 enable
+
+    public static TransactionLogSetting openLog(int scpNumber) {
+        return new TransactionLogSetting(scpNumber, -2);
+//        this.scpNumber = scpNumber;
+    }
 }

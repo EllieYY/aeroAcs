@@ -39,18 +39,15 @@ public class ScpController {
     private final SIOService sioService;
     private final AccessConfigService accessConfigService;
     private final RestUtil restUtil;
-    private final RequestPendingCenter requestPendingCenter;
     @Autowired
     public ScpController(ScpService scpService,
                          SIOService sioService,
                          AccessConfigService accessConfigService,
-                         RestUtil restUtil,
-                         RequestPendingCenter requestPendingCenter) {
+                         RestUtil restUtil) {
         this.scpService = scpService;
         this.sioService = sioService;
         this.accessConfigService = accessConfigService;
         this.restUtil = restUtil;
-        this.requestPendingCenter = requestPendingCenter;
     }
 
     @ApiOperation(value = "硬件下载")
@@ -61,14 +58,15 @@ public class ScpController {
             return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
         }
 
-        // 命令组装+记录
+        // 命令组装+记录+scp影子对象维护
         List<ScpCmd> cmdList = scpService.connectScp(scpId);
-        requestPendingCenter.add(request.getTaskId(), cmdList);
+        RequestPendingCenter.add(request.getTaskId(), cmdList);
+        ScpCenter.addScp(scpId);
 
         // 命令发送+反馈
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        log.info("硬件下载：{}", responseList.toString());
-        List<CommandInfo> failCmdList = requestPendingCenter.updateSeq(responseList);
+        log.info("[硬件下载] {}", responseList.toString());
+        List<CommandInfo> failCmdList = RequestPendingCenter.updateSeq(responseList);
 
         // 结果反馈给页面
         if (failCmdList.size() == 0) {
@@ -162,6 +160,7 @@ public class ScpController {
      * @return
      * @throws Exception
      */
+    @Deprecated
     @ApiOperation(value = "通信后台使用 - 获取控制器配置报文")
     @RequestMapping(value = "/config", method = {RequestMethod.POST})
     public List<ScpCmd> scpConfig(@RequestBody ScpRequestInfo request) {
@@ -173,18 +172,17 @@ public class ScpController {
         // TODO:修改scp状态 -- 数据库
 
         // scp配置
-        List<ScpCmd> cmdList = scpService.configScp(scpId);
+//        List<ScpCmd> cmdList = scpService.configScp(scpId);
 //        // sio及物理点位配置
 //        sioService.configSioForScp(scpId, cmdList);
 //        // 时间组、访问组配置
 //        accessConfigService.alBasicConfig(scpId, cmdList);
 
-
-        for (ScpCmd cmd:cmdList) {
-            System.out.println(cmd.getCommand());
-//            log.info("[SCP:{}] - {}", scpId, cmd.getCommand());
-        }
-        return cmdList;
+//        for (ScpCmd cmd:cmdList) {
+//            System.out.println(cmd.getCommand());
+////            log.info("[SCP:{}] - {}", scpId, cmd.getCommand());
+//        }
+        return new ArrayList<>();
     }
 
     /**

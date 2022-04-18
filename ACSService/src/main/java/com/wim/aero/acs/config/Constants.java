@@ -11,6 +11,15 @@ public interface Constants {
 
     int REST_CODE_SUCCESS = 0;
 
+    // 命令执行状态
+    // - 0 = FAILED (could not send, SCP off-line)
+    // - 1 = OK (delivered and accepted),
+    // - 2 = NAK'd (command rejected by the SCP)
+    int CMND_FAILED = 0;
+    int CMND_OK = 1;
+    int CMND_NAK = 2;
+
+
     // transaction related definitions
     // - transaction source type definitions
     int tranSrcScpDiag = 0x00;	// SCP diagnostics

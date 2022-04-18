@@ -91,7 +91,7 @@ public class RestUtil {
             e.printStackTrace();
         }
 
-        log.info("[sendMultiCmd]- {}", cmdStr);
+//        log.info("[sendMultiCmd]- {}", cmdStr);
 
         HttpResult result = post(url, cmdStr);
         if (result.getCode() > 300) {
@@ -124,7 +124,7 @@ public class RestUtil {
     }
 
     public HttpResult post(String url, String data) {
-        log.info("[Post]{} - {}", url, data);
+        log.info("[Post]{}", url);
         byte[] content = data.getBytes();
 
         HttpHeaders headers = new HttpHeaders();
