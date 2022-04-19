@@ -20,11 +20,20 @@
         <result column="cp_number" property="cpNumber" />
         <result column="status" property="status" />
         <result column="remark" property="remark" />
+        <result column="sio_number" property="sioNumber" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        device_id, device_type_id, device_scope_id, p_device_type_id, p_device_id, controller_id, output_type_id, output, device_name, mode_flag, pulse_flag, pulse_cycle, schedules_group_id, cp_number, status, remark
+        device_id, device_type_id,
+        device_scope_id, p_device_type_id,
+        p_device_id, controller_id,
+        output_type_id, output,
+        device_name, mode_flag,
+        pulse_flag, pulse_cycle,
+        schedules_group_id, cp_number,
+        status, remark,
+        sio_number
     </sql>
     <select id="selectAllByPDeviceId" resultMap="BaseResultMap">
         select

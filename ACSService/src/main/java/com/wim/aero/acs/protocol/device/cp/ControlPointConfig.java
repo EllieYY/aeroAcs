@@ -35,7 +35,7 @@ public class ControlPointConfig extends Operation {
     public static  ControlPointConfig fromDb(DevOutputDetail detail) {
         ControlPointConfig result = new ControlPointConfig();
         result.setScpNumber(detail.getControllerId());
-        result.setSioNumber(detail.getPDeviceId());
+        result.setSioNumber(detail.getSioNumber());
         result.setOuputNumber(detail.getOutput());
         result.setCpNumber(detail.getCpNumber());
         result.setDfltPulse(detail.getPulseCycle());

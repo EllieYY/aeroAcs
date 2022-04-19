@@ -192,7 +192,7 @@ public class ACRConfig extends Operation {
     public static ACRConfig fromDb(DevReaderDetail detail) {
         ACRConfig result = new ACRConfig();
         result.setScpNumber(detail.getControllerId());
-        result.setRdrSio(detail.getPDeviceId());
+        result.setRdrSio(detail.getSioNumber());
         result.setRdrNumber(detail.getReaderNumber());
         result.setAcrNumber(detail.getAcrNumber());
         result.setPairAcrNumber(detail.getPairAcrNumber());

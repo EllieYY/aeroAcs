@@ -19,6 +19,10 @@ public interface Constants {
     int CMND_OK = 1;
     int CMND_NAK = 2;
 
+    // 卡格式
+    int WGND = 1;
+    int MT2 = 2;
+
 
     // transaction related definitions
     // - transaction source type definitions

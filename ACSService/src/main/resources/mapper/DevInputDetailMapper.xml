@@ -22,11 +22,21 @@
         <result column="mp_number" property="mpNumber" />
         <result column="area_id" property="areaId" />
         <result column="remark" property="remark" />
+        <result column="sio_number" property="sioNumber" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        device_id, device_type_id, device_scope_id, p_device_type_id, p_device_id, controller_id, input_type_id, input, device_name, status, shield_flag, alarm_delay_flag, in_delay, out_delay, in_mode, mp_number, area_id, remark
+        device_id, device_type_id,
+        device_scope_id, p_device_type_id,
+        p_device_id, controller_id,
+        input_type_id, input,
+        device_name, status,
+        shield_flag, alarm_delay_flag,
+        in_delay, out_delay,
+        in_mode, mp_number,
+        area_id, remark,
+        sio_number
     </sql>
     <select id="selectAllByPDeviceIdList" resultMap="BaseResultMap">
         select

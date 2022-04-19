@@ -47,7 +47,7 @@ public class OutputPointSpecification extends Operation {
     public static OutputPointSpecification fromDb(DevOutputDetail detail) {
         OutputPointSpecification result = new OutputPointSpecification();
         result.setScpNumber(detail.getControllerId());
-        result.setSioNumber(detail.getPDeviceId());
+        result.setSioNumber(detail.getSioNumber());
         result.setOutput(detail.getOutput());
 
         // 暂时只使用值0和1

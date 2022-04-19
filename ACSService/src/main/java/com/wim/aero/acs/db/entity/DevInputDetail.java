@@ -80,5 +80,8 @@ public class DevInputDetail implements Serializable {
     @TableField("remark")
     private String remark;
 
+    @TableField("sio_number")
+    private Integer sioNumber;
+
 
 }

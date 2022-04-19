@@ -101,5 +101,8 @@ public class DevXDetail implements Serializable {
     @TableField("last_time")
     private Date lastTime;
 
+    @ApiModelProperty("sio板逻辑编号")
+    @TableField("sio_number")
+    private Integer sioNumber;
 
 }

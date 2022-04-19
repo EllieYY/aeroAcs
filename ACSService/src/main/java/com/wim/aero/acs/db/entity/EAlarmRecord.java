@@ -52,7 +52,7 @@ public class EAlarmRecord implements Serializable {
     private Integer eventTypeCode;
 
     @TableField(value = "ins_time", fill = FieldFill.INSERT)
-    private LocalDateTime insTime;
+    private Date insTime;
 
     @TableField("deal_flag")
     private String dealFlag;

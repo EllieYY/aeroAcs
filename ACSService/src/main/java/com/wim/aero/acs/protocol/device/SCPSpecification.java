@@ -36,7 +36,7 @@ public class SCPSpecification extends Operation {
     private long nTransactions = 80000;
 
     @CmdProp(index = 10)
-    private int nSio = 32;  // Number of SIOs - 16 maximum per RS-485 port
+    private int nSio = 33;  // Number of SIOs - 16 maximum per RS-485 port，需要加上内置SIO板1块
 
     @CmdProp(index = 11)
     private int nMp = 615;   // Number of monitor points - 615 maximum (32 x X200’s = 608 + 7 (1100) = 615)

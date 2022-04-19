@@ -60,7 +60,7 @@ public class MonitorPointConfig extends Operation {
     public static MonitorPointConfig fromDb(DevInputDetail detail) {
         MonitorPointConfig result = new MonitorPointConfig();
         result.setScpNumber(detail.getControllerId());
-        result.setSioNumber(detail.getPDeviceId());
+        result.setSioNumber(detail.getSioNumber());
         result.setInputNumber(detail.getInput());
         result.setMpNumber(detail.getMpNumber());
 

@@ -75,10 +75,10 @@ public class RequestPendingCenter {
 
             // TODO:存库
 
-            log.info("[指令结果] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
-//            if (code != Constants.CMND_OK) {
-//                log.info("[失败指令] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
-//            }
+//            log.info("[指令结果] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
+            if (code != Constants.CMND_OK) {
+                log.info("[失败指令] seqNo[{}], reason[{}], cmd[{}]", seqNo, reason, commandInfo.getCommand());
+            }
 
             // 移除命令集合
 //            removeStreamId(key);

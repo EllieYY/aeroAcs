@@ -18,7 +18,7 @@ import java.util.Date;
 public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.info("insertFill.....");
+//        log.info("insertFill.....");
         this.setFieldValByName("insTime", new Date(), metaObject);
     }
 

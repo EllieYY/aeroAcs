@@ -40,60 +40,60 @@ import lombok.Data;
 public class SIOSpecification extends Operation {
 
     @CmdProp(index = 2)
-    private int lastModified = 0;
+    private Integer lastModified = 0;
 
     @CmdProp(index = 3)
-    private int scpNumber;    // SCP number
+    private Integer scpNumber;    // SCP number
 
     @CmdProp(index = 4)
-    private int sioNumber;   // 0 ~ (nSio-1) | command 1107
+    private Integer sioNumber;   // 0 ~ (nSio-1) | command 1107
 
     @CmdProp(index = 5)
-    private int nInputs;
+    private Integer nInputs;
 
     @CmdProp(index = 6)
-    private int nOutputs;
+    private Integer nOutputs;
 
     @CmdProp(index = 7)
-    private int nReaders;
+    private Integer nReaders;
 
     @CmdProp(index = 8)
-    private int model;
+    private Integer model;
 
     @CmdProp(index = 9)
-    private int revision = 0;
+    private Integer revision = 0;
 
     @CmdProp(index = 10)
-    private int serNumLow = 0;
+    private Integer serNumLow = 0;
 
     @CmdProp(index = 11)
-    private int serNumHigh = -1;
+    private Integer serNumHigh = -1;
 
     @CmdProp(index = 12)
-    private int enable = 1;
+    private Integer enable = 1;
 
     @CmdProp(index = 13)
-    private int port; // same as msp1Number in SIODriver
+    private Integer port; // same as msp1Number in SIODriver
 
     @CmdProp(index = 14)
-    private int channelOut = 0;
+    private Integer channelOut = 0;
 
     @CmdProp(index = 15)
-    private int channelIn = 0;
+    private Integer channelIn = 0;
 
     @CmdProp(index = 16)
-    private int address;
+    private Integer address;
 
     /** 离线周期判断 */
     @CmdProp(index = 17)
-    private int e_max = 3;
+    private Integer e_max = 3;
 
     @CmdProp(index = 18)
-    private int flags = 0;
+    private Integer flags = 0;
 
     /** 梯控设备参数 -------------------*/
     @CmdProp(index = 19)
-    private int nSioNextIn = -1;
+    private Integer nSioNextIn = -1;
     //    SIO number for continuation of inputs. Use -1 for not used. The continuation point is the first
     //    point of that type on the continuation card. A value of zero specifies to use the next SIO number
     //+1 as the value of nSioNextIn.
@@ -101,7 +101,7 @@ public class SIOSpecification extends Operation {
     //this number be explicitly specified.
 
     @CmdProp(index = 20)
-    private int nSioNextOut = -1;
+    private Integer nSioNextOut = -1;
     //SIO number for continuation of outputs. Use -1 for not used. The continuation point is the first
     //    point of that type on the continuation card. A value of zero specifies to use the next SIO number
     //+1 as the value of nSioNextOut.
@@ -109,33 +109,33 @@ public class SIOSpecification extends Operation {
     //this number be explicitly specified.
 
     @CmdProp(index = 21)
-    private int nSioNextRdr = -1;
+    private Integer nSioNextRdr = -1;
     //SIO number for continuation of readers. Use -1 for not used. The continuation point is the first
     //    point of that type on the continuation card. A value of zero specifies to use the next SIO number
     //+1 as the value of nSioNextRdr. Therefore, SIO 0 cannot be used as the next SIO. For
     //    maintainability, it is recommended that this number be explicitly specified.
 
     @CmdProp(index = 22)
-    private int nSIOConnectTest = 0;
+    private Integer nSIOConnectTest = 0;
 
     @CmdProp(index = 23)
-    private int nSioOemCode = 0;
+    private Integer nSioOemCode = 0;
 
     @CmdProp(index = 24)
-    private int nSioOemMask = 0;
+    private Integer nSioOemMask = 0;
 
     public static SIOSpecification fromDb(DevXDetail detail) {
         SIOSpecification result = new SIOSpecification();
         result.setScpNumber(detail.getControllerId());
-        result.setSioNumber(detail.getDeviceId());
+        result.setSioNumber(detail.getSioNumber());
         result.setPort(detail.getControllerPort());
         result.setAddress(detail.getAddress());
 
-        int model = detail.getModel();
+        Integer model = detail.getModel();
         result.setModel(model);
-        int nReaders = 0;
-        int nInputs = 0;
-        int nOutputs = 0;
+        Integer nReaders = 0;
+        Integer nInputs = 0;
+        Integer nOutputs = 0;
         switch (model) {
             case 196:  // x1100
             case 193:  // x100

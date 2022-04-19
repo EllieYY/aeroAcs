@@ -55,7 +55,7 @@ public class InputPointSpecification extends Operation {
     public static InputPointSpecification fromDb(DevInputDetail detail) {
         InputPointSpecification result = new InputPointSpecification();
         result.setScpNumber(detail.getControllerId());
-        result.setSioNumber(detail.getPDeviceId());
+        result.setSioNumber(detail.getSioNumber());
         result.setInput(detail.getInput());
 
         if (StringUtils.hasText(detail.getInMode())) {

@@ -129,6 +129,10 @@ public class AccessConfigService {
             if (code == Constants.REST_CODE_SUCCESS) {
                 resultMap.remove(streamId);
             } else {
+                if (!resultMap.containsKey(streamId)) {
+                    log.error("sendMultiCmd未返回响应，{}", streamId);
+                    continue;
+                }
                 CmdDownloadInfo info = resultMap.get(streamId);
                 info.setCode(code);
                 info.setReason(response.getReason());

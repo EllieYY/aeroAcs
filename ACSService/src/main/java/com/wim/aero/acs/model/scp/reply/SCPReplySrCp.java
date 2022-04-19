@@ -20,6 +20,7 @@ public class SCPReplySrCp extends ReplyBody {
 
     @Override
     public void process(int scpId) {
+        // TODO：逻辑编号未必是连续的
         String info = "FirstCp:" + first + ", ";
         for (int i = 0;i < count; i++) {
             info += (first + i) + ":" + status.get(i);

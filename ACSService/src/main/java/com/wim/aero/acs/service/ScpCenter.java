@@ -61,8 +61,6 @@ public class ScpCenter {
             if (preStatus == ScpStatus.INIT || preStatus == ScpStatus.OFF_LINE) {
                 conScpService.configScp(scpId);
                 conSioService.configSioForScp(scpId);
-
-
             }
         }
     }

@@ -94,7 +94,7 @@ public class SIOService {
         readerConfig(scpId, cmdList);
 
         for(ScpCmd cmd:cmdList) {
-            System.out.println(cmd);
+            System.out.println(cmd.getCommand());
         }
         // TODO:优化
         RequestPendingCenter.add(0, cmdList);

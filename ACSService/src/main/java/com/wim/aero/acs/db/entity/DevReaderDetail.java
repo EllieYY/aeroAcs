@@ -250,5 +250,6 @@ public class DevReaderDetail implements Serializable {
     @TableField("open_direction")
     private String openDirection;
 
-
+    @TableField("sio_number")
+    private Integer sioNumber;
 }

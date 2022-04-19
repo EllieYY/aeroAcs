@@ -60,12 +60,19 @@
         <result column="con_status" property="conStatus" />
         <result column="last_time" property="lastTime" />
         <result column="open_direction" property="openDirection" />
+        <result column="sio_number" property="sioNumber" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        device_id, device_type_id, device_scope_id, p_device_type_id, p_device_id, controller_id, area_id, device_name, fix_address, reader_number, key_mode, acr_number, pair_acr_number, access_cfg, strk_sio, strk_number, strike_time_min, strike_time_max, strike_mode, door_sio, door_number, dc_held, rex0_sio, rex0_number, rex1_sio, rex1_number, rex0_tz, rex1_tz, altrdr_sio, altrdr_number, altrdr_spec, cd_format, apb_mode, apb_delay, apb_in, apb_out, spare, actl_flags, offline_mode, default_mode, strk_t2, dc_held2, feature_type, filter_alarm, status, kq_flag, remark, create_by, create_time, update_by, update_time, open_over_flag, alarm_memo, con_status, last_time, open_direction
+        device_id, device_type_id, device_scope_id, p_device_type_id, p_device_id, controller_id, area_id, device_name,
+        fix_address, reader_number, key_mode, acr_number, pair_acr_number, access_cfg, strk_sio, strk_number,
+        strike_time_min, strike_time_max, strike_mode, door_sio, door_number, dc_held, rex0_sio, rex0_number,
+        rex1_sio, rex1_number, rex0_tz, rex1_tz, altrdr_sio, altrdr_number, altrdr_spec, cd_format, apb_mode,
+        apb_delay, apb_in, apb_out, spare, actl_flags, offline_mode, default_mode, strk_t2, dc_held2,
+        feature_type, filter_alarm, status, kq_flag, remark, create_by, create_time, update_by,
+        update_time, open_over_flag, alarm_memo, con_status, last_time, open_direction, sio_number
     </sql>
     <select id="selectAllByPDeviceId" resultMap="BaseResultMap">
         select
@@ -83,7 +90,6 @@
         where
         controller_id = #{controllerId,jdbcType=NUMERIC}
     </select>
-
 
 
     <resultMap id="AcrStrikeInfoMap" type="com.wim.aero.acs.model.db.AcrStrikeInfo">

@@ -63,7 +63,7 @@ public class ScpMessageController {
         if (request.getScpId() <= 0) {
             return ResultBeanUtil.makeParamInvalidResp(request.toString());
         }
-        log.info(request.toString());
+//        log.info(request.toString());
 
         // 数据处理
         scpMessageService.dealScpeply(request);
@@ -84,7 +84,7 @@ public class ScpMessageController {
         }
 
 
-        log.info(request.toString());
+//        log.info(request.toString());
 
         scpMessageService.dealTransaction(request);
         return ResultBeanUtil.makeOkResp(request.toString());

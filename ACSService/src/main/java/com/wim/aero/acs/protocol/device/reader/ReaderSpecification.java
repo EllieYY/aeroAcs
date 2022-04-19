@@ -67,7 +67,7 @@ public class ReaderSpecification extends Operation {
     public static ReaderSpecification fromDb(DevReaderDetail detail) {
         ReaderSpecification result = new ReaderSpecification();
         result.setScpNumber(detail.getControllerId());
-        result.setSioNumber(detail.getPDeviceId());
+        result.setSioNumber(detail.getSioNumber());
         result.setReader(detail.getReaderNumber());
         result.setKeypadMode(detail.getKeyMode());
 

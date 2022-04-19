@@ -58,11 +58,6 @@ public class ScpMessageService {
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
-//        //TODO:mq test
-//        queueProducer.sendLogMessage(
-//                new LogMessage(
-//                        index, date, scpId, sourceType, sourceNum, tranType, tranCode, transaction.getArgJsonStr()));
-
         if (!TransactionType.isProtocolCode(sourceType, tranType)) {
             log.info("不支持的SCPReplyTransaction类型 - srcType:{}, tranType:{}", sourceType, tranType);
             return ;
@@ -91,8 +86,8 @@ public class ScpMessageService {
             EAccessRecord record = new EAccessRecord(
                     index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder, accessEvent.toString());
 
-            log.info(record.toString());
-            accessRecordService.save(record);
+//            log.info(record.toString());
+//            accessRecordService.save(record);
 
             queueProducer.sendAccessMessage(
                     new AccessMessage(
@@ -102,8 +97,8 @@ public class ScpMessageService {
         } else if (sourceType == Constants.tranSrcMP) {   // 告警事件
             EAlarmRecord record = new EAlarmRecord(index, date, scpId, sourceType, sourceNum, tranType, tranCode, body.toString());
 
-            log.info(record.toString());
-            alarmRecordService.save(record);
+//            log.info(record.toString());
+//            alarmRecordService.save(record);
 
             queueProducer.sendAlarmMessage(
                     new AlarmMessage(
@@ -111,8 +106,8 @@ public class ScpMessageService {
 
         } else { // 日志事件
             ELogRecord record = new ELogRecord(index, date, scpId, sourceType, sourceNum, tranType, tranCode, body.toString());
-            log.info(record.toString());
-            logRecordService.save(record);
+//            log.info(record.toString());
+//            logRecordService.save(record);
 
             queueProducer.sendLogMessage(
                     new LogMessage(
@@ -133,6 +128,12 @@ public class ScpMessageService {
             log.info("不支持的业务类型 - {}", reply);
             return;
         }
+
+        // TODO:test code
+//        if (enScpReplyType != EnScpReplyType.enSCPReplyCmndStatus ||
+//                enScpReplyType != EnScpReplyType.enSCPReplyCommStatus) {
+//            return;
+//        }
 
         // 类型转换
         Class<ReplyBody> bodyClazz = ReplyType.fromCode(enScpReplyType).getTransClazz();

@@ -1,5 +1,6 @@
 package com.wim.aero.acs.service;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.config.DSTConfig;
 import com.wim.aero.acs.db.entity.CardFormat;
 import com.wim.aero.acs.db.entity.DevControllerCommonAttribute;
@@ -155,7 +156,7 @@ public class ScpService {
         log.info("[配置设备] scpId[{}]", scpId);
 
         for(ScpCmd cmd:cmdList) {
-            System.out.println(cmd);
+            System.out.println(cmd.getCommand());
         }
 
         // TODO:优化
@@ -207,12 +208,14 @@ public class ScpService {
         // command 1102
         List<CardFormat> list = cardFormatService.list();
         for (CardFormat item:list) {
-            if (StringUtils.matchesCharacter(item.getCardType(), '0')) {   // 韦根卡
+//            if (StringUtils.matchesCharacter(item.getCardType(), '0')) {   // 韦根卡
+            if (item.getFunctionId() == Constants.WGND) {
                 WiegandCardFormat cardFormat = WiegandCardFormat.fromDb(scpId, item);
                 String msg = RequestMessage.encode(scpId, cardFormat);
                 // 命令组装
                 cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
-            } else if (StringUtils.matchesCharacter(item.getCardType(), '1')) {  // 磁卡
+//            } else if (StringUtils.matchesCharacter(item.getCardType(), '1')) {  // 磁卡
+            } else if (item.getFunctionId() == Constants.MT2) {  // 磁卡
                 MT2CardFormat cardFormat = MT2CardFormat.fromDb(scpId, item);
                 String msg = RequestMessage.encode(scpId, cardFormat);
                 // 命令组装
@@ -220,7 +223,4 @@ public class ScpService {
             }
         }
     }
-
-
-
 }
