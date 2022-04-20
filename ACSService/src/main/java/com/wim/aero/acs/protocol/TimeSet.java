@@ -4,6 +4,8 @@ import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @title: TimeSet
  * @author: Ellie
@@ -17,4 +19,11 @@ public class TimeSet extends Operation {
 
     @CmdProp(index = 3)
     private long customTime; // 0 - 不使用， else - 到1970的秒数
+
+    public TimeSet(int scpNumber) {
+        this.scpNumber = scpNumber;
+
+        Date time = new Date();
+        customTime = (long) 0.001 * time.getTime();
+    }
 }

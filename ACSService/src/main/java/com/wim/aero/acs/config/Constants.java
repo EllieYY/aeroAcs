@@ -23,6 +23,15 @@ public interface Constants {
     int WGND = 1;
     int MT2 = 2;
 
+    // Cos状态的tranCode定义
+    int COS_Disconnected = 1;   // (from an input point ID)
+    int COS_Unknown = 2;        // (offline): no report from the ID
+    int COS_Secure = 3;         //  (or deactivate relay)
+    int COS_Alarm = 4;          // (or activated relay: perm or temp)
+    int COS_Fault = 5;
+    int COS_Exit = 6;           // delay in progress
+    int COS_Entry = 7;          // delay in progress
+
 
     // transaction related definitions
     // - transaction source type definitions

@@ -14,10 +14,7 @@ import com.wim.aero.acs.model.scp.reply.EnScpReplyType;
 import com.wim.aero.acs.model.scp.reply.ReplyBody;
 import com.wim.aero.acs.model.scp.reply.ReplyType;
 import com.wim.aero.acs.model.scp.reply.SCPReply;
-import com.wim.aero.acs.model.scp.transaction.SCPReplyTransaction;
-import com.wim.aero.acs.model.scp.transaction.AccessEvent;
-import com.wim.aero.acs.model.scp.transaction.TransactionBody;
-import com.wim.aero.acs.model.scp.transaction.TransactionType;
+import com.wim.aero.acs.model.scp.transaction.*;
 import com.wim.aero.acs.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,18 +64,17 @@ public class ScpMessageService {
         Class<TransactionBody> bodyClazz = TransactionType.fromCode(sourceType, tranType).getTransClazz();
         TransactionBody body = JsonUtil.fromJson(transaction.getArgJsonStr(), bodyClazz);
 
-
         // 访问事件
         if (sourceType == Constants.tranSrcACR && (
                 tranType == Constants.tranTypeCardBin ||
-                        tranType == Constants.tranTypeCardBcd ||
-            tranType == Constants.tranTypeCardFull ||
-            tranType == Constants.tranTypeDblCardFull ||
-            tranType == Constants.tranTypeI64CardFull ||
-            tranType == Constants.tranTypeI64CardFullIc32 ||
-            tranType == Constants.tranTypeCardID ||
-            tranType == Constants.tranTypeDblCardID ||
-            tranType == Constants.tranTypeI64CardID)) {
+                tranType == Constants.tranTypeCardBcd ||
+                tranType == Constants.tranTypeCardFull ||
+                tranType == Constants.tranTypeDblCardFull ||
+                tranType == Constants.tranTypeI64CardFull ||
+                tranType == Constants.tranTypeI64CardFullIc32 ||
+                tranType == Constants.tranTypeCardID ||
+                tranType == Constants.tranTypeDblCardID ||
+                tranType == Constants.tranTypeI64CardID)) {
 
             AccessEvent accessEvent = (AccessEvent) body;
             String cardHolder = accessEvent.getCardHolder();
@@ -86,15 +82,20 @@ public class ScpMessageService {
             EAccessRecord record = new EAccessRecord(
                     index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder, accessEvent.toString());
 
-//            log.info(record.toString());
-//            accessRecordService.save(record);
-
             queueProducer.sendAccessMessage(
                     new AccessMessage(
                             index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
                             accessEvent.toString()));
 
-        } else if (sourceType == Constants.tranSrcMP) {   // 告警事件
+        } else if (tranType == Constants.tranTypeCoS && (
+                sourceType == Constants.tranSrcMP ||
+                        sourceType == Constants.tranSrcCP ||
+                        sourceType == Constants.tranSrcSioCom)) {
+            TypeCoS cos = (TypeCoS) body;
+            if (tranCode == Constants.COS_Alarm) {    // 报警事件
+
+            }
+
             EAlarmRecord record = new EAlarmRecord(index, date, scpId, sourceType, sourceNum, tranType, tranCode, body.toString());
 
 //            log.info(record.toString());

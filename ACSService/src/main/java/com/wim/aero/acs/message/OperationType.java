@@ -1,6 +1,7 @@
 package com.wim.aero.acs.message;
 
 import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
+import com.wim.aero.acs.protocol.TimeSet;
 import com.wim.aero.acs.protocol.TransactionLogSetting;
 import com.wim.aero.acs.protocol.accessLevel.*;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
@@ -74,7 +75,9 @@ public enum OperationType {
 
     MP_GROUP_MASK(321, MpGroupCommand.class),
 
-    CARD_DEL(3305, CardDelete.class);
+    CARD_DEL(3305, CardDelete.class),
+
+    TIME_SET(302, TimeSet.class);
     /**-------------------------------------------------------------------------------*/
 
     private int opCode;

@@ -13,6 +13,7 @@ import com.wim.aero.acs.model.DST;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
+import com.wim.aero.acs.protocol.TimeSet;
 import com.wim.aero.acs.protocol.TransactionLogSetting;
 import com.wim.aero.acs.protocol.accessLevel.ElevatorALsSpecification;
 import com.wim.aero.acs.protocol.card.AccessDatabaseSpecification;
@@ -83,14 +84,7 @@ public class ScpService {
 
         scpSpecification(scpId, result);
 
-        // 1116
-//        List<DST> dstList = dstConfig.getList();
-//        for (DST dst:dstList) {
-//            DaylightSavingTimeConfiguration config = new DaylightSavingTimeConfiguration(
-//                    scpId, dst.getStart(), dst.getEnd());
-//            String dstMsg = RequestMessage.encode(scpId, config);
-//            result.add(new ScpCmd(scpId, dstMsg, IdUtil.nextId()));
-//        }
+
 
         return result;
     }
@@ -146,6 +140,20 @@ public class ScpService {
         TransactionLogSetting operation = TransactionLogSetting.openLog(scpId);
         String logMsg = RequestMessage.encode(scpId, operation);
         cmdList.add(new ScpCmd(scpId, logMsg, IdUtil.nextId()));
+
+        // 1116
+        List<DST> dstList = dstConfig.getList();
+        for (DST dst:dstList) {
+            DaylightSavingTimeConfiguration config = new DaylightSavingTimeConfiguration(
+                    scpId, dst.getStart(), dst.getEnd());
+            String dstMsg = RequestMessage.encode(scpId, config);
+            cmdList.add(new ScpCmd(scpId, dstMsg, IdUtil.nextId()));
+        }
+
+        // 时钟同步
+        TimeSet timeSet = new TimeSet(scpId);
+        String timeMsg = RequestMessage.encode(scpId, timeSet);
+        cmdList.add(new ScpCmd(scpId, timeMsg, IdUtil.nextId()));
 
         // 有梯控则配置
 //        elevatorScpSpecification(scpId, cmdList);
