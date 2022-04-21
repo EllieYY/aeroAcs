@@ -97,9 +97,9 @@ public class SIOService {
             System.out.println(cmd.getCommand());
         }
         // TODO:优化
-        RequestPendingCenter.add(0, cmdList);
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        RequestPendingCenter.updateSeq(responseList);
+//        RequestPendingCenter.add(0, cmdList);
+//        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+//        RequestPendingCenter.updateSeq(responseList);
     }
 
     /**

@@ -1,6 +1,11 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.model.mq.AccessMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+import org.springframework.util.StringUtils;
+
+import java.util.Date;
 
 /**
  * @title: TypeCardFull
@@ -27,7 +32,7 @@ import lombok.Data;
  * // 		18 - request granted: card granted access from cache, invalid issue code
  **/
 @Data
-public class TypeCardFull extends TransactionBody implements AccessEvent {
+public class TypeCardFull extends TransactionBody {
     private int format_number;		// index to the format table that was used, negative if reverse
     private long facility_code;		// facility code
     private long cardholder_id;		// cardholder ID number
@@ -36,7 +41,18 @@ public class TypeCardFull extends TransactionBody implements AccessEvent {
     private String encoded_card;	// encoded_card[32];Large encoded ID. (up to 32 bytes reported)
 
     @Override
-    public String getCardHolder() {
-        return String.valueOf(cardholder_id);
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+        String cardHolder = String.valueOf(cardholder_id);
+        int scpId = transaction.getScpId();
+        long date = transaction.getTime() * 1000;
+        long index = transaction.getSerNum();
+        int sourceType = transaction.getSourceType();
+        int sourceNum = transaction.getSourceNumber();
+        int tranType = transaction.getTranType();
+        int tranCode = transaction.getTranCode();
+
+        queueProducer.sendAccessMessage(
+                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder, transaction.toString())
+        );
     }
 }

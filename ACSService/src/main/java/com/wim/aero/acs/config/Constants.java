@@ -24,13 +24,23 @@ public interface Constants {
     int MT2 = 2;
 
     // Cos状态的tranCode定义
-    int COS_Disconnected = 1;   // (from an input point ID)
-    int COS_Unknown = 2;        // (offline): no report from the ID
-    int COS_Secure = 3;         //  (or deactivate relay)
-    int COS_Alarm = 4;          // (or activated relay: perm or temp)
-    int COS_Fault = 5;
-    int COS_Exit = 6;           // delay in progress
-    int COS_Entry = 7;          // delay in progress
+    int COS_TRAN_Disconnected = 1;   // (from an input point ID)
+    int COS_TRAN_Unknown = 2;        // (offline): no report from the ID
+    int COS_TRAN_Secure = 3;         //  (or deactivate relay)
+    int COS_TRAN_Alarm = 4;          // (or activated relay: perm or temp)
+    int COS_TRAN_Fault = 5;
+    int COS_TRAN_Exit = 6;           // delay in progress
+    int COS_TRAN_Entry = 7;          // delay in progress
+
+    /**
+     * Status mask: 0 = inactive, 1 = active, 2 = ground fault, 3 = short, 4 = open circuit, 5 = foreign voltage, 6 = non-
+     * settling error, 7 = supervisory fault codes.
+     * Note: See table below for special handling for the Reader Tamper status.
+     * 0x08 Offline: communication to the input point is not valid
+     * 0x10 Mask flag: set if the monitor point is MASKed
+     * 0x20 Local mask flag: entry or exit delay in progress
+     * 0x40 Entry delay in progress
+     * 0x80 Not attached (the monitor point is not linked to an Input)*/
 
 
     // transaction related definitions

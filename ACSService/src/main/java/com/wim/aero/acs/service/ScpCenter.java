@@ -45,6 +45,7 @@ public class ScpCenter {
             scpShadow.setState(ScpStatus.INIT);
             scpMap.put(scpId, scpShadow);
         } else {
+            log.info("addScp - {}", scpId);
             ScpShadow scpShadow = new ScpShadow(scpId, ScpStatus.INIT);
             scpMap.put(scpId, scpShadow);
         }
@@ -57,11 +58,15 @@ public class ScpCenter {
             scpShadow.setState(ScpStatus.ON_LINE);
             scpMap.put(scpId, scpShadow);
 
+            // TODO:
             // 上线后开始配置 -- 先验条件：设备处于初始化状态
             if (preStatus == ScpStatus.INIT || preStatus == ScpStatus.OFF_LINE) {
                 conScpService.configScp(scpId);
                 conSioService.configSioForScp(scpId);
             }
+        } else {
+            ScpShadow scpShadow = new ScpShadow(scpId, ScpStatus.ON_LINE);
+            scpMap.put(scpId, scpShadow);
         }
     }
 

@@ -185,6 +185,29 @@ public class ScpController {
         return new ArrayList<>();
     }
 
+    @RequestMapping(value = "/config/test", method = {RequestMethod.POST})
+    public List<ScpCmd> scpConfigTest(@RequestBody ScpRequestInfo request) {
+        int scpId = request.getScpId();
+        if (!scpService.isValidScpId(scpId)) {
+            log.error("控制器{}数据不存在。", scpId);
+            return new ArrayList<>();
+        }
+        // TODO:修改scp状态 -- 数据库
+
+        // scp配置
+        scpService.configScp(scpId);
+//        // sio及物理点位配置
+        sioService.configSioForScp(scpId);
+//        // 时间组、访问组配置
+//        accessConfigService.alBasicConfig(scpId, cmdList);
+
+//        for (ScpCmd cmd:cmdList) {
+//            System.out.println(cmd.getCommand());
+////            log.info("[SCP:{}] - {}", scpId, cmd.getCommand());
+//        }
+        return new ArrayList<>();
+    }
+
     /**
      * 状态通知
      * @param request

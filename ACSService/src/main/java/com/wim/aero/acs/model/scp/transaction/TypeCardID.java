@@ -1,6 +1,10 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.model.mq.AccessMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @title: TypeCardID
@@ -54,7 +58,7 @@ import lombok.Data;
  * // 		43 - request denied: known card denied access from cache
  **/
 @Data
-public class TypeCardID extends TransactionBody implements AccessEvent {
+public class TypeCardID extends TransactionBody {
     private int	format_number;			// index to the format table that was used, negative if reverse read
     private long cardholder_id;			// cardholder ID number
     private int	floor_number;			// zero if not available (or not supported), else 1==first floor, ...
@@ -62,7 +66,19 @@ public class TypeCardID extends TransactionBody implements AccessEvent {
     private int	elev_cab;				// Elevator cab number
 
     @Override
-    public String getCardHolder() {
-        return String.valueOf(cardholder_id);
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+        String cardHolder = String.valueOf(cardholder_id);
+
+        int scpId = transaction.getScpId();
+        long date = transaction.getTime() * 1000;
+        long index = transaction.getSerNum();
+        int sourceType = transaction.getSourceType();
+        int sourceNum = transaction.getSourceNumber();
+        int tranType = transaction.getTranType();
+        int tranCode = transaction.getTranCode();
+
+        queueProducer.sendAccessMessage(
+                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder, transaction.toString())
+        );
     }
 }

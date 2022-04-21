@@ -1,10 +1,11 @@
 package com.wim.aero.acs.util;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public final class JsonUtil {
 
-    private static final Gson GSON = new Gson();
+    private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     private JsonUtil() {
         //no instance

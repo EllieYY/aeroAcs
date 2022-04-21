@@ -1,6 +1,9 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @title: TypeActivate
@@ -18,5 +21,8 @@ import lombok.Data;
  **/
 @Data
 public class TypeActivate extends TransactionBody {
+    @Override
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+    }
 //    private int activationCount;   // 没有字段返回
 }

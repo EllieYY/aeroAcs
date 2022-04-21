@@ -49,11 +49,13 @@ public class QueueProducer {
 
     public void sendAlarmMessage(AlarmMessage alarmMessage) {
         String messageStr = JsonUtil.toJson(alarmMessage);
+        log.info("[报警事件] - {}", messageStr);
         this.sendMessage(alarmQueue, messageStr);
     }
 
     public void sendAccessMessage(AccessMessage accessMessage) {
         String messageStr = JsonUtil.toJson(accessMessage);
+        log.info("[刷卡事件] - {}", messageStr);
         this.sendMessage(accessQueue, messageStr);
     }
 
@@ -61,11 +63,11 @@ public class QueueProducer {
         threadPoolTaskExecutor.submit(() -> {
             Date date = new Date();
             try {
-//                log.info("[mq][queue-->send]:activeCount={},queueCount={},completedTaskCount={},taskCount={}",
-//                        threadPoolTaskExecutor.getThreadPoolExecutor().getActiveCount(),
-//                        threadPoolTaskExecutor.getThreadPoolExecutor().getQueue().size(),
-//                        threadPoolTaskExecutor.getThreadPoolExecutor().getCompletedTaskCount(),
-//                        threadPoolTaskExecutor.getThreadPoolExecutor().getTaskCount());
+                log.info("[mq][queue-->send]:activeCount={},queueCount={},completedTaskCount={},taskCount={}",
+                        threadPoolTaskExecutor.getThreadPoolExecutor().getActiveCount(),
+                        threadPoolTaskExecutor.getThreadPoolExecutor().getQueue().size(),
+                        threadPoolTaskExecutor.getThreadPoolExecutor().getCompletedTaskCount(),
+                        threadPoolTaskExecutor.getThreadPoolExecutor().getTaskCount());
 
                 this.jmsMessagingTemplate.convertAndSend(destination, message);
             } catch (Throwable e) {

@@ -56,7 +56,7 @@ public class SCPReplySrSio extends ReplyBody {
 
     @Override
     public void process(int scpId) {
-        log.info("sio状态：scpId[{}], sio[{}], msp1dNum[{}], comStatus[{}]",
+        log.info("[sio状态] - scpId[{}], sio[{}], msp1dNum[{}], comStatus[{}]",
                 scpId, number, msp1_dnum, com_status);
 
 

@@ -1,6 +1,9 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @title: TypeCoSDoor
@@ -41,4 +44,8 @@ public class TypeCoSDoor extends TransactionBody {
     private byte ap_prior;				// previous ap status
     private byte door_prior;			// previous door status map
 
+    @Override
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+
+    }
 }

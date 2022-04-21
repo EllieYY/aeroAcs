@@ -47,7 +47,7 @@ public class CardController {
         List<CmdDownloadInfo> result = accessConfigService.addCard(cardNoList.getCardList());
         if (result.size() > 0) {
             log.info("下发失败卡片信息：{}", result);
-            ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, result);
+//            ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, result);
         }
 
         return ResultBeanUtil.makeOkResp();

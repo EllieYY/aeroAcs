@@ -1,6 +1,9 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @title: TypeArea
@@ -34,4 +37,7 @@ public class TypeArea extends TransactionBody {
     private int priorStatus;			// flags before change
 
 
+    @Override
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+    }
 }

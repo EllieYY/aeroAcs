@@ -47,73 +47,21 @@ public class ScpMessageService {
     }
 
     public void dealTransaction(SCPReplyTransaction transaction) {
-        int scpId = transaction.getScpId();
-        Date date = new Date(transaction.getTime() * 1000);
-        long index = transaction.getSerNum();
         int sourceType = transaction.getSourceType();
-        int sourceNum = transaction.getSourceNumber();
         int tranType = transaction.getTranType();
-        int tranCode = transaction.getTranCode();
 
         if (!TransactionType.isProtocolCode(sourceType, tranType)) {
-            log.info("不支持的SCPReplyTransaction类型 - srcType:{}, tranType:{}", sourceType, tranType);
-            return ;
+            log.info("不支持的SCPReplyTransaction类型 - {}", transaction.toString());
+            return;
         }
+
+        log.info(transaction.toString());
 
         // 类型转换
         Class<TransactionBody> bodyClazz = TransactionType.fromCode(sourceType, tranType).getTransClazz();
         TransactionBody body = JsonUtil.fromJson(transaction.getArgJsonStr(), bodyClazz);
 
-        // 访问事件
-        if (sourceType == Constants.tranSrcACR && (
-                tranType == Constants.tranTypeCardBin ||
-                tranType == Constants.tranTypeCardBcd ||
-                tranType == Constants.tranTypeCardFull ||
-                tranType == Constants.tranTypeDblCardFull ||
-                tranType == Constants.tranTypeI64CardFull ||
-                tranType == Constants.tranTypeI64CardFullIc32 ||
-                tranType == Constants.tranTypeCardID ||
-                tranType == Constants.tranTypeDblCardID ||
-                tranType == Constants.tranTypeI64CardID)) {
-
-            AccessEvent accessEvent = (AccessEvent) body;
-            String cardHolder = accessEvent.getCardHolder();
-
-            EAccessRecord record = new EAccessRecord(
-                    index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder, accessEvent.toString());
-
-            queueProducer.sendAccessMessage(
-                    new AccessMessage(
-                            index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
-                            accessEvent.toString()));
-
-        } else if (tranType == Constants.tranTypeCoS && (
-                sourceType == Constants.tranSrcMP ||
-                        sourceType == Constants.tranSrcCP ||
-                        sourceType == Constants.tranSrcSioCom)) {
-            TypeCoS cos = (TypeCoS) body;
-            if (tranCode == Constants.COS_Alarm) {    // 报警事件
-
-            }
-
-            EAlarmRecord record = new EAlarmRecord(index, date, scpId, sourceType, sourceNum, tranType, tranCode, body.toString());
-
-//            log.info(record.toString());
-//            alarmRecordService.save(record);
-
-            queueProducer.sendAlarmMessage(
-                    new AlarmMessage(
-                            index, date, scpId, sourceType, sourceNum, tranType, tranCode, transaction.getArgJsonStr()));
-
-        } else { // 日志事件
-            ELogRecord record = new ELogRecord(index, date, scpId, sourceType, sourceNum, tranType, tranCode, body.toString());
-//            log.info(record.toString());
-//            logRecordService.save(record);
-
-            queueProducer.sendLogMessage(
-                    new LogMessage(
-                            index, date, scpId, sourceType, sourceNum, tranType, tranCode, transaction.getArgJsonStr()));
-        }
+        body.process(queueProducer, transaction);
     }
 
 

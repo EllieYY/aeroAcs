@@ -1,6 +1,9 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @title: TypeREX
@@ -22,4 +25,9 @@ import lombok.Data;
 @Data
 public class TypeREX extends TransactionBody {
     private int rex_number;				// rex that initiated the request (0 or 1)
+
+    @Override
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+
+    }
 }

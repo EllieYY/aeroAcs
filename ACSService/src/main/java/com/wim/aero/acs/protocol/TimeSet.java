@@ -24,6 +24,6 @@ public class TimeSet extends Operation {
         this.scpNumber = scpNumber;
 
         Date time = new Date();
-        customTime = (long) 0.001 * time.getTime();
+        customTime = time.getTime() / 1000;
     }
 }

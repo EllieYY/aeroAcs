@@ -25,6 +25,7 @@ public class RequestPendingCenter {
 
     /** 命令集合添加 */
     public static void add(long taskId, List<ScpCmd> commandInfoList) {
+        log.info("[下发命令条数] - {}", commandInfoList.size());
         for (ScpCmd cmd:commandInfoList) {
             CommandInfo commandInfo = new CommandInfo(
                     taskId, cmd.getStreamId(), cmd.getScpId(), cmd.getCommand(), 0);
@@ -38,6 +39,8 @@ public class RequestPendingCenter {
 
     /** 更新seqNo */
     public static List<CommandInfo> updateSeq(List<ScpCmdResponse> cmdResponseList) {
+        log.info("[通信服务响应命令条数] - {}", cmdResponseList.size());
+
         List<CommandInfo> result = new ArrayList<>();
         for (ScpCmdResponse response:cmdResponseList) {
             String streamId = response.getStreamId();
@@ -55,15 +58,11 @@ public class RequestPendingCenter {
                     streamSeqMap.put(streamId, seqNo);
                 } else {
                     result.add(commandInfo);
-
                 }
             } else {
-                log.error("返回错误 {}", streamId);
+                log.error("[通信服务错误] - 返回未定义streamId : {}", streamId);
             }
         }
-
-//        log.info(streamSeqMap.toString());
-//        log.info(commandInfoMap.toString());
 
         return result;
     }
@@ -81,12 +80,14 @@ public class RequestPendingCenter {
             if (code != Constants.CMND_OK) {
                 log.info("[失败指令] seqNo[{}], reason[{}], cmd[{}]", seqNo, reason, commandInfo.getCommand());
             } else {
-                log.info("[指令结果] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
+//                log.info("[指令结果] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
             }
 
             // 移除命令集合
-//            removeStreamId(key);
+            removeStreamId(key);
         }
+
+//        log.info("[设备未响应命令] - {}", commandInfoMap.size());
     }
 
 

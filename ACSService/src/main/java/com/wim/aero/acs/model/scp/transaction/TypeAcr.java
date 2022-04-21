@@ -1,6 +1,9 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @title: TypeAcr
@@ -27,4 +30,9 @@ public class TypeAcr extends TransactionBody {
     private int prior_flags_e;		// prior image of CC_ACR::spare flags
     private long auth_mod_flags;		// Not used
     private long prior_auth_mod_flags; // Not used
+
+    @Override
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+
+    }
 }

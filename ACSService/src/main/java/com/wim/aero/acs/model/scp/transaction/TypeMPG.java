@@ -1,7 +1,9 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,4 +30,9 @@ public class TypeMPG extends TransactionBody {
     private int mask_count;			// current mask count of this MPG
     private int nActiveMps;			// number of active Monitor Points
     List<Integer> nMpList;		    // IntVB nMpList[10*2]; list of the first 10 active Point Pairs: "Type-Number"
+
+    @Override
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+
+    }
 }

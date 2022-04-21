@@ -59,7 +59,7 @@ public class ACRConfig extends Operation {
     private Integer accessCfg; // 读卡器类型
 
     @CmdProp(index = 6)
-    private Integer pairAcrNumber; // Use -1 if not paired reader.
+    private Integer pairAcrNumber = -1; // Use -1 if not paired reader.
 
     @CmdProp(index = 7)
     private Integer rdrSio; // Reader link: the SIO number on the SCP that contains the reader. Use - 1 for not used.
@@ -132,13 +132,13 @@ public class ACRConfig extends Operation {
     private Integer apbMode;
 
     @CmdProp(index = 28)
-    private Integer apbIn;
+    private Integer apbIn = -1;
 
     @CmdProp(index = 29)
-    private Integer apbTo;
+    private Integer apbTo = -1;
 
     @CmdProp(index = 30)
-    private Integer spare;
+    private Integer spare = 0;
 
     @CmdProp(index = 31)
     private Integer actlFlags;
@@ -187,7 +187,7 @@ public class ACRConfig extends Operation {
     private Integer iIPBOutNum = 0;
 
     @CmdProp(index = 48)
-    private Integer dfofFilterTime;  // 0~65535
+    private Integer dfofFilterTime = 0;  // 0~65535
 
     public static ACRConfig fromDb(DevReaderDetail detail) {
         ACRConfig result = new ACRConfig();
@@ -195,7 +195,12 @@ public class ACRConfig extends Operation {
         result.setRdrSio(detail.getSioNumber());
         result.setRdrNumber(detail.getReaderNumber());
         result.setAcrNumber(detail.getAcrNumber());
-        result.setPairAcrNumber(detail.getPairAcrNumber());
+
+        if (detail.getAccessCfg() == null || detail.getAccessCfg() == 0) {
+            result.setPairAcrNumber(-1);
+        } else {
+            result.setPairAcrNumber(detail.getPairAcrNumber());
+        }
 
         result.setAccessCfg(detail.getAccessCfg());
         result.setStrikeMode(detail.getStrikeMode());

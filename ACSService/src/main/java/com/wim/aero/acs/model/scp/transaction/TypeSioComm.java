@@ -1,7 +1,10 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +22,7 @@ import java.util.List;
  * //	6   - hexLoad report: ser_num is address loaded (-1 == last record)
  **/
 @Data
+@Slf4j
 public class TypeSioComm extends TransactionBody {
     //  0 - not configured
     //  1 - not tried: active, have not tried to poll it
@@ -52,5 +56,68 @@ public class TypeSioComm extends TransactionBody {
     private byte  nEncConfig;			// Master/Secret key currently in use on this SIO: 0=None, 1=AES Default Key, 2=AES Master/Secret Key, 3= PKI, 6=AES256 session key
     private byte  nEncKeyStatus;		// Status of Master/Secret Key; 0=Not Loaded, 1=Loaded, unverified, 2=Loaded, conflicts w/SIO, 3=Loaded, Verified, 4=AES256 Verified.
     private String mac_addr;			// mac_addr[6];MAC Address, if applicable, LSB first.
+
+    @Override
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+        log.info("[sio状态] - scpId[{}], sio[{}], {}, model[{}], comStatus[{}]",
+                transaction.getScpId(), transaction.getSourceNumber(), getHardwareName(nHardwareId), model, getStateName(comm_sts));
+    }
+
+    //    SIO Hardware ID
+    //    HID Aero X1100 217
+    //    HID Aero X100 218
+    //    HID Aero X200 219
+    //    HID Aero X300 220
+    //    VertX V100 0
+    //    VertX V200 0
+    //    VertX V300 0
+    private String getHardwareName(int nHardwareId) {
+        String name = "未知设备";
+        switch (nHardwareId) {
+            case 217:
+                name = "X1100";
+                break;
+            case 218:
+                name = "X100";
+                break;
+            case 219:
+                name = "X200";
+                break;
+            case 220:
+                name = "X300";
+                break;
+            default:
+                break;
+        }
+
+        return name;
+    }
+
+    //  0 - not configured
+    //  1 - not tried: active, have not tried to poll it
+    //  2 - off-line
+    //  3 - on-line
+    private String getStateName(int state) {
+        String name = "未知状态";
+        switch (state) {
+            case 0:
+                name = "not configured";
+                break;
+            case 1:
+                name = "not tried: active, have not tried to poll it";
+                break;
+            case 2:
+                name = "off-line";
+                break;
+            case 3:
+                name = "on-line";
+                break;
+            default:
+                break;
+        }
+
+        return name;
+    }
+
 
 }

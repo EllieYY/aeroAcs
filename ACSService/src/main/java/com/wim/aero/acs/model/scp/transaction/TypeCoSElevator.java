@@ -1,6 +1,9 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @title: TypeCoSElevator
@@ -17,4 +20,9 @@ import lombok.Data;
 public class TypeCoSElevator extends TransactionBody {
     private byte prevFloorStatus;
     private byte floorNumber;
+
+    @Override
+    public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+
+    }
 }

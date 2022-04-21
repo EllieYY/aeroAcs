@@ -10,6 +10,8 @@ import java.util.function.Predicate;
  **/
 public enum TransactionType {
 
+    SCP_SYS_ASCI(0x00, 0x7E, TypeAsci.class),
+    SCP_SYS(0x00, 0x01, TypeSys.class),
     SCP_LCL_COS(0x02, 0x07, TypeCoS.class),
     SIO_COMM_COS(0x04, 0x02, TypeSioComm.class),
     SIO_TMPR_COS(0x05, 0x07, TypeCoS.class),
