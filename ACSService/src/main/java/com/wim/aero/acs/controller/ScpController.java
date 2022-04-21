@@ -39,15 +39,17 @@ public class ScpController {
     private final SIOService sioService;
     private final AccessConfigService accessConfigService;
     private final RestUtil restUtil;
+    private final RequestPendingCenter requestPendingCenter;
     @Autowired
     public ScpController(ScpService scpService,
                          SIOService sioService,
                          AccessConfigService accessConfigService,
-                         RestUtil restUtil) {
+                         RestUtil restUtil, RequestPendingCenter requestPendingCenter) {
         this.scpService = scpService;
         this.sioService = sioService;
         this.accessConfigService = accessConfigService;
         this.restUtil = restUtil;
+        this.requestPendingCenter = requestPendingCenter;
     }
 
     @ApiOperation(value = "硬件下载")
@@ -60,13 +62,17 @@ public class ScpController {
 
         // 命令组装+记录+scp影子对象维护
         List<ScpCmd> cmdList = scpService.connectScp(scpId);
-        RequestPendingCenter.add(request.getTaskId(), cmdList);
+        requestPendingCenter.add(
+                request.getTaskId(),
+                request.getTaskName(),
+                request.getTaskSource(),
+                cmdList);
         ScpCenter.addScp(scpId);
 
         // 命令发送+反馈
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
         log.info("[硬件下载] {}", responseList.toString());
-        List<CommandInfo> failCmdList = RequestPendingCenter.updateSeq(responseList);
+        List<CommandInfo> failCmdList = requestPendingCenter.updateSeq(responseList);
 
         // 结果反馈给页面
         if (failCmdList.size() == 0) {
@@ -130,12 +136,13 @@ public class ScpController {
     @ApiOperation(value = "下载卡片")
     @RequestMapping(value = "/card/reload", method = {RequestMethod.POST})
     public ResultBean<List<CmdDownloadInfo>> reloadCards(@RequestBody ScpRequestInfo request) {
-        List<CmdDownloadInfo> results = accessConfigService.downloadCards(request.getScpId());
-        if (results.size() > 0) {
-            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, results);
-        } else {
-            return ResultBeanUtil.makeOkResp();
-        }
+        accessConfigService.downloadCards(
+                request.getTaskId(),
+                request.getTaskName(),
+                request.getTaskSource(),
+                request.getScpId());
+
+        return ResultBeanUtil.makeOkResp();
     }
 
     @ApiOperation(value = "提取事件")

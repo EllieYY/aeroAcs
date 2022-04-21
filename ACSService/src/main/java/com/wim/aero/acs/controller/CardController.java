@@ -36,17 +36,17 @@ public class CardController {
 
     @ApiOperation(value = "添加卡片到控制器")
     @RequestMapping(value = "/add", method = {RequestMethod.POST})
-    public ResultBean<List<CmdDownloadInfo>> addCards(@RequestBody CardListInfo cardNoList) throws Exception {
-        if (cardNoList.getCardList().size() == 0) {
+    public ResultBean<List<CmdDownloadInfo>> addCards(@RequestBody CardListInfo cardInfo) throws Exception {
+        if (cardInfo.getCardList().size() == 0) {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
         }
 
         // 添加卡
-        List<CmdDownloadInfo> result = accessConfigService.addCards(cardNoList.getCardList());
-        if (result.size() > 0) {
-            log.info("下发失败卡片信息：{}", result);
-//            ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, result);
-        }
+        accessConfigService.addCards(
+                cardInfo.getTaskId(),
+                cardInfo.getTaskName(),
+                cardInfo.getTaskSource(),
+                cardInfo.getCardList());
 
         return ResultBeanUtil.makeOkResp();
     }
@@ -58,12 +58,6 @@ public class CardController {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
         }
 
-        // 添加卡
-        List<CmdDownloadInfo> result = accessConfigService.addCards(cardNoList.getCardList());
-        if (result.size() > 0) {
-            log.info("下发失败卡片信息：{}", result);
-//            ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, result);
-        }
 
         return ResultBeanUtil.makeOkResp();
     }

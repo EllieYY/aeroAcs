@@ -15,5 +15,7 @@ import java.util.List;
 @ApiModel(value = "卡号列表")
 public class CardListInfo {
     private long taskId;
+    private String taskName;
+    private int taskSource;
     private List<String> cardList;
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.TaskDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.TaskDetail">
+        <result column="task_id" property="taskId" />
+        <result column="task_name" property="taskName" />
+        <result column="task_source" property="taskSource" />
+        <result column="message" property="message" />
+        <result column="start_time" property="startTime" />
+        <result column="msg_return_time" property="msgReturnTime" />
+        <result column="msg_over_time" property="msgOverTime" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        task_id, task_name, task_source, message, start_time, msg_return_time, msg_over_time, status
+    </sql>
+
+</mapper>

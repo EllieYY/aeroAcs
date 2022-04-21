@@ -45,9 +45,10 @@ public class SqlServerGenerator {
 //        tables.add("c_card_info");
 //        tables.add("card_format");
 //        tables.add("dev_controller_common_attribute");
-        tables.add("e_access_record");
-        tables.add("e_alarm_record");
-        tables.add("e_log_record");
+//        tables.add("e_access_record");
+//        tables.add("e_alarm_record");
+//        tables.add("e_log_record");
+        tables.add("task_detail");
 
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)
                 .globalConfig(builder -> {

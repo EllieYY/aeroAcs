@@ -1,6 +1,5 @@
 package com.wim.aero.acs.service;
 
-import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.db.entity.Apb;
 import com.wim.aero.acs.db.entity.DHoliday;
 import com.wim.aero.acs.db.service.impl.*;
@@ -12,7 +11,6 @@ import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
-import com.wim.aero.acs.protocol.card.AccessDatabaseSpecification;
 import com.wim.aero.acs.protocol.card.CardAdd;
 import com.wim.aero.acs.protocol.card.CardDelete;
 import com.wim.aero.acs.protocol.device.mp.MpGroupSpecification;
@@ -24,9 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @title: AccessConfigService
@@ -45,12 +41,15 @@ public class AccessConfigService {
     private final DAccessLevelDoorServiceImpl accessLevelService;
     private final CCardInfoServiceImpl cardInfoService;
     private final RestUtil restUtil;
+    private final RequestPendingCenter requestPendingCenter;
     @Autowired
     public AccessConfigService(DHolidayServiceImpl holidayService,
                                DSchedulesGroupDetailServiceImpl schedulesGroupService,
                                ApbServiceImpl apbService, DefenceInputServiceImpl defenceInputService,
                                DAccessLevelDoorServiceImpl accessLevelService,
-                               CCardInfoServiceImpl cardInfoService, RestUtil restUtil) {
+                               CCardInfoServiceImpl cardInfoService,
+                               RestUtil restUtil,
+                               RequestPendingCenter requestPendingCenter) {
         this.holidayService = holidayService;
         this.schedulesGroupService = schedulesGroupService;
         this.apbService = apbService;
@@ -58,6 +57,7 @@ public class AccessConfigService {
         this.accessLevelService = accessLevelService;
         this.cardInfoService = cardInfoService;
         this.restUtil = restUtil;
+        this.requestPendingCenter = requestPendingCenter;
     }
 
     /**
@@ -78,10 +78,10 @@ public class AccessConfigService {
      * 下载卡片
      * @param scpId
      */
-    public List<CmdDownloadInfo> downloadCards(int scpId) {
+    public void downloadCards(long taskId, String taskName, int taskSource, int scpId) {
         List<CardAdd> cardAddList = cardInfoService.getByScpId(scpId);
 
-        return packageCardMessages(cardAddList);
+        packageCardMessages(taskId, taskName, taskSource, cardAddList);
     }
 
 
@@ -90,9 +90,9 @@ public class AccessConfigService {
      * @param cards
      * @return 发送失败的结果
      */
-    public List<CmdDownloadInfo> addCards(List<String> cards) {
+    public void addCards(long taskId, String taskName, int taskSource, List<String> cards) {
         List<CardAdd> cardAddList = cardInfoService.getByCardList(cards);
-        return packageCardMessages(cardAddList);
+        packageCardMessages(taskId, taskName, taskSource, cardAddList);
     }
 
     /**
@@ -129,8 +129,7 @@ public class AccessConfigService {
      * @param cardAddList
      * @return 发送失败的结果
      */
-    public List<CmdDownloadInfo> packageCardMessages(List<CardAdd> cardAddList) {
-        Map<String, CmdDownloadInfo> resultMap = new HashMap<>();
+    public void packageCardMessages(long taskId, String taskName, int taskSource, List<CardAdd> cardAddList) {
         // command 8304
         List<ScpCmd> cmdList = new ArrayList<>();
         for(CardAdd item:cardAddList) {
@@ -140,33 +139,13 @@ public class AccessConfigService {
             String msg = RequestMessage.encode(scpId, item);
             String streamId = IdUtil.nextId();
             cmdList.add(new ScpCmd(scpId, msg, streamId));
-
-            // TODO:
-//            resultMap.put(streamId, new CmdDownloadInfo(scpId, msg, streamId, 0, item.getCardNumber()));
         }
 
         // 下发到控制器
-        log.info(cmdList.toString());
-        List<CmdDownloadInfo> resultList = new ArrayList<>();
+        requestPendingCenter.add(taskId, taskName, taskSource, cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        for (ScpCmdResponse response:responseList) {
-            int code = response.getCode();
-            String streamId = response.getStreamId();
-            if (code == Constants.REST_CODE_SUCCESS) {
-                resultMap.remove(streamId);
-            } else {
-                if (!resultMap.containsKey(streamId)) {
-                    log.error("sendMultiCmd未返回响应，{}", streamId);
-                    continue;
-                }
-                CmdDownloadInfo info = resultMap.get(streamId);
-                info.setCode(code);
-                info.setReason(response.getReason());
-                resultList.add(info);
-            }
-        }
+        requestPendingCenter.updateSeq(responseList);
 
-        return resultList;
     }
 
     /**

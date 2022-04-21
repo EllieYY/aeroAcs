@@ -18,4 +18,10 @@ public class ScpRequestInfo {
 
     @ApiModelProperty(value = "任务id")
     private int taskId;
+
+    @ApiModelProperty(value = "任务名称")
+    private String taskName;
+
+    @ApiModelProperty(value = "任务来源")
+    private int taskSource;
 }
