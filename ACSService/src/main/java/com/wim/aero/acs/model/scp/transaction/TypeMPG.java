@@ -2,6 +2,7 @@ package com.wim.aero.acs.model.scp.transaction;
 
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,7 @@ import java.util.List;
  * 11 - override arm command, MPG did not arm, (mask_count decremented)
  **/
 @Data
+@Slf4j
 public class TypeMPG extends TransactionBody {
     private int mask_count;			// current mask count of this MPG
     private int nActiveMps;			// number of active Monitor Points
@@ -33,6 +35,6 @@ public class TypeMPG extends TransactionBody {
 
     @Override
     public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
-
+        log.info(this.toString());
     }
 }

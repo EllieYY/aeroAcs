@@ -78,7 +78,7 @@ public class TypeCardID extends TransactionBody {
         int tranCode = transaction.getTranCode();
 
         queueProducer.sendAccessMessage(
-                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder, transaction.toString())
+                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder, this.toString())
         );
     }
 }

@@ -25,6 +25,14 @@
         <result column="update_time" property="updateTime" />
         <result column="con_status" property="conStatus" />
         <result column="last_time" property="lastTime" />
+        <result column="card_format_01" property="cardFormat01" />
+        <result column="card_format_02" property="cardFormat02" />
+        <result column="card_format_03" property="cardFormat03" />
+        <result column="card_format_04" property="cardFormat04" />
+        <result column="card_format_05" property="cardFormat05" />
+        <result column="card_format_06" property="cardFormat06" />
+        <result column="card_format_07" property="cardFormat07" />
+        <result column="card_format_08" property="cardFormat08" />
     </resultMap>
 
     <!-- 通用查询结果列 -->

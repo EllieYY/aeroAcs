@@ -30,5 +30,14 @@
     <sql id="Base_Column_List">
         seq_no, format_name, card_type, type_no, facility, "offset", function_id, min_digits, max_digits, bits, pe_ln, pe_loc, po_ln, po_loc, fc_ln, fc_loc, ch_ln, ch_loc, ic_ln, ic_loc
     </sql>
+    <select id="selectAllBySeqNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from card_format
+        where seq_no IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>

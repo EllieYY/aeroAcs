@@ -1,5 +1,6 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.model.mq.LogMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 
@@ -23,14 +24,14 @@ import java.util.Date;
  **/
 @Data
 public class TypeArea extends TransactionBody {
-    //		1 - set if area is enabled (open)
-    //     -- - the multi-occupancy mode is coded using bit-1 and bit 2
-    //      0 - (both bit-1 and bit-2 are zero) multi-occupancy mode not enabled
-    //      2 - (bit-1 is set, bit-2 is zero)  "standard" multiple occupancy rules
-    //      4 - (bit-2 is set, bit-1 is zero)  "modified-1-man" multiple occupancy rules
-    //      6 - (both bit-1 and bit 2 are set) "modified-2-man" multiple occupancy rules
-    //	  128 - set if this area has NOT been configured (no area checks are made!!!)
     private int status;				// area status mask flags
+                                    //	1 - set if area is enabled (open)
+                                    //  -- - the multi-occupancy mode is coded using bit-1 and bit 2
+                                    //  0 - (both bit-1 and bit-2 are zero) multi-occupancy mode not enabled
+                                    //  2 - (bit-1 is set, bit-2 is zero)  "standard" multiple occupancy rules
+                                    //  4 - (bit-2 is set, bit-1 is zero)  "modified-1-man" multiple occupancy rules
+                                    //  6 - (both bit-1 and bit 2 are set) "modified-2-man" multiple occupancy rules
+                                    //	128 - set if this area has NOT been configured (no area checks are made!!!)
 
     private long occupancy;			// occupancy count - standard users
     private long occSpc;				// occupancy count - special users
@@ -39,5 +40,18 @@ public class TypeArea extends TransactionBody {
 
     @Override
     public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+        //TODO： 防区的状态
+
+        int scpId = transaction.getScpId();
+        long date = transaction.getTime() * 1000;
+        long index = transaction.getSerNum();
+        int sourceType = transaction.getSourceType();
+        int sourceNum = transaction.getSourceNumber();
+        int tranType = transaction.getTranType();
+        int tranCode = transaction.getTranCode();
+
+        queueProducer.sendLogMessage(new LogMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, this.toString()));
+
+
     }
 }

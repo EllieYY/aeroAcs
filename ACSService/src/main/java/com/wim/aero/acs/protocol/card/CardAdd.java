@@ -7,6 +7,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @title: CardRecord
@@ -89,6 +90,9 @@ public class CardAdd extends Operation {
     private int assetGroup = 0;
 
     public void alListFix() {
+        // 去重
+        alvl = alvl.stream().distinct().collect(Collectors.toList());
+
         int size = alvl.size();
         if(alvl.size() > 32) {
             alvl = alvl.subList(0, 32);

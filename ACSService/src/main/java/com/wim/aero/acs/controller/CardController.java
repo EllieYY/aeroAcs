@@ -1,7 +1,6 @@
 package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.model.command.CmdDownloadInfo;
-import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.request.CardListInfo;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,13 +36,30 @@ public class CardController {
 
     @ApiOperation(value = "添加卡片到控制器")
     @RequestMapping(value = "/add", method = {RequestMethod.POST})
-    public ResultBean<List<CmdDownloadInfo>> connectScp(@RequestBody CardListInfo cardNoList) throws Exception {
+    public ResultBean<List<CmdDownloadInfo>> addCards(@RequestBody CardListInfo cardNoList) throws Exception {
         if (cardNoList.getCardList().size() == 0) {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
         }
 
         // 添加卡
-        List<CmdDownloadInfo> result = accessConfigService.addCard(cardNoList.getCardList());
+        List<CmdDownloadInfo> result = accessConfigService.addCards(cardNoList.getCardList());
+        if (result.size() > 0) {
+            log.info("下发失败卡片信息：{}", result);
+//            ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, result);
+        }
+
+        return ResultBeanUtil.makeOkResp();
+    }
+
+    @ApiOperation(value = "删除卡片")
+    @RequestMapping(value = "/delete", method = {RequestMethod.POST})
+    public ResultBean<List<CmdDownloadInfo>> deleteCards(@RequestBody CardListInfo cardNoList) throws Exception {
+        if (cardNoList.getCardList().size() == 0) {
+            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
+        }
+
+        // 添加卡
+        List<CmdDownloadInfo> result = accessConfigService.addCards(cardNoList.getCardList());
         if (result.size() > 0) {
             log.info("下发失败卡片信息：{}", result);
 //            ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, result);

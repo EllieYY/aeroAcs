@@ -21,4 +21,8 @@ public interface CCardInfoMapper extends BaseMapper<CCardInfo> {
     List<CardAdd> selectAllByCardNo(@Param("list") List<String> cardNoList);
 
     List<CardAdd> selectAllByAccessLevels(@Param("list") List<Integer> alList);
+
+    List<CardAdd> selectAllByScpId(@Param("scpId") Integer scpId);
+
+    List<CardAdd> selectAllByCardList(@Param("list") List<String> list);
 }

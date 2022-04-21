@@ -3,10 +3,13 @@ package com.wim.aero.acs.model.scp.transaction;
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @title: TypeCoS
@@ -57,46 +60,57 @@ public class TypeCoS extends TransactionBody {
                     new AlarmMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, des));
             }
 
+            // 解析器
+            Map<Integer, StatusParser> parserMap = new HashMap<>();
+            parserMap.put(Constants.tranSrcMP, new MpStatusParser());
+            parserMap.put(Constants.tranSrcCP, new CpStatusParser());
+            parserMap.put(Constants.tranSrcAcrRex0, new CpStatusParser());
+            parserMap.put(Constants.tranSrcAcrRex1, new CpStatusParser());
+            parserMap.put(Constants.tranSrcAcrTmpr, new CpStatusParser());
+            parserMap.put(Constants.tranSrcCP, new CpStatusParser());
+            parserMap.put(Constants.tranSrcAcrDoor, new AcrStatusParser());
 
+            if (parserMap.containsKey(sourceType)) {   // 记录状态变化
+                StatusParser parser = parserMap.get(sourceType);
+                // TODO:先记录，再解析
+                int deviceStatus = parser.parseStatus(tranCode, this.status);
 
+                queueProducer.sendStatusMessage(
+                        new StatusMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, status, this.toString()));
+
+            } else {    // log
+                queueProducer.sendLogMessage(
+                        new LogMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, this.toString()));
+            }
         }
     }
 
-    private void getStatusDefineBySrc(QueueProducer queueProducer, int sourceType, int tranCode) {
-        int stateCode = -1;
-        if (sourceType == Constants.tranSrcMP) {
-            stateCode = mpState(tranCode);
-        } else if (sourceType == Constants.tranSrcCP) {
-            stateCode = cpState(tranCode);
-        } else if (sourceType == Constants.tranSrcAcrDoor) {
-            stateCode = doorState(tranCode);
-        } else {
-            // TODO：写log
-//            queueProducer.sendLogMessage(new LogMessage());
+    interface StatusParser {
+        int parseStatus(int tranCode, int status);
+    }
 
-            return;
-        }
-
-        // 状态变化值
-        if (status != old_sts) {    // 状态变化事件
+    static class MpStatusParser implements StatusParser {
+        @Override
+        public int parseStatus(int tranCode, int status) {
             // TODO:
-
-
+            return 0;
         }
     }
 
-    private int mpState(int tranCode) {
-        return 0;
+    static class CpStatusParser implements StatusParser {
+        @Override
+        public int parseStatus(int tranCode, int status) {
+            // TODO:
+            return 0;
+        }
     }
 
-    private int cpState(int tranCode) {
-        return 0;
+    static class AcrStatusParser implements StatusParser {
+        @Override
+        public int parseStatus(int tranCode, int status) {
+            // TODO:不对，应该挪到门状态那边
+            return 0;
+        }
     }
-
-    private int doorState(int tranCode) {
-        return 0;
-    }
-
-
 
 }

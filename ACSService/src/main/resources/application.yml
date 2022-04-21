@@ -17,6 +17,8 @@ mybatis-plus:
       table-underline: true
       logic-not-delete-value: 0
       logic-delete-value: 1
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
 
 spring:
   profiles:
@@ -44,6 +46,8 @@ spring:
       alarmQueue: alarmQueue
       #日志事件队列
       logQueue: logQueue
+      #设备状态队列
+      statusQueue: statusQueue
 
 
 

@@ -12,7 +12,9 @@ import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
+import com.wim.aero.acs.protocol.card.AccessDatabaseSpecification;
 import com.wim.aero.acs.protocol.card.CardAdd;
+import com.wim.aero.acs.protocol.card.CardDelete;
 import com.wim.aero.acs.protocol.device.mp.MpGroupSpecification;
 import com.wim.aero.acs.protocol.timezone.Holiday;
 import com.wim.aero.acs.protocol.timezone.TimeZone;
@@ -77,12 +79,7 @@ public class AccessConfigService {
      * @param scpId
      */
     public List<CmdDownloadInfo> downloadCards(int scpId) {
-        // d_access_level_door通过scpId查找访问级别access_level_id
-        // 获取访问权限
-        List<Integer> alList = accessLevelService.getALsByScpId(scpId);
-
-        // d_employee_access_level找到access_level_id和card_no集合，left join c_card_info
-        List<CardAdd> cardAddList = cardInfoService.getByAccessLevels(alList);
+        List<CardAdd> cardAddList = cardInfoService.getByScpId(scpId);
 
         return packageCardMessages(cardAddList);
     }
@@ -93,9 +90,38 @@ public class AccessConfigService {
      * @param cards
      * @return 发送失败的结果
      */
-    public List<CmdDownloadInfo> addCard(List<String> cards) {
-        List<CardAdd> cardAddList = cardInfoService.getByCardNo(cards);
+    public List<CmdDownloadInfo> addCards(List<String> cards) {
+        List<CardAdd> cardAddList = cardInfoService.getByCardList(cards);
         return packageCardMessages(cardAddList);
+    }
+
+    /**
+     * 删除卡片
+     * @param cardList
+     * @return 发送失败的结果
+     */
+    public List<CmdDownloadInfo> deleteCards(int scpId, List<String> cardList) {
+        List<ScpCmd> cmdList = new ArrayList<>();
+        for (String cardNo:cardList) {
+            CardDelete operation = new CardDelete(scpId, cardNo);
+            String msg = RequestMessage.encode(scpId, operation);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+//        AccessDatabaseSpecification operation = AccessDatabaseSpecification.getCardsClearedModel(scpId);
+//        String msg = RequestMessage.encode(scpId, operation);
+//
+//        log.info("[SCP]清除卡片 clear cards: scpId={}, msg={}", scpId, msg);
+//
+//        // 向设备发送
+//        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
+//        log.info("清除卡片，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
+//
+//        return response.getCode();
+//
+//        List<CardAdd> cardAddList = cardInfoService.getByCardNo(cards);
+//        return packageCardMessages(cardAddList);
+
+        return null;
     }
 
     /**

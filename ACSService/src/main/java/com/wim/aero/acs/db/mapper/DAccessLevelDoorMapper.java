@@ -22,4 +22,6 @@ public interface DAccessLevelDoorMapper extends BaseMapper<DAccessLevelDoor> {
 
     List<Integer> searchAccessLevelIdByControllerId(@Param("controllerId") Integer controllerId);
 
+
+
 }

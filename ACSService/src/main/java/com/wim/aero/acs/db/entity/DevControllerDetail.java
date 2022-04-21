@@ -111,5 +111,27 @@ public class DevControllerDetail implements Serializable {
     @TableField("last_time")
     private Date lastTime;
 
+    @TableField("card_format_01")
+    private Integer cardFormat01;
 
+    @TableField("card_format_02")
+    private Integer cardFormat02;
+
+    @TableField("card_format_03")
+    private Integer cardFormat03;
+
+    @TableField("card_format_04")
+    private Integer cardFormat04;
+
+    @TableField("card_format_05")
+    private Integer cardFormat05;
+
+    @TableField("card_format_06")
+    private Integer cardFormat06;
+
+    @TableField("card_format_07")
+    private Integer cardFormat07;
+
+    @TableField("card_format_08")
+    private Integer cardFormat08;
 }

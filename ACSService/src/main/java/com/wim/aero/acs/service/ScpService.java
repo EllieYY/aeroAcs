@@ -23,13 +23,17 @@ import com.wim.aero.acs.protocol.device.SCPDriver;
 import com.wim.aero.acs.protocol.device.SCPSpecification;
 import com.wim.aero.acs.protocol.device.ScpReset;
 import com.wim.aero.acs.util.IdUtil;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @title: ScpConfigService
@@ -84,8 +88,6 @@ public class ScpService {
 
         scpSpecification(scpId, result);
 
-
-
         return result;
     }
 
@@ -102,7 +104,7 @@ public class ScpService {
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
 
-        log.info("SCP复位，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
+        log.info("[SCP复位] [{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
 
         return response.getCode();
     }
@@ -189,6 +191,7 @@ public class ScpService {
         AccessDatabaseSpecification adSpecification = AccessDatabaseSpecification.fromDb(scpId, detail);
         String adSpecificationMsg = RequestMessage.encode(scpId, adSpecification);
 
+
         // 命令组装
         cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
         cmdList.add(new ScpCmd(scpId, adSpecificationMsg, IdUtil.nextId()));
@@ -214,15 +217,42 @@ public class ScpService {
      */
     private void cardFormatConfig(int scpId, List<ScpCmd> cmdList) {
         // command 1102
-        List<CardFormat> list = cardFormatService.list();
+        DevControllerDetail scpDetail = devControllerDetailService.getScpConfiguration(scpId);
+        Map<Integer, Integer> cardIndexMap = new HashMap<>();
+        if (scpDetail.getCardFormat01() != null) {
+            cardIndexMap.put(0, scpDetail.getCardFormat01());
+        }
+        if (scpDetail.getCardFormat02() != null) {
+            cardIndexMap.put(1, scpDetail.getCardFormat02());
+        }
+        if (scpDetail.getCardFormat03() != null) {
+            cardIndexMap.put(2, scpDetail.getCardFormat03());
+        }
+        if (scpDetail.getCardFormat04() != null) {
+            cardIndexMap.put(3, scpDetail.getCardFormat04());
+        }
+        if (scpDetail.getCardFormat05() != null) {
+            cardIndexMap.put(4, scpDetail.getCardFormat05());
+        }
+        if (scpDetail.getCardFormat06() != null) {
+            cardIndexMap.put(5, scpDetail.getCardFormat06());
+        }
+        if (scpDetail.getCardFormat07() != null) {
+            cardIndexMap.put(6, scpDetail.getCardFormat07());
+        }
+        if (scpDetail.getCardFormat08() != null) {
+            cardIndexMap.put(7, scpDetail.getCardFormat08());
+        }
+
+        List<Integer> cardIdList = cardIndexMap.values().stream().collect(Collectors.toList());
+
+        List<CardFormat> list = cardFormatService.getCardInfoByIdList(cardIdList);
         for (CardFormat item:list) {
-//            if (StringUtils.matchesCharacter(item.getCardType(), '0')) {   // 韦根卡
             if (item.getFunctionId() == Constants.WGND) {
                 WiegandCardFormat cardFormat = WiegandCardFormat.fromDb(scpId, item);
                 String msg = RequestMessage.encode(scpId, cardFormat);
                 // 命令组装
                 cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
-//            } else if (StringUtils.matchesCharacter(item.getCardType(), '1')) {  // 磁卡
             } else if (item.getFunctionId() == Constants.MT2) {  // 磁卡
                 MT2CardFormat cardFormat = MT2CardFormat.fromDb(scpId, item);
                 String msg = RequestMessage.encode(scpId, cardFormat);

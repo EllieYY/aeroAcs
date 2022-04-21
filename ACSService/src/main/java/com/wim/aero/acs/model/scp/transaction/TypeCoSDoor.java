@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 
@@ -46,6 +48,35 @@ public class TypeCoSDoor extends TransactionBody {
 
     @Override
     public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
+        int scpId = transaction.getScpId();
+        long date = transaction.getTime() * 1000;
+        long index = transaction.getSerNum();
+        int sourceType = transaction.getSourceType();
+        int sourceNum = transaction.getSourceNumber();
+        int tranType = transaction.getTranType();
+        int tranCode = transaction.getTranCode();
 
+        queueProducer.sendStatusMessage(
+                new StatusMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, door_status, this.toString()));
+    }
+
+    int parseState(int tranCode, int commState) {
+        if (tranCode == Constants.COS_TRAN_Disconnected) {
+
+        } else if (tranCode == Constants.COS_TRAN_Unknown) {
+
+        } else if (tranCode == Constants.COS_TRAN_Secure) {
+
+        } else if (tranCode == Constants.COS_TRAN_Alarm) {
+
+        } else if (tranCode == Constants.COS_TRAN_Fault) {
+
+        } else if (tranCode == Constants.COS_TRAN_Exit) {
+
+        } else if (tranCode == Constants.COS_TRAN_Entry) {
+
+        }
+
+        return 0;
     }
 }

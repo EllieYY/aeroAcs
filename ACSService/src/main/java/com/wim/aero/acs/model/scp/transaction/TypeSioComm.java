@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +26,12 @@ import java.util.List;
 @Data
 @Slf4j
 public class TypeSioComm extends TransactionBody {
-    //  0 - not configured
-    //  1 - not tried: active, have not tried to poll it
-    //  2 - off-line
-    //  3 - on-line
-    private int	comm_sts;			// comm status
 
+    private int	comm_sts;			// comm status
+                                    //  0 - not configured
+                                    //  1 - not tried: active, have not tried to poll it
+                                    //  2 - off-line
+                                    //  3 - on-line
     private byte model;					// sio model number (VALID ONLY IF "ON-LINE")
     private byte revision;				// sio firmware revision number (VALID ONLY IF "ON-LINE")
     private long ser_num;				// sio serial number (VALID ONLY IF "ON-LINE")
@@ -61,6 +63,47 @@ public class TypeSioComm extends TransactionBody {
     public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
         log.info("[sio状态] - scpId[{}], sio[{}], {}, model[{}], comStatus[{}]",
                 transaction.getScpId(), transaction.getSourceNumber(), getHardwareName(nHardwareId), model, getStateName(comm_sts));
+
+        int scpId = transaction.getScpId();
+        long date = transaction.getTime() * 1000;
+        long index = transaction.getSerNum();
+        int sourceType = transaction.getSourceType();
+        int sourceNum = transaction.getSourceNumber();
+        int tranType = transaction.getTranType();
+        int tranCode = transaction.getTranCode();
+
+        queueProducer.sendStatusMessage(
+                new StatusMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, comm_sts, this.toString()));
+
+    }
+
+    // SIO板：0离线 1正常  2报警
+    /*
+       //  	1	- comm disabled (result of host command)
+     * //  	2	- off-line: timeout (no/bad response from unit)
+     * //  	3	- off-line: invalid identification from SIO
+     * //  	4	- off-line: Encryption could not be established
+     * //  	5	- on-line: normal connection
+     * //	6   - hexLoad report: ser_num is address loaded (-1 == last record)
+     */
+    int parseState(int tranCode, int commState) {
+        if (tranCode == Constants.COS_TRAN_Disconnected) {
+
+        } else if (tranCode == Constants.COS_TRAN_Unknown) {
+
+        } else if (tranCode == Constants.COS_TRAN_Secure) {
+
+        } else if (tranCode == Constants.COS_TRAN_Alarm) {
+
+        } else if (tranCode == Constants.COS_TRAN_Fault) {
+
+        } else if (tranCode == Constants.COS_TRAN_Exit) {
+
+        } else if (tranCode == Constants.COS_TRAN_Entry) {
+
+        }
+
+        return 0;
     }
 
     //    SIO Hardware ID

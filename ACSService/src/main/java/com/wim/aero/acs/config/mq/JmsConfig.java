@@ -44,6 +44,9 @@ public class JmsConfig {
     @Value("${spring.activemq.queueName.logQueue}")
     private String logQueueName;
 
+    @Value("${spring.activemq.queueName.statusQueue}")
+    private String statusQueueName;
+
     @Bean("accessQueue")
     public Queue accessQueue() {
         return new ActiveMQQueue(accessQueueName);
@@ -57,6 +60,11 @@ public class JmsConfig {
     @Bean("logQueue")
     public Queue logQueue() {
         return new ActiveMQQueue(logQueueName);
+    }
+
+    @Bean("statusQueue")
+    public Queue statusQueue() {
+        return new ActiveMQQueue(statusQueueName);
     }
 
 

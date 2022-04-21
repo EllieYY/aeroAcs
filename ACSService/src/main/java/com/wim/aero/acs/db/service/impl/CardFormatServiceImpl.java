@@ -6,6 +6,8 @@ import com.wim.aero.acs.db.service.CardFormatService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -16,5 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CardFormatServiceImpl extends ServiceImpl<CardFormatMapper, CardFormat> implements CardFormatService {
-
+    public List<CardFormat> getCardInfoByIdList(List<Integer> idList) {
+        return this.baseMapper.selectAllBySeqNo(idList);
+    }
 }
