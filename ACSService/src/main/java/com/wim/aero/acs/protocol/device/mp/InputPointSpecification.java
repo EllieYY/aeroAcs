@@ -46,10 +46,10 @@ public class InputPointSpecification extends Operation {
     @CmdProp(index = 6)
     private Integer icvtNum;
 
-    @CmdProp(index = 7)
+    @CmdProp(index = 7, defaultValue = "4")
     private Integer debounce = 4;  // Recommended setting for REX is 2, and 4-6 for standard input
 
-    @CmdProp(index = 8)
+    @CmdProp(index = 8, defaultValue = "5")
     private Integer holdTime = 5;  // 2 ~ 15
 
     public static InputPointSpecification fromDb(DevInputDetail detail) {

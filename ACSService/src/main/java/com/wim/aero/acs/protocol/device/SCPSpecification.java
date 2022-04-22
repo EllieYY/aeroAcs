@@ -28,9 +28,9 @@ public class SCPSpecification extends Operation {
     @CmdProp(index = 7)
     private int revMinor = 0;
 
-    /** 485端口个数，X1100有2个 */
+    /** 485端口个数，X1100有2个外接，一个内置*/
     @CmdProp(index = 8)
-    private int nMsp1Port = 2;
+    private int nMsp1Port = 3;
 
     @CmdProp(index = 9)
     private long nTransactions = 80000;

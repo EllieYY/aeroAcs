@@ -36,8 +36,8 @@ public class MonitorPointConfig extends Operation {
      * MPLG_1   0x01     Do not log contact change-of-state if masked
      * MPLG_2   0x02     Do not log contact change-of-state if masked and no fault-to-fault changes
      */
-    @CmdProp(index = 7)
-    private Integer logFuncCode = 0x02;
+    @CmdProp(index = 7, defaultValue = "0")
+    private Integer logFuncCode;
 
     /**
      * 0 = Normal mode (no exit or entry delay)
@@ -67,7 +67,7 @@ public class MonitorPointConfig extends Operation {
         if (StringUtils.hasText(detail.getAlarmDelayFlag())) {
             int mode = Integer.parseInt(detail.getAlarmDelayFlag());
             if (mode != 0) {
-                mode = 2;
+                mode = 1;
                 result.setMode(mode);
                 result.setDelayEntry(detail.getInDelay());
                 result.setDelayExit(detail.getOutDelay());

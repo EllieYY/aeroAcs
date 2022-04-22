@@ -36,6 +36,7 @@
         from defence_input
         where
         controller_id = #{controllerId,jdbcType=NUMERIC}
+        and status = '0'
     </select>
 
 </mapper>

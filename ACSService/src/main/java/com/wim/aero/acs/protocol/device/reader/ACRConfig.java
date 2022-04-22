@@ -58,23 +58,23 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 5)
     private Integer accessCfg; // 读卡器类型
 
-    @CmdProp(index = 6)
+    @CmdProp(index = 6, defaultValue = "-1")
     private Integer pairAcrNumber = -1; // Use -1 if not paired reader.
 
-    @CmdProp(index = 7)
+    @CmdProp(index = 7, defaultValue = "-1")
     private Integer rdrSio; // Reader link: the SIO number on the SCP that contains the reader. Use - 1 for not used.
 
-    @CmdProp(index = 8)
+    @CmdProp(index = 8, defaultValue = "-1")
     private Integer rdrNumber;  // 0 ~ nReaders-1
 
     // 锁
-    @CmdProp(index = 9)
+    @CmdProp(index = 9, defaultValue = "-1")
     private Integer strkSio; // Strike link: the SIO number on the SCP that contains the strike relay. 0 ~nSio -1. Use -1 for not used.
 
-    @CmdProp(index = 10)
+    @CmdProp(index = 10, defaultValue = "-1")
     private Integer strkNumber; // Strike link: Relay number on the specified SIO (strk_sio). 0 ~ nOutputs -1. Use -1 for not used.
 
-    @CmdProp(index = 11)
+    @CmdProp(index = 11, defaultValue = "3")
     private Integer strikeTimeMin; // 开门时间 Minimum strike activation time, in seconds. A typical value is 1 second; valid values are 1 to
 
 
@@ -82,32 +82,32 @@ public class ACRConfig extends Operation {
     private Integer strikeTimeMax; // 开门提示时间 IMaximum strike activation, in seconds; valid values are strike_t_min to 255.
 
 
-    @CmdProp(index = 13)
+    @CmdProp(index = 13, defaultValue = "0")
     private Integer strikeMode; // 门磁上电
 
     // 门
 
-    @CmdProp(index = 14)
+    @CmdProp(index = 14, defaultValue = "-1")
     private Integer doorSio = -1;  //Door contact link: the SIO number on the SCP that contains the input. 0 ~  nSio -1. Use -1 for not used.
 
-    @CmdProp(index = 15)
+    @CmdProp(index = 15, defaultValue = "-1")
     private Integer doorNumber = -1; // Door contact link: Input number on the specified SIO (door_sio). 0 ~ nInputs -1. Use -1 for not used.
 
-    @CmdProp(index = 16)
+    @CmdProp(index = 16, defaultValue = "1")
     private Integer dcHeld; // Delay before held open alarm is reported (2 second units). Valid values are 1 to 32767.
 
     // 出门按钮
-    @CmdProp(index = 17)
+    @CmdProp(index = 17, defaultValue = "-1")
     private Integer rex0Sio = -1; //Rex-0 link: the SIO number on the SCP that contains the input. 0~nSio -1. Use -1 for not used.
 
-    @CmdProp(index = 18)
+    @CmdProp(index = 18, defaultValue = "-1")
     private Integer rex0Number = -1; // Rex-0 link: Input number on the specified SIO (rex0_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     // REX 1 is normally not used.
-    @CmdProp(index = 19)
+    @CmdProp(index = 19, defaultValue = "-1")
     private Integer rex1Sio = -1; // Rex-1 link: the SIO number on the SCP that contains the input. 0 ~ nSio -1. Use -1 for not configured.
 
-    @CmdProp(index = 20)
+    @CmdProp(index = 20, defaultValue = "-1")
     private Integer rex1Number = -1; //Rex-1 link: Input number on the specified SIO (rex1_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     @CmdProp(index = 21)
@@ -116,10 +116,10 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 22)
     private Integer rex1TzMask = 0;
 
-    @CmdProp(index = 23)
+    @CmdProp(index = 23, defaultValue = "-1")
     private Integer altrdrSio = -1; // Alternate reader link: the SIO number on the SCP that contains the reader. Use -1 for not used.
 
-    @CmdProp(index = 24)
+    @CmdProp(index = 24, defaultValue = "-1")
     private Integer altrdrNumber = -1; // 0 ~ nReaders
 
     @CmdProp(index = 25)
@@ -206,7 +206,10 @@ public class ACRConfig extends Operation {
         result.setStrikeMode(detail.getStrikeMode());
         result.setStrikeTimeMin(detail.getStrikeTimeMin());
         result.setStrikeTimeMax(detail.getStrikeTimeMax());
-        result.setDcHeld(detail.getDcHeld());
+
+        // 2s unit
+        Integer dcHeld = Optional.ofNullable(detail.getDcHeld()).orElse(2);
+        result.setDcHeld(dcHeld / 2);
 
         result.setStrkSio(detail.getStrkSio());
         result.setStrkNumber(detail.getStrkNumber());
@@ -239,7 +242,9 @@ public class ACRConfig extends Operation {
         result.setOfflineMode(detail.getOfflineMode());
         result.setDefaultLedMode(detail.getDefaultMode());
         result.setStrkT2(detail.getStrkT2());
-        result.setDcHeld2(detail.getDcHeld2());
+
+        Integer dcHeld2 = Optional.ofNullable(detail.getDcHeld()).orElse(2);
+        result.setDcHeld2(dcHeld2 / 2);
         result.setNExtFeatureType(detail.getFeatureType());
         result.setDfofFilterTime(detail.getFilterAlarm());
 

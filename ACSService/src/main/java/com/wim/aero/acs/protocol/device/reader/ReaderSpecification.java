@@ -40,7 +40,7 @@ import lombok.Data;
  **/
 @Data
 public class ReaderSpecification extends Operation {
-    @CmdProp(index = 2)
+    @CmdProp(index = 2, defaultValue = "0")
     private Integer lastModified = 0;
 
     @CmdProp(index = 3)
@@ -52,16 +52,16 @@ public class ReaderSpecification extends Operation {
     @CmdProp(index = 5)
     private Integer reader; // 0 to nReaders -1 (Command 109)
 
-    @CmdProp(index = 6)
+    @CmdProp(index = 6, defaultValue = "1")
     private Integer dtFmt = 0x01;  // 目前未做OSDP相关配置，默认韦根模式
 
-    @CmdProp(index = 7)
+    @CmdProp(index = 7, defaultValue = "0")
     private Integer keypadMode;
 
-    @CmdProp(index = 8)
+    @CmdProp(index = 8, defaultValue = "1")
     private Integer ledDriveMode = 1;
 
-    @CmdProp(index = 9)
+    @CmdProp(index = 9, defaultValue = "8")
     private Integer osdpFlags = 0;
 
     public static ReaderSpecification fromDb(DevReaderDetail detail) {

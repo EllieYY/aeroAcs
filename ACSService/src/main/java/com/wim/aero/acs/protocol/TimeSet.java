@@ -23,7 +23,6 @@ public class TimeSet extends Operation {
     public TimeSet(int scpNumber) {
         this.scpNumber = scpNumber;
 
-        Date time = new Date();
-        customTime = time.getTime() / 1000;
+        customTime = System.currentTimeMillis() / 1000;
     }
 }

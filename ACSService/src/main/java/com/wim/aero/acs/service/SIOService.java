@@ -65,19 +65,16 @@ public class SIOService {
      */
     public void configSioForScp(int scpId) {
         List<ScpCmd> cmdList = new ArrayList<>();
-        // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器两个
-        SIODriver driver1 = new SIODriver(scpId, 1, 1);
-        SIODriver driver2 = new SIODriver(scpId, 2, 2);
-
-        // 报文组装
-        String msg1 = RequestMessage.encode(scpId, driver1);
-        String msg2 = RequestMessage.encode(scpId, driver2);
-        cmdList.add(new ScpCmd(scpId, msg1, IdUtil.nextId()));
-        cmdList.add(new ScpCmd(scpId, msg2, IdUtil.nextId()));
 
         // 查找所有sio
         List<DevXDetail> sioList = sioDetailService.getByScpId(scpId);
         for (DevXDetail sio:sioList) {
+            int msp1Number = sio.getControllerPort();
+            // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器两个
+            SIODriver driver = new SIODriver(scpId, msp1Number, msp1Number);
+            String driverMsg = RequestMessage.encode(scpId, driver);
+            cmdList.add(new ScpCmd(scpId, driverMsg, IdUtil.nextId()));
+
             // SIOPanel Configuration (Command 109)
             SIOSpecification specification = SIOSpecification.fromDb(sio);
             String msg = RequestMessage.encode(scpId, specification);

@@ -60,39 +60,39 @@ public class SIOSpecification extends Operation {
     @CmdProp(index = 8)
     private Integer model;
 
-    @CmdProp(index = 9)
+    @CmdProp(index = 9, defaultValue = "0")
     private Integer revision = 0;
 
-    @CmdProp(index = 10)
+    @CmdProp(index = 10, defaultValue = "0")
     private Integer serNumLow = 0;
 
-    @CmdProp(index = 11)
+    @CmdProp(index = 11, defaultValue = "-1")
     private Integer serNumHigh = -1;
 
-    @CmdProp(index = 12)
+    @CmdProp(index = 12, defaultValue = "1")
     private Integer enable = 1;
 
     @CmdProp(index = 13)
     private Integer port; // same as msp1Number in SIODriver
 
-    @CmdProp(index = 14)
+    @CmdProp(index = 14, defaultValue = "0")
     private Integer channelOut = 0;
 
-    @CmdProp(index = 15)
+    @CmdProp(index = 15, defaultValue = "0")
     private Integer channelIn = 0;
 
     @CmdProp(index = 16)
     private Integer address;
 
     /** 离线周期判断 */
-    @CmdProp(index = 17)
+    @CmdProp(index = 17, defaultValue = "3")
     private Integer e_max = 3;
 
-    @CmdProp(index = 18)
+    @CmdProp(index = 18, defaultValue = "0")
     private Integer flags = 0;
 
     /** 梯控设备参数 -------------------*/
-    @CmdProp(index = 19)
+    @CmdProp(index = 19, defaultValue = "-1")
     private Integer nSioNextIn = -1;
     //    SIO number for continuation of inputs. Use -1 for not used. The continuation point is the first
     //    point of that type on the continuation card. A value of zero specifies to use the next SIO number
@@ -100,7 +100,7 @@ public class SIOSpecification extends Operation {
     //            Therefore, SIO 0 cannot be used as the next SIO. For maintainability, it is recommended that
     //this number be explicitly specified.
 
-    @CmdProp(index = 20)
+    @CmdProp(index = 20, defaultValue = "-1")
     private Integer nSioNextOut = -1;
     //SIO number for continuation of outputs. Use -1 for not used. The continuation point is the first
     //    point of that type on the continuation card. A value of zero specifies to use the next SIO number
@@ -108,20 +108,20 @@ public class SIOSpecification extends Operation {
     //            Therefore, SIO 0 cannot be used as the next SIO. For maintainability, it is recommended that
     //this number be explicitly specified.
 
-    @CmdProp(index = 21)
+    @CmdProp(index = 21, defaultValue = "-1")
     private Integer nSioNextRdr = -1;
     //SIO number for continuation of readers. Use -1 for not used. The continuation point is the first
     //    point of that type on the continuation card. A value of zero specifies to use the next SIO number
     //+1 as the value of nSioNextRdr. Therefore, SIO 0 cannot be used as the next SIO. For
     //    maintainability, it is recommended that this number be explicitly specified.
 
-    @CmdProp(index = 22)
+    @CmdProp(index = 22, defaultValue = "0")
     private Integer nSIOConnectTest = 0;
 
-    @CmdProp(index = 23)
+    @CmdProp(index = 23, defaultValue = "0")
     private Integer nSioOemCode = 0;
 
-    @CmdProp(index = 24)
+    @CmdProp(index = 24, defaultValue = "0")
     private Integer nSioOemMask = 0;
 
     public static SIOSpecification fromDb(DevXDetail detail) {
