@@ -112,7 +112,8 @@ public class RequestPendingCenter {
         }
 
         // taskDetailList
-        conTaskDetailService.saveOrUpdateBatch(taskDetailList);
+        // TODO:
+//        conTaskDetailService.saveOrUpdateBatch(taskDetailList);
 
         return result;
     }
@@ -146,7 +147,8 @@ public class RequestPendingCenter {
             removeStreamId(key);
         }
 
-        conTaskDetailService.saveOrUpdateBatch(taskDetailList);
+        // TODO:
+//        conTaskDetailService.saveOrUpdateBatch(taskDetailList);
     }
 
 

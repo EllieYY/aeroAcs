@@ -164,30 +164,30 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 38)
     private Integer dcHeld2;   // ADA开门过长报警时间
 
-    // 暂时不用
-    @CmdProp(index = 39)
-    private Integer strkFollowPulse = 0;
-    @CmdProp(index = 40)
-    private Integer strkFollowDelay = 0;
-    @CmdProp(index = 41)
-    private Integer nAuthModFlags = 0;
+//    // 暂时不用
+//    @CmdProp(index = 39)
+//    private Integer strkFollowPulse = 0;
+//    @CmdProp(index = 40)
+//    private Integer strkFollowDelay = 0;
+//    @CmdProp(index = 41)
+//    private Integer nAuthModFlags = 0;
 
-    @CmdProp(index = 42)
-    private Integer nExtFeatureType = 0;
-
-    @CmdProp(index = 43)
-    private Integer iIPBSio = -1; // SIO ID for Interior Push Button (not needed for native locksets). Set to -1 when not used.
-    @CmdProp(index = 44)
-    private Integer iIPBNumber = 0; // Input number for Interior Push Button (not needed for native locksets)
-    @CmdProp(index = 45)
-    private Integer iIPBLongPress = 0; // IPB long-press, 0-15 seconds (if applicable)
-    @CmdProp(index = 46)
-    private Integer iIPBOutSio = 0; // SIO ID for IPB indicator output (not needed for native locksets). Set to -1 when not used.
-    @CmdProp(index = 47)
-    private Integer iIPBOutNum = 0;
-
-    @CmdProp(index = 48)
-    private Integer dfofFilterTime = 0;  // 0~65535
+//    @CmdProp(index = 42)
+//    private Integer nExtFeatureType = 0;
+//
+//    @CmdProp(index = 43)
+//    private Integer iIPBSio = -1; // SIO ID for Interior Push Button (not needed for native locksets). Set to -1 when not used.
+//    @CmdProp(index = 44)
+//    private Integer iIPBNumber = 0; // Input number for Interior Push Button (not needed for native locksets)
+//    @CmdProp(index = 45)
+//    private Integer iIPBLongPress = 0; // IPB long-press, 0-15 seconds (if applicable)
+//    @CmdProp(index = 46)
+//    private Integer iIPBOutSio = 0; // SIO ID for IPB indicator output (not needed for native locksets). Set to -1 when not used.
+//    @CmdProp(index = 47)
+//    private Integer iIPBOutNum = 0;
+//
+//    @CmdProp(index = 48)
+//    private Integer dfofFilterTime = 0;  // 0~65535
 
     public static ACRConfig fromDb(DevReaderDetail detail) {
         ACRConfig result = new ACRConfig();
@@ -231,7 +231,9 @@ public class ACRConfig extends Operation {
             result.setAltrdrNumber(detail.getAltrdrNumber());
         }
 
-        result.setCdFormat(detail.getCdFormat());
+        // TODO:
+//        result.setCdFormat(detail.getCdFormat());
+        result.setCdFormat(255);
 
         result.setApbMode(detail.getApbMode());
         result.setApbIn(detail.getApbIn());
@@ -240,13 +242,13 @@ public class ACRConfig extends Operation {
         result.setSpare(detail.getSpare());
         result.setActlFlags(detail.getActlFlags());
         result.setOfflineMode(detail.getOfflineMode());
-        result.setDefaultLedMode(detail.getDefaultMode());
+        result.setDefaultMode(detail.getDefaultMode());
         result.setStrkT2(detail.getStrkT2());
 
-        Integer dcHeld2 = Optional.ofNullable(detail.getDcHeld()).orElse(2);
+        Integer dcHeld2 = Optional.ofNullable(detail.getDcHeld2()).orElse(2);
         result.setDcHeld2(dcHeld2 / 2);
-        result.setNExtFeatureType(detail.getFeatureType());
-        result.setDfofFilterTime(detail.getFilterAlarm());
+//        result.setNExtFeatureType(detail.getFeatureType());
+//        result.setDfofFilterTime(detail.getFilterAlarm());
 
         return result;
     }

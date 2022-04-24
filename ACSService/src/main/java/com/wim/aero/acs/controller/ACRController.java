@@ -7,7 +7,7 @@ import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
 import com.wim.aero.acs.protocol.device.cp.ControlPointCommandType;
 import com.wim.aero.acs.protocol.device.reader.AcrMode;
-import com.wim.aero.acs.service.SIOService;
+import com.wim.aero.acs.service.SioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.wim.aero.acs.model.result.RespCode.CMD_DOWNLOAD_FAIL;
 
 /**
  * @title: ACRController
@@ -30,9 +28,9 @@ import static com.wim.aero.acs.model.result.RespCode.CMD_DOWNLOAD_FAIL;
 @RequestMapping("/device/acr")
 @Api(tags = "读卡器远程控制接口")
 public class ACRController {
-    private final SIOService sioService;
+    private final SioService sioService;
     @Autowired
-    public ACRController(SIOService sioService) {
+    public ACRController(SioService sioService) {
         this.sioService = sioService;
     }
 

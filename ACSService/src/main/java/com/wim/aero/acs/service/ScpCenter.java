@@ -4,7 +4,6 @@ import com.wim.aero.acs.model.scp.ScpShadow;
 import com.wim.aero.acs.model.scp.ScpStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -20,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Service
 public class ScpCenter {
-    /** scpId:ScpShadow*/
+    /** scpId:ScpShadow */
     static private Map<Integer, ScpShadow> scpMap = new ConcurrentHashMap<>();
 
     @Autowired
@@ -28,9 +27,9 @@ public class ScpCenter {
     @Autowired
     static ScpService conScpService;
     @Autowired
-    SIOService sioService;
+    SioService sioService;
     @Autowired
-    static SIOService conSioService;
+    static SioService conSioService;
 
     @PostConstruct
     public void init() {

@@ -36,13 +36,13 @@ import java.util.List;
 public class ScpController {
 
     private final ScpService scpService;
-    private final SIOService sioService;
+    private final SioService sioService;
     private final AccessConfigService accessConfigService;
     private final RestUtil restUtil;
     private final RequestPendingCenter requestPendingCenter;
     @Autowired
     public ScpController(ScpService scpService,
-                         SIOService sioService,
+                         SioService sioService,
                          AccessConfigService accessConfigService,
                          RestUtil restUtil, RequestPendingCenter requestPendingCenter) {
         this.scpService = scpService;
@@ -52,7 +52,7 @@ public class ScpController {
         this.requestPendingCenter = requestPendingCenter;
     }
 
-    @ApiOperation(value = "硬件下载")
+    @ApiOperation(value = "硬件连接")
     @RequestMapping(value = "/connect", method = {RequestMethod.POST})
     public ResultBean<String> connectScp(@RequestBody ScpRequestInfo request) {
         int scpId = request.getScpId();
@@ -71,7 +71,7 @@ public class ScpController {
 
         // 命令发送+反馈
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        log.info("[硬件下载] {}", responseList.toString());
+        log.info("[硬件连接] {}", responseList.toString());
         List<CommandInfo> failCmdList = requestPendingCenter.updateSeq(responseList);
 
         // 结果反馈给页面
@@ -81,6 +81,20 @@ public class ScpController {
             return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL,
                     failCmdList.toString());
         }
+    }
+
+    @ApiOperation(value = "硬件配置")
+    @RequestMapping(value = "/config", method = {RequestMethod.POST})
+    public ResultBean<String> configScp(@RequestBody ScpRequestInfo request) {
+        int scpId = request.getScpId();
+        if (!scpService.isValidScpId(scpId)) {
+            return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
+        }
+
+        scpService.configScp(scpId);
+        sioService.configSioForScp(scpId);
+
+        return ResultBeanUtil.makeOkResp();
     }
 
     /**

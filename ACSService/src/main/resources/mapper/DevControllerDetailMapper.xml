@@ -37,7 +37,10 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        device_id, device_type_id, device_scope_id, device_name, device_ip, device_mac, device_port, connect_type, cc_interval, cc_times, wait_time, pwd, fix_address, status, remark, create_by, create_time, update_by, update_time, con_status, last_time
+        device_id, device_type_id, device_scope_id, device_name, device_ip, device_mac, device_port,
+connect_type, cc_interval, cc_times, wait_time, pwd, fix_address, status, remark, create_by, create_time,
+update_by, update_time, con_status, last_time, card_format_01, card_format_02, card_format_03, card_format_04,
+card_format_05, card_format_06, card_format_07, card_format_08
     </sql>
     <select id="selectAllByDeviceId" resultMap="BaseResultMap">
         select

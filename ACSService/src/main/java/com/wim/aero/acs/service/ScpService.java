@@ -23,11 +23,9 @@ import com.wim.aero.acs.protocol.device.SCPDriver;
 import com.wim.aero.acs.protocol.device.SCPSpecification;
 import com.wim.aero.acs.protocol.device.ScpReset;
 import com.wim.aero.acs.util.IdUtil;
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,18 +47,21 @@ public class ScpService {
     private final CardFormatServiceImpl cardFormatService;
     private final RestUtil restUtil;
     private final DSTConfig dstConfig;
+    private final RequestPendingCenter requestPendingCenter;
 
     @Autowired
     public ScpService(DevControllerDetailServiceImpl devControllerDetailService,
                       DevControllerCommonAttributeServiceImpl devControllerCommonAttributeService,
                       CardFormatServiceImpl cardFormatService,
                       RestUtil restUtil,
-                      DSTConfig dstConfig) {
+                      DSTConfig dstConfig,
+                      RequestPendingCenter requestPendingCenter) {
         this.devControllerDetailService = devControllerDetailService;
         this.devControllerCommonAttributeService = devControllerCommonAttributeService;
         this.cardFormatService = cardFormatService;
         this.restUtil = restUtil;
         this.dstConfig = dstConfig;
+        this.requestPendingCenter = requestPendingCenter;
     }
 
     /**
@@ -136,26 +137,26 @@ public class ScpService {
      */
     public void configScp(int scpId) {
         List<ScpCmd> cmdList = new ArrayList<>();
-        scpSpecification(scpId, cmdList);
-
-        // 303打开
-        TransactionLogSetting operation = TransactionLogSetting.openLog(scpId);
-        String logMsg = RequestMessage.encode(scpId, operation);
-        cmdList.add(new ScpCmd(scpId, logMsg, IdUtil.nextId()));
-
-        // 1116
-        List<DST> dstList = dstConfig.getList();
-        for (DST dst:dstList) {
-            DaylightSavingTimeConfiguration config = new DaylightSavingTimeConfiguration(
-                    scpId, dst.getStart(), dst.getEnd());
-            String dstMsg = RequestMessage.encode(scpId, config);
-            cmdList.add(new ScpCmd(scpId, dstMsg, IdUtil.nextId()));
-        }
-
-        // 时钟同步
-        TimeSet timeSet = new TimeSet(scpId);
-        String timeMsg = RequestMessage.encode(scpId, timeSet);
-        cmdList.add(new ScpCmd(scpId, timeMsg, IdUtil.nextId()));
+//        scpSpecification(scpId, cmdList);
+//
+//        // 303打开
+//        TransactionLogSetting operation = TransactionLogSetting.openLog(scpId);
+//        String logMsg = RequestMessage.encode(scpId, operation);
+//        cmdList.add(new ScpCmd(scpId, logMsg, IdUtil.nextId()));
+//
+//        // 1116
+//        List<DST> dstList = dstConfig.getList();
+//        for (DST dst:dstList) {
+//            DaylightSavingTimeConfiguration config = new DaylightSavingTimeConfiguration(
+//                    scpId, dst.getStart(), dst.getEnd());
+//            String dstMsg = RequestMessage.encode(scpId, config);
+//            cmdList.add(new ScpCmd(scpId, dstMsg, IdUtil.nextId()));
+//        }
+//
+//        // 时钟同步
+//        TimeSet timeSet = new TimeSet(scpId);
+//        String timeMsg = RequestMessage.encode(scpId, timeSet);
+//        cmdList.add(new ScpCmd(scpId, timeMsg, IdUtil.nextId()));
 
         // 有梯控则配置
 //        elevatorScpSpecification(scpId, cmdList);
@@ -170,9 +171,9 @@ public class ScpService {
         }
 
         // TODO:优化
-//        RequestPendingCenter.add(0, cmdList);
-//        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-//        RequestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.add(0, "", 0, cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
 
@@ -190,7 +191,6 @@ public class ScpService {
         DevControllerCommonAttribute detail = devControllerCommonAttributeService.getADSpecification();
         AccessDatabaseSpecification adSpecification = AccessDatabaseSpecification.fromDb(scpId, detail);
         String adSpecificationMsg = RequestMessage.encode(scpId, adSpecification);
-
 
         // 命令组装
         cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
@@ -245,6 +245,10 @@ public class ScpService {
         }
 
         List<Integer> cardIdList = cardIndexMap.values().stream().collect(Collectors.toList());
+        if (cardIdList.size() <= 0) {
+            return;
+        }
+        System.out.println(cardIdList.toArray());
 
         List<CardFormat> list = cardFormatService.getCardInfoByIdList(cardIdList);
         for (CardFormat item:list) {

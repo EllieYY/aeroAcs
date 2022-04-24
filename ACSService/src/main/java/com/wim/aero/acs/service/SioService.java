@@ -1,6 +1,5 @@
 package com.wim.aero.acs.service;
 
-import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.db.entity.DevInputDetail;
 import com.wim.aero.acs.db.entity.DevOutputDetail;
 import com.wim.aero.acs.db.entity.DevReaderDetail;
@@ -23,7 +22,6 @@ import com.wim.aero.acs.protocol.device.mp.MonitorPointMask;
 import com.wim.aero.acs.protocol.device.mp.MpGroupCommand;
 import com.wim.aero.acs.protocol.device.reader.ACRConfig;
 import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
-import com.wim.aero.acs.protocol.device.reader.AcrMode;
 import com.wim.aero.acs.protocol.device.reader.ReaderSpecification;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -41,22 +39,26 @@ import java.util.List;
  **/
 @Service
 @Slf4j
-public class SIOService {
+public class SioService {
     private final DevXDetailServiceImpl sioDetailService;
     private final DevInputDetailServiceImpl inputDetailService;
     private final DevOutputDetailServiceImpl outputDetailService;
     private final DevReaderDetailServiceImpl readerDetailService;
     private final RestUtil restUtil;
+    private final RequestPendingCenter requestPendingCenter;
     @Autowired
-    public SIOService(DevXDetailServiceImpl sioDetailService,
+    public SioService(DevXDetailServiceImpl sioDetailService,
                       DevInputDetailServiceImpl inputDetailService,
                       DevOutputDetailServiceImpl outputDetailService,
-                      DevReaderDetailServiceImpl readerDetailService, RestUtil restUtil) {
+                      DevReaderDetailServiceImpl readerDetailService,
+                      RestUtil restUtil,
+                      RequestPendingCenter requestPendingCenter) {
         this.sioDetailService = sioDetailService;
         this.inputDetailService = inputDetailService;
         this.outputDetailService = outputDetailService;
         this.readerDetailService = readerDetailService;
         this.restUtil = restUtil;
+        this.requestPendingCenter = requestPendingCenter;
     }
 
     /**
@@ -64,40 +66,23 @@ public class SIOService {
      * @param scpId
      */
     public void configSioForScp(int scpId) {
-        List<ScpCmd> cmdList = new ArrayList<>();
-
-        // 查找所有sio
-        List<DevXDetail> sioList = sioDetailService.getByScpId(scpId);
-        for (DevXDetail sio:sioList) {
-            int msp1Number = sio.getControllerPort();
-            // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器两个
-            SIODriver driver = new SIODriver(scpId, msp1Number, msp1Number);
-            String driverMsg = RequestMessage.encode(scpId, driver);
-            cmdList.add(new ScpCmd(scpId, driverMsg, IdUtil.nextId()));
-
-            // SIOPanel Configuration (Command 109)
-            SIOSpecification specification = SIOSpecification.fromDb(sio);
-            String msg = RequestMessage.encode(scpId, specification);
-            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        }
-
-        // 通过上级设备id查找输入输出点，也可以直接通过scpId查找
-//        List<Integer> pDeviceIds = sioList.stream().collect(ArrayList::new, (list, item) -> {
-//            list.add(item.getDeviceId());
-//        }, ArrayList::addAll);
-//        pDeviceIds.add(scpId);   // 控制器的输入输出点及读卡器也要配置
-        inputConfig(scpId, cmdList);
-        outputConfig(scpId, cmdList);
-        readerConfig(scpId, cmdList);
-
-        for(ScpCmd cmd:cmdList) {
-            System.out.println(cmd.getCommand());
-        }
-        // TODO:优化
-//        RequestPendingCenter.add(0, cmdList);
+//        List<ScpCmd> cmdList = new ArrayList<>();
+//
+//        sioConfig(scpId, cmdList);
+//        inputConfig(scpId, cmdList);
+//        outputConfig(scpId, cmdList);
+//        readerConfig(scpId, cmdList);
+//
+//        for(ScpCmd cmd:cmdList) {
+//            log.info(cmd.getCommand());
+//        }
+//
+//        // TODO:优化
+//        requestPendingCenter.add(0, "", 0, cmdList);
 //        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-//        RequestPendingCenter.updateSeq(responseList);
+//        requestPendingCenter.updateSeq(responseList);
     }
+    
 
     /**
      * 读卡器mode设置
@@ -175,13 +160,40 @@ public class SIOService {
     }
 
 
+    /**
+     * sio配置
+     * @param scpId
+     * @param cmdList
+     */
+    public void sioConfig(int scpId, List<ScpCmd> cmdList) {
+        // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器3个
+//        cmdList.add(packageDriver(scpId, 0));
+        cmdList.add(packageDriver(scpId, 1));
+        cmdList.add(packageDriver(scpId, 2));
+
+        // 查找所有sio
+        List<DevXDetail> sioList = sioDetailService.getByScpId(scpId);
+        for (DevXDetail sio:sioList) {
+            // SIOPanel Configuration (Command 109)
+            SIOSpecification specification = SIOSpecification.fromDb(sio);
+            String msg = RequestMessage.encode(scpId, specification);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+    }
+
+    private ScpCmd packageDriver(int scpId, int port) {
+        // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器3个
+        SIODriver driver = new SIODriver(scpId, port, port);
+        String driverMsg = RequestMessage.encode(scpId, driver);
+        return new ScpCmd(scpId, driverMsg, IdUtil.nextId());
+    }
 
     /**
      * 输入点（报警点）配置
      * @param scpId
      * @param cmdList
      */
-    private void inputConfig(int scpId, List<ScpCmd> cmdList) {
+    public void inputConfig(int scpId, List<ScpCmd> cmdList) {
         List<DevInputDetail> devInputDetails = inputDetailService.getByScpId(scpId);
         for (DevInputDetail input:devInputDetails) {
             // Input Point Configuration (Command 110)
@@ -202,7 +214,7 @@ public class SIOService {
      * @param scpId
      * @param cmdList
      */
-    private void outputConfig(int scpId, List<ScpCmd> cmdList) {
+    public void outputConfig(int scpId, List<ScpCmd> cmdList) {
         List<DevOutputDetail> devOutputDetails = outputDetailService.getByScpId(scpId);
         for (DevOutputDetail output:devOutputDetails) {
             // OutputPointConfiguration (Command 111)
@@ -223,7 +235,7 @@ public class SIOService {
      * @param scpId
      * @param cmdList
      */
-    private void readerConfig(int scpId, List<ScpCmd> cmdList) {
+    public void readerConfig(int scpId, List<ScpCmd> cmdList) {
         List<DevReaderDetail> readerDetails = readerDetailService.getByScpId(scpId);
         for (DevReaderDetail reader:readerDetails) {
             // Card Reader Configuration(Command112)

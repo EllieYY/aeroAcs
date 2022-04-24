@@ -5,7 +5,7 @@ import com.wim.aero.acs.model.request.MpRequestInfo;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
-import com.wim.aero.acs.service.SIOService;
+import com.wim.aero.acs.service.SioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +27,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "报警点远程控制接口")
 public class MonitorPointController {
 
-    private final SIOService sioService;
+    private final SioService sioService;
     @Autowired
-    public MonitorPointController(SIOService sioService) {
+    public MonitorPointController(SioService sioService) {
         this.sioService = sioService;
     }
 
