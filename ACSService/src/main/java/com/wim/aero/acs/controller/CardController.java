@@ -1,7 +1,8 @@
 package com.wim.aero.acs.controller;
 
-import com.wim.aero.acs.model.command.CmdDownloadInfo;
-import com.wim.aero.acs.model.request.CardListInfo;
+
+import com.wim.aero.acs.model.request.CardBlockedRequestInfo;
+import com.wim.aero.acs.model.request.CardRequestInfo;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
@@ -36,28 +37,39 @@ public class CardController {
 
     @ApiOperation(value = "添加卡片到控制器")
     @RequestMapping(value = "/add", method = {RequestMethod.POST})
-    public ResultBean<List<CmdDownloadInfo>> addCards(@RequestBody CardListInfo cardInfo) throws Exception {
+    public ResultBean<String> addCards(@RequestBody CardRequestInfo cardInfo) {
         if (cardInfo.getCardList().size() == 0) {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
         }
 
         // 添加卡
-        accessConfigService.addCards(
-                cardInfo.getTaskId(),
-                cardInfo.getTaskName(),
-                cardInfo.getTaskSource(),
-                cardInfo.getCardList());
+        accessConfigService.addCards(cardInfo);
 
         return ResultBeanUtil.makeOkResp();
     }
 
     @ApiOperation(value = "删除卡片")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST})
-    public ResultBean<List<CmdDownloadInfo>> deleteCards(@RequestBody CardListInfo cardNoList) throws Exception {
-        if (cardNoList.getCardList().size() == 0) {
+    public ResultBean<String> deleteCards(@RequestBody CardRequestInfo cardInfo) {
+        if (cardInfo.getCardList().size() == 0) {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
         }
 
+        // 删除卡
+        accessConfigService.deleteCards(cardInfo);
+
+        return ResultBeanUtil.makeOkResp();
+    }
+
+    @ApiOperation(value = "卡片冻结/解冻")
+    @RequestMapping(value = "/block", method = {RequestMethod.POST})
+    public ResultBean<String> blockCards(@RequestBody CardBlockedRequestInfo cardInfo) {
+        if (cardInfo.getCardList().size() == 0) {
+            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
+        }
+
+        // 卡冻结解冻
+        accessConfigService.cardBlocked(cardInfo);
 
         return ResultBeanUtil.makeOkResp();
     }

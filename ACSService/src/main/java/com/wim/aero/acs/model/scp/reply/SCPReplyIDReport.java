@@ -1,5 +1,6 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,7 +46,7 @@ public class SCPReplyIDReport extends ReplyBody {
     private long   cumulative_bld_cnt;	// Cumulative build count
 
     @Override
-    public void process(int scpId) {
+    public void process(QueueProducer queueProducer, int scpId) {
         log.info(this.toString());
     }
 }

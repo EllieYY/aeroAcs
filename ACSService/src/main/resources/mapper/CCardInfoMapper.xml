@@ -141,5 +141,14 @@
             #{id}
         </foreach>
     </select>
+    <select id="selectScpIdsByCardNo" resultType="java.lang.Integer" parameterType="java.util.List">
+        select
+            distinct controller_id
+        from d_employee_access_reader
+        where card_no IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>

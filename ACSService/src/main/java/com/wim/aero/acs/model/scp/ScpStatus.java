@@ -17,6 +17,11 @@ public enum ScpStatus {
     ScpStatus(int status) {
         this.status = status;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
     private int status;
 
     public static ScpStatus fromCode(int code){

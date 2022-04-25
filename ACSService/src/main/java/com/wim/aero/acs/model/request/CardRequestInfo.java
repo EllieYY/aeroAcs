@@ -1,6 +1,7 @@
 package com.wim.aero.acs.model.request;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -13,9 +14,12 @@ import java.util.List;
  **/
 @Data
 @ApiModel(value = "卡号列表")
-public class CardListInfo {
+public class CardRequestInfo {
+
     private long taskId;
     private String taskName;
     private int taskSource;
+
+    private int tz;
     private List<String> cardList;
 }

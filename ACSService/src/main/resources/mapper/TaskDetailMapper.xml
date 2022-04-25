@@ -12,11 +12,31 @@
         <result column="msg_return_time" property="msgReturnTime" />
         <result column="msg_over_time" property="msgOverTime" />
         <result column="status" property="status" />
+        <result column="uid" property="uid" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        task_id, task_name, task_source, message, start_time, msg_return_time, msg_over_time, status
+        task_id, task_name, task_source, message, start_time, msg_return_time, msg_over_time, status, uid
     </sql>
+    <update id="updateStatusAndMsgReturnTimeByUid">
+        update task_detail
+        set status          = #{status,jdbcType=VARCHAR},
+            msg_return_time = #{msgReturnTime}
+        where uid = #{uid}
+    </update>
+
+    <update id="updateStatusBatch" parameterType="java.util.List">
+        update task_detail
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="status=case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.uid!=null">
+                        when uid=#{item.uid} then #{item.status}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+    </update>
 
 </mapper>

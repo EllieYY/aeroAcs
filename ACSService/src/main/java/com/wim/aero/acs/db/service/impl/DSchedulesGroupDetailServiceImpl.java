@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Service
 public class DSchedulesGroupDetailServiceImpl extends ServiceImpl<DSchedulesGroupDetailMapper, DSchedulesGroupDetail> implements DSchedulesGroupDetailService {
-    public List<TimeZone> getTimeZones(int scpId) {
+    public List<TimeZone> getTimeZonesByScp(int scpId) {
         return baseMapper.selectByScpId(scpId);
     }
 }

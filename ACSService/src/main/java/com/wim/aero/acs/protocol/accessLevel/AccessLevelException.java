@@ -14,18 +14,33 @@ import java.util.List;
  **/
 @Data
 public class AccessLevelException extends Operation {
-    @CmdProp(index = 2)
-    private int lastModified;
+    @CmdProp(index = 2, defaultValue = "0")
+    private int lastModified = 0;
 
     @CmdProp(index = 3)
     private int scp_number;
 
     @CmdProp(index = 4)
-    private int nCardholderId;
+    private String nCardholderId;
 
     @CmdProp(index = 5)
-    private int nEntries;
+    private int nEntries;  // up to 64 entries are supported. A value of 0 removes the list.
 
     @CmdProp(index = 6)
     private List<ReaderTz> readerTzList;
+
+    public AccessLevelException(int scpId, String nCardholderId, int tz, boolean removed) {
+        this.scp_number = scpId;
+        this.nCardholderId = nCardholderId;
+
+        if (removed) {
+            nEntries = 0;
+            readerTzList.clear();
+        } else {
+            nEntries = 64;
+            for (int i = 0; i < nEntries; i++) {
+                readerTzList.add(new ReaderTz(i, tz));
+            }
+        }
+    }
 }

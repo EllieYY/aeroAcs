@@ -4,7 +4,11 @@ import com.wim.aero.acs.db.entity.TaskDetail;
 import com.wim.aero.acs.db.mapper.TaskDetailMapper;
 import com.wim.aero.acs.db.service.TaskDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -17,6 +21,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class TaskDetailServiceImpl extends ServiceImpl<TaskDetailMapper, TaskDetail> implements TaskDetailService {
 
+    public void updateTaskState(String status, Date msgReturnTime, String uid) {
+        this.baseMapper.updateStatusAndMsgReturnTimeByUid(status, msgReturnTime, uid);
+    }
+
+    public void updateTaskStateBatch(List<TaskDetail> detailList) {
+        this.baseMapper.updateStatusBatch(detailList);
+    }
 
 
 }

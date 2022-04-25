@@ -35,4 +35,8 @@ public class CCardInfoServiceImpl extends ServiceImpl<CCardInfoMapper, CCardInfo
         return this.baseMapper.selectAllByCardList(cardList);
     }
 
+    public List<Integer> getScpIdsByCardNo(List<String> cardList) {
+        return this.baseMapper.selectScpIdsByCardNo(cardList);
+    }
+
 }

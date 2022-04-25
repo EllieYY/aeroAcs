@@ -5,9 +5,11 @@ import com.wim.aero.acs.db.entity.DHoliday;
 import com.wim.aero.acs.db.service.impl.*;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.db.AccessLevelInfo;
-import com.wim.aero.acs.model.command.CmdDownloadInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
+import com.wim.aero.acs.model.request.CardBlockedRequestInfo;
+import com.wim.aero.acs.model.request.CardRequestInfo;
+import com.wim.aero.acs.protocol.accessLevel.AccessLevelException;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
@@ -80,8 +82,12 @@ public class AccessConfigService {
      */
     public void downloadCards(long taskId, String taskName, int taskSource, int scpId) {
         List<CardAdd> cardAddList = cardInfoService.getByScpId(scpId);
+        List<ScpCmd> cmdList = packageCardMessages(cardAddList);
 
-        packageCardMessages(taskId, taskName, taskSource, cardAddList);
+        // 下发到控制器
+        requestPendingCenter.add(taskId, taskName, taskSource, cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
 
@@ -90,9 +96,19 @@ public class AccessConfigService {
      * @param cards
      * @return 发送失败的结果
      */
-    public void addCards(long taskId, String taskName, int taskSource, List<String> cards) {
-        List<CardAdd> cardAddList = cardInfoService.getByCardList(cards);
-        packageCardMessages(taskId, taskName, taskSource, cardAddList);
+    public void addCards(CardRequestInfo requestInfo) {
+        List<String> cardList = requestInfo.getCardList();
+
+        List<CardAdd> cardAddList = cardInfoService.getByCardList(cardList);
+        List<ScpCmd> cmdList = packageCardMessages(cardAddList);
+
+        // 下发到控制器
+        requestPendingCenter.add(requestInfo.getTaskId(),
+                requestInfo.getTaskName(),
+                requestInfo.getTaskSource(),
+                cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
     /**
@@ -100,36 +116,65 @@ public class AccessConfigService {
      * @param cardList
      * @return 发送失败的结果
      */
-    public List<CmdDownloadInfo> deleteCards(int scpId, List<String> cardList) {
-        List<ScpCmd> cmdList = new ArrayList<>();
-        for (String cardNo:cardList) {
-            CardDelete operation = new CardDelete(scpId, cardNo);
-            String msg = RequestMessage.encode(scpId, operation);
-            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        }
-//        AccessDatabaseSpecification operation = AccessDatabaseSpecification.getCardsClearedModel(scpId);
-//        String msg = RequestMessage.encode(scpId, operation);
-//
-//        log.info("[SCP]清除卡片 clear cards: scpId={}, msg={}", scpId, msg);
-//
-//        // 向设备发送
-//        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-//        log.info("清除卡片，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
-//
-//        return response.getCode();
-//
-//        List<CardAdd> cardAddList = cardInfoService.getByCardNo(cards);
-//        return packageCardMessages(cardAddList);
+    public void deleteCards(CardRequestInfo requestInfo) {
+        List<String> cardList = requestInfo.getCardList();
 
-        return null;
+        // 查找拥有这张卡的控制器
+        List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
+
+        // 组织报文
+        List<ScpCmd> cmdList = new ArrayList<>();
+        for (Integer scpId:scpIdList) {
+            for (String cardNo : cardList) {
+                CardDelete operation = new CardDelete(scpId, cardNo);
+                String msg = RequestMessage.encode(scpId, operation);
+                cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+            }
+        }
+
+        // 下发到控制器
+        requestPendingCenter.add(requestInfo.getTaskId(),
+                requestInfo.getTaskName(),
+                requestInfo.getTaskSource(),
+                cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        requestPendingCenter.updateSeq(responseList);
+    }
+
+    /**
+     * 卡冻结解冻
+     * @param requestInfo
+     */
+    public void cardBlocked(CardBlockedRequestInfo requestInfo) {
+        List<String> cardList = requestInfo.getCardList();
+        // 查找拥有这张卡的控制器
+        List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
+
+        // 组织报文
+        List<ScpCmd> cmdList = new ArrayList<>();
+        for (Integer scpId:scpIdList) {
+            for (String cardNo : cardList) {
+                AccessLevelException operation = new AccessLevelException(scpId, cardNo, requestInfo.getTz(), requestInfo.isBlocked());
+                String msg = RequestMessage.encode(scpId, operation);
+                cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+            }
+        }
+
+        // 下发到控制器
+        requestPendingCenter.add(requestInfo.getTaskId(),
+                requestInfo.getTaskName(),
+                requestInfo.getTaskSource(),
+                cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
     /**
      * 报文打包
      * @param cardAddList
-     * @return 发送失败的结果
+     * @return
      */
-    public void packageCardMessages(long taskId, String taskName, int taskSource, List<CardAdd> cardAddList) {
+    public List<ScpCmd> packageCardMessages(List<CardAdd> cardAddList) {
         // command 8304
         List<ScpCmd> cmdList = new ArrayList<>();
         for(CardAdd item:cardAddList) {
@@ -141,11 +186,7 @@ public class AccessConfigService {
             cmdList.add(new ScpCmd(scpId, msg, streamId));
         }
 
-        // 下发到控制器
-        requestPendingCenter.add(taskId, taskName, taskSource, cmdList);
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
-
+        return cmdList;
     }
 
     /**
@@ -190,7 +231,7 @@ public class AccessConfigService {
      */
     public void addTimeZone(int scpId, List<ScpCmd> cmdList) {
         // command 3103
-        List<TimeZone> list = schedulesGroupService.getTimeZones(scpId);
+        List<TimeZone> list = schedulesGroupService.getTimeZonesByScp(scpId);
         for(TimeZone item:list) {
             item.updateIntervalSize();
             String msg = RequestMessage.encode(scpId, item);

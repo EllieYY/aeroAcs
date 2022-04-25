@@ -56,17 +56,13 @@ public class ScpCenter {
             ScpStatus preStatus = scpShadow.getState();
             scpShadow.setState(ScpStatus.ON_LINE);
             scpMap.put(scpId, scpShadow);
-
-            // TODO:
-            // 上线后开始配置 -- 先验条件：设备处于初始化状态
-            if (preStatus == ScpStatus.INIT || preStatus == ScpStatus.OFF_LINE) {
-                conScpService.configScp(scpId);
-                conSioService.configSioForScp(scpId);
-            }
         } else {
             ScpShadow scpShadow = new ScpShadow(scpId, ScpStatus.ON_LINE);
             scpMap.put(scpId, scpShadow);
         }
+
+        // 更新状态
+        conScpService.scpOnlineStateNotify(scpId, ScpStatus.ON_LINE.getStatus());
     }
 
 
@@ -76,6 +72,9 @@ public class ScpCenter {
             scpShadow.setState(ScpStatus.OFF_LINE);
             scpMap.put(scpId, scpShadow);
         }
+
+        // 更新状态
+        conScpService.scpOnlineStateNotify(scpId, ScpStatus.OFF_LINE.getStatus());
     }
 
     /** 更新控制器的transaction索引 */

@@ -84,8 +84,8 @@ public class ScpController {
     }
 
     @ApiOperation(value = "硬件配置")
-    @RequestMapping(value = "/config", method = {RequestMethod.POST})
-    public ResultBean<String> configScp(@RequestBody ScpRequestInfo request) {
+    @RequestMapping(value = "/device/config", method = {RequestMethod.POST})
+    public ResultBean<String> configScpDeivce(@RequestBody ScpRequestInfo request) {
         int scpId = request.getScpId();
         if (!scpService.isValidScpId(scpId)) {
             return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");

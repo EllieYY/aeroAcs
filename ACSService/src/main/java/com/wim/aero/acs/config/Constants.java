@@ -43,6 +43,12 @@ public interface Constants {
      * 0x80 Not attached (the monitor point is not linked to an Input)*/
 
 
+    int mqSourceScp =  1; //     控制器
+    int mqSourceSio = 2; //     X100/X200/X300
+    int mqSourceAcr = 3; //     读写器
+    int mqSourceMp = 4; //      输入点
+    int mqSourceCp = 5; //     输出点
+
     // transaction related definitions
     // - transaction source type definitions
     int tranSrcScpDiag = 0x00;	// SCP diagnostics

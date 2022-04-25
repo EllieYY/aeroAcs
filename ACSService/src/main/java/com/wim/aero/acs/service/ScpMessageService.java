@@ -78,11 +78,7 @@ public class ScpMessageService {
             return;
         }
 
-        // TODO:test code
-//        if (enScpReplyType != EnScpReplyType.enSCPReplyCmndStatus ||
-//                enScpReplyType != EnScpReplyType.enSCPReplyCommStatus) {
-//            return;
-//        }
+        log.info(reply.toString());
 
         // 类型转换
         Class<ReplyBody> bodyClazz = ReplyType.fromCode(enScpReplyType).getTransClazz();
@@ -90,7 +86,7 @@ public class ScpMessageService {
 
         // 业务处理
         int scpId = reply.getScpId();
-        body.process(scpId);
+        body.process(queueProducer, scpId);
     }
 
 }

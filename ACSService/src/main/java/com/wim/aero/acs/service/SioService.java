@@ -66,23 +66,23 @@ public class SioService {
      * @param scpId
      */
     public void configSioForScp(int scpId) {
-//        List<ScpCmd> cmdList = new ArrayList<>();
-//
-//        sioConfig(scpId, cmdList);
-//        inputConfig(scpId, cmdList);
-//        outputConfig(scpId, cmdList);
-//        readerConfig(scpId, cmdList);
-//
-//        for(ScpCmd cmd:cmdList) {
-//            log.info(cmd.getCommand());
-//        }
-//
-//        // TODO:优化
-//        requestPendingCenter.add(0, "", 0, cmdList);
-//        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-//        requestPendingCenter.updateSeq(responseList);
+        List<ScpCmd> cmdList = new ArrayList<>();
+
+        sioConfig(scpId, cmdList);
+        inputConfig(scpId, cmdList);
+        outputConfig(scpId, cmdList);
+        readerConfig(scpId, cmdList);
+
+        for(ScpCmd cmd:cmdList) {
+            log.info(cmd.getCommand());
+        }
+
+        // TODO:优化
+        requestPendingCenter.add(0, "", 0, cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        requestPendingCenter.updateSeq(responseList);
     }
-    
+
 
     /**
      * 读卡器mode设置

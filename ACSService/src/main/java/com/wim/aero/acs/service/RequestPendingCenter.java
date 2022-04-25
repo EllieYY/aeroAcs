@@ -45,7 +45,6 @@ public class RequestPendingCenter {
         conTaskDetailService = taskDetailService;
     }
 
-
     /** 命令集合添加 */
     public void add(long taskId, String taskName, int taskSource, List<ScpCmd> commandInfoList) {
         log.info("[下发命令条数] - {}", commandInfoList.size());
@@ -63,7 +62,8 @@ public class RequestPendingCenter {
             taskDetailList.add(new TaskDetail(
                     taskId, taskName, taskSource, cmd.getCommand(),
                     curTime, null, DateUtil.dateAddMins(curTime,5),
-                    TaskCommandState.INIT.value()
+                    TaskCommandState.INIT.value(),
+                    cmd.getStreamId()
             ));
         }
 
@@ -102,7 +102,8 @@ public class RequestPendingCenter {
                         commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
                         commandInfo.getCommand(),
                         curTime, new Date(), DateUtil.dateAddMins(curTime,5),
-                        state
+                        state,
+                        commandInfo.getStreamId()
                 ));
 
             } else {
@@ -111,9 +112,7 @@ public class RequestPendingCenter {
 
         }
 
-        // taskDetailList
-        // TODO:
-//        conTaskDetailService.saveOrUpdateBatch(taskDetailList);
+        conTaskDetailService.updateTaskStateBatch(taskDetailList);
 
         return result;
     }
@@ -140,7 +139,8 @@ public class RequestPendingCenter {
                     commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
                     commandInfo.getCommand(),
                     curTime, new Date(), DateUtil.dateAddMins(curTime,5),
-                    state
+                    state,
+                    commandInfo.getStreamId()
             ));
 
             // 移除命令集合
@@ -148,7 +148,7 @@ public class RequestPendingCenter {
         }
 
         // TODO:
-//        conTaskDetailService.saveOrUpdateBatch(taskDetailList);
+        conTaskDetailService.updateTaskStateBatch(taskDetailList);
     }
 
 

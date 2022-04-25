@@ -1,5 +1,6 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.service.QueueProducer;
 import com.wim.aero.acs.service.RequestPendingCenter;
 import lombok.Data;
 
@@ -23,8 +24,8 @@ public class SCPReplyCmndStatus extends ReplyBody {
     private SCPReplyNAKStr nak;    // SCPReplyNAK
 
     @Override
-    public void process(int scpId) {
-        // TODO:区分成功和失败的处理
+    public void process(QueueProducer queueProducer, int scpId) {
+        // 区分成功和失败的处理
         int reason = -1;
         if (status == 2) {
             reason = Integer.parseInt(nak.getReason());

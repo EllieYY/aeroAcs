@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.service.QueueProducer;
+
 /**
  * @title: TransactionBody
  * @author: Ellie
@@ -7,5 +9,5 @@ package com.wim.aero.acs.model.scp.reply;
  * @description:
  **/
 public abstract class ReplyBody {
-    abstract public void process(int scpId);
+    abstract public void process(QueueProducer queueProducer, int scpId);
 }

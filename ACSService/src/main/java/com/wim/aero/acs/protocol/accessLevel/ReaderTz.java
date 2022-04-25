@@ -1,6 +1,8 @@
 package com.wim.aero.acs.protocol.accessLevel;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @title: ReaderTz
@@ -9,6 +11,8 @@ import lombok.Data;
  * @description:
  **/
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReaderTz {
     private int readerId;
     private int tz;

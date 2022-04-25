@@ -1,5 +1,8 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.StatusMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import com.wim.aero.acs.service.ScpCenter;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +30,7 @@ public class SCPReplyCommStatus extends ReplyBody {
     private int	previous_alternate_comm;	// Not used
 
     @Override
-    public void process(int scpId) {
+    public void process(QueueProducer queueProducer, int scpId) {
         if (status == 2) {
             log.info("[设备上线] - scpId:[{}], channelId[{}], curComm[{}], preComm[{}]",
                     scpId, nChannelId, current_primary_comm, previous_primary_comm);
@@ -38,5 +41,9 @@ public class SCPReplyCommStatus extends ReplyBody {
                     scpId, status, error_code, current_primary_comm, previous_primary_comm);
             ScpCenter.scpOffline(scpId);
         }
+
+        StatusMessage message = new StatusMessage(
+                0, System.currentTimeMillis(), scpId, Constants.mqSourceScp, scpId, 0, 0, status, Constants.mqSourceScp,"");
+        queueProducer.sendStatusMessage(message);
     }
 }

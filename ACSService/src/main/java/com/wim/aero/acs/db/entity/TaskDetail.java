@@ -53,5 +53,8 @@ public class TaskDetail implements Serializable {
     @TableField("status")
     private String status;
 
+    @TableField("uid")
+    private String uid;
+
 
 }

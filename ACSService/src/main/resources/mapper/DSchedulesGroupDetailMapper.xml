@@ -47,6 +47,7 @@
         ON b.schedules_id = c.schedules_id
         where controller_id = #{scpId}
             and a.schedules_group_id = b.schedules_group_id
+            and c.status = '1'
         order by c.schedules_id
     </select>
 
