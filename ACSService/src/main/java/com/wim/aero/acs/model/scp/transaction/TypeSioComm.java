@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @title: TypeSioComm
@@ -72,38 +73,20 @@ public class TypeSioComm extends TransactionBody {
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
+        // SIO板：0离线 1正常  2报警
+        //  0 - not configured
+        //  1 - not tried: active, have not tried to poll it
+        //  2 - off-line
+        //  3 - on-line
+        Map<Integer, Integer> statusMap = Map.of(
+                0, 0,
+                1, 0,
+                2, 0,
+                3, 1);
         queueProducer.sendStatusMessage(
-                new StatusMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, comm_sts, this.toString()));
-
-    }
-
-    // SIO板：0离线 1正常  2报警
-    /*
-       //  	1	- comm disabled (result of host command)
-     * //  	2	- off-line: timeout (no/bad response from unit)
-     * //  	3	- off-line: invalid identification from SIO
-     * //  	4	- off-line: Encryption could not be established
-     * //  	5	- on-line: normal connection
-     * //	6   - hexLoad report: ser_num is address loaded (-1 == last record)
-     */
-    int parseState(int tranCode, int commState) {
-        if (tranCode == Constants.COS_TRAN_Disconnected) {
-
-        } else if (tranCode == Constants.COS_TRAN_Unknown) {
-
-        } else if (tranCode == Constants.COS_TRAN_Secure) {
-
-        } else if (tranCode == Constants.COS_TRAN_Alarm) {
-
-        } else if (tranCode == Constants.COS_TRAN_Fault) {
-
-        } else if (tranCode == Constants.COS_TRAN_Exit) {
-
-        } else if (tranCode == Constants.COS_TRAN_Entry) {
-
-        }
-
-        return 0;
+                new StatusMessage(index, date, scpId,
+                        sourceType, sourceNum, tranType, tranCode,
+                        statusMap.get(comm_sts), Constants.mqSourceSio, this.toString()));
     }
 
     //    SIO Hardware ID

@@ -84,6 +84,8 @@ public class ScpCenter {
             scpShadow.setOldest(oldest);
             scpShadow.setLastRprtd(lastRprtd);
             scpMap.put(scpId, scpShadow);
+
+            // TODO:后续处理
         }
     }
 }

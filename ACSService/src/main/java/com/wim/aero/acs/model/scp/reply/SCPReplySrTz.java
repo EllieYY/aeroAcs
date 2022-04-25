@@ -1,5 +1,8 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import io.swagger.models.auth.In;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +26,10 @@ public class SCPReplySrTz extends ReplyBody {
                                     // 0x04 mask == time scan override
 
     @Override
-    public void process(int scpId) {
-
-        // TODO:待处理
-        log.info(this.toString());
+    public void process(QueueProducer queueProducer, int scpId) {
+        LogMessage message = new LogMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranSrcTimeZone, first, Constants.customTranType, 0, this.toString());
+        queueProducer.sendLogMessage(message);
     }
 }

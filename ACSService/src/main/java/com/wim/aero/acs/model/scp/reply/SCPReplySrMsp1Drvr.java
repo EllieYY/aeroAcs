@@ -1,5 +1,8 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,12 +22,12 @@ public class SCPReplySrMsp1Drvr extends ReplyBody {
     private int throughput;			// i/o transactions per second (approx)
 
     @Override
-    public void process(int scpId) {
-        log.info("{}:{}", scpId, this.toString());
+    public void process(QueueProducer queueProducer, int scpId) {
+//        log.info("{}:{}", scpId, this.toString());
 
-        // TODO:更新数据库or推送Mq：在线状态
-        if (mode == 1) {
-
-        }
+        LogMessage message = new LogMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranSrcScpCom, number, Constants.customTranType, 0, this.toString());
+        queueProducer.sendLogMessage(message);
     }
 }

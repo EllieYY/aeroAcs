@@ -1,5 +1,8 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import com.wim.aero.acs.service.ScpCenter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,7 +36,11 @@ public class SCPReplyTranStatus extends ReplyBody {
     private int disabled;		// non-zero if disabled with (Command_303)
 
     @Override
-    public void process(int scpId) {
+    public void process(QueueProducer queueProducer, int scpId) {
         ScpCenter.updateTR(scpId, oldest, lastRprtd);
+        LogMessage message = new LogMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, this.toString());
+        queueProducer.sendLogMessage(message);
     }
 }

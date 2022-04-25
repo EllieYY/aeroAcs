@@ -35,5 +35,4 @@ public class TypeActivate extends TransactionBody {
         queueProducer.sendLogMessage(new LogMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, this.toString()));
 
     }
-//    private int activationCount;   // 没有字段返回
 }

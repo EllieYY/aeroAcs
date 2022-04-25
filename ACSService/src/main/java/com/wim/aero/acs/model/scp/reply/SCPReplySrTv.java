@@ -1,5 +1,8 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,9 +22,11 @@ public class SCPReplySrTv extends ReplyBody {
     private List<Integer> status;	// 100 - TV status: set/clear
 
     @Override
-    public void process(int scpId) {
-        // TODO:待处理
-        log.info(this.toString());
+    public void process(QueueProducer queueProducer, int scpId) {
+        LogMessage message = new LogMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranSrcTrigger, first, Constants.customTranType, 0, this.toString());
+        queueProducer.sendLogMessage(message);
 
     }
 }

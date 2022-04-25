@@ -1,5 +1,10 @@
 package com.wim.aero.acs.config;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Encryption;
+import springfox.documentation.schema.Maps;
+
+import java.util.Map;
+
 /**
  * @description 常量定义
  */
@@ -49,6 +54,14 @@ public interface Constants {
     int mqSourceMp = 4; //      输入点
     int mqSourceCp = 5; //     输出点
 
+    Map<Integer, Integer> tranSrcMap = Map.of(
+            0x07, mqSourceMp,
+            0x08, mqSourceCp,
+            0x09, mqSourceAcr,
+            0x0A, mqSourceAcr,
+            0x0D, mqSourceAcr,
+            0x0E, mqSourceAcr
+    );
     // transaction related definitions
     // - transaction source type definitions
     int tranSrcScpDiag = 0x00;	// SCP diagnostics
@@ -75,6 +88,7 @@ public interface Constants {
     int tranSrcSioEmg = 0x17;	// SIO Emergency Switch
     int tranSrcLoginService	= 0x18;	// Login Service
 
+    int customTranType = 0xFF;
     // - transaction type definitions - specifies the transaction argument also
     int tranTypeSys = 0x01;	// system
     int tranTypeSioComm = 0x02;	// SIO communication status report
@@ -109,7 +123,22 @@ public interface Constants {
     int tranTypeAsci = 0x7E;	// ASCII diagnostic message
     int tranTypeSioDiag	= 0x7F;	// SIO comm diagnostics
 
-
+    /** sio通信状态对应表
+     * 结果状态  原始状态
+     *  0       1	- comm disabled (result of host command)
+     *  0       2	- off-line: timeout (no/bad response from unit)
+     *  0       3	- off-line: invalid identification from SIO
+     *  0       4	- off-line: Encryption could not be established
+     *  1       5	- on-line: normal connection
+     *  0       6   - hexLoad report: ser_num is address loaded (-1 == last record)
+     */
+    Map<Integer, Integer> sioStateMap = Map.of(
+            1, 0,
+            2, 0,
+            3, 0,
+            4, 0,
+            5, 1,
+            6, 0);
 
     // 通信服务定义的错误码
 //    public static readonly int ERR_SUCCED = 0;

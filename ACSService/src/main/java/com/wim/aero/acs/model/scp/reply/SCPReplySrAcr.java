@@ -1,5 +1,8 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +33,11 @@ public class SCPReplySrAcr extends ReplyBody {
     private long  nAuthModFlags;
 
     @Override
-    public void process(int scpId) {
-        log.info(this.toString());
+    public void process(QueueProducer queueProducer, int scpId) {
+
+        LogMessage message = new LogMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranTypeAcr, number, Constants.customTranType, 0, this.toString());
+        queueProducer.sendLogMessage(message);
     }
 }

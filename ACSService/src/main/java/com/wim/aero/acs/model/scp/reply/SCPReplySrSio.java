@@ -1,5 +1,9 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.model.mq.StatusMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,12 +59,22 @@ public class SCPReplySrSio extends ReplyBody {
 
 
     @Override
-    public void process(int scpId) {
+    public void process(QueueProducer queueProducer, int scpId) {
         log.info("[sio状态] - scpId[{}], sio[{}], msp1dNum[{}], comStatus[{}]",
                 scpId, number, msp1_dnum, com_status);
 
 
-        // TODO:更新sio状态及输入、输出、读卡器状态
+        LogMessage message = new LogMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranSrcSioCom, number, Constants.customTranType, 0, this.toString());
+        queueProducer.sendLogMessage(message);
 
+
+        // 更新sio状态
+        int status = Constants.sioStateMap.get(com_status);
+        StatusMessage sMessage = new StatusMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, status, Constants.mqSourceScp,this.toString());
+        queueProducer.sendStatusMessage(sMessage);
     }
 }

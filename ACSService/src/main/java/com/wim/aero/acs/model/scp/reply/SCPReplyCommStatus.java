@@ -43,7 +43,8 @@ public class SCPReplyCommStatus extends ReplyBody {
         }
 
         StatusMessage message = new StatusMessage(
-                0, System.currentTimeMillis(), scpId, Constants.mqSourceScp, scpId, 0, 0, status, Constants.mqSourceScp,"");
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, status, Constants.mqSourceScp,this.toString());
         queueProducer.sendStatusMessage(message);
     }
 }

@@ -1,5 +1,8 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,13 +28,18 @@ public class SCPReplySrArea extends ReplyBody {
     private long  occ_spc;				// occupancy count - special users
 
     @Override
-    public void process(int scpId) {
+    public void process(QueueProducer queueProducer, int scpId) {
         if (flags != 128) {
             log.info("occupancy更新：scpId[{}], acr[{}], occupancyStd[{}], occupancySpc[{}]",
                     scpId, number, occupancy, occ_spc);
 
             // TODO:更新数据库
         }
+
+        LogMessage message = new LogMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranTypeMpg, number, Constants.customTranType, 0, this.toString());
+        queueProducer.sendLogMessage(message);
 
     }
 }
