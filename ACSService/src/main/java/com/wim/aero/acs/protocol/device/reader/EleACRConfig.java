@@ -5,7 +5,6 @@ import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -45,7 +44,7 @@ import java.util.Optional;
  *
  **/
 @Data
-public class ACRConfig extends Operation {
+public class EleACRConfig extends Operation {
     @CmdProp(index = 2)
     private Integer lastModified = 0;
 
@@ -68,13 +67,13 @@ public class ACRConfig extends Operation {
     private Integer rdrNumber;  // 0 ~ nReaders-1
 
     // 锁
-    @CmdProp(index = 9, defaultValue = "-1")
+    @CmdProp(index = 9, defaultValue = "0")
     private Integer strkSio; // Strike link: the SIO number on the SCP that contains the strike relay. 0 ~nSio -1. Use -1 for not used.
 
-    @CmdProp(index = 10, defaultValue = "-1")
+    @CmdProp(index = 10, defaultValue = "0")
     private Integer strkNumber; // Strike link: Relay number on the specified SIO (strk_sio). 0 ~ nOutputs -1. Use -1 for not used.
 
-    @CmdProp(index = 11, defaultValue = "3")
+    @CmdProp(index = 11, defaultValue = "0")
     private Integer strikeTimeMin; // 开门时间 Minimum strike activation time, in seconds. A typical value is 1 second; valid values are 1 to
 
 
@@ -86,11 +85,10 @@ public class ACRConfig extends Operation {
     private Integer strikeMode; // 门磁上电
 
     // 门
-
     @CmdProp(index = 14, defaultValue = "-1")
     private Integer doorSio = -1;  //Door contact link: the SIO number on the SCP that contains the input. 0 ~  nSio -1. Use -1 for not used.
 
-    @CmdProp(index = 15, defaultValue = "-1")
+    @CmdProp(index = 15, defaultValue = "0")
     private Integer doorNumber = -1; // Door contact link: Input number on the specified SIO (door_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     @CmdProp(index = 16, defaultValue = "0")
@@ -101,14 +99,14 @@ public class ACRConfig extends Operation {
     private Integer rex0Sio = -1; //Rex-0 link: the SIO number on the SCP that contains the input. 0~nSio -1. Use -1 for not used.
 
     @CmdProp(index = 18, defaultValue = "0")
-    private Integer rex0Number = -1; // Rex-0 link: Input number on the specified SIO (rex0_sio). 0 ~ nInputs -1. Use -1 for not used.
+    private Integer rex0Number = 0; // Rex-0 link: Input number on the specified SIO (rex0_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     // REX 1 is normally not used.
     @CmdProp(index = 19, defaultValue = "-1")
     private Integer rex1Sio = -1; // Rex-1 link: the SIO number on the SCP that contains the input. 0 ~ nSio -1. Use -1 for not configured.
 
     @CmdProp(index = 20, defaultValue = "0")
-    private Integer rex1Number = -1; //Rex-1 link: Input number on the specified SIO (rex1_sio). 0 ~ nInputs -1. Use -1 for not used.
+    private Integer rex1Number = 0; //Rex-1 link: Input number on the specified SIO (rex1_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     @CmdProp(index = 21)
     private Integer rex0TzMask = 0; //Time zone for disabling rex0 and rex1. Set to 0 to not disable the rex on a time zone.
@@ -131,11 +129,11 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 27)
     private Integer apbMode;
 
-    @CmdProp(index = 28)
-    private Integer apbIn = -1;
+    @CmdProp(index = 28, defaultValue = "0")
+    private Integer apbIn = 0;
 
-    @CmdProp(index = 29)
-    private Integer apbTo = 1;
+    @CmdProp(index = 29, defaultValue = "0")
+    private Integer apbTo = 0;
 
     @CmdProp(index = 30)
     private Integer spare = 0;
@@ -143,7 +141,7 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 31)
     private Integer actlFlags;
 
-    @CmdProp(index = 32)
+    @CmdProp(index = 32, defaultValue = "0")
     private Integer offlineMode;
 
     @CmdProp(index = 33)
@@ -152,16 +150,16 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 34)
     private Integer defaultLedMode;
 
-    @CmdProp(index = 35)
+    @CmdProp(index = 35, defaultValue = "0")
     private Integer preAlarm = 0;
 
-    @CmdProp(index = 36)
+    @CmdProp(index = 36, defaultValue = "0")
     private Integer apbDelay;   // apb延时 0~65535，seconds
 
-    @CmdProp(index = 37)
+    @CmdProp(index = 37, defaultValue = "0")
     private Integer strkT2;   // ADA开门时间
 
-    @CmdProp(index = 38)
+    @CmdProp(index = 38, defaultValue = "0")
     private Integer dcHeld2;   // ADA开门过长报警时间
 
 //    // 暂时不用
@@ -189,8 +187,8 @@ public class ACRConfig extends Operation {
 //    @CmdProp(index = 48)
 //    private Integer dfofFilterTime = 0;  // 0~65535
 
-    public static ACRConfig fromDb(DevReaderDetail detail) {
-        ACRConfig result = new ACRConfig();
+    public static EleACRConfig fromDb(DevReaderDetail detail) {
+        EleACRConfig result = new EleACRConfig();
         result.setScpNumber(detail.getControllerId());
         result.setRdrSio(detail.getSioNumber());
         result.setRdrNumber(detail.getReaderNumber());
@@ -231,7 +229,6 @@ public class ACRConfig extends Operation {
             result.setAltrdrNumber(detail.getAltrdrNumber());
         }
 
-
         result.setCdFormat(detail.getCdFormat());
 //        result.setCdFormat(255);
 
@@ -241,7 +238,13 @@ public class ACRConfig extends Operation {
 
         result.setSpare(detail.getSpare());
         result.setActlFlags(detail.getActlFlags());
-        result.setOfflineMode(detail.getOfflineMode());
+
+        // 需要单独加控制
+        int spare = Optional.ofNullable(detail.getSpare()).orElse(0);
+        if ((spare & 0x0800) > 0) {
+            result.setOfflineMode(detail.getOfflineMode());
+        }
+
         result.setDefaultMode(detail.getDefaultMode());
         result.setStrkT2(detail.getStrkT2());
 

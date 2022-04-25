@@ -13,6 +13,7 @@ import com.wim.aero.acs.protocol.device.cp.OutputPointSpecification;
 import com.wim.aero.acs.protocol.device.mp.*;
 import com.wim.aero.acs.protocol.device.reader.ACRConfig;
 import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
+import com.wim.aero.acs.protocol.device.reader.EleACRConfig;
 import com.wim.aero.acs.protocol.device.reader.ReaderSpecification;
 import com.wim.aero.acs.protocol.timezone.Holiday;
 import com.wim.aero.acs.protocol.timezone.TimeZone;
@@ -45,6 +46,7 @@ public enum OperationType {
     MP_113(113, MonitorPointConfig.class),
     CP_114(114, ControlPointConfig.class),
     ACR_115(115, ACRConfig.class),
+    ELE_ACR_115(115, EleACRConfig.class),
 
     MP_GROUP_120(120, MpGroupSpecification.class),
 
