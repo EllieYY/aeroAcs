@@ -37,6 +37,10 @@
                 </foreach>
             </trim>
         </trim>
+        where
+        <foreach collection="list" separator="or" item="item" index="index">
+            uid=#{item.uid}
+        </foreach>
     </update>
 
 </mapper>

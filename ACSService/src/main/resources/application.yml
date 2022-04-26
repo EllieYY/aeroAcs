@@ -48,6 +48,8 @@ spring:
       logQueue: logQueue
       #设备状态队列
       statusQueue: statusQueue
+      #控制器消息队列
+      scpSeqQueue: scpSeqQueue
 
 
 

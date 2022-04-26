@@ -14,7 +14,7 @@
     <name>acsservice</name>
     <description>门禁系统业务后台</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>

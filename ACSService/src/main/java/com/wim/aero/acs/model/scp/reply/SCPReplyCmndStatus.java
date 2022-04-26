@@ -1,7 +1,7 @@
 package com.wim.aero.acs.model.scp.reply;
 
+import com.wim.aero.acs.model.mq.ScpSeqMessage;
 import com.wim.aero.acs.service.QueueProducer;
-import com.wim.aero.acs.service.RequestPendingCenter;
 import lombok.Data;
 
 /**
@@ -30,6 +30,10 @@ public class SCPReplyCmndStatus extends ReplyBody {
         if (status == 2) {
             reason = Integer.parseInt(nak.getReason());
         }
-        RequestPendingCenter.commandResponse(sequence_number, status, reason);
+
+        // 推送消息队列中
+        queueProducer.sendScpMessage(new ScpSeqMessage(scpId, sequence_number, status, reason));
+
+//        RequestPendingCenter.commandResponse(sequence_number, status, reason);
     }
 }

@@ -1,9 +1,6 @@
 package com.wim.aero.acs.service;
 
-import com.wim.aero.acs.model.mq.AccessMessage;
-import com.wim.aero.acs.model.mq.AlarmMessage;
-import com.wim.aero.acs.model.mq.LogMessage;
-import com.wim.aero.acs.model.mq.StatusMessage;
+import com.wim.aero.acs.model.mq.*;
 import com.wim.aero.acs.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.command.ActiveMQMapMessage;
@@ -34,16 +31,18 @@ public class QueueProducer {
     private final Queue alarmQueue;
     private final Queue logQueue;
     private final Queue statusQueue;
+    private final Queue scpSeqQueue;
 
     @Autowired
     public QueueProducer(JmsMessagingTemplate jmsMessagingTemplate, ThreadPoolTaskExecutor threadPoolTaskExecutor,
-                         Queue accessQueue, Queue alarmQueue, Queue logQueue, Queue statusQueue) {
+                         Queue accessQueue, Queue alarmQueue, Queue logQueue, Queue statusQueue, Queue scpSeqQueue) {
         this.jmsMessagingTemplate = jmsMessagingTemplate;
         this.threadPoolTaskExecutor = threadPoolTaskExecutor;
         this.accessQueue = accessQueue;
         this.alarmQueue = alarmQueue;
         this.logQueue = logQueue;
         this.statusQueue = statusQueue;
+        this.scpSeqQueue = scpSeqQueue;
     }
 
     public void sendLogMessage(LogMessage logMessage) {
@@ -68,6 +67,12 @@ public class QueueProducer {
         String messageStr = JsonUtil.toJson(statusMessage);
         log.info("[状态事件] - {}", messageStr);
         this.sendMessage(statusQueue, messageStr);
+    }
+
+    public void sendScpMessage(ScpSeqMessage scpSeqMessage) {
+        String messageStr = JsonUtil.toJson(scpSeqMessage);
+        log.info("[控制器命令返回事件] - {}", messageStr);
+        this.sendMessage(scpSeqQueue, messageStr);
     }
 
     public void sendMessage(Destination destination, String message) {

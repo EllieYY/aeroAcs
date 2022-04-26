@@ -62,7 +62,7 @@ public class ACRController {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, request.toString());
         }
 
-        int code = sioService.setAcrMode(request.getScpId(), request.getAcrId(), request.getCommand());
+        int code = sioService.setAcrMode(request.getScpId(), request.getId(), request.getCommand());
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("命令下发成功");
         }

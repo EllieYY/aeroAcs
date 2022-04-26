@@ -11,6 +11,7 @@ import com.wim.aero.acs.db.service.impl.DevXDetailServiceImpl;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
+import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.protocol.device.*;
 import com.wim.aero.acs.protocol.device.cp.ControlPointCommand;
 import com.wim.aero.acs.protocol.device.cp.ControlPointCommandType;
@@ -63,9 +64,10 @@ public class SioService {
 
     /**
      * 硬件配置
-     * @param scpId
+     * @param
      */
-    public void configSioForScp(int scpId) {
+    public void configSioForScp(ScpRequestInfo requestInfo) {
+        int scpId = requestInfo.getScpId();
         List<ScpCmd> cmdList = new ArrayList<>();
 
         sioConfig(scpId, cmdList);
@@ -78,9 +80,9 @@ public class SioService {
         }
 
         // TODO:优化
-        requestPendingCenter.add(0, "", 0, cmdList);
+        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.updateSeq(scpId, responseList);
     }
 
 

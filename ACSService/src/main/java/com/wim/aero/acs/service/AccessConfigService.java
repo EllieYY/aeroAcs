@@ -9,6 +9,7 @@ import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.request.CardBlockedRequestInfo;
 import com.wim.aero.acs.model.request.CardRequestInfo;
+import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelException;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,12 +64,29 @@ public class AccessConfigService {
         this.requestPendingCenter = requestPendingCenter;
     }
 
+    public void accessConfig(ScpRequestInfo requestInfo) {
+        int scpId = requestInfo.getScpId();
+
+        List<ScpCmd> cmdList = new ArrayList<>();
+
+        alBasicConfigMsg(scpId, cmdList);
+
+        for(ScpCmd cmd:cmdList) {
+            log.info(cmd.getCommand());
+        }
+
+        // TODO:优化
+        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        requestPendingCenter.updateSeq(scpId, responseList);
+    }
+
     /**
      * 权限访问 - 相关配置
      * @param scpId
      * @param cmdList
      */
-    public void alBasicConfig(int scpId, List<ScpCmd> cmdList) {
+    public void alBasicConfigMsg(int scpId, List<ScpCmd> cmdList) {
         addHolidays(scpId, cmdList);
         addTimeZone(scpId, cmdList);
         accessLevelConfig(scpId, cmdList);
@@ -87,13 +106,13 @@ public class AccessConfigService {
         // 下发到控制器
         requestPendingCenter.add(taskId, taskName, taskSource, cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.updateSeq(scpId, responseList);
     }
 
 
     /**
      * 添加卡片
-     * @param cards
+     * @param
      * @return 发送失败的结果
      */
     public void addCards(CardRequestInfo requestInfo) {
@@ -108,12 +127,13 @@ public class AccessConfigService {
                 requestInfo.getTaskSource(),
                 cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        // TODO:改造
+        requestPendingCenter.updateSeq(0, responseList);
     }
 
     /**
      * 删除卡片
-     * @param cardList
+     * @param
      * @return 发送失败的结果
      */
     public void deleteCards(CardRequestInfo requestInfo) {
@@ -138,7 +158,8 @@ public class AccessConfigService {
                 requestInfo.getTaskSource(),
                 cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        // 需要改造
+        requestPendingCenter.updateSeq(0, responseList);
     }
 
     /**
@@ -166,7 +187,8 @@ public class AccessConfigService {
                 requestInfo.getTaskSource(),
                 cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        // TODO:需要改造
+        requestPendingCenter.updateSeq(0, responseList);
     }
 
     /**

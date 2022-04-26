@@ -72,7 +72,7 @@ public class ScpController {
         // 命令发送+反馈
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
         log.info("[硬件连接] {}", responseList.toString());
-        List<CommandInfo> failCmdList = requestPendingCenter.updateSeq(responseList);
+        List<CommandInfo> failCmdList = requestPendingCenter.updateSeq(scpId, responseList);
 
         // 结果反馈给页面
         if (failCmdList.size() == 0) {
@@ -91,8 +91,9 @@ public class ScpController {
             return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
         }
 
-        scpService.configScp(scpId);
-        sioService.configSioForScp(scpId);
+        scpService.configScp(request);
+//        sioService.configSioForScp(request);
+//        accessConfigService.accessConfig(request);
 
         return ResultBeanUtil.makeOkResp();
     }
@@ -196,29 +197,6 @@ public class ScpController {
 //        List<ScpCmd> cmdList = scpService.configScp(scpId);
 //        // sio及物理点位配置
 //        sioService.configSioForScp(scpId, cmdList);
-//        // 时间组、访问组配置
-//        accessConfigService.alBasicConfig(scpId, cmdList);
-
-//        for (ScpCmd cmd:cmdList) {
-//            System.out.println(cmd.getCommand());
-////            log.info("[SCP:{}] - {}", scpId, cmd.getCommand());
-//        }
-        return new ArrayList<>();
-    }
-
-    @RequestMapping(value = "/config/test", method = {RequestMethod.POST})
-    public List<ScpCmd> scpConfigTest(@RequestBody ScpRequestInfo request) {
-        int scpId = request.getScpId();
-        if (!scpService.isValidScpId(scpId)) {
-            log.error("控制器{}数据不存在。", scpId);
-            return new ArrayList<>();
-        }
-        // TODO:修改scp状态 -- 数据库
-
-        // scp配置
-        scpService.configScp(scpId);
-//        // sio及物理点位配置
-        sioService.configSioForScp(scpId);
 //        // 时间组、访问组配置
 //        accessConfigService.alBasicConfig(scpId, cmdList);
 

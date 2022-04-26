@@ -13,6 +13,7 @@ import com.wim.aero.acs.model.DST;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.mq.StatusMessage;
+import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
 import com.wim.aero.acs.protocol.TimeSet;
 import com.wim.aero.acs.protocol.TransactionLogSetting;
@@ -142,7 +143,8 @@ public class ScpService {
      * 控制器配置：定义配置流程
      * @param scpId
      */
-    public void configScp(int scpId) {
+    public void configScp(ScpRequestInfo requestInfo) {
+        int scpId = requestInfo.getScpId();
         List<ScpCmd> cmdList = new ArrayList<>();
         scpSpecification(scpId, cmdList);
 
@@ -178,9 +180,9 @@ public class ScpService {
         }
 
         // TODO:优化
-        requestPendingCenter.add(0, "", 0, cmdList);
+        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.updateSeq(scpId, responseList);
     }
 
 

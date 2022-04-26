@@ -118,7 +118,7 @@ public class TestMessageController {
 //        }
 
         List<ScpCmd> cmdList = new ArrayList<>();
-        accessConfigService.alBasicConfig(scpId, cmdList);
+        accessConfigService.alBasicConfigMsg(scpId, cmdList);
         cmdList.forEach(it -> {
             System.out.println(it.getCommand());
         });

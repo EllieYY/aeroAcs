@@ -26,6 +26,9 @@ public class TaskDetailServiceImpl extends ServiceImpl<TaskDetailMapper, TaskDet
     }
 
     public void updateTaskStateBatch(List<TaskDetail> detailList) {
+        if (detailList.size() <= 0) {
+            return;
+        }
         this.baseMapper.updateStatusBatch(detailList);
     }
 
