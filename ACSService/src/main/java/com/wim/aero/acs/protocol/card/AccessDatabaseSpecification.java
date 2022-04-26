@@ -45,9 +45,9 @@ public class AccessDatabaseSpecification extends Operation {
      * 1 = Store Date only
      * 2 = Store Date and Time
      */
-    @CmdProp(index = 9)
+    @CmdProp(index = 9, defaultValue = "2")
     private String bActDate;
-    @CmdProp(index = 10)
+    @CmdProp(index = 10, defaultValue = "2")
     private String bDeactDate;
 
     @CmdProp(index = 11)
@@ -110,8 +110,14 @@ public class AccessDatabaseSpecification extends Operation {
 
         result.setBIssueCode(detail.getAdditionalFlag());
         result.setBApbLocation(detail.getApbControlFlag());
-        result.setBActDate(detail.getCardSaveFlag());
-        result.setBDeactDate(detail.getCardInvalidFlag());
+
+        String bActDate = Optional.ofNullable(detail.getCardSaveFlag()).orElse("2");
+        String bDeactDate = Optional.ofNullable(detail.getCardInvalidFlag()).orElse("2");
+        bActDate = bActDate.compareTo("1") == 0 ? "2" : "0";
+        bDeactDate = bDeactDate.compareTo("1") == 0 ? "2" : "0";
+
+        result.setBActDate(bActDate);
+        result.setBDeactDate(bDeactDate);
         result.setBVacationDate(detail.getSaveVacationFlag());
         result.setBUpgradeDate(detail.getSaveTempFlag());
         result.setBUserLevel(detail.getBUserLevel());

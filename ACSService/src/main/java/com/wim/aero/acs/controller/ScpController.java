@@ -92,8 +92,8 @@ public class ScpController {
         }
 
         scpService.configScp(request);
-//        sioService.configSioForScp(request);
-//        accessConfigService.accessConfig(request);
+        sioService.configSioForScp(request);
+        accessConfigService.accessConfig(request);
 
         return ResultBeanUtil.makeOkResp();
     }

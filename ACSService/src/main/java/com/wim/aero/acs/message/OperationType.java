@@ -56,7 +56,7 @@ public enum OperationType {
     // card
     CARD_MT_1102(1102, MT2CardFormat.class),
     CARD_WIEGAND_1102(1102, WiegandCardFormat.class),
-    CARD_INFO_8304(8304, CardAdd.class),
+    CARD_INFO_5304(5304, CardAdd.class),
 
     // 访问级别
     AL_LIST_2116(2116, AccessLevelExtended.class),

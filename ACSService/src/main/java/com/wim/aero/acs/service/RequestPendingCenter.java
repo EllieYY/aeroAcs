@@ -51,7 +51,7 @@ public class RequestPendingCenter {
 
     /** 命令集合添加 */
     public void add(long taskId, String taskName, int taskSource, List<ScpCmd> commandInfoList) {
-        log.info("[下发命令条数] - {}", commandInfoList.size());
+        log.info("[下发命令条数] {}", commandInfoList.size());
 
         List<TaskDetail> taskDetailList = new ArrayList<>();
         for (ScpCmd cmd:commandInfoList) {
@@ -75,7 +75,7 @@ public class RequestPendingCenter {
 
     /** 更新seqNo */
     public List<CommandInfo> updateSeq(int scpId, List<ScpCmdResponse> cmdResponseList) {
-        log.info("[通信服务响应命令条数] - {}", cmdResponseList.size());
+        log.info("[{} - 通信服务响应命令条数] - {}", scpId, cmdResponseList.size());
         log.info(cmdResponseList.toString());
 
         List<TaskDetail> taskDetailList = new ArrayList<>();
@@ -111,12 +111,11 @@ public class RequestPendingCenter {
                 ));
 
             } else {
-                log.error("[通信服务错误] - 返回未定义streamId : {}", streamId);
+                log.error("[{} - 通信服务错误] 返回未定义streamId : {}", scpId, streamId);
             }
         }
 
-        log.info("strean - seq: {}", streamSeqMap.toString());
-
+        log.info("[stream:seq] {}", streamSeqMap.toString());
         conTaskDetailService.updateTaskStateBatch(taskDetailList);
 
         log.info("[发送失败命令条数] {}", result.size());
@@ -145,7 +144,7 @@ public class RequestPendingCenter {
 
             String state = TaskCommandState.FAIL.value();
             if (code != Constants.CMND_OK) {
-                log.info("[失败指令] seqNo[{}], reason[{}], cmd[{}]", seqNo, reason, commandInfo.getCommand());
+                log.info("[{} 失败指令] seqNo[{}], reason[{}], cmd[{}]", scpId, seqNo, reason, commandInfo.getCommand());
             } else {
                 state = TaskCommandState.SUCCESS.value();
 //                log.info("[指令结果] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
@@ -192,15 +191,6 @@ public class RequestPendingCenter {
             commandInfoMap.remove(streamId);
         }
     }
-
-//
-//    public void set(Long streamId, OperationResult operationResult) {
-//        OperationResultFuture operationResultFuture = this.map.get(streamId);
-//        if (operationResultFuture != null) {
-//            operationResultFuture.setSuccess(operationResult);
-//            this.map.remove(streamId);
-//        }
-//    }
 
 
 }

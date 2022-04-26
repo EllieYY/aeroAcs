@@ -75,9 +75,9 @@ public class SioService {
         outputConfig(scpId, cmdList);
         readerConfig(scpId, cmdList);
 
-        for(ScpCmd cmd:cmdList) {
-            log.info(cmd.getCommand());
-        }
+//        for(ScpCmd cmd:cmdList) {
+//            log.info(cmd.getCommand());
+//        }
 
         // TODO:优化
         requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
@@ -96,11 +96,11 @@ public class SioService {
         ACRModeConfig config = new ACRModeConfig(scpId, acrId, mode);
         String msg = RequestMessage.encode(scpId, config);
 
-        log.info("[ACR Mode]常开常闭 scpId={}, msg={}", scpId, msg);
+        log.info("[{} - ACR Mode]常开常闭 msg={}", scpId, msg);
 
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        log.info("[ACR Mode]常开常闭 response={}", response);
+        log.info("[{} - ACR Mode]常开常闭 response={}", scpId, response);
 
         return response.getCode();
     }
@@ -115,11 +115,11 @@ public class SioService {
         ControlPointCommand command = new ControlPointCommand(scpId, cpId, type.getCode());
         String msg = RequestMessage.encode(scpId, command);
 
-        log.info("[CP]控制点命令发送 scpId={}, msg={}", scpId, msg);
+        log.info("[{} - 控制点命令发送] msg={}", scpId, msg);
 
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        log.info("[CP]控制点命令发送 response={}", response);
+        log.info("[{} - 控制点命令发送] response={}", scpId, response);
 
         return response.getCode();
     }
@@ -132,11 +132,11 @@ public class SioService {
         MonitorPointMask mask = new MonitorPointMask(scpId, mpId, isMask);
         String msg = RequestMessage.encode(scpId, mask);
 
-        log.info("[MP - 设防/撤防] scpId={}, msg={}", scpId, msg);
+        log.info("[{} - MP - 设防/撤防] msg={}", scpId, msg);
 
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        log.info("[MP - 设防/撤防] response={}", response);
+        log.info("[{} - MP - 设防/撤防] response={}", scpId, response);
 
         return response.getCode();
     }
@@ -152,11 +152,11 @@ public class SioService {
         MpGroupCommand mask = MpGroupCommand.setMask(scpId, mpId, isMask);
         String msg = RequestMessage.encode(scpId, mask);
 
-        log.info("[MPGroup - 设防/撤防] scpId={}, msg={}", scpId, msg);
+        log.info("[{} - MPGroup - 设防/撤防] msg={}", scpId, msg);
 
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        log.info("[MPGroup - 设防/撤防] response={}", response);
+        log.info("[{} - MPGroup - 设防/撤防] response={}", scpId, response);
 
         return response.getCode();
     }

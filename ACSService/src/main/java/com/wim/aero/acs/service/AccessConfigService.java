@@ -68,12 +68,11 @@ public class AccessConfigService {
         int scpId = requestInfo.getScpId();
 
         List<ScpCmd> cmdList = new ArrayList<>();
-
         alBasicConfigMsg(scpId, cmdList);
 
-        for(ScpCmd cmd:cmdList) {
-            log.info(cmd.getCommand());
-        }
+//        for(ScpCmd cmd:cmdList) {
+//            log.info(cmd.getCommand());
+//        }
 
         // TODO:优化
         requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
@@ -206,6 +205,8 @@ public class AccessConfigService {
             String msg = RequestMessage.encode(scpId, item);
             String streamId = IdUtil.nextId();
             cmdList.add(new ScpCmd(scpId, msg, streamId));
+
+            log.info(item.toString());
         }
 
         return cmdList;

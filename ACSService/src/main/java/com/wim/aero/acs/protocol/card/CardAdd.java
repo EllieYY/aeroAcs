@@ -32,8 +32,8 @@ public class CardAdd extends Operation {
     @CmdProp(index = 6)
     private int issueCode;
 
-    @CmdProp(index = 7)
-    private int pin;
+    @CmdProp(index = 7, enCodec = "formatStr")
+    private String pin;
 
     @CmdProp(index = 8, enCodec = "formatList")
     private List<Integer> alvl;   // 32

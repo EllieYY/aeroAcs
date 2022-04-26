@@ -47,31 +47,31 @@ public class QueueProducer {
 
     public void sendLogMessage(LogMessage logMessage) {
         String messageStr = JsonUtil.toJson(logMessage);
-        log.info("[日志事件] - {}", messageStr);
+        log.info("[{} - 日志事件] - {}", logMessage.getControllerId(), messageStr);
         this.sendMessage(logQueue, messageStr);
     }
 
     public void sendAlarmMessage(AlarmMessage alarmMessage) {
         String messageStr = JsonUtil.toJson(alarmMessage);
-        log.info("[报警事件] - {}", messageStr);
+        log.info("[{} - 报警事件] - {}", alarmMessage.getControllerId(), messageStr);
         this.sendMessage(alarmQueue, messageStr);
     }
 
     public void sendAccessMessage(AccessMessage accessMessage) {
         String messageStr = JsonUtil.toJson(accessMessage);
-        log.info("[刷卡事件] - {}", messageStr);
+        log.info("[{} - 刷卡事件] - {}",accessMessage.getControllerId(), messageStr);
         this.sendMessage(accessQueue, messageStr);
     }
 
     public void sendStatusMessage(StatusMessage statusMessage) {
         String messageStr = JsonUtil.toJson(statusMessage);
-        log.info("[状态事件] - {}", messageStr);
+        log.info("[{} - 状态事件] - {}", statusMessage.getControllerId(), messageStr);
         this.sendMessage(statusQueue, messageStr);
     }
 
     public void sendScpMessage(ScpSeqMessage scpSeqMessage) {
         String messageStr = JsonUtil.toJson(scpSeqMessage);
-        log.info("[控制器命令返回事件] - {}", messageStr);
+        log.info("[{} - 命令执行结果事件] - {}", scpSeqMessage.getScpId(), messageStr);
         this.sendMessage(scpSeqQueue, messageStr);
     }
 

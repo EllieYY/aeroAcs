@@ -81,7 +81,7 @@ public class SCPSpecification extends Operation {
     private int nOperModes = 0; // Number of operating modes 1-8 (0 = default of 1)
 
     @CmdProp(index = 25)
-    private int operType = 0; // Operating mode type (0 = Access Level Mappings, 1 = Access Level Assignments)
+    private int operType = 1; // Operating mode type (0 = Access Level Mappings, 1 = Access Level Assignments)
 
     @CmdProp(index = 26)
     private int nLanguages = 0; // Number of languages supported 0-16 (0 = default of 1)

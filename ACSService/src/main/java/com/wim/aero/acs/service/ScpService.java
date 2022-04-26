@@ -108,12 +108,12 @@ public class ScpService {
         ScpReset operation = new ScpReset(scpId);
         String msg = RequestMessage.encode(scpId, operation);
 
-        log.info("[SCP]复位 reset: scpId={}, msg={}", scpId, msg);
+        log.info("[{} - 复位] msg={}", scpId, msg);
 
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
 
-        log.info("[SCP复位] [{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
+//        log.info("[SCP复位] [{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
 
         return response.getCode();
     }
@@ -127,11 +127,11 @@ public class ScpService {
         AccessDatabaseSpecification operation = AccessDatabaseSpecification.getCardsClearedModel(scpId);
         String msg = RequestMessage.encode(scpId, operation);
 
-        log.info("[SCP]清除卡片 clear cards: scpId={}, msg={}", scpId, msg);
+        log.info("[{} - 清除卡片] msg={}", scpId, msg);
 
         // 向设备发送
         ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-        log.info("清除卡片，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
+//        log.info("清除卡片，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
 
         return response.getCode();
     }
@@ -141,7 +141,7 @@ public class ScpService {
 
     /**
      * 控制器配置：定义配置流程
-     * @param scpId
+     * @param requestInfo
      */
     public void configScp(ScpRequestInfo requestInfo) {
         int scpId = requestInfo.getScpId();
@@ -173,11 +173,11 @@ public class ScpService {
         // 卡格式配置
         cardFormatConfig(scpId, cmdList);
 
-        log.info("[配置设备] scpId[{}]", scpId);
+        log.info("[{} - 配置设备]", scpId);
 
-        for(ScpCmd cmd:cmdList) {
-            System.out.println(cmd.getCommand());
-        }
+//        for(ScpCmd cmd:cmdList) {
+//            System.out.println(cmd.getCommand());
+//        }
 
         // TODO:优化
         requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
@@ -257,7 +257,6 @@ public class ScpService {
         if (cardIdList.size() <= 0) {
             return;
         }
-        System.out.println(cardIdList.toArray());
 
         List<CardFormat> list = cardFormatService.getCardInfoByIdList(cardIdList);
         for (CardFormat item:list) {
