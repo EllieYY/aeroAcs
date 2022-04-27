@@ -114,37 +114,67 @@ public class ScpService {
     }
 
     /**
-     * 控制器复位
+     * 控制器状态更新
      * @param scpId
+     * @param status
      */
-    public int reset(int scpId) {
+    public void scpStateUpdate(int scpId, int status) {
+        // 设备状态：0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭
+        int deviceState = (status == 1) ? 1 : 0;
+        StatusMessage message = new StatusMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, deviceState, Constants.mqSourceScp,this.toString());
+        queueProducer.sendStatusMessage(message);
+    }
+
+    /**
+     * 控制器复位
+     * @param requestInfo
+     */
+    public int reset(ScpRequestInfo requestInfo) {
+        int scpId = requestInfo.getScpId();
         ScpReset operation = new ScpReset(scpId);
         String msg = RequestMessage.encode(scpId, operation);
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
 
         log.info("[{} - 复位] msg={}", scpId, msg);
 
-        // 向设备发送
-        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
 
-//        log.info("[SCP复位] [{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
+        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), Arrays.asList(cmd));
+        ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
+        requestPendingCenter.updateSeq(Arrays.asList(response));
+
 
         return response.getCode();
     }
 
     /**
-     * 清除卡片，但不改变卡片格式
+     * 控制器重启
      * @param scpId
      * @return
      */
-    public int clearCards(int scpId) {
+    public int reboot(int scpId) {
+
+        return 0;
+    }
+
+    /**
+     * 清除卡片，但不改变卡片格式
+     * @param requestInfo
+     * @return
+     */
+    public int clearCards(ScpRequestInfo requestInfo) {
+        int scpId = requestInfo.getScpId();
         AccessDatabaseSpecification operation = AccessDatabaseSpecification.getCardsClearedModel(scpId);
         String msg = RequestMessage.encode(scpId, operation);
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
 
         log.info("[{} - 清除卡片] msg={}", scpId, msg);
 
         // 向设备发送
-        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
-//        log.info("清除卡片，[{}] - [{}]:[{}]", scpId, response.getCode(), response.getReason());
+        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), Arrays.asList(cmd));
+        ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
+        requestPendingCenter.updateSeq(Arrays.asList(response));
 
         return response.getCode();
     }

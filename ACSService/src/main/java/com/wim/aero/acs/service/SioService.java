@@ -11,6 +11,7 @@ import com.wim.aero.acs.db.service.impl.DevXDetailServiceImpl;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
+import com.wim.aero.acs.model.request.AcrRequestInfo;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.protocol.device.*;
 import com.wim.aero.acs.protocol.device.cp.ControlPointCommand;
@@ -30,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -111,14 +113,20 @@ public class SioService {
      * @param cpId
      * @param type
      */
-    public int sendControlPointCommand(int scpId, int cpId, ControlPointCommandType type) {
+    public int sendControlPointCommand(AcrRequestInfo requestInfo, ControlPointCommandType type) {
+        int scpId = requestInfo.getScpId();
+        int cpId = requestInfo.getStrikeNo();
         ControlPointCommand command = new ControlPointCommand(scpId, cpId, type.getCode());
         String msg = RequestMessage.encode(scpId, command);
 
         log.info("[{} - 控制点命令发送] msg={}", scpId, msg);
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
 
         // 向设备发送
-        ScpCmdResponse response = restUtil.sendSingleCmd(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), Arrays.asList(cmd));
+        ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
+        requestPendingCenter.updateSeq(Arrays.asList(response));
+
         log.info("[{} - 控制点命令发送] response={}", scpId, response);
 
         return response.getCode();

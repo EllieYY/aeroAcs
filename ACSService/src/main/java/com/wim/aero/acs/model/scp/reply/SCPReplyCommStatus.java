@@ -31,7 +31,10 @@ public class SCPReplyCommStatus extends ReplyBody {
 
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
+        // 设备状态：0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭
+        int deviceState = 0;
         if (status == 2) {
+            deviceState = 1;
             log.info("[设备上线] - scpId:[{}], channelId[{}], curComm[{}], preComm[{}]",
                     scpId, nChannelId, current_primary_comm, previous_primary_comm);
             ScpCenter.scpOnline(scpId);
@@ -44,7 +47,8 @@ public class SCPReplyCommStatus extends ReplyBody {
 
         StatusMessage message = new StatusMessage(
                 0, System.currentTimeMillis(), scpId,
-                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, status, Constants.mqSourceScp,this.toString());
+                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, deviceState,
+                Constants.mqSourceScp, this.toString());
         queueProducer.sendStatusMessage(message);
     }
 }

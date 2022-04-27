@@ -102,6 +102,7 @@ public class AccessConfigService {
         List<CardAdd> cardAddList = cardInfoService.getByScpId(scpId);
         List<ScpCmd> cmdList = packageCardMessages(cardAddList);
 
+        log.info("[{} - 卡片下载] {}", scpId, cmdList);
         // 下发到控制器
         requestPendingCenter.add(taskId, taskName, taskSource, cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);

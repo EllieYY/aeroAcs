@@ -114,7 +114,7 @@ public class ScpController {
     @ApiOperation(value = "控制器复位")
     @RequestMapping(value = "/reset", method = {RequestMethod.POST})
     public ResultBean<String> resetScp(@RequestBody ScpRequestInfo request) {
-        int code = scpService.reset(request.getScpId());
+        int code = scpService.reset(request);
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("控制器复位命令已下发");
         } else {
@@ -125,7 +125,7 @@ public class ScpController {
     @ApiOperation(value = "清除卡片")
     @RequestMapping(value = "/card/clear", method = {RequestMethod.POST})
     public ResultBean<String> clearCards(@RequestBody ScpRequestInfo request) {
-        int code = scpService.clearCards(request.getScpId());
+        int code = scpService.clearCards(request);
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("清除卡片命令已下发");
         } else {
