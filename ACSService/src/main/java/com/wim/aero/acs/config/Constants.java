@@ -16,6 +16,8 @@ public interface Constants {
 
     int REST_CODE_SUCCESS = 0;
 
+    long CONNECT_TASK_ID = -1;
+
     // 命令执行状态
     // - 0 = FAILED (could not send, SCP off-line)
     // - 1 = OK (delivered and accepted),

@@ -57,6 +57,7 @@ public enum OperationType {
     CARD_MT_1102(1102, MT2CardFormat.class),
     CARD_WIEGAND_1102(1102, WiegandCardFormat.class),
     CARD_INFO_5304(5304, CardAdd.class),
+    CARD_DEL(3305, CardDelete.class),
 
     // 访问级别
     AL_LIST_2116(2116, AccessLevelExtended.class),
@@ -76,8 +77,6 @@ public enum OperationType {
     ACR_MODE(308, ACRModeConfig.class),
 
     MP_GROUP_MASK(321, MpGroupCommand.class),
-
-    CARD_DEL(3305, CardDelete.class),
 
     TIME_SET(302, TimeSet.class);
     /**-------------------------------------------------------------------------------*/

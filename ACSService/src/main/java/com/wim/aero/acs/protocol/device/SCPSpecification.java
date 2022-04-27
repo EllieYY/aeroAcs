@@ -60,7 +60,7 @@ public class SCPSpecification extends Operation {
     private int gmtOffset = -28800;  // Beijing
 
     @CmdProp(index = 18)
-    private int nDstID = 100;  // 夏令时 0-不使用 100-使用
+    private int nDstID = 0;  // 夏令时 0-不使用 100-使用
 
     @CmdProp(index = 19)
     private int nTz = 255; // Number of time zones (schedules) - 255 maximum

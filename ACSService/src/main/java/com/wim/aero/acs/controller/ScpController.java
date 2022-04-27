@@ -61,30 +61,13 @@ public class ScpController {
         }
 
         // 命令组装+记录+scp影子对象维护
-        List<ScpCmd> cmdList = scpService.connectScp(scpId);
-        requestPendingCenter.add(
-                request.getTaskId(),
-                request.getTaskName(),
-                request.getTaskSource(),
-                cmdList);
-        ScpCenter.addScp(scpId);
+        scpService.connectScp(request);
 
-        // 命令发送+反馈
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        log.info("[硬件连接] {}", responseList.toString());
-        List<CommandInfo> failCmdList = requestPendingCenter.updateSeq(scpId, responseList);
-
-        // 结果反馈给页面
-        if (failCmdList.size() == 0) {
-            return ResultBeanUtil.makeOkResp("正在与scp建立连接...");
-        } else {
-            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL,
-                    failCmdList.toString());
-        }
+        return ResultBeanUtil.makeOkResp("正在与scp建立连接...");
     }
 
     @ApiOperation(value = "硬件配置")
-    @RequestMapping(value = "/device/config", method = {RequestMethod.POST})
+    @RequestMapping(value = "/config", method = {RequestMethod.POST})
     public ResultBean<String> configScpDeivce(@RequestBody ScpRequestInfo request) {
         int scpId = request.getScpId();
         if (!scpService.isValidScpId(scpId)) {
@@ -103,6 +86,7 @@ public class ScpController {
      * @return
      * @throws Exception
      */
+    @Deprecated
     @ApiOperation(value = "配置命令执行状态列表通知接口")
     @RequestMapping(value = "/cmd/notify/list", method = {RequestMethod.POST})
     public ResultBean<String> scpCmdNotifyList(@RequestBody List<ScpCmdResponse> request) {
@@ -117,6 +101,7 @@ public class ScpController {
      * @return
      * @throws Exception
      */
+    @Deprecated
     @ApiOperation(value = "单条配置命令执行状态通知接口")
     @RequestMapping(value = "/cmd/notify", method = {RequestMethod.POST})
     public ResultBean<String> scpCmdNotify(@RequestBody ScpCmdResponse request) {
@@ -184,7 +169,7 @@ public class ScpController {
      */
     @Deprecated
     @ApiOperation(value = "通信后台使用 - 获取控制器配置报文")
-    @RequestMapping(value = "/config", method = {RequestMethod.POST})
+    @RequestMapping(value = "/config/deprecated", method = {RequestMethod.POST})
     public List<ScpCmd> scpConfig(@RequestBody ScpRequestInfo request) {
         int scpId = request.getScpId();
         if (!scpService.isValidScpId(scpId)) {
@@ -222,6 +207,8 @@ public class ScpController {
 //            return new ArrayList<>();
 //        }
         // TODO:修改scp状态 -- 数据库
+
+        log.info(request.toString());
 
         return ResultBeanUtil.makeOkResp();
     }

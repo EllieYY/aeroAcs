@@ -62,10 +62,12 @@ public class RequestPendingCenter {
             commandInfoMap.put(cmd.getStreamId(), commandInfo);
 
             Date curTime = commandInfo.getCmdDate();
+            String state = (taskId == Constants.CONNECT_TASK_ID) ?
+                    TaskCommandState.SUCCESS.value() : TaskCommandState.INIT.value();
             taskDetailList.add(new TaskDetail(
                     taskId, taskName, taskSource, cmd.getCommand(),
                     curTime, null, DateUtil.dateAddMins(curTime,5),
-                    TaskCommandState.INIT.value(),
+                    state,
                     cmd.getStreamId()
             ));
         }

@@ -17,6 +17,10 @@ import java.util.Date;
 @Data
 @ApiModel(value = "报文执行结果")
 public class ScpCmdResponse {
+    @ApiModelProperty(value = "控制器编号")
+    @JsonProperty(value = "scpId")
+    private String scpId;
+
     @ApiModelProperty(value = "报文编号")
     @JsonProperty(value = "streamId")
     private String streamId;

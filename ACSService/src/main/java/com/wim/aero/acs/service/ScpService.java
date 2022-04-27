@@ -10,6 +10,7 @@ import com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl;
 import com.wim.aero.acs.db.service.impl.DevControllerDetailServiceImpl;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.DST;
+import com.wim.aero.acs.model.command.CommandInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.mq.StatusMessage;
@@ -83,12 +84,13 @@ public class ScpService {
 
     /**
      * 控制器通信连接
-     * @param scpId
+     * @param requestInfo
      * @return
      */
-    public List<ScpCmd> connectScp(int scpId) {
-        List<ScpCmd> result = new ArrayList<>();
+    public void connectScp(ScpRequestInfo requestInfo) {
+        int scpId = requestInfo.getScpId();
 
+        List<ScpCmd> result = new ArrayList<>();
         // Create SCP (Command 1013)
         DevControllerDetail detail = devControllerDetailService.getScpConfiguration(scpId);
         SCPDriver driver = SCPDriver.fromDb(detail);
@@ -97,7 +99,18 @@ public class ScpService {
 
         scpSpecification(scpId, result);
 
-        return result;
+
+        requestPendingCenter.add(
+                Constants.CONNECT_TASK_ID,
+                requestInfo.getTaskName(),
+                requestInfo.getTaskSource(),
+                result);
+        ScpCenter.addScp(scpId);
+
+        // 命令发送
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(result);
+//        requestPendingCenter.updateSeq(scpId, responseList);
+
     }
 
     /**
