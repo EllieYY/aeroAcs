@@ -76,14 +76,15 @@ public class RequestPendingCenter {
     }
 
     /** 更新seqNo */
-    public List<CommandInfo> updateSeq(int scpId, List<ScpCmdResponse> cmdResponseList) {
-        log.info("[{} - 通信服务响应命令条数] - {}", scpId, cmdResponseList.size());
+    public List<CommandInfo> updateSeq(List<ScpCmdResponse> cmdResponseList) {
+        log.info("[通信服务响应命令条数] - {}", cmdResponseList.size());
         log.info(cmdResponseList.toString());
 
         List<TaskDetail> taskDetailList = new ArrayList<>();
         List<CommandInfo> result = new ArrayList<>();
         for (ScpCmdResponse response:cmdResponseList) {
             String streamId = response.getStreamId();
+            int scpId = response.getScpId();
             long seqNo = Long.parseLong(response.getSequenceNumber());
             int code = response.getCode();
 

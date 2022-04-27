@@ -14,7 +14,7 @@ spring:
     user: admin
     password: zhdt@2022
 
-#url: https://192.168.2.72:5000
+#url: https://192.168.2.236:5000
 
 comm-service-info:
   url: http://192.168.2.236:5000

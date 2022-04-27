@@ -195,7 +195,7 @@ public class ScpService {
         // TODO:优化
         requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(scpId, responseList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
 

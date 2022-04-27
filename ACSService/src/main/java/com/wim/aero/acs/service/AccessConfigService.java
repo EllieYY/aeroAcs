@@ -74,10 +74,10 @@ public class AccessConfigService {
 //            log.info(cmd.getCommand());
 //        }
 
-        // TODO:优化
+
         requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(scpId, responseList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
     /**
@@ -105,7 +105,7 @@ public class AccessConfigService {
         // 下发到控制器
         requestPendingCenter.add(taskId, taskName, taskSource, cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(scpId, responseList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
 
@@ -126,8 +126,7 @@ public class AccessConfigService {
                 requestInfo.getTaskSource(),
                 cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        // TODO:改造
-        requestPendingCenter.updateSeq(0, responseList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
     /**
@@ -157,8 +156,7 @@ public class AccessConfigService {
                 requestInfo.getTaskSource(),
                 cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        // 需要改造
-        requestPendingCenter.updateSeq(0, responseList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
     /**
@@ -186,8 +184,7 @@ public class AccessConfigService {
                 requestInfo.getTaskSource(),
                 cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        // TODO:需要改造
-        requestPendingCenter.updateSeq(0, responseList);
+        requestPendingCenter.updateSeq(responseList);
     }
 
     /**
