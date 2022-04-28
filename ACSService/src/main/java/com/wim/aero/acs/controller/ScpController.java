@@ -163,7 +163,6 @@ public class ScpController {
      * @return
      * @throws Exception
      */
-    @Deprecated
     @ApiOperation(value = "通信后台使用 - 获取所有控制器连接报文")
     @RequestMapping(value = "/all/connect", method = {RequestMethod.POST, RequestMethod.GET})
     public List<ScpCmd> scpConfig() {
