@@ -13,17 +13,21 @@
         <result column="point_num" property="pointNum" />
         <result column="status" property="status" />
         <result column="remark" property="remark" />
+        <result column="scp_defence_id" property="scpDefenceId" />
+        <result column="device_id" property="deviceId" />
+        <result column="device_name" property="deviceName" />
+        <result column="shield_flag" property="shieldFlag" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        seq_no, defence_id, defence_name, controller_id, input_device_id, point_type, point_num, status, remark
+        seq_no, defence_id, defence_name, controller_id, input_device_id, point_type, point_num, status, remark, scp_defence_id, device_id, device_name, shield_flag
     </sql>
 
 
     <resultMap id="MpGroupMap" type="com.wim.aero.acs.protocol.device.mp.MpGroupSpecification">
         <result column="controller_id" property="scpNumber" />
-        <result column="defence_id" property="mpgNumber" />
+        <result column="scp_defence_id" property="mpgNumber" />
         <collection property="nMpList" ofType="com.wim.aero.acs.protocol.device.mp.MpType">
             <result column="point_type" property="pointType" />
             <result column="point_num" property="pointNum" />
@@ -32,7 +36,7 @@
 
     <select id="selectAllByControllerId" resultMap="MpGroupMap">
         select
-        controller_id, defence_id, point_type, point_num
+        controller_id, scp_defence_id, point_type, point_num
         from defence_input
         where
         controller_id = #{controllerId,jdbcType=NUMERIC}

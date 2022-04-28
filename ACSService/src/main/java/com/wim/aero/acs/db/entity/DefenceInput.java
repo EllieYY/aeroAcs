@@ -53,5 +53,16 @@ public class DefenceInput implements Serializable {
     @TableField("remark")
     private String remark;
 
+    @TableField("scp_defence_id")
+    private Integer scpDefenceId;
+
+    @TableField("device_id")
+    private Integer deviceId;
+
+    @TableField("device_name")
+    private String deviceName;
+
+    @TableField("shield_flag")
+    private String shieldFlag;
 
 }
