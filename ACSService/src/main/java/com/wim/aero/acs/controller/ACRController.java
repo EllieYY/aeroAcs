@@ -44,7 +44,7 @@ public class ACRController {
         if (type == ControlPointCommandType.UNKNOWN) {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, request.toString());
         }
-        int code = sioService.sendControlPointCommand(request, type);
+        int code = sioService.sendControlPointCommand(request, request.getScpId(), request.getId(), type);
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("命令下发成功");
         }
@@ -62,7 +62,7 @@ public class ACRController {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, request.toString());
         }
 
-        int code = sioService.setAcrMode(request.getScpId(), request.getId(), request.getCommand());
+        int code = sioService.setAcrMode(request, request.getScpId(), request.getId(), request.getCommand());
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("命令下发成功");
         }

@@ -12,16 +12,7 @@ import lombok.Data;
  **/
 @Data
 @ApiModel(value = "控制器参数")
-public class ScpRequestInfo {
+public class ScpRequestInfo extends TaskRequest {
     @ApiModelProperty(value = "控制器id")
     private int scpId;
-
-    @ApiModelProperty(value = "任务id")
-    private int taskId;
-
-    @ApiModelProperty(value = "任务名称")
-    private String taskName;
-
-    @ApiModelProperty(value = "任务来源")
-    private int taskSource;
 }

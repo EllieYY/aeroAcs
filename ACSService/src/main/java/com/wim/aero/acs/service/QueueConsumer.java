@@ -3,9 +3,9 @@ package com.wim.aero.acs.service;
 import com.wim.aero.acs.model.mq.ScpSeqMessage;
 import com.wim.aero.acs.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.jms.JMSException;
@@ -23,6 +23,12 @@ import javax.jms.TextMessage;
 @Configuration
 @Slf4j
 public class QueueConsumer {
+    private final RequestPendingCenter requestPendingCenter;
+
+    @Autowired
+    public QueueConsumer(RequestPendingCenter requestPendingCenter) {
+        this.requestPendingCenter = requestPendingCenter;
+    }
 
     @JmsListener(destination = "scpSeqQueue", containerFactory = "MyJmsQueueListener")
     public void receiveMsg(Message message, Session session) throws JMSException {
@@ -34,7 +40,7 @@ public class QueueConsumer {
             return;
         }
 
-        if (RequestPendingCenter.commandResponse(messageObj)) {
+        if (requestPendingCenter.commandResponse(messageObj)) {
             message.acknowledge();
         } else {
             session.recover();    // 重发

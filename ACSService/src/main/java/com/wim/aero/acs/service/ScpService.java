@@ -90,27 +90,21 @@ public class ScpService {
     public void connectScp(ScpRequestInfo requestInfo) {
         int scpId = requestInfo.getScpId();
 
-        List<ScpCmd> result = new ArrayList<>();
+        List<ScpCmd> cmdList = new ArrayList<>();
         // Create SCP (Command 1013)
         DevControllerDetail detail = devControllerDetailService.getScpConfiguration(scpId);
         SCPDriver driver = SCPDriver.fromDb(detail);
         String msg = RequestMessage.encode(scpId, driver);
-        result.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
 
-        scpSpecification(scpId, result);
+        scpSpecification(scpId, cmdList);
 
-
-        requestPendingCenter.add(
-                Constants.CONNECT_TASK_ID,
-                requestInfo.getTaskName(),
-                requestInfo.getTaskSource(),
-                result);
+        // 注册SCP
         ScpCenter.addScp(scpId);
 
-        // 命令发送
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(result);
-//        requestPendingCenter.updateSeq(scpId, responseList);
-
+        // 发送指令
+        requestInfo.setTaskId(Constants.CONNECT_TASK_ID);
+        requestPendingCenter.sendCmdList(requestInfo, cmdList);
     }
 
     /**
@@ -135,17 +129,10 @@ public class ScpService {
         int scpId = requestInfo.getScpId();
         ScpReset operation = new ScpReset(scpId);
         String msg = RequestMessage.encode(scpId, operation);
-        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
-
         log.info("[{} - 复位] msg={}", scpId, msg);
 
-
-        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), Arrays.asList(cmd));
-        ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
-        requestPendingCenter.updateSeq(Arrays.asList(response));
-
-
-        return response.getCode();
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+        return requestPendingCenter.sendCmd(requestInfo, cmd);
     }
 
     /**
@@ -167,19 +154,12 @@ public class ScpService {
         int scpId = requestInfo.getScpId();
         AccessDatabaseSpecification operation = AccessDatabaseSpecification.getCardsClearedModel(scpId);
         String msg = RequestMessage.encode(scpId, operation);
-        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
-
         log.info("[{} - 清除卡片] msg={}", scpId, msg);
 
         // 向设备发送
-        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), Arrays.asList(cmd));
-        ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
-        requestPendingCenter.updateSeq(Arrays.asList(response));
-
-        return response.getCode();
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+        return requestPendingCenter.sendCmd(requestInfo, cmd);
     }
-
-
 
 
     /**
@@ -222,10 +202,7 @@ public class ScpService {
 //            System.out.println(cmd.getCommand());
 //        }
 
-        // TODO:优化
-        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.sendCmdList(requestInfo, cmdList);
     }
 
 

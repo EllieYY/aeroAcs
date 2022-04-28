@@ -14,11 +14,7 @@ import java.util.List;
  **/
 @Data
 @ApiModel(value = "卡冻结/解冻请求参数")
-public class CardBlockedRequestInfo {
-    private long taskId;
-    private String taskName;
-    private int taskSource;
-
+public class CardBlockedRequestInfo extends TaskRequest {
     @ApiModelProperty(value = "时间组编号")
     private int tz;
 

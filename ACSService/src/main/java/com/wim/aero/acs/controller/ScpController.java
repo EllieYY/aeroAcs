@@ -136,11 +136,7 @@ public class ScpController {
     @ApiOperation(value = "下载卡片")
     @RequestMapping(value = "/card/reload", method = {RequestMethod.POST})
     public ResultBean<List<CmdDownloadInfo>> reloadCards(@RequestBody ScpRequestInfo request) {
-        accessConfigService.downloadCards(
-                request.getTaskId(),
-                request.getTaskName(),
-                request.getTaskSource(),
-                request.getScpId());
+        accessConfigService.downloadCards(request, request.getScpId());
 
         return ResultBeanUtil.makeOkResp();
     }
@@ -206,9 +202,8 @@ public class ScpController {
 //            log.error("控制器{}数据不存在。", scpId);
 //            return new ArrayList<>();
 //        }
-        // TODO:修改scp状态 -- 数据库
-
         log.info(request.toString());
+        scpService.scpStateUpdate(scpId, request.getState());
 
         return ResultBeanUtil.makeOkResp();
     }

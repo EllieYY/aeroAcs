@@ -14,12 +14,10 @@ import java.util.List;
  **/
 @Data
 @ApiModel(value = "卡号列表")
-public class CardRequestInfo {
-
-    private long taskId;
-    private String taskName;
-    private int taskSource;
-
+public class CardRequestInfo  extends TaskRequest{
+    @ApiModelProperty(value = "卡号冻结时使用的时间组编号")
     private int tz;
+
+    @ApiModelProperty(value = "卡号列表")
     private List<String> cardList;
 }

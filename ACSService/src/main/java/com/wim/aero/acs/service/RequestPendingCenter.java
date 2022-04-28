@@ -10,17 +10,14 @@ import com.wim.aero.acs.model.command.CommandInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.mq.ScpSeqMessage;
+import com.wim.aero.acs.model.request.TaskRequest;
 import com.wim.aero.acs.model.scp.ScpSeq;
 import com.wim.aero.acs.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
@@ -30,27 +27,43 @@ public class RequestPendingCenter {
     static private Map<String, CommandInfo> commandInfoMap = new ConcurrentHashMap<>();
     /** streamId和seqId的Map        */
     static private Map<String, ScpSeq> streamSeqMap = new ConcurrentHashMap<>();
-    /** 缓存设备返回的报文执行结果 seq - code */
-    static private Map<Long, Integer> seqMap = new ConcurrentHashMap<>();
 
-//    private final TaskDetailServiceImpl taskDetailService;
-//    @Autowired
-//    public RequestPendingCenter(TaskDetailServiceImpl taskDetailService) {
-//        this.taskDetailService = taskDetailService;
-//    }
-
+    private final TaskDetailServiceImpl taskDetailService;
+    private final RestUtil restUtil;
     @Autowired
-    TaskDetailServiceImpl taskDetailService;
-    @Autowired
-    static TaskDetailServiceImpl conTaskDetailService;
-
-    @PostConstruct
-    public void init() {
-        conTaskDetailService = taskDetailService;
+    public RequestPendingCenter(TaskDetailServiceImpl taskDetailService, RestUtil restUtil) {
+        this.taskDetailService = taskDetailService;
+        this.restUtil = restUtil;
     }
 
+    /**
+     * 向设备发送单条命令
+     * @param request
+     * @param cmd
+     * @return
+     */
+    public int sendCmd(TaskRequest request, ScpCmd cmd) {
+        // 向设备发送
+        add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), Arrays.asList(cmd));
+        ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
+        updateSeq(Arrays.asList(response));
+        return response.getCode();
+    }
+
+    /**
+     * 向设备发送多条命令
+     * @param request
+     * @param cmdList
+     */
+    public void sendCmdList(TaskRequest request, List<ScpCmd> cmdList) {
+        this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        this.updateSeq(responseList);
+    }
+
+
     /** 命令集合添加 */
-    public void add(long taskId, String taskName, int taskSource, List<ScpCmd> commandInfoList) {
+    private void add(long taskId, String taskName, int taskSource, List<ScpCmd> commandInfoList) {
         log.info("[下发命令条数] {}", commandInfoList.size());
 
         List<TaskDetail> taskDetailList = new ArrayList<>();
@@ -72,11 +85,11 @@ public class RequestPendingCenter {
             ));
         }
 
-        conTaskDetailService.saveBatch(taskDetailList);
+        taskDetailService.saveBatch(taskDetailList);
     }
 
     /** 更新seqNo */
-    public List<CommandInfo> updateSeq(List<ScpCmdResponse> cmdResponseList) {
+    private List<CommandInfo> updateSeq(List<ScpCmdResponse> cmdResponseList) {
         log.info("[通信服务响应命令条数] - {}", cmdResponseList.size());
         log.info(cmdResponseList.toString());
 
@@ -119,14 +132,14 @@ public class RequestPendingCenter {
         }
 
         log.info("[stream:seq] {}", streamSeqMap.toString());
-        conTaskDetailService.updateTaskStateBatch(taskDetailList);
+        taskDetailService.updateTaskStateBatch(taskDetailList);
 
         log.info("[发送失败命令条数] {}", result.size());
         return result;
     }
 
     /** 控制器返回命令生效结果 */
-    public static boolean commandResponse(ScpSeqMessage scpSeqMessage) {
+    public boolean commandResponse(ScpSeqMessage scpSeqMessage) {
         int scpId = scpSeqMessage.getScpId();
         long seqNo = scpSeqMessage.getSeq();
         int code = scpSeqMessage.getStatus();
@@ -166,14 +179,14 @@ public class RequestPendingCenter {
             removeStreamId(key);
         }
 
-        conTaskDetailService.updateTaskStateBatch(taskDetailList);
+        taskDetailService.updateTaskStateBatch(taskDetailList);
 
         return true;
     }
 
 
     /** 通过seqNo查找streamId列表 */
-    public static List<String> getStreamIdsBySeqId(int scpId, long seqId) {
+    public List<String> getStreamIdsBySeqId(int scpId, long seqId) {
         List<String> streamIdList = new ArrayList<>();
         for(Map.Entry<String, ScpSeq> entry : streamSeqMap.entrySet()){
             String streamId = entry.getKey();
@@ -185,7 +198,7 @@ public class RequestPendingCenter {
         return streamIdList;
     }
 
-    private static void removeStreamId(String streamId) {
+    private void removeStreamId(String streamId) {
         if (streamSeqMap.containsKey(streamId)) {
             streamSeqMap.remove(streamId);
         }

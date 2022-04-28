@@ -44,7 +44,7 @@ public class ControlPointController {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
         }
 
-        int code = sioService.sendControlPointCommand(request, type);
+        int code = sioService.sendControlPointCommand(request, request.getScpId(), request.getCpId(), type);
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("命令下发成功");
         }

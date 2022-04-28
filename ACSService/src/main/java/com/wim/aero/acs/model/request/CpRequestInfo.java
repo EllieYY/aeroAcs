@@ -12,7 +12,7 @@ import lombok.Data;
  **/
 @Data
 @ApiModel(value = "输出点控制命令")
-public class CpRequestInfo {
+public class CpRequestInfo extends TaskRequest {
     @ApiModelProperty(value = "控制器id")
     private int scpId;
 

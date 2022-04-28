@@ -10,6 +10,7 @@ import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.request.CardBlockedRequestInfo;
 import com.wim.aero.acs.model.request.CardRequestInfo;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
+import com.wim.aero.acs.model.request.TaskRequest;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelException;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
@@ -74,10 +75,7 @@ public class AccessConfigService {
 //            log.info(cmd.getCommand());
 //        }
 
-
-        requestPendingCenter.add(requestInfo.getTaskId(), requestInfo.getTaskName(), requestInfo.getTaskSource(), cmdList);
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.sendCmdList(requestInfo, cmdList);
     }
 
     /**
@@ -98,15 +96,13 @@ public class AccessConfigService {
      * 下载卡片
      * @param scpId
      */
-    public void downloadCards(long taskId, String taskName, int taskSource, int scpId) {
+    public void downloadCards(TaskRequest request, int scpId) {
         List<CardAdd> cardAddList = cardInfoService.getByScpId(scpId);
         List<ScpCmd> cmdList = packageCardMessages(cardAddList);
-
         log.info("[{} - 卡片下载] {}", scpId, cmdList);
+
         // 下发到控制器
-        requestPendingCenter.add(taskId, taskName, taskSource, cmdList);
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.sendCmdList(request, cmdList);
     }
 
 
@@ -115,19 +111,14 @@ public class AccessConfigService {
      * @param
      * @return 发送失败的结果
      */
-    public void addCards(CardRequestInfo requestInfo) {
-        List<String> cardList = requestInfo.getCardList();
+    public void addCards(CardRequestInfo request) {
+        List<String> cardList = request.getCardList();
 
         List<CardAdd> cardAddList = cardInfoService.getByCardList(cardList);
         List<ScpCmd> cmdList = packageCardMessages(cardAddList);
 
         // 下发到控制器
-        requestPendingCenter.add(requestInfo.getTaskId(),
-                requestInfo.getTaskName(),
-                requestInfo.getTaskSource(),
-                cmdList);
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.sendCmdList(request, cmdList);
     }
 
     /**
@@ -135,8 +126,8 @@ public class AccessConfigService {
      * @param
      * @return 发送失败的结果
      */
-    public void deleteCards(CardRequestInfo requestInfo) {
-        List<String> cardList = requestInfo.getCardList();
+    public void deleteCards(CardRequestInfo request) {
+        List<String> cardList = request.getCardList();
 
         // 查找拥有这张卡的控制器
         List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
@@ -152,20 +143,15 @@ public class AccessConfigService {
         }
 
         // 下发到控制器
-        requestPendingCenter.add(requestInfo.getTaskId(),
-                requestInfo.getTaskName(),
-                requestInfo.getTaskSource(),
-                cmdList);
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.sendCmdList(request, cmdList);
     }
 
     /**
      * 卡冻结解冻
-     * @param requestInfo
+     * @param request
      */
-    public void cardBlocked(CardBlockedRequestInfo requestInfo) {
-        List<String> cardList = requestInfo.getCardList();
+    public void cardBlocked(CardBlockedRequestInfo request) {
+        List<String> cardList = request.getCardList();
         // 查找拥有这张卡的控制器
         List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
 
@@ -173,19 +159,14 @@ public class AccessConfigService {
         List<ScpCmd> cmdList = new ArrayList<>();
         for (Integer scpId:scpIdList) {
             for (String cardNo : cardList) {
-                AccessLevelException operation = new AccessLevelException(scpId, cardNo, requestInfo.getTz(), requestInfo.isBlocked());
+                AccessLevelException operation = new AccessLevelException(scpId, cardNo, request.getTz(), request.isBlocked());
                 String msg = RequestMessage.encode(scpId, operation);
                 cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
             }
         }
 
         // 下发到控制器
-        requestPendingCenter.add(requestInfo.getTaskId(),
-                requestInfo.getTaskName(),
-                requestInfo.getTaskSource(),
-                cmdList);
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        requestPendingCenter.updateSeq(responseList);
+        requestPendingCenter.sendCmdList(request, cmdList);
     }
 
     /**
