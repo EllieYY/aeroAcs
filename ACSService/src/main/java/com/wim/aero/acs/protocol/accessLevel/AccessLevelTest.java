@@ -67,7 +67,7 @@ public class AccessLevelTest extends Operation {
     private int nEscortCode; // Escort code of user at reader where the time zone is active:
 
     @CmdProp(index = 17)
-    private int operMode = 0;
+    private int operMode = 1;
 
     public static AccessLevelTest fromDb(AccessLevelInfo info) {
         AccessLevelTest result = new AccessLevelTest();

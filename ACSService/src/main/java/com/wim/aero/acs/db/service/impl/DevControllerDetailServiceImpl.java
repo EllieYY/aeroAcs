@@ -33,6 +33,15 @@ public class DevControllerDetailServiceImpl extends ServiceImpl<DevControllerDet
     public boolean validScp(int scpId) {
         long count = this.count(new QueryWrapper<DevControllerDetail>()
                         .eq("device_id", scpId)
+
+        );
+
+        return (count > 0);
+    }
+
+    public boolean isEleScp(int scpId) {
+        long count = this.count(new QueryWrapper<DevControllerDetail>()
+                .eq("device_id", scpId).eq("device_scope_id", 2)
         );
 
         return (count > 0);

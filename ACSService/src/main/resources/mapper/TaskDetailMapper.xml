@@ -13,11 +13,12 @@
         <result column="msg_over_time" property="msgOverTime" />
         <result column="status" property="status" />
         <result column="uid" property="uid" />
+        <result column="detail" property="detail" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        task_id, task_name, task_source, message, start_time, msg_return_time, msg_over_time, status, uid
+        task_id, task_name, task_source, message, start_time, msg_return_time, msg_over_time, status, uid, detail
     </sql>
     <update id="updateStatusAndMsgReturnTimeByUid">
         update task_detail
@@ -40,6 +41,13 @@
                 <foreach collection="list" item="item" index="index">
                     <if test="item.uid!=null">
                         when uid=#{item.uid} then #{item.msgReturnTime}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="detail=case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.uid!=null">
+                        when uid=#{item.uid} then #{item.detail}
                     </if>
                 </foreach>
             </trim>

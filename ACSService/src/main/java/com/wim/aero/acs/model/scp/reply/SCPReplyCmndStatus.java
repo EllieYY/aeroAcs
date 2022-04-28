@@ -32,7 +32,7 @@ public class SCPReplyCmndStatus extends ReplyBody {
         }
 
         // 推送消息队列中
-        queueProducer.sendScpMessage(new ScpSeqMessage(scpId, sequence_number, status, reason));
+        queueProducer.sendScpMessage(new ScpSeqMessage(scpId, sequence_number, status, reason, this.toString()));
 
 //        RequestPendingCenter.commandResponse(sequence_number, status, reason);
     }

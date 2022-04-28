@@ -27,7 +27,7 @@ public class AccessLevelExtended extends Operation {
     private int alvlNumber;
 
     @CmdProp(index = 5)
-    private int operMode = 0;
+    private int operMode = 1;
 
     //6-69 tz
     @CmdProp(index = 6, enCodec = "formatList")

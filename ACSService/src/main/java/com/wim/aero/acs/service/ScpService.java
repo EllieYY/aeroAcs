@@ -209,9 +209,6 @@ public class ScpService {
         String timeMsg = RequestMessage.encode(scpId, timeSet);
         cmdList.add(new ScpCmd(scpId, timeMsg, IdUtil.nextId()));
 
-        // 有梯控则配置
-//        elevatorScpSpecification(scpId, cmdList);
-
         // 卡格式配置
         cardFormatConfig(scpId, cmdList);
 
@@ -234,31 +231,21 @@ public class ScpService {
         // SCPDevice Specification(Command 1107)
         SCPSpecification scpSpecification = new SCPSpecification(scpId);
         String specificationMsg = RequestMessage.encode(scpId, scpSpecification);
+        cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
 
         // Access Database Specification (Command 1105)
         DevControllerCommonAttribute detail = devControllerCommonAttributeService.getADSpecification();
         AccessDatabaseSpecification adSpecification = AccessDatabaseSpecification.fromDb(scpId, detail);
         String adSpecificationMsg = RequestMessage.encode(scpId, adSpecification);
-
-        // 命令组装
-        cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
         cmdList.add(new ScpCmd(scpId, adSpecificationMsg, IdUtil.nextId()));
-    }
 
-    /**
-     * 梯控SCP配置
-     * @param scpId
-     * @param cmdList
-     */
-    private void elevatorScpSpecification(int scpId, List<ScpCmd> cmdList) {
         // Command 501: Elevator Access Level Specification
-        // TODO:电梯楼层数从数据表中获取 -- 暂未定义
-        ElevatorALsSpecification specification = new ElevatorALsSpecification(scpId, 64);
+        int floors = Optional.ofNullable(detail.getElevatorFloorNum()).orElse(64);
+        ElevatorALsSpecification specification = new ElevatorALsSpecification(scpId, floors);
         String msg = RequestMessage.encode(scpId, specification);
-
-        // 命令组装
         cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
     }
+
 
     /**
      * 卡格式配置：所有卡格式都写入到scp中

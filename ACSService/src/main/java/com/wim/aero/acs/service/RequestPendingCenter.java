@@ -81,7 +81,8 @@ public class RequestPendingCenter {
                     taskId, taskName, taskSource, cmd.getCommand(),
                     curTime, null, DateUtil.dateAddMins(curTime,5),
                     state,
-                    cmd.getStreamId()
+                    cmd.getStreamId(),
+                    cmd.toString()
             ));
         }
 
@@ -123,7 +124,8 @@ public class RequestPendingCenter {
                         commandInfo.getCommand(),
                         curTime, new Date(), DateUtil.dateAddMins(curTime,5),
                         state,
-                        commandInfo.getStreamId()
+                        commandInfo.getStreamId(),
+                        response.toString()
                 ));
 
             } else {
@@ -144,6 +146,7 @@ public class RequestPendingCenter {
         long seqNo = scpSeqMessage.getSeq();
         int code = scpSeqMessage.getStatus();
         int reason = scpSeqMessage.getReason();
+        String detail = scpSeqMessage.getDetail();
 
 //        log.info("seq:{}, code:{}", seqNo, code);
 
@@ -172,7 +175,8 @@ public class RequestPendingCenter {
                     commandInfo.getCommand(),
                     curTime, scpSeqMessage.getCmdDate(), DateUtil.dateAddMins(curTime,5),
                     state,
-                    commandInfo.getStreamId()
+                    commandInfo.getStreamId(),
+                    detail
             ));
 
             // 移除命令集合

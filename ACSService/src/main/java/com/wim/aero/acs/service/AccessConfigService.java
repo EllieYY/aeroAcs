@@ -6,7 +6,6 @@ import com.wim.aero.acs.db.service.impl.*;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.db.AccessLevelInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
-import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.request.CardBlockedRequestInfo;
 import com.wim.aero.acs.model.request.CardRequestInfo;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
@@ -25,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,24 +43,24 @@ public class AccessConfigService {
     private final DefenceInputServiceImpl defenceInputService;
     private final DAccessLevelDoorServiceImpl accessLevelService;
     private final CCardInfoServiceImpl cardInfoService;
-    private final RestUtil restUtil;
     private final RequestPendingCenter requestPendingCenter;
+    private final DevControllerDetailServiceImpl controllerDetailService;
     @Autowired
     public AccessConfigService(DHolidayServiceImpl holidayService,
                                DSchedulesGroupDetailServiceImpl schedulesGroupService,
                                ApbServiceImpl apbService, DefenceInputServiceImpl defenceInputService,
                                DAccessLevelDoorServiceImpl accessLevelService,
                                CCardInfoServiceImpl cardInfoService,
-                               RestUtil restUtil,
-                               RequestPendingCenter requestPendingCenter) {
+                               RequestPendingCenter requestPendingCenter,
+                               DevControllerDetailServiceImpl controllerDetailService) {
         this.holidayService = holidayService;
         this.schedulesGroupService = schedulesGroupService;
         this.apbService = apbService;
         this.defenceInputService = defenceInputService;
         this.accessLevelService = accessLevelService;
         this.cardInfoService = cardInfoService;
-        this.restUtil = restUtil;
         this.requestPendingCenter = requestPendingCenter;
+        this.controllerDetailService = controllerDetailService;
     }
 
     public void accessConfig(ScpRequestInfo requestInfo) {
@@ -233,7 +231,13 @@ public class AccessConfigService {
      */
     public void addTimeZone(int scpId, List<ScpCmd> cmdList) {
         // command 3103
-        List<TimeZone> list = schedulesGroupService.getTimeZonesByScp(scpId);
+        boolean isEleScp = controllerDetailService.isEleScp(scpId);
+        List<TimeZone> list = new ArrayList<>();
+        if (isEleScp) {
+            // TODO:
+        } else {
+            list = schedulesGroupService.getTimeZonesByScp(scpId);
+        }
         for(TimeZone item:list) {
             item.updateIntervalSize();
             String msg = RequestMessage.encode(scpId, item);

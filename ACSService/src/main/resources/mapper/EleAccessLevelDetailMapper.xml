@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.EleAccessLevelDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.EleAccessLevelDetail">
+        <id column="ele_access_id" property="eleAccessId" />
+        <id column="device_id" property="deviceId" />
+        <id column="ele_level_id" property="eleLevelId" />
+        <result column="device_name" property="deviceName" />
+        <result column="reader_number" property="readerNumber" />
+        <result column="acr_number" property="acrNumber" />
+        <result column="controller_id" property="controllerId" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ele_access_id, device_id, device_name, reader_number, acr_number, controller_id, ele_level_id, status, remark
+    </sql>
+
+</mapper>

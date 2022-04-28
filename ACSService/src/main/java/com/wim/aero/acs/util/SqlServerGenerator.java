@@ -48,7 +48,11 @@ public class SqlServerGenerator {
 //        tables.add("e_access_record");
 //        tables.add("e_alarm_record");
 //        tables.add("e_log_record");
-        tables.add("task_detail");
+//        tables.add("task_detail");
+
+        tables.add("ele_access_level_detail");
+        tables.add("ele_access_level");
+        tables.add("ele_level_detail");
 
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)
                 .globalConfig(builder -> {

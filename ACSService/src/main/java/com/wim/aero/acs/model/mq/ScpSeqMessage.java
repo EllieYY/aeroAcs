@@ -17,12 +17,14 @@ public class ScpSeqMessage {
     private int status;
     private int reason;
     private Date cmdDate;
+    private String detail;
 
-    public ScpSeqMessage(int scpId, long seq, int status, int reason) {
+    public ScpSeqMessage(int scpId, long seq, int status, int reason, String detail) {
         this.scpId = scpId;
         this.seq = seq;
         this.status = status;
         this.reason = reason;
         cmdDate = new Date();
+        this.detail = detail;
     }
 }

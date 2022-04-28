@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 @ApiModel(value = "读卡器远程控制命令信息")
 public class AcrRequestInfo extends TaskRequest {
-    @ApiModelProperty(value = "读卡器逻辑编号或控制点逻辑编号")
+    @ApiModelProperty(value = "读卡器逻辑编号(常开常闭命令)或控制点逻辑编号（打开、关闭命令）")
     private int id;
 
     @ApiModelProperty(value = "控制器id")
