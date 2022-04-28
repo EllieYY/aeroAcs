@@ -22,4 +22,8 @@ public class DSchedulesGroupDetailServiceImpl extends ServiceImpl<DSchedulesGrou
     public List<TimeZone> getTimeZonesByScp(int scpId) {
         return baseMapper.selectByScpId(scpId);
     }
+
+    public List<TimeZone> getTimeZonesForEleScp(int scpId) {
+        return baseMapper.selectByScpIdForEle(scpId);
+    }
 }

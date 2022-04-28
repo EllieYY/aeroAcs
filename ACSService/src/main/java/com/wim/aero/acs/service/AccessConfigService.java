@@ -6,6 +6,7 @@ import com.wim.aero.acs.db.service.impl.*;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.db.AccessLevelInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
+import com.wim.aero.acs.model.db.EleAccessLevelInfo;
 import com.wim.aero.acs.model.request.CardBlockedRequestInfo;
 import com.wim.aero.acs.model.request.CardRequestInfo;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
@@ -13,6 +14,7 @@ import com.wim.aero.acs.model.request.TaskRequest;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelException;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
+import com.wim.aero.acs.protocol.accessLevel.ElevatorALsConfiguration;
 import com.wim.aero.acs.protocol.apb.AccessAreaConfig;
 import com.wim.aero.acs.protocol.card.CardAdd;
 import com.wim.aero.acs.protocol.card.CardDelete;
@@ -82,9 +84,11 @@ public class AccessConfigService {
      * @param cmdList
      */
     public void alBasicConfigMsg(int scpId, List<ScpCmd> cmdList) {
+        boolean isEleScp = controllerDetailService.isEleScp(scpId);
         addHolidays(scpId, cmdList);
-        addTimeZone(scpId, cmdList);
-        accessLevelConfig(scpId, cmdList);
+        addTimeZone(scpId, isEleScp, cmdList);
+        elevatorAccessLevelConfig(scpId, isEleScp, cmdList);
+        accessLevelConfig(scpId, isEleScp, cmdList);
 
         apbConfig(scpId, cmdList);
         mpGroupConfig(scpId, cmdList);
@@ -194,15 +198,20 @@ public class AccessConfigService {
      * @param scpId
      * @param cmdList
      */
-    private void accessLevelConfig(int scpId, List<ScpCmd> cmdList) {
-        // Command 2116: Access Level Configuration Extended
-        // Command 124
-        List<AccessLevelInfo> list = accessLevelService.getByScpId(scpId);
+    private void accessLevelConfig(int scpId, boolean isEleScp, List<ScpCmd> cmdList) {
+        List<AccessLevelInfo> list = new ArrayList<>();
+        if (isEleScp) {
+            list = accessLevelService.getByScpIdForEle(scpId);
+        } else {
+            list = accessLevelService.getByScpId(scpId);
+        }
         for(AccessLevelInfo item:list) {
+            // Command 124
             AccessLevelTest alTest = AccessLevelTest.fromDb(item);
             String alTestMsg = RequestMessage.encode(scpId, alTest);
             cmdList.add(new ScpCmd(scpId, alTestMsg, IdUtil.nextId()));
 
+            // Command 2116: Access Level Configuration Extended
             AccessLevelExtended alExtended = AccessLevelExtended.fromDb(item);
             String alExtendedMsg = RequestMessage.encode(scpId, alExtended);
             cmdList.add(new ScpCmd(scpId, alExtendedMsg, IdUtil.nextId()));
@@ -229,12 +238,11 @@ public class AccessConfigService {
      * @param scpId
      * @param cmdList
      */
-    public void addTimeZone(int scpId, List<ScpCmd> cmdList) {
+    public void addTimeZone(int scpId, boolean isEleScp, List<ScpCmd> cmdList) {
         // command 3103
-        boolean isEleScp = controllerDetailService.isEleScp(scpId);
         List<TimeZone> list = new ArrayList<>();
         if (isEleScp) {
-            // TODO:
+            list = schedulesGroupService.getTimeZonesForEleScp(scpId);
         } else {
             list = schedulesGroupService.getTimeZonesByScp(scpId);
         }
@@ -279,8 +287,18 @@ public class AccessConfigService {
      * 电梯级别配置
      * @param scpId
      */
-    private void elevatorAccessLevelConfig(int scpId, List<ScpCmd> cmdList) {
+    private void elevatorAccessLevelConfig(int scpId, boolean isEleScp, List<ScpCmd> cmdList) {
+        if (!isEleScp) {
+            return;
+        }
+
         // command 502
+        List<EleAccessLevelInfo> list = accessLevelService.getEleLevelByScp(scpId);
+        for(EleAccessLevelInfo item:list) {
+            ElevatorALsConfiguration config = ElevatorALsConfiguration.fromDb(item);
+            String alTestMsg = RequestMessage.encode(scpId, config);
+            cmdList.add(new ScpCmd(scpId, alTestMsg, IdUtil.nextId()));
+        }
     }
 
 }

@@ -35,7 +35,7 @@ public class TimeZone extends Operation {
      * 5 - [ Holiday && Day Mask ]
      */
     @CmdProp(index = 5)
-    private int mode = 4;
+    private int mode = 1;
 
     /**
      *  seconds from January 1, 1970 in local time
@@ -51,6 +51,10 @@ public class TimeZone extends Operation {
 
     @CmdProp(index = 9, enCodec = "formatTimeInterval")
     private List<TimeInterval> intervals;
+
+    @CmdProp(index = 12, enCodec = "formatStr")
+    private String expTest = "";
+
 
     public void updateIntervalSize() {
         intervalsNum = intervals.size();

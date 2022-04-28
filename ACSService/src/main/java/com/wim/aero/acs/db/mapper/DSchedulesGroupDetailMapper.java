@@ -19,4 +19,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DSchedulesGroupDetailMapper extends BaseMapper<DSchedulesGroupDetail> {
     List<TimeZone> selectByScpId(@Param("scpId") int scpId);
+
+    List<TimeZone> selectByScpIdForEle(@Param("scpId") int scpId);
 }

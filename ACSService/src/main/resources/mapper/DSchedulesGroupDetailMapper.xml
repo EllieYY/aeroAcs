@@ -51,4 +51,27 @@
         order by c.schedules_id
     </select>
 
+    <select id="selectByScpIdForEle" resultMap="TimeZoneMap">
+        select
+            controller_id as scpId,
+            b.schedules_group_id as groupId,
+            b.schedules_id as timeId,
+            datediff( minute , '12:00AM', c.begin_time ) as startTime,
+            datediff( minute , '12:00AM', c.end_time ) as endTime,
+            (1 * ISNULL(c.sun_flag, 0) +
+             2 * ISNULL(c.mon_flag, 0) +
+             4 * ISNULL(c.tues_flag, 0) +
+             8 * ISNULL(c.wed_flag, 0) +
+             16 * ISNULL(c.thu_flag, 0) +
+             32 * ISNULL(c.fri_flag, 0) +
+             64 * ISNULL(c.sat_flag, 0)) AS daymask
+        from ele_access_level_detail a, ele_level_detail d, d_schedules_group_detail b
+        left join d_schedules c on b.schedules_id = c.schedules_id
+        where controller_id = #{scpId}
+          and a.ele_level_id = d.ele_level_id
+          and d.schedules_group_id = b.schedules_group_id
+          and c.status = '1'
+        order by c.schedules_id
+    </select>
+
 </mapper>

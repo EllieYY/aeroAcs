@@ -5,6 +5,7 @@ import com.wim.aero.acs.db.mapper.DAccessLevelDoorMapper;
 import com.wim.aero.acs.db.service.DAccessLevelDoorService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wim.aero.acs.model.db.AccessLevelInfo;
+import com.wim.aero.acs.model.db.EleAccessLevelInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,14 @@ import java.util.List;
 public class DAccessLevelDoorServiceImpl extends ServiceImpl<DAccessLevelDoorMapper, DAccessLevelDoor> implements DAccessLevelDoorService {
     public List<AccessLevelInfo> getByScpId(int scpId) {
         return this.baseMapper.selectAllByControllerId(scpId);
+    }
+
+    public List<AccessLevelInfo> getByScpIdForEle(int scpId) {
+        return this.baseMapper.selectAllByControllerId(scpId);
+    }
+
+    public List<EleAccessLevelInfo> getEleLevelByScp(int scpId) {
+        return this.baseMapper.selectEleLevelByScpId(scpId);
     }
 
     public List<Integer> getALsByScpId(int scpId) {
