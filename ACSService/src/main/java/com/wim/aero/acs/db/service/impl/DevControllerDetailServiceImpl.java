@@ -29,6 +29,7 @@ public class DevControllerDetailServiceImpl extends ServiceImpl<DevControllerDet
         }
     }
 
+
     public boolean validScp(int scpId) {
         long count = this.count(new QueryWrapper<DevControllerDetail>()
                         .eq("device_id", scpId)

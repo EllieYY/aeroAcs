@@ -159,33 +159,15 @@ public class ScpController {
 
     /**
      * 通信服务与scp成功建立连接之后获取scp对应的配置信息
-     * @param request
+     * @param
      * @return
      * @throws Exception
      */
     @Deprecated
-    @ApiOperation(value = "通信后台使用 - 获取控制器配置报文")
-    @RequestMapping(value = "/config/deprecated", method = {RequestMethod.POST})
-    public List<ScpCmd> scpConfig(@RequestBody ScpRequestInfo request) {
-        int scpId = request.getScpId();
-        if (!scpService.isValidScpId(scpId)) {
-            log.error("控制器{}数据不存在。", scpId);
-            return new ArrayList<>();
-        }
-        // TODO:修改scp状态 -- 数据库
-
-        // scp配置
-//        List<ScpCmd> cmdList = scpService.configScp(scpId);
-//        // sio及物理点位配置
-//        sioService.configSioForScp(scpId, cmdList);
-//        // 时间组、访问组配置
-//        accessConfigService.alBasicConfig(scpId, cmdList);
-
-//        for (ScpCmd cmd:cmdList) {
-//            System.out.println(cmd.getCommand());
-////            log.info("[SCP:{}] - {}", scpId, cmd.getCommand());
-//        }
-        return new ArrayList<>();
+    @ApiOperation(value = "通信后台使用 - 获取所有控制器连接报文")
+    @RequestMapping(value = "/all/connect", method = {RequestMethod.POST, RequestMethod.GET})
+    public List<ScpCmd> scpConfig() {
+        return scpService.getAllScpConnectMsg();
     }
 
     /**

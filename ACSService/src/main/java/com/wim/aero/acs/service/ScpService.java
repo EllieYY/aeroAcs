@@ -107,6 +107,25 @@ public class ScpService {
         requestPendingCenter.sendCmdList(requestInfo, cmdList);
     }
 
+
+    /**
+     * 获取设备连接报文
+     * @return
+     */
+    public List<ScpCmd> getAllScpConnectMsg() {
+        List<DevControllerDetail> detailList = devControllerDetailService.list();
+        List<ScpCmd> cmdList = new ArrayList<>();
+        for (DevControllerDetail detail:detailList) {
+            int scpId = detail.getDeviceId();
+            // Create SCP (Command 1013)
+            SCPDriver driver = SCPDriver.fromDb(detail);
+            String msg = RequestMessage.encode(scpId, driver);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+
+        return cmdList;
+    }
+
     /**
      * 控制器状态更新
      * @param scpId

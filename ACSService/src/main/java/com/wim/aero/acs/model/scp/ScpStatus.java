@@ -8,10 +8,10 @@ import java.util.function.Predicate;
  * scp状态
  */
 public enum ScpStatus {
-    UNKNOWN(0),    // 初始化
-    INIT(1),
-    OFF_LINE(2),   // 离线
-    ON_LINE(3),    // 在线
+    UNKNOWN(-2),    // 初始化
+    INIT(-1),
+    OFF_LINE(0),   // 离线
+    ON_LINE(1),    // 在线
     CONFIG(4);     // 配置成功
 
     ScpStatus(int status) {
