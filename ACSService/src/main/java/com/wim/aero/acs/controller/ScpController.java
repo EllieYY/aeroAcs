@@ -81,6 +81,14 @@ public class ScpController {
         return ResultBeanUtil.makeOkResp();
     }
 
+    @ApiOperation(value = "硬件删除")
+    @RequestMapping(value = "/delete", method = {RequestMethod.POST})
+    public ResultBean<String> deleteScp(@RequestBody ScpRequestInfo request) {
+        scpService.deleteScp(request);
+
+        return ResultBeanUtil.makeOkResp("正在与scp断开连接...");
+    }
+
     /**
      * @param request
      * @return

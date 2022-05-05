@@ -1,5 +1,5 @@
 server:
-  port: 9250
+  port: 9257
 
 swagger:
   enable: true

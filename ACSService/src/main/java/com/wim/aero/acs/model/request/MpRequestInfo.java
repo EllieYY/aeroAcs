@@ -13,7 +13,7 @@ import lombok.Data;
  **/
 @Data
 @ApiModel(value = "报警点信息")
-public class MpRequestInfo  extends TaskRequest {
+public class MpRequestInfo extends TaskRequest {
     @ApiModelProperty(value = "控制器id")
     private int scpId;
 

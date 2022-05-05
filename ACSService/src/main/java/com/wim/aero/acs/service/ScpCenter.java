@@ -50,6 +50,16 @@ public class ScpCenter {
         }
     }
 
+
+    // 删除scp
+    public static void deleteScp(int scpId) {
+        if (scpMap.containsKey(scpId)) {
+            scpMap.remove(scpId);
+        }
+
+        log.info("deleteScp - {}", scpId);
+    }
+
     public static void scpOnline(int scpId) {
         if (scpMap.containsKey(scpId)) {
             ScpShadow scpShadow = scpMap.get(scpId);

@@ -72,6 +72,8 @@ public enum OperationType {
     /**-------------------------------------------------------------------------------*/
     /** 指令 */
     SCP_REST(301, ScpReset.class),
+    SCP_DETACH(15, ScpDelete.class),
+
     MP_MASK(306, MonitorPointMask.class),
     CP_COMMAND(307, ControlPointCommand.class),
     ACR_MODE(308, ACRModeConfig.class),

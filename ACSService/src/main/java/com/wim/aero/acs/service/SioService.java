@@ -154,7 +154,7 @@ public class SioService {
      * @param cmdList
      */
     public void sioConfig(int scpId, List<ScpCmd> cmdList) {
-        // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器3个
+        // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器2个
 //        cmdList.add(packageDriver(scpId, 0));
         cmdList.add(packageDriver(scpId, 1));
         cmdList.add(packageDriver(scpId, 2));

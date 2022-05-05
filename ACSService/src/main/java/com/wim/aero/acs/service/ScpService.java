@@ -24,7 +24,9 @@ import com.wim.aero.acs.protocol.card.MT2CardFormat;
 import com.wim.aero.acs.protocol.card.WiegandCardFormat;
 import com.wim.aero.acs.protocol.device.SCPDriver;
 import com.wim.aero.acs.protocol.device.SCPSpecification;
+import com.wim.aero.acs.protocol.device.ScpDelete;
 import com.wim.aero.acs.protocol.device.ScpReset;
+import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +107,26 @@ public class ScpService {
         // 发送指令
         requestInfo.setTaskId(Constants.CONNECT_TASK_ID);
         requestPendingCenter.sendCmdList(requestInfo, cmdList);
+    }
+
+
+    /**
+     * 控制器删除
+     * @param requestInfo
+     * @return
+     */
+    public int deleteScp(ScpRequestInfo requestInfo) {
+        int scpId = requestInfo.getScpId();
+
+        // 注销scp
+        ScpCenter.deleteScp(scpId);
+
+        ScpDelete operaton = new ScpDelete(scpId);
+        String msg = RequestMessage.encode(scpId, operaton);
+        log.info("[{} - 控制器删除] msg={}", scpId, msg);
+
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+        return requestPendingCenter.sendCmd(requestInfo, cmd);
     }
 
 
