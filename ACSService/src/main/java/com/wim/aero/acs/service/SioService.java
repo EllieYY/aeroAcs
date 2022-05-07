@@ -155,9 +155,9 @@ public class SioService {
      */
     public void sioConfig(int scpId, List<ScpCmd> cmdList) {
         // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器2个
-//        cmdList.add(packageDriver(scpId, 0));
-        cmdList.add(packageDriver(scpId, 1));
-        cmdList.add(packageDriver(scpId, 2));
+        cmdList.add(packageDriver(scpId, 0,3, 0));
+        cmdList.add(packageDriver(scpId, 1, 1, 38400));
+        cmdList.add(packageDriver(scpId, 2, 2, 38400));
 
         // 查找所有sio
         List<DevXDetail> sioList = sioDetailService.getByScpId(scpId);
@@ -169,9 +169,9 @@ public class SioService {
         }
     }
 
-    private ScpCmd packageDriver(int scpId, int port) {
+    private ScpCmd packageDriver(int scpId, int mspNo, int port, int baudRate) {
         // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器3个
-        SIODriver driver = new SIODriver(scpId, port, port);
+        SIODriver driver = new SIODriver(scpId, mspNo, port, baudRate);
         String driverMsg = RequestMessage.encode(scpId, driver);
         return new ScpCmd(scpId, driverMsg, IdUtil.nextId());
     }

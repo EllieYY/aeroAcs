@@ -2,6 +2,7 @@ package com.wim.aero.acs.service;
 
 import com.wim.aero.acs.model.scp.ScpShadow;
 import com.wim.aero.acs.model.scp.ScpStatus;
+import com.wim.aero.acs.model.scp.SeqNoInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ScpCenter {
     /** scpId:ScpShadow */
     static private Map<Integer, ScpShadow> scpMap = new ConcurrentHashMap<>();
+
+    /** scpId:seqNo */
+    static private Map<Integer, SeqNoInfo> scpSeqNoMap = new ConcurrentHashMap<>();
 
     @Autowired
     ScpService scpService;
@@ -97,5 +101,39 @@ public class ScpCenter {
 
             // TODO:后续处理
         }
+    }
+
+
+    /** 事件提取 - 更新控制器的transaction索引 */
+    public void updateSeqNoInfo(int scpId, long start, long end, long cur) {
+        if (scpSeqNoMap.containsKey(scpId)) {
+            SeqNoInfo seqNoInfo = scpSeqNoMap.get(scpId);
+            seqNoInfo.setExtractStart(start);
+            seqNoInfo.setExtractEnd(end);
+            seqNoInfo.setExtractMax(cur);
+            scpSeqNoMap.put(scpId, seqNoInfo);
+            log.info("[{} - 事件提取] {}", scpId, seqNoInfo.toString());
+        } else {
+            SeqNoInfo seqNoInfo = new SeqNoInfo(scpId, start, end, cur);
+            scpSeqNoMap.put(scpId, seqNoInfo);
+            log.info("[{} - 事件提取] {}", scpId, seqNoInfo.toString());
+        }
+    }
+
+    /**
+     * 判断事件是否需要拦截
+     * @return
+     */
+    public boolean needIntercept(int scpId, long seqNo) {
+        if (scpSeqNoMap.containsKey(scpId)) {
+            SeqNoInfo seqNoInfo = scpSeqNoMap.get(scpId);
+            long seqMin = seqNoInfo.getExtractEnd();
+            long seqMax = seqNoInfo.getExtractMax();
+            if (seqNo > seqMin && seqNo <= seqMax) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

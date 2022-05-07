@@ -24,6 +24,7 @@ import com.wim.aero.acs.protocol.timezone.TimeZone;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -98,6 +99,7 @@ public class AccessConfigService {
      * 下载卡片
      * @param scpId
      */
+    @Async
     public void downloadCards(TaskRequest request, int scpId) {
         List<CardAdd> cardAddList = cardInfoService.getByScpId(scpId);
         List<ScpCmd> cmdList = packageCardMessages(cardAddList);
@@ -113,6 +115,7 @@ public class AccessConfigService {
      * @param
      * @return 发送失败的结果
      */
+    @Async
     public void addCards(CardRequestInfo request) {
         List<String> cardList = request.getCardList();
 

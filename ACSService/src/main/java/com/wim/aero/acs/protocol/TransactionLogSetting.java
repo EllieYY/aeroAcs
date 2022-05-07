@@ -19,7 +19,7 @@ public class TransactionLogSetting extends Operation {
     private int scpNumber;
 
     @CmdProp(index = 3)
-    private int tranIndex;  // -1 disable  -2 enable
+    private long tranIndex;  // -1 disable  -2 enable
 
     public static TransactionLogSetting openLog(int scpNumber) {
         return new TransactionLogSetting(scpNumber, -2);

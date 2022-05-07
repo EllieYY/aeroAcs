@@ -15,6 +15,7 @@ import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
+import com.wim.aero.acs.model.request.TransactionRequestInfo;
 import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
 import com.wim.aero.acs.protocol.TimeSet;
 import com.wim.aero.acs.protocol.TransactionLogSetting;
@@ -30,6 +31,7 @@ import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -204,9 +206,28 @@ public class ScpService {
 
 
     /**
+     * 事件提取
+     * @param requestInfo
+     * @return
+     */
+    public int eventExtraction(TransactionRequestInfo requestInfo) {
+        int scpId = requestInfo.getScpId();
+        long eventIndex = requestInfo.getEventStartNo();
+        TransactionLogSetting operation = new TransactionLogSetting(scpId, eventIndex);
+        String msg = RequestMessage.encode(scpId, operation);
+        log.info("[{} - 事件提取] msg={}", scpId, msg);
+
+        // 向设备发送
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+        return requestPendingCenter.sendCmd(requestInfo, cmd);
+    }
+
+
+    /**
      * 控制器配置：定义配置流程
      * @param requestInfo
      */
+    @Async
     public void configScp(ScpRequestInfo requestInfo) {
         int scpId = requestInfo.getScpId();
         List<ScpCmd> cmdList = new ArrayList<>();

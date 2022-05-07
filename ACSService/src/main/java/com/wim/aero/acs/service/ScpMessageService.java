@@ -1,15 +1,7 @@
 package com.wim.aero.acs.service;
 
-import com.wim.aero.acs.config.Constants;
-import com.wim.aero.acs.db.entity.EAccessRecord;
-import com.wim.aero.acs.db.entity.EAlarmRecord;
-import com.wim.aero.acs.db.entity.ELogRecord;
-import com.wim.aero.acs.db.service.impl.EAccessRecordServiceImpl;
-import com.wim.aero.acs.db.service.impl.EAlarmRecordServiceImpl;
-import com.wim.aero.acs.db.service.impl.ELogRecordServiceImpl;
-import com.wim.aero.acs.model.mq.AccessMessage;
-import com.wim.aero.acs.model.mq.AlarmMessage;
-import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.db.entity.EEventRecord;
+import com.wim.aero.acs.db.service.impl.EEventRecordServiceImpl;
 import com.wim.aero.acs.model.scp.reply.EnScpReplyType;
 import com.wim.aero.acs.model.scp.reply.ReplyBody;
 import com.wim.aero.acs.model.scp.reply.ReplyType;
@@ -31,24 +23,32 @@ import java.util.Date;
 @Slf4j
 @Service
 public class ScpMessageService {
-    private final EAccessRecordServiceImpl accessRecordService;
-    private final EAlarmRecordServiceImpl alarmRecordService;
-    private final ELogRecordServiceImpl logRecordService;
+
     private final QueueProducer queueProducer;
+    private final EEventRecordServiceImpl eventRecordService;
+    private final ScpCenter scpCenter;
 
     @Autowired
-    public ScpMessageService(EAccessRecordServiceImpl accessRecordService,
-                             EAlarmRecordServiceImpl alarmRecordService,
-                             ELogRecordServiceImpl logRecordService, QueueProducer queueProducer) {
-        this.accessRecordService = accessRecordService;
-        this.alarmRecordService = alarmRecordService;
-        this.logRecordService = logRecordService;
+    public ScpMessageService(QueueProducer queueProducer, EEventRecordServiceImpl eventRecordService, ScpCenter scpCenter) {
         this.queueProducer = queueProducer;
+        this.eventRecordService = eventRecordService;
+        this.scpCenter = scpCenter;
     }
 
+
     public void dealTransaction(SCPReplyTransaction transaction) {
+        int scpId = transaction.getScpId();
         int sourceType = transaction.getSourceType();
         int tranType = transaction.getTranType();
+        long eventNo = transaction.getSerNum();
+
+        if (scpCenter.needIntercept(scpId, eventNo)) {
+            // 过滤掉不处理
+            return;
+        }
+
+        // 事务信息入总库
+        saveEventInfo(transaction);
 
         if (!TransactionType.isProtocolCode(sourceType, tranType)) {
             log.info("不支持的SCPReplyTransaction类型 - {}", transaction.toString());
@@ -62,6 +62,27 @@ public class ScpMessageService {
         TransactionBody body = JsonUtil.fromJson(transaction.getArgJsonStr(), bodyClazz);
 
         body.process(queueProducer, transaction);
+    }
+
+    private void saveEventInfo(SCPReplyTransaction transaction) {
+        int scpId = transaction.getScpId();
+        Date date = new Date(transaction.getTime() * 1000);
+        long index = transaction.getSerNum();
+        int sourceType = transaction.getSourceType();
+        int sourceNum = transaction.getSourceNumber();
+        int tranType = transaction.getTranType();
+        int tranCode = transaction.getTranCode();
+
+        EEventRecord record = new EEventRecord();
+        record.setControllerId(scpId);
+        record.setEventIndex(index);
+        record.setEventsTime(date);
+        record.setEventSourceType(sourceType);
+        record.setSourceCode(sourceNum);
+        record.setEventType(tranType);
+        record.setEventTypeCode(tranCode);
+
+        eventRecordService.save(record);
     }
 
 
