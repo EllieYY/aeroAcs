@@ -25,9 +25,9 @@ public class SCPReplySrMsp1Drvr extends ReplyBody {
     public void process(QueueProducer queueProducer, int scpId) {
 //        log.info("{}:{}", scpId, this.toString());
 
-        LogMessage message = new LogMessage(
-                0, System.currentTimeMillis(), scpId,
-                Constants.tranSrcScpCom, number, Constants.customTranType, 0, this.toString());
-        queueProducer.sendLogMessage(message);
+//        LogMessage message = new LogMessage(
+//                0, System.currentTimeMillis(), scpId,
+//                Constants.tranSrcScpCom, number, Constants.customTranType, 0, this.toString());
+//        queueProducer.sendLogMessage(message);
     }
 }

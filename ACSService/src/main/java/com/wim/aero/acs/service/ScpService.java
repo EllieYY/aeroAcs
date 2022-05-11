@@ -10,9 +10,7 @@ import com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl;
 import com.wim.aero.acs.db.service.impl.DevControllerDetailServiceImpl;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.DST;
-import com.wim.aero.acs.model.command.CommandInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
-import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.model.request.TransactionRequestInfo;
@@ -27,7 +25,6 @@ import com.wim.aero.acs.protocol.device.SCPDriver;
 import com.wim.aero.acs.protocol.device.SCPSpecification;
 import com.wim.aero.acs.protocol.device.ScpDelete;
 import com.wim.aero.acs.protocol.device.ScpReset;
-import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +70,7 @@ public class ScpService {
     
     public void scpOnlineStateNotify(int scpId, int state) {
         StatusMessage message = new StatusMessage(
-                0, System.currentTimeMillis(), scpId, Constants.mqSourceScp, scpId, 0, 0, state, Constants.mqSourceScp,"");
+                0, System.currentTimeMillis(), scpId, Constants.TRAN_TABLE_SRC_SCP, scpId, 0, 0, state, Constants.TRAN_TABLE_SRC_SCP,"");
         queueProducer.sendStatusMessage(message);
     }
 
@@ -160,7 +157,7 @@ public class ScpService {
         int deviceState = (status == 1) ? 1 : 0;
         StatusMessage message = new StatusMessage(
                 0, System.currentTimeMillis(), scpId,
-                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, deviceState, Constants.mqSourceScp,this.toString());
+                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, deviceState, Constants.TRAN_TABLE_SRC_SCP,this.toString());
         queueProducer.sendStatusMessage(message);
     }
 

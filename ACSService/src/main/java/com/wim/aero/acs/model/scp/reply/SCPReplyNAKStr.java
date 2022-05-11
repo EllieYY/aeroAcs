@@ -40,9 +40,9 @@ public class SCPReplyNAKStr extends ReplyBody {
 
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
-        LogMessage message = new LogMessage(
-                0, System.currentTimeMillis(), scpId,
-                Constants.mqSourceScp, scpId, Constants.customTranType, 0, this.toString());
-        queueProducer.sendLogMessage(message);
+//        LogMessage message = new LogMessage(
+//                0, System.currentTimeMillis(), scpId,
+//                Constants.TRAN_TABLE_SRC_SCP, scpId, Constants.customTranType, 0, this.toString());
+//        queueProducer.sendLogMessage(message);
     }
 }

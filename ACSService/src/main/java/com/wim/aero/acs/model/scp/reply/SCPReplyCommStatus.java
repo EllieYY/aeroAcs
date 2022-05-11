@@ -6,7 +6,6 @@ import com.wim.aero.acs.service.QueueProducer;
 import com.wim.aero.acs.service.ScpCenter;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 
 /**
  * @title: SCPReplyCommStatus
@@ -32,9 +31,9 @@ public class SCPReplyCommStatus extends ReplyBody {
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
         // 设备状态：0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭
-        int deviceState = 0;
+        int deviceState = Constants.TRAGET_STATE_INVALID;
         if (status == 2) {
-            deviceState = 1;
+            deviceState = Constants.TRAGET_STATE_VALID;
             log.info("[设备上线] - scpId:[{}], channelId[{}], curComm[{}], preComm[{}]",
                     scpId, nChannelId, current_primary_comm, previous_primary_comm);
             ScpCenter.scpOnline(scpId);
@@ -48,7 +47,7 @@ public class SCPReplyCommStatus extends ReplyBody {
         StatusMessage message = new StatusMessage(
                 0, System.currentTimeMillis(), scpId,
                 Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, deviceState,
-                Constants.mqSourceScp, this.toString());
+                Constants.TRAN_TABLE_SRC_SCP, this.toString());
         queueProducer.sendStatusMessage(message);
     }
 }

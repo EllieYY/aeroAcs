@@ -10,12 +10,9 @@ import java.util.Map;
  */
 public interface Constants {
     String ENCODER_TO_STR = "toStr";
-    String IP_PORT_SPLITTER = ":";
-
     String OPERATION_PREFIX = "operation-";
 
     int REST_CODE_SUCCESS = 0;
-
     long CONNECT_TASK_ID = -1;
 
     // 命令执行状态
@@ -30,7 +27,17 @@ public interface Constants {
     int WGND = 1;
     int MT2 = 2;
 
-    // Cos状态的tranCode定义
+
+    /** 最终统一状态： 0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭  6 - 在线（持续状态判断） */
+    int TRAGET_STATE_INVALID = 0;
+    int TRAGET_STATE_VALID = 1;
+    int TRAGET_STATE_WARN = 2;
+    int TRAGET_STATE_FAULT = 3;
+    int TRAGET_STATE_OPEN = 4;
+    int TRAGET_STATE_CLOSE = 5;
+    int TRAGET_STATE_CONTINUOUSLY = 6;
+
+    /** Cos状态的tranCode定义 */
     int COS_TRAN_Disconnected = 1;   // (from an input point ID)
     int COS_TRAN_Unknown = 2;        // (offline): no report from the ID
     int COS_TRAN_Secure = 3;         //  (or deactivate relay)
@@ -38,32 +45,36 @@ public interface Constants {
     int COS_TRAN_Fault = 5;
     int COS_TRAN_Exit = 6;           // delay in progress
     int COS_TRAN_Entry = 7;          // delay in progress
-
     /**
-     * Status mask: 0 = inactive, 1 = active, 2 = ground fault, 3 = short, 4 = open circuit, 5 = foreign voltage, 6 = non-
-     * settling error, 7 = supervisory fault codes.
-     * Note: See table below for special handling for the Reader Tamper status.
-     * 0x08 Offline: communication to the input point is not valid
-     * 0x10 Mask flag: set if the monitor point is MASKed
-     * 0x20 Local mask flag: entry or exit delay in progress
-     * 0x40 Entry delay in progress
-     * 0x80 Not attached (the monitor point is not linked to an Input)*/
-
-
-    int mqSourceScp =  1; //     控制器
-    int mqSourceSio = 2; //     X100/X200/X300
-    int mqSourceAcr = 3; //     读写器
-    int mqSourceMp = 4; //      输入点
-    int mqSourceCp = 5; //     输出点
-
-    Map<Integer, Integer> tranSrcMap = Map.of(
-            0x07, mqSourceMp,
-            0x08, mqSourceCp,
-            0x09, mqSourceAcr,
-            0x0A, mqSourceAcr,
-            0x0D, mqSourceAcr,
-            0x0E, mqSourceAcr
+     * 最终统一状态： 0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭
+     * tranCode-------------------------------------------------------------------
+     * 1 - disconnected
+     * 2 - unknown (_RS bits: last known status)
+     * 3 - secure
+     * 4 - alarm (forced, held, or both)
+     * 5 - fault (fault type is encoded in door_status byte
+     * 6 - Exit delay in progress
+     * 7 - Entry delay in progress
+     */
+    static final Map<Integer, Integer> TRAN_CODE_MAP = Map.of(
+            1, Constants.TRAGET_STATE_INVALID,
+            2, Constants.TRAGET_STATE_INVALID,
+            3, Constants.TRAGET_STATE_VALID,
+            4, Constants.TRAGET_STATE_WARN,
+            5, Constants.TRAGET_STATE_FAULT,
+            6, Constants.TRAGET_STATE_VALID,
+            7, Constants.TRAGET_STATE_VALID
     );
+
+
+
+    // 事件来源转换
+    int TRAN_TABLE_SRC_SCP =  1; //     控制器
+    int TRAN_TABLE_SRC_SIO = 2; //     X100/X200/X300
+    int TRAN_TABLE_SRC_ACR = 3; //     读写器
+    int TRAN_TABLE_SRC_MP = 4; //      输入点
+    int TRAN_TABLE_SRC_CP = 5; //     输出点
+
     // transaction related definitions
     // - transaction source type definitions
     int tranSrcScpDiag = 0x00;	// SCP diagnostics
@@ -124,51 +135,5 @@ public interface Constants {
     int	tranTypeAcrExtFeatureCoS = 0x41;	// Extended Locket Statefull transaction
     int tranTypeAsci = 0x7E;	// ASCII diagnostic message
     int tranTypeSioDiag	= 0x7F;	// SIO comm diagnostics
-
-    /** sio通信状态对应表
-     * 结果状态  原始状态
-     *  0       1	- comm disabled (result of host command)
-     *  0       2	- off-line: timeout (no/bad response from unit)
-     *  0       3	- off-line: invalid identification from SIO
-     *  0       4	- off-line: Encryption could not be established
-     *  1       5	- on-line: normal connection
-     *  0       6   - hexLoad report: ser_num is address loaded (-1 == last record)
-     */
-    Map<Integer, Integer> sioStateMap = Map.of(
-            1, 0,
-            2, 0,
-            3, 0,
-            4, 0,
-            5, 1,
-            6, 0);
-
-    // 通信服务定义的错误码
-//    public static readonly int ERR_SUCCED = 0;
-//
-//    public static readonly int ERR_FAIL_2_SCP = 1;
-//
-//    public static readonly int ERR_SCP_NOT_CREATE = 2;
-//
-//    public static readonly int ERR_CHANNEL_NOT_CREATE = 3;
-//
-//    public static readonly int ERR_DRIVER_UNINIT = 4;
-//
-//    public static readonly int ERR_SCP_RECREATE = 5;
-//
-//    public static readonly int ERR_SCP_ATTACH_CHANNEL = 6;
-//
-//    public static readonly int ERR_CMD_INVALID = 7;
-//
-//    static status()
-//    {
-//        err_msg.Add(ERR_SUCCED,                 "向SCP发送命令成功");
-//        err_msg.Add(ERR_FAIL_2_SCP,             "向SCP发送命令失败");
-//        err_msg.Add(ERR_SCP_NOT_CREATE,         "SCP未创建");
-//        err_msg.Add(ERR_CHANNEL_NOT_CREATE,     "Channel未创建");
-//        err_msg.Add(ERR_DRIVER_UNINIT,          "驱动未初始化");
-//        err_msg.Add(ERR_SCP_RECREATE,           "重复创建SCP");
-//        err_msg.Add(ERR_SCP_ATTACH_CHANNEL,     "SCP绑定Channel失败");
-//        err_msg.Add(ERR_CMD_INVALID,            "SCP命令非法");
-//    }
 
 }

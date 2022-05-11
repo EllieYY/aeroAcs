@@ -38,9 +38,9 @@ public class SCPReplyTranStatus extends ReplyBody {
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
         ScpCenter.updateTR(scpId, oldest, lastRprtd);
-        LogMessage message = new LogMessage(
-                0, System.currentTimeMillis(), scpId,
-                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, this.toString());
-        queueProducer.sendLogMessage(message);
+//        LogMessage message = new LogMessage(
+//                0, System.currentTimeMillis(), scpId,
+//                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, this.toString());
+//        queueProducer.sendLogMessage(message);
     }
 }

@@ -1,7 +1,9 @@
 package com.wim.aero.acs.service;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.db.entity.EEventRecord;
 import com.wim.aero.acs.db.service.impl.EEventRecordServiceImpl;
+import com.wim.aero.acs.model.mq.LogMessage;
 import com.wim.aero.acs.model.scp.reply.EnScpReplyType;
 import com.wim.aero.acs.model.scp.reply.ReplyBody;
 import com.wim.aero.acs.model.scp.reply.ReplyType;
@@ -41,6 +43,9 @@ public class ScpMessageService {
         int sourceType = transaction.getSourceType();
         int tranType = transaction.getTranType();
         long eventNo = transaction.getSerNum();
+        long date = transaction.getTime() * 1000;
+        int sourceNum = transaction.getSourceNumber();
+        int tranCode = transaction.getTranCode();
 
         if (scpCenter.needIntercept(scpId, eventNo)) {
             // 过滤掉不处理
@@ -50,12 +55,17 @@ public class ScpMessageService {
         // 事务信息入总库
         saveEventInfo(transaction);
 
+        //日志事件
+        LogMessage message = new LogMessage(eventNo, date, scpId, sourceType, sourceNum, tranType, tranCode,
+                transaction.toString());
+        queueProducer.sendLogMessage(message);
+
         if (!TransactionType.isProtocolCode(sourceType, tranType)) {
             log.info("不支持的SCPReplyTransaction类型 - {}", transaction.toString());
             return;
         }
 
-        log.info(transaction.toString());
+//        log.info(transaction.toString());
 
         // 类型转换
         Class<TransactionBody> bodyClazz = TransactionType.fromCode(sourceType, tranType).getTransClazz();
@@ -88,6 +98,14 @@ public class ScpMessageService {
 
     public void dealScpeply(SCPReply reply) {
         int type = reply.getType();
+
+        // 入日志库
+        int scpId = reply.getScpId();
+        LogMessage message = new LogMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.TRAN_TABLE_SRC_SCP, scpId, Constants.customTranType, 0, reply.toString());
+        queueProducer.sendLogMessage(message);
+
         EnScpReplyType enScpReplyType = EnScpReplyType.fromCode(type);
         if (enScpReplyType == EnScpReplyType.enSCPReplyUnknown) {
             log.info("不支持的ScpReply类型 {}", reply);
@@ -99,14 +117,14 @@ public class ScpMessageService {
             return;
         }
 
-        log.info(reply.toString());
+//        log.info(reply.toString());
 
         // 类型转换
         Class<ReplyBody> bodyClazz = ReplyType.fromCode(enScpReplyType).getTransClazz();
         ReplyBody body = JsonUtil.fromJson(reply.getContent(), bodyClazz);
 
         // 业务处理
-        int scpId = reply.getScpId();
+//        int scpId = reply.getScpId();
         body.process(queueProducer, scpId);
     }
 

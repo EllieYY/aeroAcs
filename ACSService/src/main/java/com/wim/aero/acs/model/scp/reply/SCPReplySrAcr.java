@@ -35,9 +35,9 @@ public class SCPReplySrAcr extends ReplyBody {
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
 
-        LogMessage message = new LogMessage(
-                0, System.currentTimeMillis(), scpId,
-                Constants.tranTypeAcr, number, Constants.customTranType, 0, this.toString());
-        queueProducer.sendLogMessage(message);
+//        LogMessage message = new LogMessage(
+//                0, System.currentTimeMillis(), scpId,
+//                Constants.tranTypeAcr, number, Constants.customTranType, 0, this.toString());
+//        queueProducer.sendLogMessage(message);
     }
 }

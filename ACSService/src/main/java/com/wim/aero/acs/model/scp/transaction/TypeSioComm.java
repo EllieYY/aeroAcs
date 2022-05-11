@@ -6,8 +6,6 @@ import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -73,21 +71,41 @@ public class TypeSioComm extends TransactionBody {
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
-        // SIO板：0离线 1正常  2报警
-        //  0 - not configured
-        //  1 - not tried: active, have not tried to poll it
-        //  2 - off-line
-        //  3 - on-line
-        Map<Integer, Integer> statusMap = Map.of(
-                0, 0,
-                1, 0,
-                2, 0,
-                3, 1);
+        int targetState = statusMap.get(comm_sts);
+        // 处理online状态下，ser_num值持续的2以及值为4的情况
+        if (comm_sts == 3) {
+            if (ser_num == 4) {
+                targetState = Constants.TRAGET_STATE_WARN;
+            } else if (ser_num == 2) {
+                targetState = Constants.TRAGET_STATE_CONTINUOUSLY;
+            }
+        }
+
         queueProducer.sendStatusMessage(
                 new StatusMessage(index, date, scpId,
                         sourceType, sourceNum, tranType, tranCode,
-                        statusMap.get(comm_sts), Constants.mqSourceSio, this.toString()));
+                        targetState,
+                        Constants.TRAN_TABLE_SRC_SIO,
+                        this.toString()));
+
     }
+
+    /**---------------------------------------------------------------------------
+     * 最终统一状态： 0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭
+     * 6 - 在线（持续状态判断）
+     * ---------------------------------------------------------------------------
+     * comm_sts:
+     * 0 - not configured
+     * 1 - not tried: active, have not tried to poll it
+     * 2 - off-line
+     * 3 - on-line
+     * ---------------------------------------------------------------------------
+     */
+    private static Map<Integer, Integer> statusMap = Map.of(
+            0, Constants.TRAGET_STATE_INVALID,
+            1, Constants.TRAGET_STATE_INVALID,
+            2, Constants.TRAGET_STATE_INVALID,
+            3, Constants.TRAGET_STATE_VALID);
 
     //    SIO Hardware ID
     //    HID Aero X1100 217

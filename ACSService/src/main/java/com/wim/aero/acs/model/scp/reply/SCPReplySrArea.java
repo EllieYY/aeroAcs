@@ -36,10 +36,10 @@ public class SCPReplySrArea extends ReplyBody {
             // TODO:更新数据库
         }
 
-        LogMessage message = new LogMessage(
-                0, System.currentTimeMillis(), scpId,
-                Constants.tranTypeMpg, number, Constants.customTranType, 0, this.toString());
-        queueProducer.sendLogMessage(message);
+//        LogMessage message = new LogMessage(
+//                0, System.currentTimeMillis(), scpId,
+//                Constants.tranTypeMpg, number, Constants.customTranType, 0, this.toString());
+//        queueProducer.sendLogMessage(message);
 
     }
 }

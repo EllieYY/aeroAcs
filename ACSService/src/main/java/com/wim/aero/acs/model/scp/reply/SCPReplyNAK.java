@@ -4,14 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.LogMessage;
 import com.wim.aero.acs.service.QueueProducer;
-import com.wim.aero.acs.util.StringUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Positive;
-import java.util.List;
 
 /**
  * @title: ScpReplayNak
@@ -47,10 +45,10 @@ public class SCPReplyNAK extends ReplyBody {
 
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
-        LogMessage message = new LogMessage(
-                0, System.currentTimeMillis(), scpId,
-                Constants.mqSourceScp, scpId, Constants.customTranType, 0, this.toString());
-        queueProducer.sendLogMessage(message);
+//        LogMessage message = new LogMessage(
+//                0, System.currentTimeMillis(), scpId,
+//                Constants.TRAN_TABLE_SRC_SCP, scpId, Constants.customTranType, 0, this.toString());
+//        queueProducer.sendLogMessage(message);
     }
 
 }

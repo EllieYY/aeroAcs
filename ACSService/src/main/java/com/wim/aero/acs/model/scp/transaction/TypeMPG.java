@@ -35,6 +35,6 @@ public class TypeMPG extends TransactionBody {
 
     @Override
     public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
-        log.info(this.toString());
+
     }
 }

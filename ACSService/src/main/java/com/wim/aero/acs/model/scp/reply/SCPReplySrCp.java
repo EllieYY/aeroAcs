@@ -29,9 +29,9 @@ public class SCPReplySrCp extends ReplyBody {
 //            info += (first + i) + ":" + status.get(i);
 //        }
 //        log.info(info);
-        LogMessage message = new LogMessage(
-                0, System.currentTimeMillis(), scpId,
-                Constants.tranSrcCP, first, Constants.customTranType, 0, this.toString());
-        queueProducer.sendLogMessage(message);
+//        LogMessage message = new LogMessage(
+//                0, System.currentTimeMillis(), scpId,
+//                Constants.tranSrcCP, first, Constants.customTranType, 0, this.toString());
+//        queueProducer.sendLogMessage(message);
     }
 }

@@ -31,6 +31,6 @@ public class TypeUserCmnd extends TransactionBody {
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
-        queueProducer.sendLogMessage(new LogMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, this.toString()));
+
     }
 }

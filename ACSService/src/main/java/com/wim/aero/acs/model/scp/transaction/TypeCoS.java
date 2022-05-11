@@ -2,13 +2,10 @@ package com.wim.aero.acs.model.scp.transaction;
 
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.AlarmMessage;
-import com.wim.aero.acs.model.mq.LogMessage;
 import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -49,91 +46,33 @@ public class TypeCoS extends TransactionBody {
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
-        if (tranType == Constants.tranTypeCoS && (
-                sourceType == Constants.tranSrcMP || sourceType == Constants.tranSrcCP ||
-                        sourceType == Constants.tranSrcSioCom)) {
-
-            if (tranCode == Constants.COS_TRAN_Alarm) {   // 报警事件
-                // 报警状态需要描述
-                String des = EventDescriptionUtil.getTypeCosStatusDes(status) + " " + this.toString();
-                queueProducer.sendAlarmMessage(
-                    new AlarmMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, des));
-            }
-
-            // 解析器
-            Map<Integer, StatusParser> parserMap = new HashMap<>();
-            parserMap.put(Constants.tranSrcMP, new MpStatusParser());
-            parserMap.put(Constants.tranSrcCP, new CpStatusParser());
-//            parserMap.put(Constants.tranSrcAcrRex0, new CpStatusParser());
-//            parserMap.put(Constants.tranSrcAcrRex1, new CpStatusParser());
-            parserMap.put(Constants.tranSrcAcrTmpr, new CpStatusParser());
-            parserMap.put(Constants.tranSrcCP, new CpStatusParser());
-            parserMap.put(Constants.tranSrcAcrDoor, new AcrStatusParser());
-
-            if (parserMap.containsKey(sourceType)) {   // 记录状态变化
-                StatusParser parser = parserMap.get(sourceType);
-//                int deviceStatus = parser.parseStatus(tranCode, this.status);
-                int deviceStatus = tranCodeMap.get(tranCode);
-
-                int targetType = Constants.tranSrcMap.get(sourceType);
-                queueProducer.sendStatusMessage(
-                        new StatusMessage(index, date, scpId,
-                                sourceType, sourceNum, tranType, tranCode, deviceStatus, targetType, this.toString()));
-
-            } else {    // log
-                queueProducer.sendLogMessage(
-                        new LogMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, this.toString()));
-            }
+        // 报警事件
+        if (tranCode == Constants.COS_TRAN_Alarm) {
+            queueProducer.sendAlarmMessage(
+                new AlarmMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, this.toString()));
         }
+
+        // 状态事件
+        int deviceStatus = Constants.TRAN_CODE_MAP.get(tranCode);
+        int targetType = this.cosSrcMap.get(sourceType);
+        queueProducer.sendStatusMessage(
+                new StatusMessage(index, date, scpId,
+                        sourceType, sourceNum, tranType, tranCode, deviceStatus, targetType, this.toString()));
+
     }
 
-//    读卡器：0离线 1关闭 2打开 3故障 4 正常
-//    报警点：0报警 1正常 2故障
-//    控制点：0关闭 1打开 2无效
-    // 0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭
-// * 1 - disconnected
-// * 2 - unknown (_RS bits: last known status)
-// * 3 - secure
-// * 4 - alarm (forced, held, or both)
-// * 5 - fault (fault type is encoded in door_status byte
-//            * 6 - Exit delay in progress
-//            * 7 - Entry delay in progress
-    static final Map<Integer, Integer> tranCodeMap = Map.of(
-            1, 0,
-        2, 0,
-        3, 1,
-        4, 2,
-        5, 3,
-        6, 1,
-        7, 1
+    private static  final Map<Integer, Integer> cosSrcMap = Map.of(
+            0x02, Constants.TRAN_TABLE_SRC_MP,   // 控制器内部报警点 cos
+            0x05, Constants.TRAN_TABLE_SRC_MP,   // sio防撬 cos
+            0x06, Constants.TRAN_TABLE_SRC_MP,   // sio电源 cos
+            0x07, Constants.TRAN_TABLE_SRC_MP,   // 报警点 cos
+            0x08, Constants.TRAN_TABLE_SRC_CP,   // 控制点 cos
+            0x0A, Constants.TRAN_TABLE_SRC_MP,   // 读卡器防撬 cos
+            0x0D, Constants.TRAN_TABLE_SRC_MP,  // 按钮0 cos
+            0x0E, Constants.TRAN_TABLE_SRC_MP,  // 按钮1  cos
+            0x15, Constants.TRAN_TABLE_SRC_ACR,  // 备用读卡器
+            0x18, Constants.TRAN_TABLE_SRC_SCP  // scpweb
     );
 
-    interface StatusParser {
-        int parseStatus(int tranCode, int status);
-    }
-
-    static class MpStatusParser implements StatusParser {
-        @Override
-        public int parseStatus(int tranCode, int status) {
-            // TODO:
-            return 0;
-        }
-    }
-
-    static class CpStatusParser implements StatusParser {
-        @Override
-        public int parseStatus(int tranCode, int status) {
-            // TODO:
-            return 0;
-        }
-    }
-
-    static class AcrStatusParser implements StatusParser {
-        @Override
-        public int parseStatus(int tranCode, int status) {
-            // TODO:不对，应该挪到门状态那边
-            return 0;
-        }
-    }
 
 }

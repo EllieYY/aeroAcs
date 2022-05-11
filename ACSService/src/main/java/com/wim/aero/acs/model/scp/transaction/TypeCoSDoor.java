@@ -1,12 +1,10 @@
 package com.wim.aero.acs.model.scp.transaction;
 
 import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
-
-import java.util.Date;
-import java.util.Map;
 
 /**
  * @title: TypeCoSDoor
@@ -57,36 +55,32 @@ public class TypeCoSDoor extends TransactionBody {
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
-        int deviceStatus = parseStatus(tranCode, door_status);
+        // 报警事件
+        if (tranCode == Constants.COS_TRAN_Alarm) {
+            queueProducer.sendAlarmMessage(
+                    new AlarmMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, this.toString()));
+        }
 
+        int deviceStatus = parseStatus(tranCode, door_status);
+        // 报警点状态
         queueProducer.sendStatusMessage(
                 new StatusMessage(index, date, scpId,
-                        sourceType, sourceNum, tranType, tranCode, deviceStatus, Constants.mqSourceAcr, this.toString()));
+                        sourceType, sourceNum, tranType, tranCode, deviceStatus, Constants.TRAN_TABLE_SRC_MP, this.toString()));
+
+        // 报读卡器状态
+        queueProducer.sendStatusMessage(
+                new StatusMessage(index, date, scpId,
+                        sourceType, sourceNum, tranType, tranCode, deviceStatus, Constants.TRAN_TABLE_SRC_ACR, this.toString()));
     }
 
-    // 读卡器\报警点\控制点
-    // 0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭
-    // * 1 - disconnected
-    // * 2 - unknown (_RS bits: last known status)
-    // * 3 - secure
-    // * 4 - alarm (forced, held, or both)
-    // * 5 - fault (fault type is encoded in door_status byte
-    static final Map<Integer, Integer> tranCodeMap = Map.of(
-            1, 0,
-            2, 0,
-            3, 1,
-            4, 2,
-            5, 3,
-            6, 1,
-            7, 1
-    );
-
     public int parseStatus(int tranCode, int status) {
-        int targetStatus = tranCodeMap.get(tranCode);
+        int targetStatus = Constants.TRAN_CODE_MAP.get(tranCode);
+
+        // 开关门状态看短路和开路
         if (status == 0x04) {
-            targetStatus = 4;
+            targetStatus = Constants.TRAGET_STATE_OPEN;
         } else if (status == 0x03) {
-            targetStatus = 5;
+            targetStatus = Constants.TRAGET_STATE_CLOSE;
         }
         return targetStatus;
     }

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @title: SCPReplySrSio
@@ -64,17 +65,35 @@ public class SCPReplySrSio extends ReplyBody {
                 scpId, number, msp1_dnum, com_status);
 
 
-        LogMessage message = new LogMessage(
-                0, System.currentTimeMillis(), scpId,
-                Constants.tranSrcSioCom, number, Constants.customTranType, 0, this.toString());
-        queueProducer.sendLogMessage(message);
+//        LogMessage message = new LogMessage(
+//                0, System.currentTimeMillis(), scpId,
+//                Constants.tranSrcSioCom, number, Constants.customTranType, 0, this.toString());
+//        queueProducer.sendLogMessage(message);
 
 
         // 更新sio状态
-        int status = Constants.sioStateMap.get(com_status);
+        int status = this.sioStateMap.get(com_status);
         StatusMessage sMessage = new StatusMessage(
                 0, System.currentTimeMillis(), scpId,
-                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, status, Constants.mqSourceScp,this.toString());
+                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, status, Constants.TRAN_TABLE_SRC_SIO, this.toString());
         queueProducer.sendStatusMessage(sMessage);
     }
+
+
+    /** sio通信状态对应表
+     * 结果状态  原始状态
+     *  0       1	- comm disabled (result of host command)
+     *  0       2	- off-line: timeout (no/bad response from unit)
+     *  0       3	- off-line: invalid identification from SIO
+     *  0       4	- off-line: Encryption could not be established
+     *  1       5	- on-line: normal connection
+     *  0       6   - hexLoad report: ser_num is address loaded (-1 == last record)
+     */
+    private static Map<Integer, Integer> sioStateMap = Map.of(
+            1, Constants.TRAGET_STATE_INVALID,
+            2, Constants.TRAGET_STATE_INVALID,
+            3, Constants.TRAGET_STATE_INVALID,
+            4, Constants.TRAGET_STATE_INVALID,
+            5, Constants.TRAGET_STATE_VALID,
+            6, Constants.TRAGET_STATE_INVALID);
 }
