@@ -46,12 +46,6 @@ public class TypeCoS extends TransactionBody {
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
-        // 报警事件
-        if (tranCode == Constants.COS_TRAN_Alarm) {
-            queueProducer.sendAlarmMessage(
-                new AlarmMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, this.toString()));
-        }
-
         // 状态事件
         int deviceStatus = Constants.TRAN_CODE_MAP.get(tranCode);
         int targetType = this.cosSrcMap.get(sourceType);

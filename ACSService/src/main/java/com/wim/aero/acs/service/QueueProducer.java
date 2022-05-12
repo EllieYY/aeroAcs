@@ -1,5 +1,6 @@
 package com.wim.aero.acs.service;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.*;
 import com.wim.aero.acs.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -51,7 +52,7 @@ public class QueueProducer {
         this.sendMessage(logQueue, messageStr);
     }
 
-    public void sendAlarmMessage(AlarmMessage alarmMessage) {
+    public void sendAlarmMessage(StatusMessage alarmMessage) {
         String messageStr = JsonUtil.toJson(alarmMessage);
         log.info("[{} - 报警事件] - {}", alarmMessage.getControllerId(), messageStr);
         this.sendMessage(alarmQueue, messageStr);
@@ -67,6 +68,11 @@ public class QueueProducer {
         String messageStr = JsonUtil.toJson(statusMessage);
         log.info("[{} - 状态事件] - {}", statusMessage.getControllerId(), messageStr);
         this.sendMessage(statusQueue, messageStr);
+
+         // 报警事件
+        if (statusMessage.getStatus() == Constants.TRAGET_STATE_WARN) {
+            this.sendAlarmMessage(statusMessage);
+        }
     }
 
     public void sendScpMessage(ScpSeqMessage scpSeqMessage) {

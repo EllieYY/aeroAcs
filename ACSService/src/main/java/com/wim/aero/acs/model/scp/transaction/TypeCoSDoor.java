@@ -55,12 +55,6 @@ public class TypeCoSDoor extends TransactionBody {
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
-        // 报警事件
-        if (tranCode == Constants.COS_TRAN_Alarm) {
-            queueProducer.sendAlarmMessage(
-                    new AlarmMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, this.toString()));
-        }
-
         int deviceStatus = parseStatus(tranCode, door_status);
         // 报警点状态
         queueProducer.sendStatusMessage(

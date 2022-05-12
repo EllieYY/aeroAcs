@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @title: TransactionService
@@ -29,12 +31,47 @@ public class ScpMessageService {
     private final QueueProducer queueProducer;
     private final EEventRecordServiceImpl eventRecordService;
     private final ScpCenter scpCenter;
+    private static Map<Integer, Integer> eventLogSrcMap;
 
     @Autowired
     public ScpMessageService(QueueProducer queueProducer, EEventRecordServiceImpl eventRecordService, ScpCenter scpCenter) {
         this.queueProducer = queueProducer;
         this.eventRecordService = eventRecordService;
         this.scpCenter = scpCenter;
+
+        eventLogSrcMap = new HashMap<>();
+        eventLogSrcMap.put(0x00, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x01, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x02, Constants.TRAN_TABLE_SRC_MP);
+
+        eventLogSrcMap.put(0x03, Constants.TRAN_TABLE_SRC_SIO);
+        eventLogSrcMap.put(0x04, Constants.TRAN_TABLE_SRC_SIO);
+        eventLogSrcMap.put(0x05, Constants.TRAN_TABLE_SRC_MP);
+        eventLogSrcMap.put(0x06, Constants.TRAN_TABLE_SRC_MP);
+
+        eventLogSrcMap.put(0x07, Constants.TRAN_TABLE_SRC_MP);
+        eventLogSrcMap.put(0x08, Constants.TRAN_TABLE_SRC_CP);
+
+        eventLogSrcMap.put(0x09, Constants.TRAN_TABLE_SRC_ACR);
+        eventLogSrcMap.put(0x0A, Constants.TRAN_TABLE_SRC_MP);
+        eventLogSrcMap.put(0x0B, Constants.TRAN_TABLE_SRC_MP);
+
+        eventLogSrcMap.put(0x0D, Constants.TRAN_TABLE_SRC_MP);
+        eventLogSrcMap.put(0x0E, Constants.TRAN_TABLE_SRC_MP);
+
+        eventLogSrcMap.put(0x0F, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x10, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x11, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x12, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x13, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x14, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x15, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x16, Constants.TRAN_TABLE_SRC_SCP);
+
+        eventLogSrcMap.put(0x17, Constants.TRAN_TABLE_SRC_MP);
+
+        eventLogSrcMap.put(0x18, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x19, Constants.TRAN_TABLE_SRC_SCP);
     }
 
 
@@ -56,7 +93,9 @@ public class ScpMessageService {
         saveEventInfo(transaction);
 
         //日志事件
+        int targerSrcCode = eventLogSrcMap.get(sourceType);
         LogMessage message = new LogMessage(eventNo, date, scpId, sourceType, sourceNum, tranType, tranCode,
+                targerSrcCode,
                 transaction.toString());
         queueProducer.sendLogMessage(message);
 
@@ -103,7 +142,8 @@ public class ScpMessageService {
         int scpId = reply.getScpId();
         LogMessage message = new LogMessage(
                 0, System.currentTimeMillis(), scpId,
-                Constants.TRAN_TABLE_SRC_SCP, scpId, Constants.customTranType, 0, reply.toString());
+                Constants.TRAN_TABLE_SRC_SCP, scpId, Constants.customTranType, 0,
+                Constants.TRAN_TABLE_SRC_SCP, reply.toString());
         queueProducer.sendLogMessage(message);
 
         EnScpReplyType enScpReplyType = EnScpReplyType.fromCode(type);
