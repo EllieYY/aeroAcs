@@ -65,7 +65,10 @@ public class SCPDriver extends Operation {
     public static SCPDriver fromDb(DevControllerDetail detail) {
         SCPDriver driver = new SCPDriver();
         driver.setNSCPId(detail.getDeviceId());
+
+        // TODO:disable transactions
         driver.setNCommAccess(detail.getConnectType());
+
         driver.setEMax(detail.getCcTimes());
 
         driver.setPollDelay(detail.getCcInterval());

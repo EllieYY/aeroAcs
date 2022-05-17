@@ -7,10 +7,7 @@ import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.db.AccessLevelInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.db.EleAccessLevelInfo;
-import com.wim.aero.acs.model.request.CardBlockedRequestInfo;
-import com.wim.aero.acs.model.request.CardRequestInfo;
-import com.wim.aero.acs.model.request.ScpRequestInfo;
-import com.wim.aero.acs.model.request.TaskRequest;
+import com.wim.aero.acs.model.request.*;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelException;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelExtended;
 import com.wim.aero.acs.protocol.accessLevel.AccessLevelTest;
@@ -187,14 +184,31 @@ public class AccessConfigService {
 
             int scpId = item.getScpNumber();
             String msg = RequestMessage.encode(scpId, item);
-            String streamId = IdUtil.nextId();
-            cmdList.add(new ScpCmd(scpId, msg, streamId));
+            ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+            cmd.setCardNo(item.getCardNumber());
+            cmdList.add(cmd);
 
-            log.info(item.toString());
+//            log.info(item.toString());
         }
 
         return cmdList;
     }
+
+    /**
+     * 控制器访问级别更新
+     * @param
+     * @param
+     */
+    public void accessLevelConfig(AlvlRequestInfo request) {
+        // 组织报文
+        List<ScpCmd> cmdList = new ArrayList<>();
+        accessLevelConfig(request.getScpId(), request.isEle(), cmdList);
+
+        // 下发到控制器
+        requestPendingCenter.sendCmdList(request, cmdList);
+    }
+
+
 
     /**
      * 访问级别配置

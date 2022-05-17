@@ -2,6 +2,7 @@ package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.command.CmdDownloadInfo;
+import com.wim.aero.acs.model.request.AlvlRequestInfo;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
@@ -161,6 +162,19 @@ public class ScpController {
         }
 
         accessConfigService.downloadCards(request, request.getScpId());
+
+        return ResultBeanUtil.makeOkResp();
+    }
+
+    @ApiOperation(value = "下载访问级别")
+    @RequestMapping(value = "/alvl/reload", method = {RequestMethod.POST})
+    public ResultBean<List<CmdDownloadInfo>> reloadAvls(@RequestBody AlvlRequestInfo request) {
+        int scpId = request.getScpId();
+        if (!scpService.isValidScpId(scpId)) {
+            return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
+        }
+
+        accessConfigService.accessLevelConfig(request);
 
         return ResultBeanUtil.makeOkResp();
     }

@@ -1,5 +1,6 @@
 package com.wim.aero.acs.model.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -21,4 +22,8 @@ public class TaskRequest {
 
     @ApiModelProperty(value = "任务来源")
     private int taskSource;
+
+    @ApiModelProperty(hidden = true)
+    @JsonIgnore
+    private boolean reloadFlag = false;    // 重发标记
 }

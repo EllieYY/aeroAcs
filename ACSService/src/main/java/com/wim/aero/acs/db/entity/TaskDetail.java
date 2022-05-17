@@ -59,5 +59,24 @@ public class TaskDetail implements Serializable {
     @TableField("detail")
     private String detail;
 
+    @TableField("card_no")
+    private String cardNo;
 
+    @TableField("scp_id")
+    private Integer scpId;
+
+    public TaskDetail(long taskId, String taskName, Integer taskSource,
+                      String message, Date startTime, Date msgReturnTime, Date msgOverTime,
+                      String status, String uid, String detail) {
+        this.taskId = taskId;
+        this.taskName = taskName;
+        this.taskSource = taskSource;
+        this.message = message;
+        this.startTime = startTime;
+        this.msgReturnTime = msgReturnTime;
+        this.msgOverTime = msgOverTime;
+        this.status = status;
+        this.uid = uid;
+        this.detail = detail;
+    }
 }

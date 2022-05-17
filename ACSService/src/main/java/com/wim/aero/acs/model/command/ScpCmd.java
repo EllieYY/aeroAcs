@@ -1,9 +1,11 @@
 package com.wim.aero.acs.model.command;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @title: ScpCmd
@@ -12,6 +14,7 @@ import lombok.Data;
  * @description: 控制器报文
  **/
 @Data
+@NoArgsConstructor
 @ApiModel(value = "控制器报文")
 public class ScpCmd {
     @ApiModelProperty(value = "控制器id")
@@ -22,9 +25,12 @@ public class ScpCmd {
     @JsonProperty("scpCommand")
     private String command;
 
-    @ApiModelProperty(value = "报文编号")
+    @ApiModelProperty(value = "报文编号 uid")
     @JsonProperty("streamId")
     private String streamId;
+
+    @JsonIgnore
+    private String cardNo = "";
 
     public ScpCmd(int scpId, String command, String streamId) {
         this.scpId = String.valueOf(scpId);

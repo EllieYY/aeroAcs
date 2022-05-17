@@ -56,6 +56,10 @@ public class RequestPendingCenter {
      * @param cmdList
      */
     public void sendCmdList(TaskRequest request, List<ScpCmd> cmdList) {
+        if (cmdList.size() <= 0) {
+            return;
+        }
+
         this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
         this.updateSeq(responseList);
@@ -77,13 +81,18 @@ public class RequestPendingCenter {
             Date curTime = commandInfo.getCmdDate();
             String state = (taskId == Constants.CONNECT_TASK_ID) ?
                     TaskCommandState.SUCCESS.value() : TaskCommandState.INIT.value();
-            taskDetailList.add(new TaskDetail(
+            TaskDetail taskDetail = new TaskDetail(
                     taskId, taskName, taskSource, cmd.getCommand(),
                     curTime, null, DateUtil.dateAddMins(curTime,5),
                     state,
                     cmd.getStreamId(),
                     cmd.toString()
-            ));
+            );
+
+            taskDetail.setCardNo(cmd.getCardNo());
+            taskDetail.setScpId(Integer.parseInt(cmd.getScpId()));
+
+            taskDetailList.add(taskDetail);
         }
 
         taskDetailService.saveBatch(taskDetailList);
