@@ -98,7 +98,15 @@ public class AccessConfigService {
      */
     @Async
     public void downloadCards(TaskRequest request, int scpId) {
-        List<CardAdd> cardAddList = cardInfoService.getByScpId(scpId);
+        // 梯控兼容
+        boolean isEleScp = controllerDetailService.isEleScp(scpId);
+        List<CardAdd> cardAddList = new ArrayList<>();
+        if (isEleScp) {
+            cardAddList = cardInfoService.getByEleScpId(scpId);
+        } else {
+            cardAddList = cardInfoService.getByScpId(scpId);
+        }
+
         List<ScpCmd> cmdList = packageCardMessages(cardAddList);
         log.info("[{} - 卡片下载] {}", scpId, cmdList);
 
@@ -114,9 +122,19 @@ public class AccessConfigService {
      */
     @Async
     public void addCards(CardRequestInfo request) {
+        boolean isEleScp = request.isEleScp();
+
         List<String> cardList = request.getCardList();
 
-        List<CardAdd> cardAddList = cardInfoService.getByCardList(cardList);
+        //TODO：添加冻结状态判断
+        //TODO: 梯控
+        List<CardAdd> cardAddList = new ArrayList<>();
+        if (isEleScp) {
+            cardAddList = cardInfoService.getByCardListForEleScp(cardList);
+        } else {
+            cardAddList = cardInfoService.getByCardList(cardList);
+        }
+
         List<ScpCmd> cmdList = packageCardMessages(cardAddList);
 
         // 下发到控制器

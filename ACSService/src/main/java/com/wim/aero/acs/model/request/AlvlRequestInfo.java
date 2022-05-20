@@ -1,5 +1,6 @@
 package com.wim.aero.acs.model.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wim.aero.acs.db.entity.TaskDetail;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,5 +19,6 @@ public class AlvlRequestInfo extends TaskRequest {
     private int scpId;
 
     @ApiModelProperty(value = "是否梯控")
+    @JsonProperty(value = "isEle")
     private boolean isEle;
 }

@@ -55,14 +55,19 @@ public class RequestPendingCenter {
      * @param request
      * @param cmdList
      */
-    public void sendCmdList(TaskRequest request, List<ScpCmd> cmdList) {
+    public int sendCmdList(TaskRequest request, List<ScpCmd> cmdList) {
         if (cmdList.size() <= 0) {
-            return;
+            return 0;
         }
 
         this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
+        if (sum == 0) {
+            return -1;
+        }
         this.updateSeq(responseList);
+        return 0;
     }
 
 

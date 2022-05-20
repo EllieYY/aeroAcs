@@ -55,13 +55,13 @@ public class DAccessLevelController {
 //        cardAddList.forEach(System.out::println);
 
         // 卡列表找卡
-        System.out.println("卡号列表找卡");
-        List<String> cardList = new ArrayList<>();
-        cardList.add("testnull");
-
-        List<CardAdd> cardAllList = cardInfoService.getByCardList(cardList);
-
-        cardAllList.forEach(System.out::println);
+//        System.out.println("卡号列表找卡");
+//        List<String> cardList = new ArrayList<>();
+//        cardList.add("testnull");
+//
+//        List<CardAdd> cardAllList = cardInfoService.getByCardList(cardList);
+//
+//        cardAllList.forEach(System.out::println);
         return ResultBeanUtil.makeOkResp();
     }
 

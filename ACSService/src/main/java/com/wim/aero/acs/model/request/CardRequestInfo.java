@@ -15,9 +15,9 @@ import java.util.List;
 @Data
 @ApiModel(value = "卡号列表")
 public class CardRequestInfo  extends TaskRequest{
-    @ApiModelProperty(value = "卡号冻结时使用的时间组编号")
-    private int tz;
-
     @ApiModelProperty(value = "卡号列表")
     private List<String> cardList;
+
+    @ApiModelProperty(value = "是否是梯控设备加卡")
+    private boolean isEleScp = false;
 }

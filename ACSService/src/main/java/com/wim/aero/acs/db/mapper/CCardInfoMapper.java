@@ -22,9 +22,17 @@ public interface CCardInfoMapper extends BaseMapper<CCardInfo> {
 
     List<CardAdd> selectAllByAccessLevels(@Param("list") List<Integer> alList);
 
+    /** 通过控制器id找卡 -- 普通控制器 */
     List<CardAdd> selectAllByScpId(@Param("scpId") Integer scpId);
 
+    /** 通过控制器id找卡 -- 电梯控制器 */
+    List<CardAdd> selectAllByEleScpId(@Param("scpId") Integer scpId);
+
+    /** 通过卡号找授权信息 -- 普通控制器 */
     List<CardAdd> selectAllByCardList(@Param("list") List<String> list);
+
+    /** 通过卡号找授权信息 -- 电梯控制器 */
+    List<CardAdd> selectAllByCardListForEle(@Param("list") List<String> list);
 
     List<Integer> selectScpIdsByCardNo(@Param("list") List<String> list);
 }

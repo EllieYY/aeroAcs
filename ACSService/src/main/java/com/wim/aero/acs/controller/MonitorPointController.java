@@ -2,6 +2,7 @@ package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.request.MpRequestInfo;
+import com.wim.aero.acs.model.request.MultiMpGroupRequestInfo;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
@@ -46,12 +47,24 @@ public class MonitorPointController {
     }
 
 
-    @ApiOperation(value = "防区设防和撤防")
+    @ApiOperation(value = "单个防区设防和撤防")
     @RequestMapping(value = "/alarm/pointGroup", method = {RequestMethod.POST})
     public ResultBean<String> mpGroupMask(@RequestBody MpRequestInfo request) {
         log.info("[MpGroupMask] {}", request);
         int code = sioService.maskMpg(request, request.getScpId(), request.getId(), !request.isSetAlarm());
         if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("命令下发成功");
+        }
+
+        return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+    }
+
+    @ApiOperation(value = "防区批量设防和撤防")
+    @RequestMapping(value = "/alarm/multiPointGroup", method = {RequestMethod.POST})
+    public ResultBean<String> multiMpGroupMask(@RequestBody MultiMpGroupRequestInfo request) {
+        log.info("[MpGroupMask] {}", request);
+        int code = sioService.maskMultiMpg(request, request.getScpId(), request.getMpgIdList(), !request.isSetAlarm());
+        if (code == 0) {
             return ResultBeanUtil.makeOkResp("命令下发成功");
         }
 

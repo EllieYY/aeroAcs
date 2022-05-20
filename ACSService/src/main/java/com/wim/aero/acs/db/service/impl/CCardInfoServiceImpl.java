@@ -27,12 +27,38 @@ public class CCardInfoServiceImpl extends ServiceImpl<CCardInfoMapper, CCardInfo
         return this.baseMapper.selectAllByAccessLevels(alList);
     }
 
+    /**
+     * 通过控制器id找卡 -- 普通控制器
+     * @param scpId
+     * @return
+     */
     public List<CardAdd> getByScpId(int scpId) {
         return this.baseMapper.selectAllByScpId(scpId);
     }
 
+    /**
+     * 通过控制器id找卡 -- 电梯控制器
+     * @param scpId
+     * @return
+     */
+    public List<CardAdd> getByEleScpId(int scpId) {
+        return this.baseMapper.selectAllByEleScpId(scpId);
+    }
+
+    /**
+     * 通过卡号找卡的权限信息 -- 普通控制器
+     */
     public List<CardAdd> getByCardList(List<String> cardList) {
         return this.baseMapper.selectAllByCardList(cardList);
+    }
+
+    /**
+     * 通过卡号找卡的权限信息 -- 电梯控制器
+     * @param cardList
+     * @return
+     */
+    public List<CardAdd> getByCardListForEleScp(List<String> cardList) {
+        return this.baseMapper.selectAllByCardListForEle(cardList);
     }
 
     public List<Integer> getScpIdsByCardNo(List<String> cardList) {

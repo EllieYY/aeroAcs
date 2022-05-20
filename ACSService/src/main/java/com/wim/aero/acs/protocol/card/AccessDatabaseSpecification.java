@@ -135,11 +135,11 @@ public class AccessDatabaseSpecification extends Operation {
         return result;
     }
 
-    // 清除卡片但不改变格式
-    public static AccessDatabaseSpecification getCardsClearedModel(int nScpID) {
-        AccessDatabaseSpecification result = new AccessDatabaseSpecification();
-        result.setNScpID(nScpID);
-        result.setNCards(0);
-        return result;
-    }
+//    // 清除卡片但不改变格式
+//    public static AccessDatabaseSpecification getCardsClearedModel(int nScpID) {
+//        AccessDatabaseSpecification result = new AccessDatabaseSpecification();
+//        result.setNScpID(nScpID);
+//        result.setNCards(0);
+//        return result;
+//    }
 }

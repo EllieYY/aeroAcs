@@ -48,7 +48,7 @@ public class QueueProducer {
 
     public void sendLogMessage(LogMessage logMessage) {
         String messageStr = JsonUtil.toJson(logMessage);
-        log.info("[{} - 日志事件] - {}", logMessage.getControllerId(), messageStr);
+//        log.info("[{} - 日志事件] - {}", logMessage.getControllerId(), messageStr);
         this.sendMessage(logQueue, messageStr);
     }
 
@@ -66,7 +66,7 @@ public class QueueProducer {
 
     public void sendStatusMessage(StatusMessage statusMessage) {
         String messageStr = JsonUtil.toJson(statusMessage);
-        log.info("[{} - 状态事件] - {}", statusMessage.getControllerId(), messageStr);
+//        log.info("[{} - 状态事件] - {}", statusMessage.getControllerId(), messageStr);
         this.sendMessage(statusQueue, messageStr);
 
          // 报警事件

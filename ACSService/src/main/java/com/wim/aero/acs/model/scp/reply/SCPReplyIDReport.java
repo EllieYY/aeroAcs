@@ -51,6 +51,6 @@ public class SCPReplyIDReport extends ReplyBody {
 //                0, System.currentTimeMillis(), scpId,
 //                Constants.TRAN_TABLE_SRC_SCP, scpId, Constants.customTranType, 0, this.toString());
 //        queueProducer.sendLogMessage(message);
-
+        log.info(this.toString());
     }
 }

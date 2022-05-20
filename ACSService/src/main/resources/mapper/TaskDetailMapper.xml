@@ -30,33 +30,12 @@
     </update>
 
     <update id="updateStatusBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index">
         update task_detail
-        <trim prefix="set" suffixOverrides=",">
-            <trim prefix="status=case" suffix="end,">
-                <foreach collection="list" item="item" index="index">
-                    <if test="item.uid!=null">
-                        when uid=#{item.uid} then #{item.status}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="msg_return_time=case" suffix="end,">
-                <foreach collection="list" item="item" index="index">
-                    <if test="item.uid!=null">
-                        when uid=#{item.uid} then #{item.msgReturnTime}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="detail=case" suffix="end,">
-                <foreach collection="list" item="item" index="index">
-                    <if test="item.uid!=null">
-                        when uid=#{item.uid} then #{item.detail}
-                    </if>
-                </foreach>
-            </trim>
-        </trim>
-        where
-        <foreach collection="list" separator="or" item="item" index="index">
-            uid=#{item.uid}
+        set status = #{item.status},
+            msg_return_time = #{item.msgReturnTime},
+            detail = #{item.detail}
+        where uid = #{item.uid}
         </foreach>
     </update>
 

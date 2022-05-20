@@ -134,17 +134,39 @@ public class SioService {
     /**
      * 防区一键撤防和设防
      * @param scpId
-     * @param mpId
+     * @param mpgId
      * @param isMask true撤防 false设防
      * @return
      */
-    public int maskMpg(TaskRequest request, int scpId, int mpId, boolean isMask) {
-        MpGroupCommand mask = MpGroupCommand.setMask(scpId, mpId, isMask);
+    public int maskMpg(TaskRequest request, int scpId, int mpgId, boolean isMask) {
+        MpGroupCommand mask = MpGroupCommand.setMask(scpId, mpgId, isMask);
         String msg = RequestMessage.encode(scpId, mask);
         log.info("[{} - MPGroup - 设防/撤防] msg={}", scpId, msg);
 
         ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
         return requestPendingCenter.sendCmd(request, cmd);
+    }
+
+
+    /**
+     * 防区一键撤防和设防
+     * @param scpId
+     * @param mpgIdList
+     * @param isMask true撤防 false设防
+     * @return
+     */
+    public int maskMultiMpg(TaskRequest request, int scpId, List<Integer> mpgIdList, boolean isMask) {
+        List<ScpCmd> cmdList = new ArrayList<>();
+        for (Integer mpgId:mpgIdList) {
+            MpGroupCommand mask = MpGroupCommand.setMask(scpId, mpgId, isMask);
+            String msg = RequestMessage.encode(scpId, mask);
+            log.info("[{} - MPGroup - 设防/撤防] msg={}", scpId, msg);
+
+            ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+            cmdList.add(cmd);
+        }
+
+        return requestPendingCenter.sendCmdList(request, cmdList);
     }
 
 

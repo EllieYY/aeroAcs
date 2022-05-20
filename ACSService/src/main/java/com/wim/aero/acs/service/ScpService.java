@@ -192,7 +192,11 @@ public class ScpService {
      */
     public int clearCards(ScpRequestInfo requestInfo) {
         int scpId = requestInfo.getScpId();
-        AccessDatabaseSpecification operation = AccessDatabaseSpecification.getCardsClearedModel(scpId);
+        DevControllerCommonAttribute detail = devControllerCommonAttributeService.getADSpecification();
+        detail.setMaxCardNum(0);
+        AccessDatabaseSpecification operation = AccessDatabaseSpecification.fromDb(scpId, detail);
+
+//        AccessDatabaseSpecification operation = AccessDatabaseSpecification.getCardsClearedModel(scpId);
         String msg = RequestMessage.encode(scpId, operation);
         log.info("[{} - 清除卡片] msg={}", scpId, msg);
 

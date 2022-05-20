@@ -104,7 +104,7 @@ public class ScpMessageService {
             return;
         }
 
-//        log.info(transaction.toString());
+        log.info(transaction.toString());
 
         // 类型转换
         Class<TransactionBody> bodyClazz = TransactionType.fromCode(sourceType, tranType).getTransClazz();
@@ -157,7 +157,7 @@ public class ScpMessageService {
             return;
         }
 
-//        log.info(reply.toString());
+        log.info(reply.toString());
 
         // 类型转换
         Class<ReplyBody> bodyClazz = ReplyType.fromCode(enScpReplyType).getTransClazz();

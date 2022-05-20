@@ -230,7 +230,7 @@ public class ScpController {
 //            log.error("控制器{}数据不存在。", scpId);
 //            return new ArrayList<>();
 //        }
-        log.info(request.toString());
+//        log.info(request.toString());
         scpService.scpStateUpdate(scpId, request.getState());
 
         return ResultBeanUtil.makeOkResp();
