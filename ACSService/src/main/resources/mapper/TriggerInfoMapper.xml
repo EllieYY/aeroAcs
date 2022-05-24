@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.TriggerInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.TriggerInfo">
+        <id column="seq_no" property="seqNo" />
+        <result column="controller_id" property="controllerId" />
+        <result column="trgr_id" property="trgrId" />
+        <result column="msg_type" property="msgType" />
+        <result column="event_source_type" property="eventSourceType" />
+        <result column="event_type" property="eventType" />
+        <result column="event_type_code" property="eventTypeCode" />
+        <result column="event_record_id" property="eventRecordId" />
+        <result column="event_name" property="eventName" />
+        <result column="proc_id" property="procId" />
+        <result column="command_id" property="commandId" />
+        <result column="schedules_group_id" property="schedulesGroupId" />
+        <result column="device_number" property="deviceNumber" />
+        <result column="trig_var1" property="trigVar1" />
+        <result column="trig_var2" property="trigVar2" />
+        <result column="trig_var3" property="trigVar3" />
+        <result column="trig_var4" property="trigVar4" />
+        <result column="var1" property="var1" />
+        <result column="var2" property="var2" />
+        <result column="var3" property="var3" />
+        <result column="var4" property="var4" />
+        <result column="order_num" property="orderNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        seq_no, controller_id, trgr_id, msg_type, event_source_type, event_type, event_type_code, event_record_id, event_name, proc_id, command_id, schedules_group_id, device_number, trig_var1, trig_var2, trig_var3, trig_var4, var1, var2, var3, var4, order_num
+    </sql>
+
+    <resultMap id="ExtendInfoMap" type="com.wim.aero.acs.model.db.TriggerInfoEx">
+        <result column="controller_id" property="controllerId" />
+        <result column="trgr_id" property="trgrId" />
+        <result column="msg_type" property="msgType" />
+        <result column="event_source_type" property="eventSourceType" />
+        <result column="event_type" property="eventType" />
+
+        <result column="event_record_id" property="eventRecordId" />
+        <result column="event_name" property="eventName" />
+        <result column="proc_id" property="procId" />
+        <result column="command_id" property="commandId" />
+        <result column="schedules_group_id" property="schedulesGroupId" />
+        <result column="device_number" property="deviceNumber" />
+        <result column="trig_var1" property="trigVar1" />
+        <result column="trig_var2" property="trigVar2" />
+        <result column="trig_var3" property="trigVar3" />
+        <result column="trig_var4" property="trigVar4" />
+        <result column="var1" property="var1" />
+        <result column="var2" property="var2" />
+        <result column="var3" property="var3" />
+        <result column="var4" property="var4" />
+        <result column="order_num" property="orderNum" />
+        <collection property="codeList" ofType="java.lang.Integer">
+            <result column="event_type_code" />
+        </collection>
+    </resultMap>
+    <select id="selectAllByControllerId" resultMap="ExtendInfoMap">
+        select
+        <include refid="Base_Column_List"/>
+        from trigger_info
+        where
+        controller_id = #{controllerId,jdbcType=NUMERIC}
+    </select>
+
+</mapper>

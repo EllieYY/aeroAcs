@@ -2,15 +2,14 @@ package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.command.CmdDownloadInfo;
-import com.wim.aero.acs.model.request.AlvlRequestInfo;
-import com.wim.aero.acs.model.request.ScpRequestInfo;
+import com.wim.aero.acs.model.request.*;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
-import com.wim.aero.acs.model.request.ScpStateNotify;
-import com.wim.aero.acs.model.request.TransactionRequestInfo;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
+import com.wim.aero.acs.protocol.device.cp.ControlPointCommandType;
+import com.wim.aero.acs.protocol.trigger.PrefixType;
 import com.wim.aero.acs.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -179,6 +178,29 @@ public class ScpController {
         return ResultBeanUtil.makeOkResp();
     }
 
+
+    @ApiOperation(value = "执行过程")
+    @RequestMapping(value = "/procedure/do", method = {RequestMethod.POST})
+    public ResultBean<String> doProcedure(@RequestBody ProcedureCommandRequest request) {
+        int scpId = request.getScpId();
+        if (!scpService.isValidScpId(scpId)) {
+            return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
+        }
+
+        // 前缀校验
+        int prefix = request.getPrefix();
+        if (!PrefixType.isValidPrefix(prefix)) {
+            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, request.toString());
+        }
+
+        int code = scpService.procedureExecute(request);
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("执行过程命令已下发");
+        } else {
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+        }
+    }
+
     @ApiOperation(value = "提取事件")
     @RequestMapping(value = "/events/extract", method = {RequestMethod.POST})
     public ResultBean<String> extractEvents(@RequestBody TransactionRequestInfo request) {
@@ -194,14 +216,6 @@ public class ScpController {
         } else {
             return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
         }
-    }
-
-    @ApiOperation(value = "执行过程")
-    @RequestMapping(value = "/process/act", method = {RequestMethod.POST})
-    public ResultBean<String> activeProcess(@RequestBody TransactionRequestInfo request) {
-        // TODO:
-
-        return ResultBeanUtil.makeOkResp("执行过程命令已下发");
     }
 
     /**

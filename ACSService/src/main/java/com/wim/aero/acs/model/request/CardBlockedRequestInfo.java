@@ -13,7 +13,7 @@ import java.util.List;
  * @description:
  **/
 @Data
-@ApiModel(value = "卡冻结/解冻请求参数")
+@ApiModel(value = "卡冻结-解冻请求参数")
 public class CardBlockedRequestInfo extends TaskRequest {
     @ApiModelProperty(value = "时间组编号")
     private int tz;
@@ -21,5 +21,6 @@ public class CardBlockedRequestInfo extends TaskRequest {
     @ApiModelProperty(value = "true-冻结  false-解冻")
     private boolean blocked;
 
+    @ApiModelProperty(value = "卡号列表")
     private List<String> cardList;
 }

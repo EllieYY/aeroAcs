@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.TrigScpProcDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.TrigScpProcDetail">
+        <id column="seq_no" property="seqNo" />
+        <result column="controller_id" property="controllerId" />
+        <result column="proc_id" property="procId" />
+        <result column="proc_name" property="procName" />
+        <result column="prefix" property="prefix" />
+        <result column="function_id" property="functionId" />
+        <result column="para_01" property="para01" />
+        <result column="para_02" property="para02" />
+        <result column="para_03" property="para03" />
+        <result column="para_04" property="para04" />
+        <result column="para_05" property="para05" />
+        <result column="para_06" property="para06" />
+        <result column="order_num" property="orderNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        seq_no, controller_id, proc_id, proc_name, prefix, function_id, para_01, para_02, para_03, para_04, para_05, para_06, order_num
+    </sql>
+
+
+    <select id="selectAllByControllerIdOrderByProcIdAndOrderNum" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from trig_scp_proc_detail
+        where
+        controller_id = #{controllerId,jdbcType=NUMERIC}
+        order by procId , orderNum
+    </select>
+
+</mapper>

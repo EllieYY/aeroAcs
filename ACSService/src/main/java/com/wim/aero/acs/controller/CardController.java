@@ -61,7 +61,7 @@ public class CardController {
         return ResultBeanUtil.makeOkResp();
     }
 
-    @ApiOperation(value = "卡片冻结/解冻")
+    @ApiOperation(value = "卡片冻结-解冻")
     @RequestMapping(value = "/block", method = {RequestMethod.POST})
     public ResultBean<String> blockCards(@RequestBody CardBlockedRequestInfo cardInfo) {
         if (cardInfo.getCardList().size() == 0) {

@@ -17,6 +17,9 @@ class AcsserviceApplicationTests {
 
     @Test
     void contextLoads() {
+
+
+
         AccessMessage message = new AccessMessage(1001, new Date().getTime(),
                 404, 9, 1, 3, 0, "123456", "");
         String jsonMsg = JsonUtil.toJson(message);

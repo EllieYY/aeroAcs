@@ -17,6 +17,7 @@ import com.wim.aero.acs.protocol.device.reader.EleACRConfig;
 import com.wim.aero.acs.protocol.device.reader.ReaderSpecification;
 import com.wim.aero.acs.protocol.timezone.Holiday;
 import com.wim.aero.acs.protocol.timezone.TimeZone;
+import com.wim.aero.acs.protocol.trigger.*;
 
 import java.util.function.Predicate;
 
@@ -68,6 +69,14 @@ public enum OperationType {
     // 时间组
     HOLIDAY_1104(1104, Holiday.class),
     TIME_ZONE_3103(3103, TimeZone.class),
+
+    // trigger
+    PROCEDURE_CTRL(312, ProcedureControl.class),
+    TRIGGER_VAR(313, TriggerVariableControl.class),
+    TRIGGER_SPEC(117, TriggerSpecification.class),
+    TRIGGER_SPEC_EX(1117, TriggerSpecificationExtend.class),
+    ACTION_SPEC(118, ActionSpecification.class),
+    ACTION_REMOVE(119, RemoveMatchingActions.class),
 
     /**-------------------------------------------------------------------------------*/
     /** 指令 */

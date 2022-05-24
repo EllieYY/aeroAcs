@@ -5,13 +5,14 @@ import com.wim.aero.acs.config.DSTConfig;
 import com.wim.aero.acs.db.entity.CardFormat;
 import com.wim.aero.acs.db.entity.DevControllerCommonAttribute;
 import com.wim.aero.acs.db.entity.DevControllerDetail;
-import com.wim.aero.acs.db.service.impl.CardFormatServiceImpl;
-import com.wim.aero.acs.db.service.impl.DevControllerCommonAttributeServiceImpl;
-import com.wim.aero.acs.db.service.impl.DevControllerDetailServiceImpl;
+import com.wim.aero.acs.db.entity.TrigScpProcDetail;
+import com.wim.aero.acs.db.service.impl.*;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.DST;
 import com.wim.aero.acs.model.command.ScpCmd;
+import com.wim.aero.acs.model.db.TriggerInfoEx;
 import com.wim.aero.acs.model.mq.StatusMessage;
+import com.wim.aero.acs.model.request.ProcedureCommandRequest;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.model.request.TransactionRequestInfo;
 import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
@@ -25,6 +26,10 @@ import com.wim.aero.acs.protocol.device.SCPDriver;
 import com.wim.aero.acs.protocol.device.SCPSpecification;
 import com.wim.aero.acs.protocol.device.ScpDelete;
 import com.wim.aero.acs.protocol.device.ScpReset;
+import com.wim.aero.acs.protocol.trigger.ActionSpecification;
+import com.wim.aero.acs.protocol.trigger.ProcedureControl;
+import com.wim.aero.acs.protocol.trigger.TriggerSpecification;
+import com.wim.aero.acs.protocol.trigger.TriggerSpecificationExtend;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +55,8 @@ public class ScpService {
     private final DSTConfig dstConfig;
     private final RequestPendingCenter requestPendingCenter;
     private final QueueProducer queueProducer;
+    private final TrigScpProcDetailServiceImpl trigScpProcDetailService;
+    private final TriggerInfoServiceImpl triggerInfoService;
 
     @Autowired
     public ScpService(DevControllerDetailServiceImpl devControllerDetailService,
@@ -58,7 +65,9 @@ public class ScpService {
                       RestUtil restUtil,
                       DSTConfig dstConfig,
                       RequestPendingCenter requestPendingCenter,
-                      QueueProducer queueProducer) {
+                      QueueProducer queueProducer,
+                      TrigScpProcDetailServiceImpl trigScpProcDetailService,
+                      TriggerInfoServiceImpl triggerInfoService) {
         this.devControllerDetailService = devControllerDetailService;
         this.devControllerCommonAttributeService = devControllerCommonAttributeService;
         this.cardFormatService = cardFormatService;
@@ -66,6 +75,8 @@ public class ScpService {
         this.dstConfig = dstConfig;
         this.requestPendingCenter = requestPendingCenter;
         this.queueProducer = queueProducer;
+        this.trigScpProcDetailService = trigScpProcDetailService;
+        this.triggerInfoService = triggerInfoService;
     }
     
     public void scpOnlineStateNotify(int scpId, int state) {
@@ -223,6 +234,23 @@ public class ScpService {
         return requestPendingCenter.sendCmd(requestInfo, cmd);
     }
 
+    /**
+     * 执行过程
+     * @param request
+     * @return
+     */
+    public int procedureExecute(ProcedureCommandRequest request) {
+        int scpId = request.getScpId();
+
+        ProcedureControl operation = new ProcedureControl(scpId, request.getProcedureId(), request.getPrefix());
+        String msg = RequestMessage.encode(scpId, operation);
+        log.info("[{} - 执行过程] msg={}", scpId, msg);
+
+        // 向设备发送
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+        return requestPendingCenter.sendCmd(request, cmd);
+    }
+
 
     /**
      * 控制器配置：定义配置流程
@@ -255,6 +283,9 @@ public class ScpService {
 
         // 卡格式配置
         cardFormatConfig(scpId, cmdList);
+
+        // 触发器配置
+        triggerConfig(scpId, cmdList);
 
         log.info("[{} - 配置设备]", scpId);
 
@@ -341,6 +372,29 @@ public class ScpService {
                 // 命令组装
                 cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
             }
+        }
+    }
+
+    /**
+     * 事件触发器配置
+     * @param scpId
+     * @param cmdList
+     */
+    private void triggerConfig(int scpId, List<ScpCmd> cmdList) {
+        // 118
+        List<TrigScpProcDetail> details = trigScpProcDetailService.getProcDetailsByScp(scpId);
+        for (TrigScpProcDetail detail: details) {
+            ActionSpecification specification = ActionSpecification.fromDb(detail);
+            String msg = RequestMessage.encode(scpId, specification);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+
+        // 1117  TriggerSpecificationExtend
+        List<TriggerInfoEx> triggerInfoExList = triggerInfoService.getTriggerInfoForScp(scpId);
+        for(TriggerInfoEx trigger:triggerInfoExList) {
+            TriggerSpecificationExtend specification = TriggerSpecificationExtend.fromDb(trigger);
+            String msg = RequestMessage.encode(scpId, specification);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
         }
     }
 }
