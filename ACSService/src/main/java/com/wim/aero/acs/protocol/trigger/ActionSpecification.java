@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @title: ActionSpecification
@@ -29,7 +30,7 @@ public class ActionSpecification extends Operation {
     private String actionType;   // 需要加prefix
 
     @CmdProp(index = 6, enCodec = "formatList")
-    private List<Integer> paramList;
+    private List<String> paramList = new ArrayList<>();
 
     public static ActionSpecification fromDb(TrigScpProcDetail detail) {
         ActionSpecification result = new ActionSpecification();
@@ -40,13 +41,20 @@ public class ActionSpecification extends Operation {
         int actionType = detail.getFunctionId();
         result.setActionType(Integer.toString(prefix) + Integer.toString(actionType));
 
-        List<Integer> allParamList = new ArrayList<>();
-        allParamList.add(detail.getPara01());
-        allParamList.add(detail.getPara02());
-        allParamList.add(detail.getPara03());
-        allParamList.add(detail.getPara04());
-        allParamList.add(detail.getPara05());
-        allParamList.add(detail.getPara06());
+        List<String> allParamList = new ArrayList<>();
+        allParamList.add(Optional.ofNullable(detail.getPara01()).orElse(0).toString());
+        allParamList.add(Optional.ofNullable(detail.getPara02()).orElse(0).toString());
+        allParamList.add(Optional.ofNullable(detail.getPara03()).orElse(0).toString());
+
+        if (actionType == ActionType.CMD_339.getType()) {
+            allParamList.add(detail.getPara09());
+        } else {
+            allParamList.add(Optional.ofNullable(detail.getPara04()).orElse(0).toString());
+        }
+        allParamList.add(Optional.ofNullable(detail.getPara05()).orElse(0).toString());
+        allParamList.add(Optional.ofNullable(detail.getPara06()).orElse(0).toString());
+        allParamList.add(Optional.ofNullable(detail.getPara07()).orElse(0).toString());
+        allParamList.add(Optional.ofNullable(detail.getPara08()).orElse(0).toString());
 
         int paramLegnth = ActionType.fromType(actionType).getLength();
         paramLegnth = paramLegnth > allParamList.size() ? allParamList.size() : paramLegnth;

@@ -1,5 +1,6 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.AccessMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
@@ -55,7 +56,8 @@ public class TypeREX extends TransactionBody {
         String cardHolder = "REX " + rex_number + " - " + des.get(tranCode);
 
         queueProducer.sendAccessMessage(
-                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder, transaction.toString())
+                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
+                        Constants.TRAN_TABLE_SRC_MP, transaction.toString())
         );
 
     }

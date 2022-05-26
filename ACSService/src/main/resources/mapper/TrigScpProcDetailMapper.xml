@@ -16,12 +16,16 @@
         <result column="para_04" property="para04" />
         <result column="para_05" property="para05" />
         <result column="para_06" property="para06" />
+        <result column="para_07" property="para07" />
+        <result column="para_08" property="para08" />
+        <result column="para_09" property="para09" />
         <result column="order_num" property="orderNum" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        seq_no, controller_id, proc_id, proc_name, prefix, function_id, para_01, para_02, para_03, para_04, para_05, para_06, order_num
+        seq_no, controller_id, proc_id, proc_name, prefix, function_id,
+        para_01, para_02, para_03, para_04, para_05, para_06, para_07, para_08, para_09, order_num
     </sql>
 
 

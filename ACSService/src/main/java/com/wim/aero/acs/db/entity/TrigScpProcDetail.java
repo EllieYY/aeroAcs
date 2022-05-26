@@ -62,6 +62,15 @@ public class TrigScpProcDetail implements Serializable {
     @TableField("para_06")
     private Integer para06;
 
+    @TableField("para_07")
+    private Integer para07;
+
+    @TableField("para_08")
+    private Integer para08;
+
+    @TableField("para_09")
+    private String para09;
+
     @TableField("order_num")
     private Integer orderNum;
 

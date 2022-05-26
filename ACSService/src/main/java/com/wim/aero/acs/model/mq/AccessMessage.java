@@ -26,5 +26,6 @@ public class AccessMessage {
     private int eventType;
     private int eventTypeCode;
     private String cardNo;
+    private int sourceTypeSerNo;    // 转换之后的来源
     private String fullMemo;
 }

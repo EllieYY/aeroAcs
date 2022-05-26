@@ -1,5 +1,6 @@
 package com.wim.aero.acs.model.scp.transaction;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.AccessMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
@@ -78,7 +79,8 @@ public class TypeCardID extends TransactionBody {
         int tranCode = transaction.getTranCode();
 
         queueProducer.sendAccessMessage(
-                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder, this.toString())
+                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
+                        Constants.TRAN_TABLE_SRC_ACR, this.toString())
         );
     }
 }

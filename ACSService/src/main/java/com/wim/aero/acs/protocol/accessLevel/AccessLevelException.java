@@ -4,6 +4,7 @@ import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class AccessLevelException extends Operation {
     private int nEntries;  // up to 64 entries are supported. A value of 0 removes the list.
 
     @CmdProp(index = 6)
-    private List<ReaderTz> readerTzList;
+    private List<ReaderTz> readerTzList = new ArrayList<>();
 
     public AccessLevelException(int scpId, String nCardholderId, int tz, boolean removed) {
         this.scp_number = scpId;
