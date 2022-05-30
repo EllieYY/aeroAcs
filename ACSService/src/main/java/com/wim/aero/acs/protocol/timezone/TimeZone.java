@@ -4,6 +4,7 @@ import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,7 +51,7 @@ public class TimeZone extends Operation {
     private int intervalsNum; // 0~12
 
     @CmdProp(index = 9, enCodec = "formatTimeInterval")
-    private List<TimeInterval> intervals;
+    private List<TimeInterval> intervals = new ArrayList<>();
 
     @CmdProp(index = 12, enCodec = "formatStr")
     private String expTest = "";

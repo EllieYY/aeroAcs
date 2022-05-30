@@ -110,6 +110,22 @@ public class TestMessageController {
         return ResultBeanUtil.makeOkResp(cmdList);
     }
 
+    @RequestMapping(value = "/protocol/trigger", method = {RequestMethod.POST})
+    public ResultBean<List<ScpCmd>> triggerCmds(@RequestBody ScpRequestInfo request) {
+        int scpId = request.getScpId();
+        if (!scpService.isValidScpId(scpId)) {
+            return ResultBeanUtil.makeResp(1001, "控制器" + scpId + "数据不存在。");
+        }
+
+        List<ScpCmd> cmdList = new ArrayList<>();
+        scpService.triggerConfig(scpId, cmdList);
+        cmdList.forEach(it -> {
+            System.out.println(it.getCommand());
+        });
+
+        return ResultBeanUtil.makeOkResp(cmdList);
+    }
+
     @RequestMapping(value = "/protocol/albasic", method = {RequestMethod.POST})
     public ResultBean<List<ScpCmd>> alBasicCmds(@RequestBody ScpRequestInfo request) {
         int scpId = request.getScpId();

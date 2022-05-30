@@ -73,14 +73,15 @@ public class AccessLevelTest extends Operation {
         AccessLevelTest result = new AccessLevelTest();
 
         result.setNScpNumber(info.getNScpNumber());
-        result.setNEscortCode(info.getNEscortCode());
+        result.setNAlvlnumber(info.getNAlvlnumber());
+
 
         if (info.getActiveDate() != null && info.getDeactiveDate() != null) {
             Calendar calendar = Calendar.getInstance();
             Date activeDate = info.getActiveDate();
             calendar.setTime(activeDate);
             result.setNActYear(calendar.get(Calendar.YEAR));
-            result.setNActMonth(calendar.get(Calendar.MONTH));
+            result.setNActMonth(calendar.get(Calendar.MONTH) + 1);
             result.setNActDay(calendar.get(Calendar.DATE));
             result.setNActHh(calendar.get(Calendar.HOUR_OF_DAY));
             result.setNActMn(calendar.get(Calendar.MINUTE));
@@ -89,12 +90,14 @@ public class AccessLevelTest extends Operation {
             Date deactiveDate = info.getDeactiveDate();
             calendar.setTime(deactiveDate);
             result.setNDactYear(calendar.get(Calendar.YEAR));
-            result.setNDactMonth(calendar.get(Calendar.MONTH));
+            result.setNDactMonth(calendar.get(Calendar.MONTH) + 1);
             result.setNDactDay(calendar.get(Calendar.DATE));
             result.setNDactHh(calendar.get(Calendar.HOUR_OF_DAY));
             result.setNDactMn(calendar.get(Calendar.MINUTE));
             result.setNDactSs(calendar.get(Calendar.SECOND));
         }
+
+        result.setNEscortCode(info.getNEscortCode());
 
         return result;
     }

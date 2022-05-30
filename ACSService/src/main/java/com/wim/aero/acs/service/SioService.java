@@ -80,6 +80,7 @@ public class SioService {
         outputConfig(scpId, cmdList);
         readerConfig(scpId, cmdList);
 
+        log.info("[{} - sio配置 - {}条]", scpId, cmdList.size());
 //        for(ScpCmd cmd:cmdList) {
 //            log.info(cmd.getCommand());
 //        }

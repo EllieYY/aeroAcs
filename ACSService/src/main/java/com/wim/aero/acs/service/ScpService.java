@@ -287,7 +287,7 @@ public class ScpService {
         // 触发器配置
         triggerConfig(scpId, cmdList);
 
-        log.info("[{} - 配置设备]", scpId);
+        log.info("[{} - scp配置 - {}条]", scpId, cmdList.size());
 
 //        for(ScpCmd cmd:cmdList) {
 //            System.out.println(cmd.getCommand());
@@ -380,7 +380,7 @@ public class ScpService {
      * @param scpId
      * @param cmdList
      */
-    private void triggerConfig(int scpId, List<ScpCmd> cmdList) {
+    public void triggerConfig(int scpId, List<ScpCmd> cmdList) {
         // 118
         List<TrigScpProcDetail> details = trigScpProcDetailService.getProcDetailsByScp(scpId);
         for (TrigScpProcDetail detail: details) {

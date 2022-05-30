@@ -69,6 +69,7 @@ public class AccessConfigService {
         List<ScpCmd> cmdList = new ArrayList<>();
         alBasicConfigMsg(scpId, cmdList);
 
+        log.info("[{} - 权限信息配置 - {}条]", scpId, cmdList.size());
 //        for(ScpCmd cmd:cmdList) {
 //            log.info(cmd.getCommand());
 //        }

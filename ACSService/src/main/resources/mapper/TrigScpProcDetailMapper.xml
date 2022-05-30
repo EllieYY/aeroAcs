@@ -35,7 +35,7 @@
         from trig_scp_proc_detail
         where
         controller_id = #{controllerId,jdbcType=NUMERIC}
-        order by procId , orderNum
+        order by proc_id , order_num
     </select>
 
 </mapper>

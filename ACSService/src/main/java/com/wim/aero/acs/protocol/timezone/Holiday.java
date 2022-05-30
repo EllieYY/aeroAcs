@@ -63,7 +63,7 @@ public class Holiday extends Operation {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
             result.setYear(calendar.get(Calendar.YEAR));
-            result.setMonth(calendar.get(Calendar.MONTH));
+            result.setMonth(calendar.get(Calendar.MONTH) + 1);
             result.setDay(calendar.get(Calendar.DATE));
         }
 
