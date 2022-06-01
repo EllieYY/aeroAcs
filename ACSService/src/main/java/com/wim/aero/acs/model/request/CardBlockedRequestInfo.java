@@ -1,5 +1,6 @@
 package com.wim.aero.acs.model.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -16,6 +17,7 @@ import java.util.List;
 @ApiModel(value = "卡冻结-解冻请求参数")
 public class CardBlockedRequestInfo extends TaskRequest {
     @ApiModelProperty(value = "时间组编号")
+    @JsonProperty(defaultValue = "0")
     private int tz;
 
     @ApiModelProperty(value = "true-冻结  false-解冻")

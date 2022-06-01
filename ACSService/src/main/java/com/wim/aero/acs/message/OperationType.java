@@ -81,6 +81,7 @@ public enum OperationType {
     /**-------------------------------------------------------------------------------*/
     /** 指令 */
     SCP_REST(301, ScpReset.class),
+    SCP_REBOOT(913, ScpReboot.class),
     SCP_DETACH(15, ScpDelete.class),
 
     MP_MASK(306, MonitorPointMask.class),

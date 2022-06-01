@@ -61,12 +61,13 @@ public class CardController {
         return ResultBeanUtil.makeOkResp();
     }
 
-    @ApiOperation(value = "卡片冻结-解冻")
+    @ApiOperation(value = "卡片冻结-解冻-挂失-解挂")
     @RequestMapping(value = "/block", method = {RequestMethod.POST})
     public ResultBean<String> blockCards(@RequestBody CardBlockedRequestInfo cardInfo) {
         if (cardInfo.getCardList().size() == 0) {
             return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
         }
+        log.info("冻结or挂失：{}", cardInfo.toString());
 
         // 卡冻结解冻
         accessConfigService.cardBlocked(cardInfo);

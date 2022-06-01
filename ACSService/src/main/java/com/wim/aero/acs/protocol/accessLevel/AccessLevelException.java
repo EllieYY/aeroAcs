@@ -24,10 +24,10 @@ public class AccessLevelException extends Operation {
     @CmdProp(index = 4)
     private String nCardholderId;
 
-    @CmdProp(index = 5)
+    @CmdProp(index = 5, defaultValue = "0")
     private int nEntries;  // up to 64 entries are supported. A value of 0 removes the list.
 
-    @CmdProp(index = 6)
+    @CmdProp(index = 6, enCodec = "formatReaderTz")
     private List<ReaderTz> readerTzList = new ArrayList<>();
 
     public AccessLevelException(int scpId, String nCardholderId, int tz, boolean removed) {

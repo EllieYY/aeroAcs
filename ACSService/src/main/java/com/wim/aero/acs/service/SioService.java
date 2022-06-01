@@ -71,9 +71,9 @@ public class SioService {
      * 硬件配置
      * @param
      */
-    public void configSioForScp(ScpRequestInfo requestInfo) {
+    public void configSioForScp(ScpRequestInfo requestInfo, List<ScpCmd> cmdList) {
         int scpId = requestInfo.getScpId();
-        List<ScpCmd> cmdList = new ArrayList<>();
+//        List<ScpCmd> cmdList = new ArrayList<>();
 
         sioConfig(scpId, cmdList);
         inputConfig(scpId, cmdList);
@@ -85,7 +85,7 @@ public class SioService {
 //            log.info(cmd.getCommand());
 //        }
 
-        requestPendingCenter.sendCmdList(requestInfo, cmdList);
+//        requestPendingCenter.sendCmdList(requestInfo, cmdList);
     }
 
 

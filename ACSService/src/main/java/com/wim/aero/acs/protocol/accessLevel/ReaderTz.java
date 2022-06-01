@@ -16,4 +16,9 @@ import lombok.NoArgsConstructor;
 public class ReaderTz {
     private int readerId;
     private int tz;
+
+    @Override
+    public String toString() {
+        return readerId + " " + tz;
+    }
 }

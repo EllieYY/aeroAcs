@@ -1,5 +1,6 @@
 package com.wim.aero.acs.util.ProtocolFiledUtil;
 
+import com.wim.aero.acs.protocol.accessLevel.ReaderTz;
 import com.wim.aero.acs.protocol.device.mp.MpType;
 import com.wim.aero.acs.protocol.timezone.TimeInterval;
 import lombok.val;
@@ -37,6 +38,11 @@ public class FieldParser {
 
     public static String formatMpList(List<MpType> valList) {
         return String.join(" ", valList.stream().map(MpType::toString).collect(Collectors.toList()));
+    }
+
+    //
+    public static String formatReaderTz(List<ReaderTz> valList) {
+        return String.join(" ", valList.stream().map(ReaderTz::toString).collect(Collectors.toList()));
     }
 
 }

@@ -257,9 +257,9 @@ public class ScpService {
      * @param requestInfo
      */
     @Async
-    public void configScp(ScpRequestInfo requestInfo) {
+    public void configScp(ScpRequestInfo requestInfo, List<ScpCmd> cmdList) {
         int scpId = requestInfo.getScpId();
-        List<ScpCmd> cmdList = new ArrayList<>();
+//        List<ScpCmd> cmdList = new ArrayList<>();
         scpSpecification(scpId, cmdList);
 
         // 303打开
@@ -276,12 +276,12 @@ public class ScpService {
             cmdList.add(new ScpCmd(scpId, dstMsg, IdUtil.nextId()));
         }
 
-        // 时钟同步
+        // 时钟同步 Command 302: Time Set
         TimeSet timeSet = new TimeSet(scpId);
         String timeMsg = RequestMessage.encode(scpId, timeSet);
         cmdList.add(new ScpCmd(scpId, timeMsg, IdUtil.nextId()));
 
-        // 卡格式配置
+        // 卡格式配置 1102
         cardFormatConfig(scpId, cmdList);
 
         // 触发器配置
@@ -293,7 +293,7 @@ public class ScpService {
 //            System.out.println(cmd.getCommand());
 //        }
 
-        requestPendingCenter.sendCmdList(requestInfo, cmdList);
+//        requestPendingCenter.sendCmdList(requestInfo, cmdList);
     }
 
 

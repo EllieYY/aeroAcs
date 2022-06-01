@@ -19,13 +19,13 @@ import java.util.List;
  */
 @Service
 public class CCardInfoServiceImpl extends ServiceImpl<CCardInfoMapper, CCardInfo> implements CCardInfoService {
-    public List<CardAdd> getByCardNo(List<String> cardNoList) {
-        return this.baseMapper.selectAllByCardNo(cardNoList);
-    }
+//    public List<CardAdd> getByCardNo(List<String> cardNoList) {
+//        return this.baseMapper.selectAllByCardNo(cardNoList);
+//    }
 
-    public List<CardAdd> getByAccessLevels(List<Integer> alList) {
-        return this.baseMapper.selectAllByAccessLevels(alList);
-    }
+//    public List<CardAdd> getByAccessLevels(List<Integer> alList) {
+//        return this.baseMapper.selectAllByAccessLevels(alList);
+//    }
 
     /**
      * 通过控制器id找卡 -- 普通控制器

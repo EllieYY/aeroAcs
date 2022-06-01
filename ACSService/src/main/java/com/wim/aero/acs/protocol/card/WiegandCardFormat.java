@@ -40,8 +40,8 @@ public class WiegandCardFormat extends Operation {
     @CmdProp(index = 7)
     private Integer functionId;
 
-    @CmdProp(index = 8)
-    private Integer flags;
+    @CmdProp(index = 8, defaultValue = "1")
+    private Integer flags = 1;
 
     @CmdProp(index = 9)
     private Integer bits; // 格式号？ Number of bits on the card

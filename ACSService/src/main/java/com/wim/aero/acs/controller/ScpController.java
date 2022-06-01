@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,9 +76,13 @@ public class ScpController {
             return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
         }
 
-        scpService.configScp(request);
-        sioService.configSioForScp(request);
-        accessConfigService.accessConfig(request);
+        List<ScpCmd> cmdList = new ArrayList<>();
+        scpService.configScp(request, cmdList);
+        accessConfigService.accessConfig(request, cmdList);
+        sioService.configSioForScp(request, cmdList);
+
+        // 报文发送
+        requestPendingCenter.sendCmdList(request, cmdList);
 
         return ResultBeanUtil.makeOkResp();
     }

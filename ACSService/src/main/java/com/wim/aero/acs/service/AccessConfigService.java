@@ -63,10 +63,10 @@ public class AccessConfigService {
         this.controllerDetailService = controllerDetailService;
     }
 
-    public void accessConfig(ScpRequestInfo requestInfo) {
+    public void accessConfig(ScpRequestInfo requestInfo, List<ScpCmd> cmdList) {
         int scpId = requestInfo.getScpId();
 
-        List<ScpCmd> cmdList = new ArrayList<>();
+//        List<ScpCmd> cmdList = new ArrayList<>();
         alBasicConfigMsg(scpId, cmdList);
 
         log.info("[{} - 权限信息配置 - {}条]", scpId, cmdList.size());
@@ -74,7 +74,7 @@ public class AccessConfigService {
 //            log.info(cmd.getCommand());
 //        }
 
-        requestPendingCenter.sendCmdList(requestInfo, cmdList);
+//        requestPendingCenter.sendCmdList(requestInfo, cmdList);
     }
 
     /**
@@ -138,6 +138,7 @@ public class AccessConfigService {
 
         List<ScpCmd> cmdList = packageCardMessages(cardAddList);
 
+        log.info("添加卡片 {}", cmdList.toString());
         // 下发到控制器
         requestPendingCenter.sendCmdList(request, cmdList);
     }
@@ -185,6 +186,8 @@ public class AccessConfigService {
                 cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
             }
         }
+
+        log.info("卡冻结-卡挂失 {}", cmdList.toString());
 
         // 下发到控制器
         requestPendingCenter.sendCmdList(request, cmdList);

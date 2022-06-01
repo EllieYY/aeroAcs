@@ -18,9 +18,9 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface CCardInfoMapper extends BaseMapper<CCardInfo> {
-    List<CardAdd> selectAllByCardNo(@Param("list") List<String> cardNoList);
+//    List<CardAdd> selectAllByCardNo(@Param("list") List<String> cardNoList);
 
-    List<CardAdd> selectAllByAccessLevels(@Param("list") List<Integer> alList);
+//    List<CardAdd> selectAllByAccessLevels(@Param("list") List<Integer> alList);
 
     /** 通过控制器id找卡 -- 普通控制器 */
     List<CardAdd> selectAllByScpId(@Param("scpId") Integer scpId);

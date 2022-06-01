@@ -148,7 +148,7 @@ public class RequestPendingCenter {
         }
 
         log.info("[stream:seq] {}", streamSeqMap.toString());
-        taskDetailService.updateTaskStateBatch(taskDetailList);
+//        taskDetailService.updateTaskStateBatch(taskDetailList);
 
         log.info("[发送失败命令条数] {}", result.size());
         return result;
