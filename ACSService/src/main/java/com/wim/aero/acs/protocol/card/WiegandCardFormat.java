@@ -84,6 +84,7 @@ public class WiegandCardFormat extends Operation {
         result.setOffset(cardFormat.getOffset());
         result.setFunctionId(cardFormat.getFunctionId());
 
+        result.setFlags(cardFormat.getFlags());
         result.setBits(cardFormat.getBits());
         result.setPeLn(cardFormat.getPeLn());
         result.setPeLoc(cardFormat.getPeLoc());

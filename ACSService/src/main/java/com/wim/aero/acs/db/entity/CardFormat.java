@@ -86,5 +86,8 @@ public class CardFormat implements Serializable {
     @TableField("ic_loc")
     private Integer icLoc;
 
+    @TableField("flags")
+    private Integer flags;
+
 
 }

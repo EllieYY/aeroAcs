@@ -24,11 +24,13 @@
         <result column="ch_loc" property="chLoc" />
         <result column="ic_ln" property="icLn" />
         <result column="ic_loc" property="icLoc" />
+        <result column="flags" property="flags" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        seq_no, format_name, card_type, type_no, facility, "offset", function_id, min_digits, max_digits, bits, pe_ln, pe_loc, po_ln, po_loc, fc_ln, fc_loc, ch_ln, ch_loc, ic_ln, ic_loc
+        seq_no, format_name, card_type, type_no, facility, "offset", function_id, min_digits, max_digits,
+bits, pe_ln, pe_loc, po_ln, po_loc, fc_ln, fc_loc, ch_ln, ch_loc, ic_ln, ic_loc, flags
     </sql>
     <select id="selectAllBySeqNo" resultMap="BaseResultMap">
         select

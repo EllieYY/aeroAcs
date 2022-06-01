@@ -75,6 +75,7 @@ public class MT2CardFormat extends Operation {
         result.setOffset(cardFormat.getOffset());
         result.setFunctionId(cardFormat.getFunctionId());
 
+        result.setFlags(cardFormat.getFlags());
         result.setMinDigits(cardFormat.getMinDigits());
         result.setMaxDigits(cardFormat.getMaxDigits());
         result.setFcLn(cardFormat.getFcLn());
