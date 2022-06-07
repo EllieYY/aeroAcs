@@ -67,16 +67,21 @@ public abstract class Message<T extends MessageBody> {
             }
 
             // TODO:
-//            if (StringUtils.hasText(lastField)) {
-//                if (StringUtils.hasText(fieldVal)) {
-//                    retSb.append(lastField).append(MSG_SPLITTER);
-//                }
+//            lastField = fieldVal;
+            if (StringUtils.hasText(lastField)) {
+                if (StringUtils.hasText(fieldVal)) {
+                    retSb.append(lastField).append(MSG_SPLITTER);
+                    lastField = fieldVal;
+                }
+            } else {
+                lastField = fieldVal;
+            }
+
+//            if (StringUtils.hasText(fieldVal) && StringUtils.hasText(lastField)) {
+//                retSb.append(lastField).append(MSG_SPLITTER);
+//                lastField = fieldVal;
 //            }
 
-            if (StringUtils.hasText(fieldVal) && StringUtils.hasText(lastField)) {
-                retSb.append(lastField).append(MSG_SPLITTER);
-            }
-            lastField = fieldVal;
         }
         if (lastField != null) {
             retSb.append(lastField);

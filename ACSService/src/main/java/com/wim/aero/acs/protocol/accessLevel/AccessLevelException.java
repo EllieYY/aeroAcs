@@ -30,18 +30,19 @@ public class AccessLevelException extends Operation {
     @CmdProp(index = 6, enCodec = "formatReaderTz")
     private List<ReaderTz> readerTzList = new ArrayList<>();
 
-    public AccessLevelException(int scpId, String nCardholderId, int tz, boolean removed) {
+
+    public AccessLevelException(int scpId, String nCardholderId, int tz, boolean block) {
         this.scp_number = scpId;
         this.nCardholderId = nCardholderId;
 
-        if (removed) {
-            nEntries = 0;
-            readerTzList.clear();
-        } else {
+        if (block) {
             nEntries = 64;
             for (int i = 0; i < nEntries; i++) {
                 readerTzList.add(new ReaderTz(i, tz));
             }
+        } else {
+            nEntries = 0;
+            readerTzList.clear();
         }
     }
 }

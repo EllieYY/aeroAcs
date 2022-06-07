@@ -40,6 +40,7 @@ public class QueueConsumer {
             return;
         }
 
+        log.info("[mq消息消费] {}", message);
         if (requestPendingCenter.commandResponse(messageObj)) {
             message.acknowledge();
         } else {

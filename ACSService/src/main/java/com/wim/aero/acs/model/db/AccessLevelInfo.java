@@ -17,7 +17,7 @@ public class AccessLevelInfo {
     private int nAlvlnumber;
     private Date activeDate;
     private Date deactiveDate;
-    private int nEscortCode;
+    private String nEscortCode;
 
     private List<ACRTz> tzList;
 

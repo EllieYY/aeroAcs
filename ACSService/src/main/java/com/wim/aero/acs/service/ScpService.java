@@ -284,8 +284,8 @@ public class ScpService {
         // 卡格式配置 1102
         cardFormatConfig(scpId, cmdList);
 
-        // 触发器配置
-        triggerConfig(scpId, cmdList);
+        //TODO: 触发器配置
+//        triggerConfig(scpId, cmdList);
 
         log.info("[{} - scp配置 - {}条]", scpId, cmdList.size());
 

@@ -213,6 +213,8 @@ public class RequestPendingCenter {
                 streamIdList.add(streamId);
             }
         }
+
+        log.info("seq匹配：{}", streamIdList.toString());
         return streamIdList;
     }
 

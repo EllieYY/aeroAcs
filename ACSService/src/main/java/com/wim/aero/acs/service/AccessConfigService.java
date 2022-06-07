@@ -19,6 +19,7 @@ import com.wim.aero.acs.protocol.device.mp.MpGroupSpecification;
 import com.wim.aero.acs.protocol.timezone.Holiday;
 import com.wim.aero.acs.protocol.timezone.TimeZone;
 import com.wim.aero.acs.util.IdUtil;
+import com.wim.aero.acs.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -125,22 +126,24 @@ public class AccessConfigService {
     public void addCards(CardRequestInfo request) {
         boolean isEleScp = request.isEleScp();
 
+        // 卡数量控制 -- 200
         List<String> cardList = request.getCardList();
+        List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, 200);
+        for (List<String> batchCard:batchCardList) {
+            //添加冻结状态判断 梯控
+            List<CardAdd> cardAddList = new ArrayList<>();
+            if (isEleScp) {
+                cardAddList = cardInfoService.getByCardListForEleScp(batchCard);
+            } else {
+                cardAddList = cardInfoService.getByCardList(batchCard);
+            }
 
-        //TODO：添加冻结状态判断
-        //TODO: 梯控
-        List<CardAdd> cardAddList = new ArrayList<>();
-        if (isEleScp) {
-            cardAddList = cardInfoService.getByCardListForEleScp(cardList);
-        } else {
-            cardAddList = cardInfoService.getByCardList(cardList);
+            List<ScpCmd> cmdList = packageCardMessages(cardAddList);
+
+            log.info("添加卡片 {}", cmdList.size());
+            // 下发到控制器
+            requestPendingCenter.sendCmdList(request, cmdList);
         }
-
-        List<ScpCmd> cmdList = packageCardMessages(cardAddList);
-
-        log.info("添加卡片 {}", cmdList.toString());
-        // 下发到控制器
-        requestPendingCenter.sendCmdList(request, cmdList);
     }
 
     /**
@@ -176,6 +179,9 @@ public class AccessConfigService {
         List<String> cardList = request.getCardList();
         // 查找拥有这张卡的控制器
         List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
+
+//        // TODO:
+//        scpIdList.add(105);
 
         // 组织报文
         List<ScpCmd> cmdList = new ArrayList<>();

@@ -4,9 +4,11 @@ import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.model.db.AccessLevelInfo;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @title: AccessLevelSpecification
@@ -17,46 +19,46 @@ import java.util.Date;
 @Data
 public class AccessLevelTest extends Operation {
     @CmdProp(index = 2)
-    private int nScpNumber;
+    private Integer nScpNumber;
 
     @CmdProp(index = 3)
-    private int nAlvlnumber; // Access level number
+    private Integer nAlvlnumber; // Access level number
 
     @CmdProp(index = 4)
-    private int nActYear; // java.time.Year to activate access level.
+    private Integer nActYear; // java.time.Year to activate access level.
 
     @CmdProp(index = 5)
-    private int nActMonth; // java.time.Month of the year to activate access level; 1-12
+    private Integer nActMonth; // java.time.Month of the year to activate access level; 1-12
 
     @CmdProp(index = 6)
-    private int nActDay; // Day of month to activate access level; 1-31
+    private Integer nActDay; // Day of month to activate access level; 1-31
 
     @CmdProp(index = 7)
-    private int nActHh; // Hour of day to activate access level; 0-23
+    private Integer nActHh; // Hour of day to activate access level; 0-23
 
     @CmdProp(index = 8)
-    private int nActMn; // Minute of the hour to activate access level; 0-59
+    private Integer nActMn; // Minute of the hour to activate access level; 0-59
 
     @CmdProp(index = 9)
-    private int nActSs; // Second of minute to activate access level; 0-59
+    private Integer nActSs; // Second of minute to activate access level; 0-59
 
     @CmdProp(index = 10)
-    private int nDactYear; // Year to deactivate access level.
+    private Integer nDactYear; // Year to deactivate access level.
 
     @CmdProp(index = 11)
-    private int nDactMonth; // Month of the year to deactivate access level; 1-12
+    private Integer nDactMonth; // Month of the year to deactivate access level; 1-12
 
     @CmdProp(index = 12)
-    private int nDactDay; // Day of month to deactivate access level; 1-31
+    private Integer nDactDay; // Day of month to deactivate access level; 1-31
 
     @CmdProp(index = 13)
-    private int nDactHh; // Hour of day to deactivate access level; 0-23
+    private Integer nDactHh; // Hour of day to deactivate access level; 0-23
 
     @CmdProp(index = 14)
-    private int nDactMn; // Minute of the hour to deactivate access level; 0-59
+    private Integer nDactMn; // Minute of the hour to deactivate access level; 0-59
 
     @CmdProp(index = 15)
-    private int nDactSs; // Second of minute to deactivate access level; 0-59
+    private Integer nDactSs; // Second of minute to deactivate access level; 0-59
 
     /**
      * 0 = Not an escort
@@ -64,10 +66,10 @@ public class AccessLevelTest extends Operation {
      * 2 = Escort required
      */
     @CmdProp(index = 16)
-    private int nEscortCode; // Escort code of user at reader where the time zone is active:
+    private Integer nEscortCode; // Escort code of user at reader where the time zone is active:
 
     @CmdProp(index = 17)
-    private int operMode = 1;
+    private Integer operMode = 1;
 
     public static AccessLevelTest fromDb(AccessLevelInfo info) {
         AccessLevelTest result = new AccessLevelTest();
@@ -97,7 +99,9 @@ public class AccessLevelTest extends Operation {
             result.setNDactSs(calendar.get(Calendar.SECOND));
         }
 
-        result.setNEscortCode(info.getNEscortCode());
+        if (StringUtils.hasText(info.getNEscortCode())) {
+            result.setNEscortCode(Integer.parseInt(info.getNEscortCode()));
+        }
 
         return result;
     }

@@ -66,7 +66,7 @@ public class QueueProducer {
 
     public void sendStatusMessage(StatusMessage statusMessage) {
         String messageStr = JsonUtil.toJson(statusMessage);
-//        log.info("[{} - 状态事件] - {}", statusMessage.getControllerId(), messageStr);
+        log.info("[{} - 状态事件] - {}", statusMessage.getControllerId(), messageStr);
         this.sendMessage(statusQueue, messageStr);
 
          // 报警事件
