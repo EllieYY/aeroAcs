@@ -1,6 +1,7 @@
 package com.wim.aero.acs.model.mq;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @description:
  **/
 @Data
+@NoArgsConstructor
 public class ScpSeqMessage {
     private int scpId;
     private long seq;

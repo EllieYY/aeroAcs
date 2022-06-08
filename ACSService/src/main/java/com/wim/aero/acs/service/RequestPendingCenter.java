@@ -13,6 +13,10 @@ import com.wim.aero.acs.model.mq.ScpSeqMessage;
 import com.wim.aero.acs.model.request.TaskRequest;
 import com.wim.aero.acs.model.scp.ScpSeq;
 import com.wim.aero.acs.util.DateUtil;
+import com.wim.aero.acs.util.cache.Cache;
+import com.wim.aero.acs.util.cache.CacheManager;
+import com.wim.aero.acs.util.cache.CacheManagerAware;
+import com.wim.aero.acs.util.cache.ExpireCacheManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Service
-public class RequestPendingCenter {
+public class RequestPendingCenter implements CacheManagerAware {
     /** streamId和Command信息Map     */
     static private Map<String, CommandInfo> commandInfoMap = new ConcurrentHashMap<>();
     /** streamId和seqId的Map        */
@@ -30,11 +34,25 @@ public class RequestPendingCenter {
 
     private final TaskDetailServiceImpl taskDetailService;
     private final RestUtil restUtil;
+    private final ExpireCacheManager expireCacheManager;
     @Autowired
-    public RequestPendingCenter(TaskDetailServiceImpl taskDetailService, RestUtil restUtil) {
+    public RequestPendingCenter(TaskDetailServiceImpl taskDetailService, RestUtil restUtil, ExpireCacheManager expireCacheManager) {
         this.taskDetailService = taskDetailService;
         this.restUtil = restUtil;
+        this.expireCacheManager = expireCacheManager;
+        setCacheManager(expireCacheManager);
+        expireCacheManager.startManager();
     }
+
+    private Cache<String, ScpSeq> mapCache;
+    private Cache<String, CommandInfo> cmdCache;
+
+    @Override
+    public void setCacheManager(CacheManager cacheManager) {
+        mapCache = cacheManager.getCache("streamSeq");
+        cmdCache = cacheManager.getCache("command");
+    }
+
 
     /**
      * 向设备发送单条命令
@@ -61,12 +79,16 @@ public class RequestPendingCenter {
         }
 
         this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
+//        restUtil.sendMultiCmd(cmdList);
+
+        // TODO:新版本改成通过接口调用返回同步对应关系结果
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
         int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
         if (sum == 0) {
             return -1;
         }
         this.updateSeq(responseList);
+
         return 0;
     }
 
@@ -81,11 +103,15 @@ public class RequestPendingCenter {
                     taskId, taskName, taskSource, cmd.getStreamId(), cmd.getScpId(), cmd.getCommand(), 0);
 
             // 更新集合
-            commandInfoMap.put(cmd.getStreamId(), commandInfo);
+//            commandInfoMap.put(cmd.getStreamId(), commandInfo);
+
+            // TODO:test
+            cmdCache.put(cmd.getStreamId(), commandInfo);
 
             Date curTime = commandInfo.getCmdDate();
             String state = (taskId == Constants.CONNECT_TASK_ID) ?
                     TaskCommandState.SUCCESS.value() : TaskCommandState.INIT.value();
+
             TaskDetail taskDetail = new TaskDetail(
                     taskId, taskName, taskSource, cmd.getCommand(),
                     curTime, null, DateUtil.dateAddMins(curTime,5),
@@ -104,7 +130,7 @@ public class RequestPendingCenter {
     }
 
     /** 更新seqNo */
-    private List<CommandInfo> updateSeq(List<ScpCmdResponse> cmdResponseList) {
+    public List<CommandInfo> updateSeq(List<ScpCmdResponse> cmdResponseList) {
         log.info("[通信服务响应命令条数] - {}", cmdResponseList.size());
         log.info(cmdResponseList.toString());
 
@@ -116,39 +142,70 @@ public class RequestPendingCenter {
             long seqNo = Long.parseLong(response.getSequenceNumber());
             int code = response.getCode();
 
-            // 更新seqNo
-            if (commandInfoMap.containsKey(streamId)) {
-                CommandInfo commandInfo = commandInfoMap.get(streamId);
+            // TODO:test
+            if (cmdCache.containsKey(streamId)) {
+                CommandInfo commandInfo = (CommandInfo) cmdCache.get(streamId);
+                if (commandInfo == null) {
+                    continue;
+                }
                 commandInfo.setSeqId(seqNo);
                 commandInfo.setCommCode(code);
-                commandInfoMap.put(streamId, commandInfo);
+
 
                 String state = TaskCommandState.INIT.value();
                 if (code == Constants.REST_CODE_SUCCESS) {
-                    streamSeqMap.put(streamId, new ScpSeq(scpId, seqNo));
-                    state = TaskCommandState.DOING.value();
+                    cmdCache.put(streamId, commandInfo);
+                    mapCache.put(streamId, new ScpSeq(scpId, seqNo));
                 } else {
+                    cmdCache.remove(streamId);
                     state = TaskCommandState.FAIL.value();
                     result.add(commandInfo);
+
+                    Date curTime = commandInfo.getCmdDate();
+                    taskDetailList.add(new TaskDetail(
+                            commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
+                            commandInfo.getCommand(),
+                            curTime, new Date(), DateUtil.dateAddMins(curTime,5),
+                            state,
+                            commandInfo.getStreamId(),
+                            response.toString()
+                    ));
                 }
-
-                Date curTime = commandInfo.getCmdDate();
-                taskDetailList.add(new TaskDetail(
-                        commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
-                        commandInfo.getCommand(),
-                        curTime, new Date(), DateUtil.dateAddMins(curTime,5),
-                        state,
-                        commandInfo.getStreamId(),
-                        response.toString()
-                ));
-
             } else {
                 log.error("[{} - 通信服务错误] 返回未定义streamId : {}", scpId, streamId);
             }
+            // 更新seqNo
+//            if (commandInfoMap.containsKey(streamId)) {
+//                CommandInfo commandInfo = commandInfoMap.get(streamId);
+//                commandInfo.setSeqId(seqNo);
+//                commandInfo.setCommCode(code);
+//                commandInfoMap.put(streamId, commandInfo);
+//
+//                String state = TaskCommandState.INIT.value();
+//                if (code == Constants.REST_CODE_SUCCESS) {
+//                    streamSeqMap.put(streamId, new ScpSeq(scpId, seqNo));
+//                    state = TaskCommandState.DOING.value();
+//                } else {
+//                    state = TaskCommandState.FAIL.value();
+//                    result.add(commandInfo);
+//                }
+//
+//                Date curTime = commandInfo.getCmdDate();
+//                taskDetailList.add(new TaskDetail(
+//                        commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
+//                        commandInfo.getCommand(),
+//                        curTime, new Date(), DateUtil.dateAddMins(curTime,5),
+//                        state,
+//                        commandInfo.getStreamId(),
+//                        response.toString()
+//                ));
+//            } else {
+//                log.error("[{} - 通信服务错误] 返回未定义streamId : {}", scpId, streamId);
+//            }
         }
 
-        log.info("[stream:seq] {}", streamSeqMap.toString());
-//        taskDetailService.updateTaskStateBatch(taskDetailList);
+        log.info("[stream:seq] {}", mapCache.toString());
+        taskDetailService.updateTaskStateBatch(taskDetailList);
 
         log.info("[发送失败命令条数] {}", result.size());
         return result;
@@ -164,6 +221,7 @@ public class RequestPendingCenter {
 
 //        log.info("seq:{}, code:{}", seqNo, code);
 
+        // 获取seq对应的UID
         List<String> streamList = getStreamIdsBySeqId(scpId, seqNo);
         if (streamList.size() <= 0) {
             return false;
@@ -171,7 +229,13 @@ public class RequestPendingCenter {
 
         List<TaskDetail> taskDetailList = new ArrayList<>();
         for (String key:streamList) {
-            CommandInfo commandInfo = commandInfoMap.get(key);
+            // TODO：
+//            CommandInfo commandInfo = commandInfoMap.get(key);
+            CommandInfo commandInfo = cmdCache.get(key);
+            if (commandInfo == null) {
+                continue;
+            }
+
             commandInfo.setReason(reason);
             commandInfo.setCommandStatus(code);
 
@@ -206,7 +270,8 @@ public class RequestPendingCenter {
     /** 通过seqNo查找streamId列表 */
     public List<String> getStreamIdsBySeqId(int scpId, long seqId) {
         List<String> streamIdList = new ArrayList<>();
-        for(Map.Entry<String, ScpSeq> entry : streamSeqMap.entrySet()){
+        // TODO:
+        for(Map.Entry<String, ScpSeq> entry : mapCache.entrySet()){
             String streamId = entry.getKey();
             ScpSeq scpSeq = entry.getValue();
             if (scpSeq.getScpId() == scpId && scpSeq.getSeq() == seqId) {
@@ -214,19 +279,35 @@ public class RequestPendingCenter {
             }
         }
 
+//        for(Map.Entry<String, ScpSeq> entry : streamSeqMap.entrySet()){
+//            String streamId = entry.getKey();
+//            ScpSeq scpSeq = entry.getValue();
+//            if (scpSeq.getScpId() == scpId && scpSeq.getSeq() == seqId) {
+//                streamIdList.add(streamId);
+//            }
+//        }
+
         log.info("seq匹配：{}", streamIdList.toString());
         return streamIdList;
     }
 
     private void removeStreamId(String streamId) {
-        if (streamSeqMap.containsKey(streamId)) {
-            streamSeqMap.remove(streamId);
+//        if (streamSeqMap.containsKey(streamId)) {
+//            streamSeqMap.remove(streamId);
+//        }
+//
+//        if (commandInfoMap.containsKey(streamId)) {
+//            commandInfoMap.remove(streamId);
+//        }
+
+        // TODO:
+        if (mapCache.containsKey(streamId)) {
+            mapCache.remove(streamId);
         }
 
-        if (commandInfoMap.containsKey(streamId)) {
-            commandInfoMap.remove(streamId);
+        if (cmdCache.containsKey(streamId)) {
+            cmdCache.remove(streamId);
         }
     }
-
 
 }

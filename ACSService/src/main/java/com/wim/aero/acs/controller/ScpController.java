@@ -115,12 +115,12 @@ public class ScpController {
      * @return
      * @throws Exception
      */
-    @Deprecated
-    @ApiOperation(value = "单条配置命令执行状态通知接口")
+    @ApiOperation(value = "通信服务使用 -- 命令执行状态通知接口")
     @RequestMapping(value = "/cmd/notify", method = {RequestMethod.POST})
-    public ResultBean<String> scpCmdNotify(@RequestBody ScpCmdResponse request) {
+    public ResultBean<String> scpCmdNotify(@RequestBody ScpCmdResponseRequest request) {
 //        log.info("执行结果。{}", request.toString());
-        // TODO:结果匹配
+        // 结果匹配
+        requestPendingCenter.updateSeq(request.getResponseList());
 
         return ResultBeanUtil.makeOkResp(request.toString());
     }

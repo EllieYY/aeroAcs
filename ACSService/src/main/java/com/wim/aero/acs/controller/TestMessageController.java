@@ -2,12 +2,14 @@ package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.db.service.impl.CCardInfoServiceImpl;
 import com.wim.aero.acs.model.command.ScpCmd;
+import com.wim.aero.acs.model.mq.ScpSeqMessage;
 import com.wim.aero.acs.model.request.CardRequestInfo;
 import com.wim.aero.acs.model.request.ScpRequestInfo;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
 import com.wim.aero.acs.protocol.card.CardAdd;
 import com.wim.aero.acs.service.AccessConfigService;
+import com.wim.aero.acs.service.QueueProducer;
 import com.wim.aero.acs.service.SioService;
 import com.wim.aero.acs.service.ScpService;
 import io.swagger.annotations.ApiOperation;
@@ -32,16 +34,18 @@ public class TestMessageController {
     private final ScpService scpService;
     private final AccessConfigService accessConfigService;
     private final CCardInfoServiceImpl cardInfoService;
+    private final QueueProducer queueProducer;
 
     @Autowired
     public TestMessageController(SioService sioService,
                                  ScpService scpService,
                                  AccessConfigService accessConfigService,
-                                 CCardInfoServiceImpl cardInfoService) {
+                                 CCardInfoServiceImpl cardInfoService, QueueProducer queueProducer) {
         this.sioService = sioService;
         this.scpService = scpService;
         this.accessConfigService = accessConfigService;
         this.cardInfoService = cardInfoService;
+        this.queueProducer = queueProducer;
     }
 
 
@@ -170,4 +174,12 @@ public class TestMessageController {
         return ResultBeanUtil.makeOkResp(cmdList);
     }
 
+    @RequestMapping(value = "/test/mq/productor", method = {RequestMethod.POST})
+    public ResultBean<String> productMessage(@RequestBody ScpSeqMessage request) {
+        for (int i = 0; i < 5000; i++) {
+            queueProducer.sendScpMessage(request);
+        }
+
+        return ResultBeanUtil.makeOkResp();
+    }
 }
