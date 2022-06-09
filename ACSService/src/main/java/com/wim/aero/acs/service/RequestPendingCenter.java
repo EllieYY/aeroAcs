@@ -24,10 +24,10 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Service
 public class RequestPendingCenter implements CacheManagerAware {
-    /** streamId和Command信息Map     */
-    static private Map<String, CommandInfo> commandInfoMap = new ConcurrentHashMap<>();
-    /** streamId和seqId的Map        */
-    static private Map<String, ScpSeq> streamSeqMap = new ConcurrentHashMap<>();
+//    /** streamId和Command信息Map     */
+//    static private Map<String, CommandInfo> commandInfoMap = new ConcurrentHashMap<>();
+//    /** streamId和seqId的Map        */
+//    static private Map<String, ScpSeq> streamSeqMap = new ConcurrentHashMap<>();
 
     private final TaskDetailServiceImpl taskDetailService;
     private final RestUtil restUtil;
@@ -76,15 +76,15 @@ public class RequestPendingCenter implements CacheManagerAware {
         }
 
         this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
-//        restUtil.sendMultiCmd(cmdList);
+        restUtil.sendMultiCmd(cmdList);
 
-//         TODO:新版本改成通过接口调用返回同步对应关系结果
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
-        if (sum == 0) {
-            return -1;
-        }
-        this.updateSeq(responseList);
+////         TODO:新版本改成通过接口调用返回同步对应关系结果
+//        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+//        int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
+//        if (sum == 0) {
+//            return -1;
+//        }
+//        this.updateSeq(responseList);
 
         return 0;
     }
@@ -169,10 +169,10 @@ public class RequestPendingCenter implements CacheManagerAware {
             }
         }
 
-        log.info("[stream:seq] ");
-        printMap(mapCache);
+//        log.info("[stream:seq] ");
+//        printMap(mapCache);
 
-        taskDetailService.updateTaskStateBatch(taskDetailList);
+//        taskDetailService.updateTaskStateBatch(taskDetailList);
 
         log.info("[发送失败命令条数] {}", result.size());
         return result;
@@ -203,8 +203,6 @@ public class RequestPendingCenter implements CacheManagerAware {
 
         List<TaskDetail> taskDetailList = new ArrayList<>();
         for (String key:streamList) {
-            // TODO：
-//            CommandInfo commandInfo = commandInfoMap.get(key);
             CommandInfo commandInfo = cmdCache.get(key);
             if (commandInfo == null) {
                 continue;
@@ -244,7 +242,6 @@ public class RequestPendingCenter implements CacheManagerAware {
     /** 通过seqNo查找streamId列表 */
     public List<String> getStreamIdsBySeqId(int scpId, long seqId) {
         List<String> streamIdList = new ArrayList<>();
-        // TODO:
         for (String key : mapCache.keySet()) {
             ScpSeq scpSeq = mapCache.get(key);
             if (scpSeq == null) {
@@ -256,28 +253,11 @@ public class RequestPendingCenter implements CacheManagerAware {
             }
         }
 
-//        for(Map.Entry<String, ScpSeq> entry : streamSeqMap.entrySet()){
-//            String streamId = entry.getKey();
-//            ScpSeq scpSeq = entry.getValue();
-//            if (scpSeq.getScpId() == scpId && scpSeq.getSeq() == seqId) {
-//                streamIdList.add(streamId);
-//            }
-//        }
-
         log.info("seq匹配：{}", streamIdList.toString());
         return streamIdList;
     }
 
     private void removeStreamId(String streamId) {
-//        if (streamSeqMap.containsKey(streamId)) {
-//            streamSeqMap.remove(streamId);
-//        }
-//
-//        if (commandInfoMap.containsKey(streamId)) {
-//            commandInfoMap.remove(streamId);
-//        }
-
-        // TODO:
         if (mapCache.containsKey(streamId)) {
             mapCache.remove(streamId);
         }
