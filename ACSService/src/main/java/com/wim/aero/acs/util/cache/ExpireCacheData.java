@@ -10,6 +10,8 @@
  */
 package com.wim.aero.acs.util.cache;
 
+import lombok.Data;
+
 import java.util.Date;
 import java.util.function.Supplier;
 
@@ -21,6 +23,7 @@ import java.util.function.Supplier;
  *
  * @param <T> 缓存类型，可以是任意类型
  */
+@Data
 public class ExpireCacheData<T> {
 	/**
 	 * 创建缓存数据

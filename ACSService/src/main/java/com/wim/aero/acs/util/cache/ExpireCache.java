@@ -15,6 +15,7 @@ import java.util.function.Supplier;
  * @author sp42 frank@ajaxjs.com
  *
  */
+@Data
 public class ExpireCache<K, V> extends ConcurrentHashMap<K, V> implements Cache<K, V> {
 	private static final long serialVersionUID = 3850668473354271847L;
 
@@ -44,7 +45,7 @@ public class ExpireCache<K, V> extends ConcurrentHashMap<K, V> implements Cache<
 
 	@Override
 	public V put(K key, V value) {
-		return super.put(key, (V) new ExpireCacheData<>(value, 50));
+		return super.put(key, (V) new ExpireCacheData<>(value, 300));
 	}
 
 	/**
@@ -71,7 +72,7 @@ public class ExpireCache<K, V> extends ConcurrentHashMap<K, V> implements Cache<
 	 */
 	@Override
 	public V put(K key, V data, Supplier<Object> load) {
-		return super.put(key, (V) new ExpireCacheData<>(data, 50, load));
+		return super.put(key, (V) new ExpireCacheData<>(data, 300, load));
 	}
 
 

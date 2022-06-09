@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wim.aero.acs.aop.excption.ServiceException;
 import com.wim.aero.acs.config.CommServiceInfo;
+import com.wim.aero.acs.model.command.MultiCmdResponse;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
 import com.wim.aero.acs.model.result.HttpResult;
@@ -100,6 +101,7 @@ public class RestUtil {
         }
 
         try {
+//            MultiCmdResponse pts = mapper.readValue(result.getBody(), MultiCmdResponse.class);
             List<ScpCmdResponse> pts = mapper.readValue(result.getBody(), new TypeReference<List<ScpCmdResponse>>() {});
 //            log.info(pts.toString());
             return pts;

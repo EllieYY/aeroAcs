@@ -13,10 +13,7 @@ import com.wim.aero.acs.model.mq.ScpSeqMessage;
 import com.wim.aero.acs.model.request.TaskRequest;
 import com.wim.aero.acs.model.scp.ScpSeq;
 import com.wim.aero.acs.util.DateUtil;
-import com.wim.aero.acs.util.cache.Cache;
-import com.wim.aero.acs.util.cache.CacheManager;
-import com.wim.aero.acs.util.cache.CacheManagerAware;
-import com.wim.aero.acs.util.cache.ExpireCacheManager;
+import com.wim.aero.acs.util.cache.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,7 +78,7 @@ public class RequestPendingCenter implements CacheManagerAware {
         this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
 //        restUtil.sendMultiCmd(cmdList);
 
-        // TODO:新版本改成通过接口调用返回同步对应关系结果
+//         TODO:新版本改成通过接口调用返回同步对应关系结果
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
         int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
         if (sum == 0) {
@@ -103,9 +100,6 @@ public class RequestPendingCenter implements CacheManagerAware {
                     taskId, taskName, taskSource, cmd.getStreamId(), cmd.getScpId(), cmd.getCommand(), 0);
 
             // 更新集合
-//            commandInfoMap.put(cmd.getStreamId(), commandInfo);
-
-            // TODO:test
             cmdCache.put(cmd.getStreamId(), commandInfo);
 
             Date curTime = commandInfo.getCmdDate();
@@ -142,7 +136,6 @@ public class RequestPendingCenter implements CacheManagerAware {
             long seqNo = Long.parseLong(response.getSequenceNumber());
             int code = response.getCode();
 
-            // TODO:test
             if (cmdCache.containsKey(streamId)) {
                 CommandInfo commandInfo = (CommandInfo) cmdCache.get(streamId);
                 if (commandInfo == null) {
@@ -174,41 +167,22 @@ public class RequestPendingCenter implements CacheManagerAware {
             } else {
                 log.error("[{} - 通信服务错误] 返回未定义streamId : {}", scpId, streamId);
             }
-            // 更新seqNo
-//            if (commandInfoMap.containsKey(streamId)) {
-//                CommandInfo commandInfo = commandInfoMap.get(streamId);
-//                commandInfo.setSeqId(seqNo);
-//                commandInfo.setCommCode(code);
-//                commandInfoMap.put(streamId, commandInfo);
-//
-//                String state = TaskCommandState.INIT.value();
-//                if (code == Constants.REST_CODE_SUCCESS) {
-//                    streamSeqMap.put(streamId, new ScpSeq(scpId, seqNo));
-//                    state = TaskCommandState.DOING.value();
-//                } else {
-//                    state = TaskCommandState.FAIL.value();
-//                    result.add(commandInfo);
-//                }
-//
-//                Date curTime = commandInfo.getCmdDate();
-//                taskDetailList.add(new TaskDetail(
-//                        commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
-//                        commandInfo.getCommand(),
-//                        curTime, new Date(), DateUtil.dateAddMins(curTime,5),
-//                        state,
-//                        commandInfo.getStreamId(),
-//                        response.toString()
-//                ));
-//            } else {
-//                log.error("[{} - 通信服务错误] 返回未定义streamId : {}", scpId, streamId);
-//            }
         }
 
-        log.info("[stream:seq] {}", mapCache.toString());
+        log.info("[stream:seq] ");
+        printMap(mapCache);
+
         taskDetailService.updateTaskStateBatch(taskDetailList);
 
         log.info("[发送失败命令条数] {}", result.size());
         return result;
+    }
+
+
+    private void printMap(Cache map) {
+        for (Object key:map.keySet()) {
+            log.info("{}:{}", key, map.get(key));
+        }
     }
 
     /** 控制器返回命令生效结果 */
@@ -219,7 +193,7 @@ public class RequestPendingCenter implements CacheManagerAware {
         int reason = scpSeqMessage.getReason();
         String detail = scpSeqMessage.getDetail();
 
-//        log.info("seq:{}, code:{}", seqNo, code);
+        log.info("seq:{}, code:{}", seqNo, code);
 
         // 获取seq对应的UID
         List<String> streamList = getStreamIdsBySeqId(scpId, seqNo);
