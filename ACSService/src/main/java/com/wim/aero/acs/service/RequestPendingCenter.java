@@ -271,11 +271,14 @@ public class RequestPendingCenter implements CacheManagerAware {
     public List<String> getStreamIdsBySeqId(int scpId, long seqId) {
         List<String> streamIdList = new ArrayList<>();
         // TODO:
-        for(Map.Entry<String, ScpSeq> entry : mapCache.entrySet()){
-            String streamId = entry.getKey();
-            ScpSeq scpSeq = entry.getValue();
+        for (String key : mapCache.keySet()) {
+            ScpSeq scpSeq = mapCache.get(key);
+            if (scpSeq == null) {
+                continue;
+            }
+
             if (scpSeq.getScpId() == scpId && scpSeq.getSeq() == seqId) {
-                streamIdList.add(streamId);
+                streamIdList.add(key);
             }
         }
 

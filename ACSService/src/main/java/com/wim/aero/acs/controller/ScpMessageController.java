@@ -107,7 +107,6 @@ public class ScpMessageController {
         }
 
 //        log.info(request.toString());
-        // TODO:结果匹配
 
         return ResultBeanUtil.makeOkResp(request.toString());
     }

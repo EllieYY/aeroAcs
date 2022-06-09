@@ -95,7 +95,7 @@ spring:
       #设备状态队列
       statusQueue: statusQueue
       #控制器消息队列
-      scpSeqQueue: scpSeqQueueTest
+      scpSeqQueue: scpSeqQueue
   jms:
     listener:
       concurrency: 10

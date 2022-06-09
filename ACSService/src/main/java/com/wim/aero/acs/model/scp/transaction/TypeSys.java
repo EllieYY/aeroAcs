@@ -28,10 +28,10 @@ public class TypeSys extends TransactionBody {
                                             // bit 1 = Loss of clock
                                             // bit 2 = External Reset
                                             // bit 3 = Power on Clock
-                                            // bit 4 = Watchdog Timer    //TODO 故障
+                                            // bit 4 = Watchdog Timer    // 故障
                                             // bit 5 = Software
-                                            // bit 6 = Low Voltage       //TODO 故障
-                                            // bit 7 = Fault (Software Fault)  //TODO 故障
+                                            // bit 6 = Low Voltage       // 故障
+                                            // bit 7 = Fault (Software Fault)  // 故障
     private int	current_primary_comm;		// 0 == off-line, 1 == active, 2 == standby
     private int	previous_primary_comm;		// 0 == off-line, 1 == active, 2 == standby
     private int current_alternate_comm;		// Not used

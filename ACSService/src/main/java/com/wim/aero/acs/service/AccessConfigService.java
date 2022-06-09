@@ -180,9 +180,6 @@ public class AccessConfigService {
         // 查找拥有这张卡的控制器
         List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
 
-//        // TODO:
-//        scpIdList.add(105);
-
         // 组织报文
         List<ScpCmd> cmdList = new ArrayList<>();
         for (Integer scpId:scpIdList) {

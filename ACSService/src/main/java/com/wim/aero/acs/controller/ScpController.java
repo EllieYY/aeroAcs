@@ -104,7 +104,7 @@ public class ScpController {
     @ApiOperation(value = "配置命令执行状态列表通知接口")
     @RequestMapping(value = "/cmd/notify/list", method = {RequestMethod.POST})
     public ResultBean<String> scpCmdNotifyList(@RequestBody List<ScpCmdResponse> request) {
-//        log.info("执行结果。{}", request.toString());
+        log.info("执行结果列表。{}", request.toString());
         // TODO:结果匹配
 
         return ResultBeanUtil.makeOkResp(request.toString());

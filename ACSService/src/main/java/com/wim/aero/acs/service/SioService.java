@@ -212,11 +212,6 @@ public class SioService {
             String specificationMsg = RequestMessage.encode(scpId, specification);
             cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
 
-//            //TODO： 停用状态不配置逻辑信息
-//            if (input.getStatus().equals("1")) {
-//                continue;
-//            }
-
             // Monitor Point Configuration(Command113)
             MonitorPointConfig config = MonitorPointConfig.fromDb(input);
             String configMsg = RequestMessage.encode(scpId, config);
@@ -237,11 +232,6 @@ public class SioService {
             OutputPointSpecification specification = OutputPointSpecification.fromDb(output);
             String specificationMsg = RequestMessage.encode(scpId, specification);
             cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
-
-//            //TODO： 停用状态不配置逻辑信息
-//            if (output.getStatus().equals("1")) {
-//                continue;
-//            }
 
             // ControlPointConfiguration (Command 114)
             ControlPointConfig config = ControlPointConfig.fromDb(output);

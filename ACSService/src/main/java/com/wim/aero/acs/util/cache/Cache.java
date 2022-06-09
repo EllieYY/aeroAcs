@@ -12,6 +12,7 @@ package com.wim.aero.acs.util.cache;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
 /**
@@ -65,6 +66,6 @@ public interface Cache<K, V> {
 
 	boolean containsKey(K key);
 
-	Set<Map.Entry<K, V>> entrySet();
+	ConcurrentHashMap.KeySetView<K, V> keySet();
 
 }

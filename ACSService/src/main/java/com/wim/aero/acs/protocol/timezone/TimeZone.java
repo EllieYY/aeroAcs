@@ -36,7 +36,7 @@ public class TimeZone extends Operation {
      * 5 - [ Holiday && Day Mask ]
      */
     @CmdProp(index = 5)
-    private int mode = 1;
+    private int mode = 4;
 
     /**
      *  seconds from January 1, 1970 in local time

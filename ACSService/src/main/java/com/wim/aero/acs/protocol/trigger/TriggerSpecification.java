@@ -76,33 +76,4 @@ public class TriggerSpecification extends Operation {
     @CmdProp(index = 19)
     private Integer arg4;
 
-//    public static TriggerSpecification fromDb(TriggerInfoEx detail) {
-//        TriggerSpecification result = new TriggerSpecification();
-//        result.setScpNumber(detail.getControllerId());
-//        result.setTrgrNumber(detail.getTrgrId());
-//        result.setCommand(detail.getCommandId());
-//        result.setProcNum(detail.getProcId());
-//        result.setTranType(detail.getEventType());
-//        result.setSrcType(detail.getEventSourceType());
-//        result.setSrcNumber(detail.getDeviceNumber());
-//
-//        // TODO:需要计算
-////        result.setTranCodeMap();
-//        List<Integer> codeList = detail.getCodeList().stream().distinct().collect(Collectors.toList());
-//
-//        result.setTimezone(detail.getSchedulesGroupId());
-//
-//        result.setVar1(detail.getTrigVar1());
-//        result.setVar2(detail.getTrigVar2());
-//        result.setVar3(detail.getTrigVar3());
-//        result.setVar4(detail.getTrigVar4());
-//
-//        result.setArg1(detail.getVar1());
-//        result.setArg2(detail.getVar2());
-//        result.setArg3(detail.getVar3());
-//        result.setArg4(detail.getVar4());
-//
-//        return result;
-//    }
-
 }

@@ -158,8 +158,9 @@
             b.controller_id as scpId
         from c_card_info a
         left join d_employee_access_reader b
-        on a.card_no = b.card_no and b.status = 0
+        on a.card_no = b.card_no and b.schedules_group_id != 0
         where
+            a.status = '0' and
             a.card_no IN
             <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
                 #{id}
@@ -184,8 +185,8 @@
         b.controller_id as scpId
         from c_card_info a
         left join ele_employee_access_reader b
-        on a.card_no = b.card_no and b.status = 0
-        where a.card_no IN
+        on a.card_no = b.card_no and b.ele_level_id != 0
+        where a.status = '0' and a.card_no IN
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
             #{id}
         </foreach>
@@ -194,12 +195,11 @@
 
 
     <select id="selectScpIdsByCardNo" resultType="java.lang.Integer" parameterType="java.util.List">
-        select
-            distinct controller_id
-        from d_employee_access_reader
-        where card_no IN
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
-            #{id}
+            select
+            distinct controller_id
+            from d_employee_access_reader
+            where card_no = #{id}
         </foreach>
     </select>
 
