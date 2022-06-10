@@ -28,7 +28,6 @@ import com.wim.aero.acs.protocol.device.ScpDelete;
 import com.wim.aero.acs.protocol.device.ScpReset;
 import com.wim.aero.acs.protocol.trigger.ActionSpecification;
 import com.wim.aero.acs.protocol.trigger.ProcedureControl;
-import com.wim.aero.acs.protocol.trigger.TriggerSpecification;
 import com.wim.aero.acs.protocol.trigger.TriggerSpecificationExtend;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +56,7 @@ public class ScpService {
     private final QueueProducer queueProducer;
     private final TrigScpProcDetailServiceImpl trigScpProcDetailService;
     private final TriggerInfoServiceImpl triggerInfoService;
+    private final DevControllerDetailServiceImpl controllerDetailService;
 
     @Autowired
     public ScpService(DevControllerDetailServiceImpl devControllerDetailService,
@@ -67,7 +67,8 @@ public class ScpService {
                       RequestPendingCenter requestPendingCenter,
                       QueueProducer queueProducer,
                       TrigScpProcDetailServiceImpl trigScpProcDetailService,
-                      TriggerInfoServiceImpl triggerInfoService) {
+                      TriggerInfoServiceImpl triggerInfoService,
+                      DevControllerDetailServiceImpl controllerDetailService) {
         this.devControllerDetailService = devControllerDetailService;
         this.devControllerCommonAttributeService = devControllerCommonAttributeService;
         this.cardFormatService = cardFormatService;
@@ -77,6 +78,7 @@ public class ScpService {
         this.queueProducer = queueProducer;
         this.trigScpProcDetailService = trigScpProcDetailService;
         this.triggerInfoService = triggerInfoService;
+        this.controllerDetailService = controllerDetailService;
     }
     
     public void scpOnlineStateNotify(int scpId, int state) {
@@ -115,7 +117,7 @@ public class ScpService {
         ScpCenter.addScp(scpId);
 
         // 发送指令
-        requestInfo.setTaskId(Constants.CONNECT_TASK_ID);
+//        requestInfo.setTaskId(Constants.CONNECT_TASK_ID);
         requestPendingCenter.sendCmdList(requestInfo, cmdList);
     }
 
@@ -314,6 +316,11 @@ public class ScpService {
         String adSpecificationMsg = RequestMessage.encode(scpId, adSpecification);
         cmdList.add(new ScpCmd(scpId, adSpecificationMsg, IdUtil.nextId()));
 
+        // 判断是否是梯控设备
+        boolean isEleScp = controllerDetailService.isEleScp(scpId);
+        if (!isEleScp) {
+            return;
+        }
         // Command 501: Elevator Access Level Specification
         int floors = Optional.ofNullable(detail.getElevatorFloorNum()).orElse(64);
         ElevatorALsSpecification specification = new ElevatorALsSpecification(scpId, floors);

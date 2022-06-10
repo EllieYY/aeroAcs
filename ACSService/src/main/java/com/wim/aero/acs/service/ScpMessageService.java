@@ -140,11 +140,11 @@ public class ScpMessageService {
 
         // 入日志库
         int scpId = reply.getScpId();
-        LogMessage message = new LogMessage(
-                0, System.currentTimeMillis(), scpId,
-                Constants.TRAN_TABLE_SRC_SCP, scpId, Constants.customTranType, 0,
-                Constants.TRAN_TABLE_SRC_SCP, reply.toString());
-        queueProducer.sendLogMessage(message);
+//        LogMessage message = new LogMessage(
+//                0, System.currentTimeMillis(), scpId,
+//                Constants.TRAN_TABLE_SRC_SCP, scpId, Constants.customTranType, 0,
+//                Constants.TRAN_TABLE_SRC_SCP, reply.toString());
+//        queueProducer.sendLogMessage(message);
 
         EnScpReplyType enScpReplyType = EnScpReplyType.fromCode(type);
         if (enScpReplyType == EnScpReplyType.enSCPReplyUnknown) {

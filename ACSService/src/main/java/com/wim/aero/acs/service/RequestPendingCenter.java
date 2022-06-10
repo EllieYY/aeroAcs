@@ -170,7 +170,7 @@ public class RequestPendingCenter implements CacheManagerAware {
         }
 
 //        log.info("[stream:seq] ");
-        printMap(mapCache);
+//        printMap(mapCache);
 
 //        taskDetailService.updateTaskStateBatch(taskDetailList);
 
