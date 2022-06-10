@@ -3,6 +3,7 @@ package com.wim.aero.acs.model.scp.reply;
 import com.wim.aero.acs.model.mq.ScpSeqMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title: SCPReplyCmndStatus
@@ -11,6 +12,7 @@ import lombok.Data;
  * @description: type = 15
  **/
 @Data
+@Slf4j
 public class SCPReplyCmndStatus extends ReplyBody {
     private int	status;				// command delivery status:
                                     // - 0 = FAILED (could not send, SCP off-line)
@@ -30,6 +32,8 @@ public class SCPReplyCmndStatus extends ReplyBody {
         if (status == 2) {
             reason = Integer.parseInt(nak.getReason());
         }
+
+//        log.info("[Command返回] {} - {}", scpId, this.toString());
 
         // 推送消息队列中
         queueProducer.sendScpMessage(new ScpSeqMessage(scpId, sequence_number, status, reason, this.toString()));

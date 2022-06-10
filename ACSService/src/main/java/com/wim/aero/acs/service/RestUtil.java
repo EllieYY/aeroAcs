@@ -80,7 +80,7 @@ public class RestUtil {
      * @param cmdList
      * @return
      */
-    public MultiCmdResponse sendMultiCmd(List<ScpCmd> cmdList) {
+    public List<ScpCmdResponse> sendMultiCmd(List<ScpCmd> cmdList) {
         String url = commServiceInfo.getUrl() + "/MultiCmd";
 
         ObjectMapper mapper = new ObjectMapper();
@@ -101,8 +101,8 @@ public class RestUtil {
         }
 
         try {
-            MultiCmdResponse pts = mapper.readValue(result.getBody(), MultiCmdResponse.class);
-//            List<ScpCmdResponse> pts = mapper.readValue(result.getBody(), new TypeReference<List<ScpCmdResponse>>() {});
+//            MultiCmdResponse pts = mapper.readValue(result.getBody(), MultiCmdResponse.class);
+            List<ScpCmdResponse> pts = mapper.readValue(result.getBody(), new TypeReference<List<ScpCmdResponse>>() {});
 //            log.info(pts.toString());
             return pts;
         } catch (Exception e) {

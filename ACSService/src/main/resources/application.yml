@@ -25,7 +25,6 @@ spring:
     active: "@profiles.active@"
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-#    type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:sqlserver://113.57.214.58:14339;databaseName=ykt?allowMultiQueries=true
     username: sa
     password: iafc@2022

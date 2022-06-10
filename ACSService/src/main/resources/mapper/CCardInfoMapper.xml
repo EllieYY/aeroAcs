@@ -160,7 +160,7 @@
         left join d_employee_access_reader b
         on a.card_no = b.card_no and b.schedules_group_id != 0
         where
-            a.status = '0' and
+            a.state = '0' and
             a.card_no IN
             <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
                 #{id}
@@ -186,7 +186,7 @@
         from c_card_info a
         left join ele_employee_access_reader b
         on a.card_no = b.card_no and b.ele_level_id != 0
-        where a.status = '0' and a.card_no IN
+        where a.state = '0' and a.card_no IN
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
             #{id}
         </foreach>

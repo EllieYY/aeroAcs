@@ -34,7 +34,9 @@ public class QueueConsumer {
     public void receiveMsg(Message message, Session session) throws JMSException {
         TextMessage textMessage = (TextMessage)message;
 
-        log.info("[mq消息消费] {}", message);
+//        message.acknowledge();
+
+//        log.info("[mq消息消费] {}", message);
         ScpSeqMessage messageObj = JsonUtil.fromJson(textMessage.getText(), ScpSeqMessage.class);
         if (messageObj == null) {
             log.error("[mq消息解析错误] {}", message);

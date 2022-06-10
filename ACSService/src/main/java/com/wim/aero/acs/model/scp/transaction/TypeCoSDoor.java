@@ -56,10 +56,6 @@ public class TypeCoSDoor extends TransactionBody {
         int tranCode = transaction.getTranCode();
 
         int deviceStatus = parseStatus(tranCode, door_status);
-        // 报警点状态
-        queueProducer.sendStatusMessage(
-                new StatusMessage(index, date, scpId,
-                        sourceType, sourceNum, tranType, tranCode, deviceStatus, Constants.TRAN_TABLE_SRC_MP, this.toString()));
 
         // 报读卡器状态
         queueProducer.sendStatusMessage(

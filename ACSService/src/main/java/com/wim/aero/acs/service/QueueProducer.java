@@ -10,7 +10,7 @@ import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.jms.Destination;
 import javax.jms.Queue;
@@ -23,7 +23,7 @@ import java.util.Date;
  * @date: 2022/04/12 15:42
  * @description: 生产者
  **/
-@Component
+@Service
 @Slf4j
 public class QueueProducer {
     private final JmsMessagingTemplate jmsMessagingTemplate;
@@ -33,10 +33,12 @@ public class QueueProducer {
     private final Queue logQueue;
     private final Queue statusQueue;
     private final Queue scpSeqQueue;
+    private final RequestPendingCenter requestPendingCenter;
 
     @Autowired
     public QueueProducer(JmsMessagingTemplate jmsMessagingTemplate, ThreadPoolTaskExecutor threadPoolTaskExecutor,
-                         Queue accessQueue, Queue alarmQueue, Queue logQueue, Queue statusQueue, Queue scpSeqQueue) {
+                         Queue accessQueue, Queue alarmQueue, Queue logQueue, Queue statusQueue, Queue scpSeqQueue,
+                         RequestPendingCenter requestPendingCenter) {
         this.jmsMessagingTemplate = jmsMessagingTemplate;
         this.threadPoolTaskExecutor = threadPoolTaskExecutor;
         this.accessQueue = accessQueue;
@@ -44,6 +46,7 @@ public class QueueProducer {
         this.logQueue = logQueue;
         this.statusQueue = statusQueue;
         this.scpSeqQueue = scpSeqQueue;
+        this.requestPendingCenter = requestPendingCenter;
     }
 
     public void sendLogMessage(LogMessage logMessage) {
@@ -76,8 +79,12 @@ public class QueueProducer {
     }
 
     public void sendScpMessage(ScpSeqMessage scpSeqMessage) {
+        if (requestPendingCenter.commandResponse(scpSeqMessage)) {
+            return;
+        }
+
         String messageStr = JsonUtil.toJson(scpSeqMessage);
-        log.info("[{} - 命令执行结果事件] - {}", scpSeqMessage.getScpId(), messageStr);
+        log.info("[{} - 匹配失败，命令执行结果入队等待] - {}", scpSeqMessage.getScpId(), messageStr);
         this.sendMessage(scpSeqQueue, messageStr);
     }
 

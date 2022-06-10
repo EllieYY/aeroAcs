@@ -70,7 +70,7 @@ public class AccessConfigService {
 //        List<ScpCmd> cmdList = new ArrayList<>();
         alBasicConfigMsg(scpId, cmdList);
 
-        log.info("[{} - 权限信息配置 - {}条]", scpId, cmdList.size());
+        log.info("[{} - 权限信息配置]", scpId);
 //        for(ScpCmd cmd:cmdList) {
 //            log.info(cmd.getCommand());
 //        }
@@ -208,6 +208,9 @@ public class AccessConfigService {
             item.alListFix();
 
             int scpId = item.getScpNumber();
+            if (scpId == 0) {
+                continue;
+            }
             String msg = RequestMessage.encode(scpId, item);
             ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
             cmd.setCardNo(item.getCardNumber());

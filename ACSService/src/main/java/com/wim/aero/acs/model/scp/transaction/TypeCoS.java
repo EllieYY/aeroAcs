@@ -57,13 +57,13 @@ public class TypeCoS extends TransactionBody {
 
     private static  final Map<Integer, Integer> cosSrcMap = Map.of(
             0x02, Constants.TRAN_TABLE_SRC_MP,   // 控制器内部报警点 cos
-            0x05, Constants.TRAN_TABLE_SRC_MP,   // sio防撬 cos
-            0x06, Constants.TRAN_TABLE_SRC_MP,   // sio电源 cos
+            0x05, Constants.TRAN_TABLE_SRC_SIO,   // sio防撬 cos
+            0x06, Constants.TRAN_TABLE_SRC_SIO,   // sio电源 cos
             0x07, Constants.TRAN_TABLE_SRC_MP,   // 报警点 cos
             0x08, Constants.TRAN_TABLE_SRC_CP,   // 控制点 cos
-            0x0A, Constants.TRAN_TABLE_SRC_MP,   // 读卡器防撬 cos
-            0x0D, Constants.TRAN_TABLE_SRC_MP,  // 按钮0 cos
-            0x0E, Constants.TRAN_TABLE_SRC_MP,  // 按钮1  cos
+            0x0A, Constants.TRAN_TABLE_SRC_ACR,   // 读卡器防撬 cos
+            0x0D, Constants.TRAN_TABLE_SRC_ACR,  // 按钮0 cos
+            0x0E, Constants.TRAN_TABLE_SRC_ACR,  // 按钮1  cos
             0x15, Constants.TRAN_TABLE_SRC_ACR,  // 备用读卡器
             0x18, Constants.TRAN_TABLE_SRC_SCP  // scpweb
     );

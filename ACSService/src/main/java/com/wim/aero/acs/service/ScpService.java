@@ -287,7 +287,7 @@ public class ScpService {
         //TODO: 触发器配置
 //        triggerConfig(scpId, cmdList);
 
-        log.info("[{} - scp配置 - {}条]", scpId, cmdList.size());
+        log.info("[{} - scp配置]", scpId);
 
 //        for(ScpCmd cmd:cmdList) {
 //            System.out.println(cmd.getCommand());

@@ -31,4 +31,5 @@ public class TaskDetailServiceImpl extends ServiceImpl<TaskDetailMapper, TaskDet
         }
         this.baseMapper.updateStatusBatch(detailList);
     }
+
 }

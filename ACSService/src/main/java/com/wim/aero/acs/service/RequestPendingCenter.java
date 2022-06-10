@@ -71,20 +71,20 @@ public class RequestPendingCenter implements CacheManagerAware {
      * @param cmdList
      */
     public int sendCmdList(TaskRequest request, List<ScpCmd> cmdList) {
+
         if (cmdList.size() <= 0) {
             return 0;
         }
 
         this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
-        restUtil.sendMultiCmd(cmdList);
+//        restUtil.sendMultiCmd(cmdList);
 
-////         TODO:新版本改成通过接口调用返回同步对应关系结果
-//        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-//        int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
-//        if (sum == 0) {
-//            return -1;
-//        }
-//        this.updateSeq(responseList);
+        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
+        int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
+        if (sum == 0) {
+            return -1;
+        }
+        this.updateSeq(responseList);
 
         return 0;
     }
@@ -170,7 +170,7 @@ public class RequestPendingCenter implements CacheManagerAware {
         }
 
 //        log.info("[stream:seq] ");
-//        printMap(mapCache);
+        printMap(mapCache);
 
 //        taskDetailService.updateTaskStateBatch(taskDetailList);
 
@@ -193,30 +193,35 @@ public class RequestPendingCenter implements CacheManagerAware {
         int reason = scpSeqMessage.getReason();
         String detail = scpSeqMessage.getDetail();
 
-        log.info("seq:{}, code:{}", seqNo, code);
-
         // 获取seq对应的UID
         List<String> streamList = getStreamIdsBySeqId(scpId, seqNo);
         if (streamList.size() <= 0) {
             return false;
         }
 
+        log.info("[消息匹配] seq:{}, code:{}, streamId:{}", seqNo, code, streamList.toString());
+
         List<TaskDetail> taskDetailList = new ArrayList<>();
         for (String key:streamList) {
+            String state = TaskCommandState.FAIL.value();
+
             CommandInfo commandInfo = cmdCache.get(key);
             if (commandInfo == null) {
-                continue;
-            }
-
-            commandInfo.setReason(reason);
-            commandInfo.setCommandStatus(code);
-
-            String state = TaskCommandState.FAIL.value();
-            if (code != Constants.CMND_OK) {
-                log.info("[{} 失败指令] seqNo[{}], reason[{}], cmd[{}]", scpId, seqNo, reason, commandInfo.getCommand());
+                log.info("streamId超时：{}", key);
             } else {
-                state = TaskCommandState.SUCCESS.value();
+
+                commandInfo.setReason(reason);
+                commandInfo.setCommandStatus(code);
+
+                if (code != Constants.CMND_OK) {
+                    log.info("[{} 失败指令] seqNo[{}], reason[{}], cmd[{}]", scpId, seqNo, reason, commandInfo.getCommand());
+                } else {
+                    state = TaskCommandState.SUCCESS.value();
 //                log.info("[指令结果] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
+                }
+
+                // 移除命令集合
+                removeStreamId(key);
             }
 
             Date curTime = commandInfo.getCmdDate();
@@ -228,9 +233,6 @@ public class RequestPendingCenter implements CacheManagerAware {
                     commandInfo.getStreamId(),
                     detail
             ));
-
-            // 移除命令集合
-            removeStreamId(key);
         }
 
         taskDetailService.updateTaskStateBatch(taskDetailList);
@@ -253,7 +255,7 @@ public class RequestPendingCenter implements CacheManagerAware {
             }
         }
 
-        log.info("seq匹配：{}", streamIdList.toString());
+//        log.info("seq匹配：{}", streamIdList.toString());
         return streamIdList;
     }
 

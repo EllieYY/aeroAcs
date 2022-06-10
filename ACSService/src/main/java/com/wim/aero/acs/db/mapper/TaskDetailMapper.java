@@ -25,4 +25,5 @@ public interface TaskDetailMapper extends BaseMapper<TaskDetail> {
 
     int updateStatusBatch(@Param("list") List<TaskDetail> details);
 
+
 }

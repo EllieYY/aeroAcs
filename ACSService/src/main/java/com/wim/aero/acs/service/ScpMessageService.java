@@ -46,18 +46,18 @@ public class ScpMessageService {
 
         eventLogSrcMap.put(0x03, Constants.TRAN_TABLE_SRC_SIO);
         eventLogSrcMap.put(0x04, Constants.TRAN_TABLE_SRC_SIO);
-        eventLogSrcMap.put(0x05, Constants.TRAN_TABLE_SRC_MP);
-        eventLogSrcMap.put(0x06, Constants.TRAN_TABLE_SRC_MP);
+        eventLogSrcMap.put(0x05, Constants.TRAN_TABLE_SRC_SIO);
+        eventLogSrcMap.put(0x06, Constants.TRAN_TABLE_SRC_SIO);
 
         eventLogSrcMap.put(0x07, Constants.TRAN_TABLE_SRC_MP);
         eventLogSrcMap.put(0x08, Constants.TRAN_TABLE_SRC_CP);
 
         eventLogSrcMap.put(0x09, Constants.TRAN_TABLE_SRC_ACR);
-        eventLogSrcMap.put(0x0A, Constants.TRAN_TABLE_SRC_MP);
-        eventLogSrcMap.put(0x0B, Constants.TRAN_TABLE_SRC_MP);
+        eventLogSrcMap.put(0x0A, Constants.TRAN_TABLE_SRC_ACR);
+        eventLogSrcMap.put(0x0B, Constants.TRAN_TABLE_SRC_ACR);
 
-        eventLogSrcMap.put(0x0D, Constants.TRAN_TABLE_SRC_MP);
-        eventLogSrcMap.put(0x0E, Constants.TRAN_TABLE_SRC_MP);
+        eventLogSrcMap.put(0x0D, Constants.TRAN_TABLE_SRC_ACR);
+        eventLogSrcMap.put(0x0E, Constants.TRAN_TABLE_SRC_ACR);
 
         eventLogSrcMap.put(0x0F, Constants.TRAN_TABLE_SRC_SCP);
         eventLogSrcMap.put(0x10, Constants.TRAN_TABLE_SRC_SCP);
