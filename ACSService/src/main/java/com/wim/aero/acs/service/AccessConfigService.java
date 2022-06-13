@@ -109,11 +109,7 @@ public class AccessConfigService {
             cardAddList = cardInfoService.getByScpId(scpId);
         }
 
-        List<ScpCmd> cmdList = packageCardMessages(cardAddList);
-        log.info("[{} - 卡片下载] {}", scpId, cmdList);
-
-        // 下发到控制器
-        requestPendingCenter.sendCmdList(request, cmdList);
+        packageCardMessages(request, cardAddList);
     }
 
 
@@ -138,11 +134,7 @@ public class AccessConfigService {
                 cardAddList = cardInfoService.getByCardList(batchCard);
             }
 
-            List<ScpCmd> cmdList = packageCardMessages(cardAddList);
-
-            log.info("添加卡片 {}", cmdList.size());
-            // 下发到控制器
-            requestPendingCenter.sendCmdList(request, cmdList);
+            packageCardMessages(request, cardAddList);
         }
     }
 
@@ -201,25 +193,32 @@ public class AccessConfigService {
      * @param cardAddList
      * @return
      */
-    public List<ScpCmd> packageCardMessages(List<CardAdd> cardAddList) {
-        // command 8304
-        List<ScpCmd> cmdList = new ArrayList<>();
-        for(CardAdd item:cardAddList) {
-            item.alListFix();
+    public void packageCardMessages(TaskRequest request, List<CardAdd> cardAddList) {
+        List<List<CardAdd>> batchCardList = StringUtil.fixedGrouping(cardAddList, 200);
+        for (List<CardAdd> batchCard:batchCardList) {
+            // command 8304
+            List<ScpCmd> cmdList = new ArrayList<>();
+            for (CardAdd item : cardAddList) {
+                item.alListFix();
 
-            int scpId = item.getScpNumber();
-            if (scpId == 0) {
-                continue;
-            }
-            String msg = RequestMessage.encode(scpId, item);
-            ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
-            cmd.setCardNo(item.getCardNumber());
-            cmdList.add(cmd);
+                int scpId = item.getScpNumber();
+                if (scpId == 0) {
+                    continue;
+                }
+                String msg = RequestMessage.encode(scpId, item);
+                ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+                cmd.setCardNo(item.getCardNumber());
+                cmdList.add(cmd);
 
 //            log.info(item.toString());
+            }
+
+            log.info("添加卡片 {}", cmdList.size());
+            // 下发到控制器
+            requestPendingCenter.sendCmdList(request, cmdList);
         }
 
-        return cmdList;
+//        return cmdList;
     }
 
     /**

@@ -39,6 +39,11 @@ public class AccessLevelException extends Operation {
             nEntries = 64;
             for (int i = 0; i < nEntries; i++) {
                 readerTzList.add(new ReaderTz(i, tz));
+//                if (i == readerId) {
+//                    readerTzList.add(new ReaderTz(i, tz));
+//                } else {
+//                    readerTzList.add(new ReaderTz(i, 0));
+//                }
             }
         } else {
             nEntries = 0;

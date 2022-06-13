@@ -59,9 +59,9 @@ public class RequestPendingCenter implements CacheManagerAware {
      */
     public int sendCmd(TaskRequest request, ScpCmd cmd) {
         // 向设备发送
-        add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), Arrays.asList(cmd));
+//        add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), Arrays.asList(cmd));
         ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
-        updateSeq(Arrays.asList(response));
+//        updateSeq(Arrays.asList(response));
         return response.getCode();
     }
 
@@ -76,7 +76,7 @@ public class RequestPendingCenter implements CacheManagerAware {
             return 0;
         }
 
-        this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
+//        this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
 //        restUtil.sendMultiCmd(cmdList);
 
         List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
@@ -84,7 +84,7 @@ public class RequestPendingCenter implements CacheManagerAware {
         if (sum == 0) {
             return -1;
         }
-        this.updateSeq(responseList);
+//        this.updateSeq(responseList);
 
         return 0;
     }

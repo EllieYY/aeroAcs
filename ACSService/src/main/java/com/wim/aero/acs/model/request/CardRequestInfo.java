@@ -14,7 +14,7 @@ import java.util.List;
  **/
 @Data
 @ApiModel(value = "卡号列表")
-public class CardRequestInfo  extends TaskRequest{
+public class CardRequestInfo  extends TaskRequest {
     @ApiModelProperty(value = "卡号列表")
     private List<String> cardList;
 

@@ -150,12 +150,10 @@ public class TestMessageController {
     public ResultBean<List<ScpCmd>> addCardCmds(@RequestBody CardRequestInfo request) {
 
         List<CardAdd> cardAddList = cardInfoService.getByCardList(request.getCardList());
-        List<ScpCmd> cmdList = accessConfigService.packageCardMessages(cardAddList);
-        cmdList.forEach(it -> {
-            System.out.println(it.getCommand());
-        });
+        accessConfigService.packageCardMessages(request, cardAddList);
 
-        return ResultBeanUtil.makeOkResp(cmdList);
+
+        return ResultBeanUtil.makeOkResp();
     }
 
     @RequestMapping(value = "/protocol/downloadCards", method = {RequestMethod.POST})
@@ -166,12 +164,12 @@ public class TestMessageController {
         }
 
         List<CardAdd> cardAddList = cardInfoService.getByScpId(scpId);
-        List<ScpCmd> cmdList = accessConfigService.packageCardMessages(cardAddList);
-        cmdList.forEach(it -> {
-            System.out.println(it.getCommand());
-        });
+//        List<ScpCmd> cmdList = accessConfigService.packageCardMessages(request, cardAddList);
+//        cmdList.forEach(it -> {
+//            System.out.println(it.getCommand());
+//        });
 
-        return ResultBeanUtil.makeOkResp(cmdList);
+        return ResultBeanUtil.makeOkResp();
     }
 
     @RequestMapping(value = "/test/mq/productor", method = {RequestMethod.POST})
