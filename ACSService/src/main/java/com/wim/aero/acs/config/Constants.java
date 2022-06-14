@@ -15,6 +15,12 @@ public interface Constants {
     int REST_CODE_SUCCESS = 0;
     long CONNECT_TASK_ID = -1;
 
+    // 单次发送命令条数
+    int BATCH_CMD_COUNT = 50;
+
+    // 单次加卡数量
+    int BATCH_CARD_COUNT = 150;
+
     // 命令执行状态
     // - 0 = FAILED (could not send, SCP off-line)
     // - 1 = OK (delivered and accepted),

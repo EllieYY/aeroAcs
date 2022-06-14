@@ -13,6 +13,7 @@ import com.wim.aero.acs.model.mq.ScpSeqMessage;
 import com.wim.aero.acs.model.request.TaskRequest;
 import com.wim.aero.acs.model.scp.ScpSeq;
 import com.wim.aero.acs.util.DateUtil;
+import com.wim.aero.acs.util.StringUtil;
 import com.wim.aero.acs.util.cache.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,9 +60,9 @@ public class RequestPendingCenter implements CacheManagerAware {
      */
     public int sendCmd(TaskRequest request, ScpCmd cmd) {
         // 向设备发送
-//        add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), Arrays.asList(cmd));
+        add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), Arrays.asList(cmd));
         ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
-//        updateSeq(Arrays.asList(response));
+        updateSeq(Arrays.asList(response));
         return response.getCode();
     }
 
@@ -71,20 +72,24 @@ public class RequestPendingCenter implements CacheManagerAware {
      * @param cmdList
      */
     public int sendCmdList(TaskRequest request, List<ScpCmd> cmdList) {
-
         if (cmdList.size() <= 0) {
             return 0;
         }
 
-//        this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), cmdList);
+        // 控制单次发送条数
+        List<List<ScpCmd>> batchCardList = StringUtil.fixedGrouping(cmdList, Constants.BATCH_CMD_COUNT);
+        for (List<ScpCmd> batchCmd:batchCardList) {
+
+            this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), batchCmd);
 //        restUtil.sendMultiCmd(cmdList);
 
-        List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(cmdList);
-        int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
-        if (sum == 0) {
-            return -1;
+            List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(batchCmd);
+            int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
+            if (sum == 0) {
+                return -1;
+            }
+            this.updateSeq(responseList);
         }
-//        this.updateSeq(responseList);
 
         return 0;
     }
@@ -158,7 +163,7 @@ public class RequestPendingCenter implements CacheManagerAware {
                     taskDetailList.add(new TaskDetail(
                             commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
                             commandInfo.getCommand(),
-                            curTime, new Date(), DateUtil.dateAddMins(curTime,5),
+                            curTime, new Date(), DateUtil.dateAddMins(curTime,20),
                             state,
                             commandInfo.getStreamId(),
                             response.toString()
@@ -172,7 +177,7 @@ public class RequestPendingCenter implements CacheManagerAware {
 //        log.info("[stream:seq] ");
 //        printMap(mapCache);
 
-//        taskDetailService.updateTaskStateBatch(taskDetailList);
+        taskDetailService.updateTaskStateBatch(taskDetailList);
 
         log.info("[发送失败命令条数] {}", result.size());
         return result;

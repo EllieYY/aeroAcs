@@ -52,7 +52,7 @@ public class ACRController {
         return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
     }
 
-    @ApiOperation(value = "常开、常闭")
+    @ApiOperation(value = "设置读卡器模式 - 常开、常闭等")
     @RequestMapping(value = "/mode", method = {RequestMethod.POST})
     public ResultBean<String> doorClose(@RequestBody AcrRequestInfo request) {
         // 命令类型校验

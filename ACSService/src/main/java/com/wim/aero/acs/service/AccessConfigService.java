@@ -1,5 +1,6 @@
 package com.wim.aero.acs.service;
 
+import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.db.entity.Apb;
 import com.wim.aero.acs.db.entity.DHoliday;
 import com.wim.aero.acs.db.service.impl.*;
@@ -122,9 +123,10 @@ public class AccessConfigService {
     public void addCards(CardRequestInfo request) {
         boolean isEleScp = request.isEleScp();
 
-        // 卡数量控制 -- 200
+        // 卡数量控制
         List<String> cardList = request.getCardList();
-        List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, 200);
+        log.info("加卡 {}", cardList.toString());
+        List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, Constants.BATCH_CARD_COUNT);
         for (List<String> batchCard:batchCardList) {
             //添加冻结状态判断 梯控
             List<CardAdd> cardAddList = new ArrayList<>();
@@ -159,6 +161,7 @@ public class AccessConfigService {
             }
         }
 
+        log.info("删卡：{}", cmdList.toString());
         // 下发到控制器
         requestPendingCenter.sendCmdList(request, cmdList);
     }
@@ -194,7 +197,11 @@ public class AccessConfigService {
      * @return
      */
     public void packageCardMessages(TaskRequest request, List<CardAdd> cardAddList) {
-        List<List<CardAdd>> batchCardList = StringUtil.fixedGrouping(cardAddList, 200);
+        if (cardAddList.size() <= 0) {
+            return;
+        }
+
+        List<List<CardAdd>> batchCardList = StringUtil.fixedGrouping(cardAddList, Constants.BATCH_CARD_COUNT);
         for (List<CardAdd> batchCard:batchCardList) {
             // command 8304
             List<ScpCmd> cmdList = new ArrayList<>();

@@ -2,6 +2,7 @@ package com.wim.aero.acs.service;
 
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.config.DSTConfig;
+import com.wim.aero.acs.config.ScpSpecificationConfig;
 import com.wim.aero.acs.db.entity.CardFormat;
 import com.wim.aero.acs.db.entity.DevControllerCommonAttribute;
 import com.wim.aero.acs.db.entity.DevControllerDetail;
@@ -12,9 +13,7 @@ import com.wim.aero.acs.model.DST;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.db.TriggerInfoEx;
 import com.wim.aero.acs.model.mq.StatusMessage;
-import com.wim.aero.acs.model.request.ProcedureCommandRequest;
-import com.wim.aero.acs.model.request.ScpRequestInfo;
-import com.wim.aero.acs.model.request.TransactionRequestInfo;
+import com.wim.aero.acs.model.request.*;
 import com.wim.aero.acs.protocol.DaylightSavingTimeConfiguration;
 import com.wim.aero.acs.protocol.TimeSet;
 import com.wim.aero.acs.protocol.TransactionLogSetting;
@@ -22,10 +21,10 @@ import com.wim.aero.acs.protocol.accessLevel.ElevatorALsSpecification;
 import com.wim.aero.acs.protocol.card.AccessDatabaseSpecification;
 import com.wim.aero.acs.protocol.card.MT2CardFormat;
 import com.wim.aero.acs.protocol.card.WiegandCardFormat;
-import com.wim.aero.acs.protocol.device.SCPDriver;
-import com.wim.aero.acs.protocol.device.SCPSpecification;
-import com.wim.aero.acs.protocol.device.ScpDelete;
-import com.wim.aero.acs.protocol.device.ScpReset;
+import com.wim.aero.acs.protocol.device.*;
+import com.wim.aero.acs.protocol.device.cp.ControlPointStatusCommand;
+import com.wim.aero.acs.protocol.device.mp.MonitorPointStatusCommand;
+import com.wim.aero.acs.protocol.device.reader.AcrStatusCommand;
 import com.wim.aero.acs.protocol.trigger.ActionSpecification;
 import com.wim.aero.acs.protocol.trigger.ProcedureControl;
 import com.wim.aero.acs.protocol.trigger.TriggerSpecificationExtend;
@@ -57,6 +56,7 @@ public class ScpService {
     private final TrigScpProcDetailServiceImpl trigScpProcDetailService;
     private final TriggerInfoServiceImpl triggerInfoService;
     private final DevControllerDetailServiceImpl controllerDetailService;
+    private final ScpSpecificationConfig scpSpecificationConfig;
 
     @Autowired
     public ScpService(DevControllerDetailServiceImpl devControllerDetailService,
@@ -68,7 +68,8 @@ public class ScpService {
                       QueueProducer queueProducer,
                       TrigScpProcDetailServiceImpl trigScpProcDetailService,
                       TriggerInfoServiceImpl triggerInfoService,
-                      DevControllerDetailServiceImpl controllerDetailService) {
+                      DevControllerDetailServiceImpl controllerDetailService,
+                      ScpSpecificationConfig scpSpecificationConfig) {
         this.devControllerDetailService = devControllerDetailService;
         this.devControllerCommonAttributeService = devControllerCommonAttributeService;
         this.cardFormatService = cardFormatService;
@@ -79,6 +80,7 @@ public class ScpService {
         this.trigScpProcDetailService = trigScpProcDetailService;
         this.triggerInfoService = triggerInfoService;
         this.controllerDetailService = controllerDetailService;
+        this.scpSpecificationConfig = scpSpecificationConfig;
     }
     
     public void scpOnlineStateNotify(int scpId, int state) {
@@ -253,6 +255,76 @@ public class ScpService {
         return requestPendingCenter.sendCmd(request, cmd);
     }
 
+    /**
+     * 卡容量查询
+     * @param request
+     */
+    public int cardAmountRequest(ScpCardsRequest request) {
+        List<ScpCmd> cmdList = new ArrayList<>();
+        for (Integer scpId:request.getScpList()) {
+            ScpIDRequest operation = new ScpIDRequest(scpId);
+            String msg = RequestMessage.encode(scpId, operation);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+
+        log.info("[卡容量查询] - {}", cmdList.toString());
+        return requestPendingCenter.sendCmdList(request, cmdList);
+    }
+
+    /**
+     * 设备状态请求
+     * @param request
+     * @return
+     */
+    public void requestDeviceStatus(DeviceStatusRequest request) {
+        List<ScpDeviceInfo> scpDeviceInfoList = request.getDeviceList();
+        for (ScpDeviceInfo deviceInfo:scpDeviceInfoList) {
+            List<ScpCmd> cmdList = new ArrayList<>();
+
+            int scpId = deviceInfo.getScpId();
+            sioStatusCmds(scpId, deviceInfo.getSioList(), cmdList);
+            cpStatusCmds(scpId, deviceInfo.getCpList(), cmdList);
+            mpStatusCmds(scpId, deviceInfo.getMpList(), cmdList);
+            acrStatusCmds(scpId, deviceInfo.getAcrList(), cmdList);
+
+            log.info("[设备状态查询] - {}", cmdList.toString());
+
+            requestPendingCenter.sendCmdList(request, cmdList);
+        }
+    }
+
+    private void sioStatusCmds(int scpId, List<Integer> sioList, List<ScpCmd> cmdList) {
+        for (Integer sioId:sioList) {
+            ControlPointStatusCommand operation = new ControlPointStatusCommand(scpId, sioId, 1);
+            String msg = RequestMessage.encode(scpId, operation);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+    }
+
+    private void cpStatusCmds(int scpId, List<Integer> cpList, List<ScpCmd> cmdList) {
+        for (Integer cpId:cpList) {
+            ControlPointStatusCommand operation = new ControlPointStatusCommand(scpId, cpId, 1);
+            String msg = RequestMessage.encode(scpId, operation);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+    }
+
+    private void mpStatusCmds(int scpId, List<Integer> mpList, List<ScpCmd> cmdList) {
+        for (Integer mpId:mpList) {
+            MonitorPointStatusCommand operation = new MonitorPointStatusCommand(scpId, mpId, 1);
+            String msg = RequestMessage.encode(scpId, operation);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+    }
+
+    private void acrStatusCmds(int scpId, List<Integer> acrList, List<ScpCmd> cmdList) {
+        for (Integer acrId:acrList) {
+            AcrStatusCommand operation = new AcrStatusCommand(scpId, acrId, 1);
+            String msg = RequestMessage.encode(scpId, operation);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+    }
+
 
     /**
      * 控制器配置：定义配置流程
@@ -306,7 +378,7 @@ public class ScpService {
      */
     private void scpSpecification(int scpId, List<ScpCmd> cmdList) {
         // SCPDevice Specification(Command 1107)
-        SCPSpecification scpSpecification = new SCPSpecification(scpId);
+        SCPSpecification scpSpecification = new SCPSpecification(scpId, scpSpecificationConfig);
         String specificationMsg = RequestMessage.encode(scpId, scpSpecification);
         cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
 

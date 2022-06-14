@@ -9,12 +9,10 @@ import com.wim.aero.acs.protocol.card.*;
 import com.wim.aero.acs.protocol.device.*;
 import com.wim.aero.acs.protocol.device.cp.ControlPointCommand;
 import com.wim.aero.acs.protocol.device.cp.ControlPointConfig;
+import com.wim.aero.acs.protocol.device.cp.ControlPointStatusCommand;
 import com.wim.aero.acs.protocol.device.cp.OutputPointSpecification;
 import com.wim.aero.acs.protocol.device.mp.*;
-import com.wim.aero.acs.protocol.device.reader.ACRConfig;
-import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
-import com.wim.aero.acs.protocol.device.reader.EleACRConfig;
-import com.wim.aero.acs.protocol.device.reader.ReaderSpecification;
+import com.wim.aero.acs.protocol.device.reader.*;
 import com.wim.aero.acs.protocol.timezone.Holiday;
 import com.wim.aero.acs.protocol.timezone.TimeZone;
 import com.wim.aero.acs.protocol.trigger.*;
@@ -90,7 +88,14 @@ public enum OperationType {
 
     MP_GROUP_MASK(321, MpGroupCommand.class),
 
-    TIME_SET(302, TimeSet.class);
+    TIME_SET(302, TimeSet.class),
+
+    // user commands
+    CMD_401(401, ScpIDRequest.class),
+    CMD_404(404, SIOStatusCommand.class),
+    CMD_405(405, MonitorPointStatusCommand.class),
+    CMD_406(406, ControlPointStatusCommand.class),
+    CMD_407(407, AcrStatusCommand.class);
     /**-------------------------------------------------------------------------------*/
 
     private int opCode;

@@ -1,5 +1,6 @@
 package com.wim.aero.acs.protocol.device;
 
+import com.wim.aero.acs.config.ScpSpecificationConfig;
 import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
@@ -90,7 +91,17 @@ public class SCPSpecification extends Operation {
     @CmdProp(index = 27)
     private int nSrvcType = 0;
 
-    public SCPSpecification(int scpNumber) {
+    public SCPSpecification(int scpNumber, ScpSpecificationConfig config) {
         this.scpNumber = scpNumber;
+        this.nTransactions = config.getMaxTransactions();
+        this.nAlvl = config.getMaxAcessLevel();
+        this.nTrgr = config.getMaxTrigger();
+        this.nProc = config.getMaxProcedure();
+        this.nTz = config.getMaxTimeZone();
+        this.nHol = config.getMaxHoliday();
+        this.nTranLimit = config.getMaxTranLimit();
+        this.nMpg = config.getMaxMpg();
+        this.nOperModes = config.getOperModes();
+        this.operType = config.getOperTypes();
     }
 }

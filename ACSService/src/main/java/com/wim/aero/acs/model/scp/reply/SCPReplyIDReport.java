@@ -31,13 +31,13 @@ public class SCPReplyIDReport extends ReplyBody {
     private int  firmware_advisory;	// 0==no firmware action, 1==must reset first, 2==starting load
     private int  scp_in_1;			// Scp local monitor "IN 1" state
     private int  scp_in_2;			// Scp local monitor "IN 2" state
-//    private long   adb_max;				// Not used
-//    private long   adb_active;			// Not used
-//    private long   bio1_max;			// Not used
-//    private long   bio1_active;			// Not used
-//    private long   bio2_max;			// Not used
-//    private long   bio2_active;			// Not used
-//    private int  nOemCode;			// Not used
+    private long   adb_max;				// Not used
+    private long   adb_active;			// Not used
+    private long   bio1_max;			// Not used
+    private long   bio1_active;			// Not used
+    private long   bio2_max;			// Not used
+    private long   bio2_active;			// Not used
+    private int  nOemCode;			// Not used
     private byte   config_flags;        // Configuration flags.  (Bit-0 = Needs CC_SCP_SCP configuration, SCP not yet known to driver)
     private String mac_addr;			// MAC Address, if applicable, LSB first.
     private int   tls_status;			// TLS status
@@ -47,10 +47,20 @@ public class SCPReplyIDReport extends ReplyBody {
 
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
-//        LogMessage message = new LogMessage(
-//                0, System.currentTimeMillis(), scpId,
-//                Constants.TRAN_TABLE_SRC_SCP, scpId, Constants.customTranType, 0, this.toString());
-//        queueProducer.sendLogMessage(message);
+        String detail = "控制器：" + scp_id +
+                "，最大卡容量" + db_max +
+                "，当前卡容量" + db_active +
+                "，固件版本：" + device_ver +
+                "，软件版本：" + sft_rev_major + " " + sft_rev_minor +
+                "，MAC地址：" + mac_addr;
+        LogMessage message = new LogMessage(
+                0, System.currentTimeMillis(), scpId,
+                Constants.TRAN_TABLE_SRC_SCP,
+                scpId,
+                Constants.customTranType, 0,
+                Constants.TRAN_TABLE_SRC_SCP,
+                detail);
+        queueProducer.sendLogMessage(message);
         log.info(this.toString());
     }
 }

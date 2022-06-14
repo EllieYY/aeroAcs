@@ -64,6 +64,8 @@ public class SCPReplySrSio extends ReplyBody {
         log.info("[sio状态] - scpId[{}], sio[{}], msp1dNum[{}], comStatus[{}]",
                 scpId, number, msp1_dnum, com_status);
 
+        log.info("[sio详情] - {}", this.toString());
+
 
 //        LogMessage message = new LogMessage(
 //                0, System.currentTimeMillis(), scpId,
@@ -75,7 +77,9 @@ public class SCPReplySrSio extends ReplyBody {
         int status = this.sioStateMap.get(com_status);
         StatusMessage sMessage = new StatusMessage(
                 0, System.currentTimeMillis(), scpId,
-                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, status, Constants.TRAN_TABLE_SRC_SIO, this.toString());
+                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, status,
+                Constants.TRAN_TABLE_SRC_SIO,
+                this.toString());
         queueProducer.sendStatusMessage(sMessage);
     }
 
