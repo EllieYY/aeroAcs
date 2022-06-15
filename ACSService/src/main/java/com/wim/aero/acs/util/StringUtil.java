@@ -1,6 +1,8 @@
 package com.wim.aero.acs.util;
 
 import com.google.common.collect.Lists;
+import com.wim.aero.acs.model.scp.ScpSeq;
+import com.wim.aero.acs.protocol.card.CardAdd;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,11 +89,18 @@ public class StringUtil {
 
 
     public static void main(String[] args) {
-        List<String> srcList = Arrays.asList("12345", "23456", "34567", "45678", "56789", "67890", "78901");
-        List<List<String>> targetList1 = fixedGrouping(srcList, 100);
-        System.out.println(targetList1);
+        List<CardAdd> srcList = new ArrayList<>();
+        for (int i = 0; i < 10000; i++) {
+            CardAdd card = new CardAdd();
+            card.setScpNumber(i+1);
+            card.setCardNumber("92051148" + i);
+            srcList.add(card);
+        }
+//        List<String> srcList = Arrays.asList("12345", "23456", "34567", "45678", "56789", "67890", "78901");
+        List<List<CardAdd>> targetList1 = fixedGrouping(srcList, 100);
 
-        List<List<String>> targetList2 = fixedGrouping2(srcList, 30);
-        System.out.println(targetList2);
+        for (List<CardAdd> tar:targetList1) {
+            System.out.println(tar.toString());
+        }
     }
 }

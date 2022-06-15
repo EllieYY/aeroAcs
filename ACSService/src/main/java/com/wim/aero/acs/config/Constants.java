@@ -16,7 +16,7 @@ public interface Constants {
     long CONNECT_TASK_ID = -1;
 
     // 单次发送命令条数
-    int BATCH_CMD_COUNT = 50;
+    int BATCH_CMD_COUNT = 150;
 
     // 单次加卡数量
     int BATCH_CARD_COUNT = 150;

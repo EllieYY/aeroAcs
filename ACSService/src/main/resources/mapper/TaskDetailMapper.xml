@@ -4,6 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.TaskDetail">
+        <id column="uid" property="uid" />
         <result column="task_id" property="taskId" />
         <result column="task_name" property="taskName" />
         <result column="task_source" property="taskSource" />
@@ -12,7 +13,6 @@
         <result column="msg_return_time" property="msgReturnTime" />
         <result column="msg_over_time" property="msgOverTime" />
         <result column="status" property="status" />
-        <result column="uid" property="uid" />
         <result column="detail" property="detail" />
         <result column="card_no" property="cardNo" />
         <result column="scp_id" property="scpId" />
@@ -40,7 +40,7 @@
         </foreach>
     </update>
 
-    <!--    <update id="updateStatusBatch" parameterType="java.util.List">-->
+<!--    <update id="updateStatusBatch" parameterType="java.util.List">-->
 <!--        update task_detail-->
 <!--        <trim prefix="set" suffixOverrides=",">-->
 <!--            <trim prefix="status=case" suffix="end,">-->

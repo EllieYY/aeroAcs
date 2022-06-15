@@ -36,13 +36,13 @@ public class QueueConsumer {
 
 //        message.acknowledge();
 
-//        log.info("[mq消息消费] {}", message);
         ScpSeqMessage messageObj = JsonUtil.fromJson(textMessage.getText(), ScpSeqMessage.class);
         if (messageObj == null) {
             log.error("[mq消息解析错误] {}", message);
             return;
         }
 
+//        log.info("[mq消息消费] {}", message);
         if (requestPendingCenter.commandResponse(messageObj)) {
             message.acknowledge();
         } else {

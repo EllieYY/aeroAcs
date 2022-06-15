@@ -122,10 +122,11 @@ public class RequestPendingCenter implements CacheManagerAware {
             taskDetail.setCardNo(cmd.getCardNo());
             taskDetail.setScpId(Integer.parseInt(cmd.getScpId()));
 
+            taskDetailService.save(taskDetail);
             taskDetailList.add(taskDetail);
         }
 
-        taskDetailService.saveBatch(taskDetailList);
+//        taskDetailService.saveBatch(taskDetailList);
     }
 
     /** 更新seqNo */
@@ -174,10 +175,7 @@ public class RequestPendingCenter implements CacheManagerAware {
             }
         }
 
-//        log.info("[stream:seq] ");
 //        printMap(mapCache);
-
-        taskDetailService.updateTaskStateBatch(taskDetailList);
 
         log.info("[发送失败命令条数] {}", result.size());
         return result;
@@ -230,17 +228,21 @@ public class RequestPendingCenter implements CacheManagerAware {
             }
 
             Date curTime = commandInfo.getCmdDate();
-            taskDetailList.add(new TaskDetail(
+            TaskDetail entity = new TaskDetail(
                     commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
                     commandInfo.getCommand(),
                     curTime, scpSeqMessage.getCmdDate(), DateUtil.dateAddMins(curTime,5),
                     state,
                     commandInfo.getStreamId(),
                     detail
-            ));
+            );
+            // 改成单条更新
+            taskDetailService.updateById(entity);
+
+            taskDetailList.add(entity);
         }
 
-        taskDetailService.updateTaskStateBatch(taskDetailList);
+//        taskDetailService.updateTaskStateBatch(taskDetailList);
 
         return true;
     }

@@ -104,4 +104,8 @@ public class SCPSpecification extends Operation {
         this.nOperModes = config.getOperModes();
         this.operType = config.getOperTypes();
     }
+
+    public SCPSpecification(int scpNumber) {
+        this.scpNumber = scpNumber;
+    }
 }

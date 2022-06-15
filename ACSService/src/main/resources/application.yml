@@ -153,7 +153,7 @@ aero-scp-sepcification:
   #最大事件数量
   maxTransactions: 100000
   #最大访问级别数量
-  maxAcessLevel: 1024
+  maxAcessLevel: 32000
   #最多触发器数量
   maxTrigger: 100
   #最大过程调用(内部变量)

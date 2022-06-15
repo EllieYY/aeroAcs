@@ -378,7 +378,7 @@ public class ScpService {
      */
     private void scpSpecification(int scpId, List<ScpCmd> cmdList) {
         // SCPDevice Specification(Command 1107)
-        SCPSpecification scpSpecification = new SCPSpecification(scpId, scpSpecificationConfig);
+        SCPSpecification scpSpecification = new SCPSpecification(scpId);
         String specificationMsg = RequestMessage.encode(scpId, scpSpecification);
         cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
 

@@ -128,6 +128,7 @@ public class AccessConfigService {
         log.info("加卡 {}", cardList.toString());
         List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, Constants.BATCH_CARD_COUNT);
         for (List<String> batchCard:batchCardList) {
+            log.info("[batch card] {}", batchCard.toString());
             //添加冻结状态判断 梯控
             List<CardAdd> cardAddList = new ArrayList<>();
             if (isEleScp) {
@@ -135,6 +136,7 @@ public class AccessConfigService {
             } else {
                 cardAddList = cardInfoService.getByCardList(batchCard);
             }
+
 
             packageCardMessages(request, cardAddList);
         }
@@ -202,10 +204,10 @@ public class AccessConfigService {
         }
 
         List<List<CardAdd>> batchCardList = StringUtil.fixedGrouping(cardAddList, Constants.BATCH_CARD_COUNT);
-        for (List<CardAdd> batchCard:batchCardList) {
+        for (List<CardAdd> batchCardAdd:batchCardList) {
             // command 8304
             List<ScpCmd> cmdList = new ArrayList<>();
-            for (CardAdd item : cardAddList) {
+            for (CardAdd item : batchCardAdd) {
                 item.alListFix();
 
                 int scpId = item.getScpNumber();
