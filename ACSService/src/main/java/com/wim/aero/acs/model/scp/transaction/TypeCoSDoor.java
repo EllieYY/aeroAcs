@@ -59,8 +59,9 @@ public class TypeCoSDoor extends TransactionBody {
 
         // 报读卡器状态
         queueProducer.sendStatusMessage(
-                new StatusMessage(index, date, scpId,
-                        sourceType, sourceNum, tranType, tranCode, deviceStatus, Constants.TRAN_TABLE_SRC_ACR, this.toString()));
+                new AlarmMessage(index, date, scpId,
+                        sourceType, sourceNum, tranType, tranCode, deviceStatus,
+                        Constants.TRAN_TABLE_SRC_ACR, this.toString(), this.door_status));
     }
 
     public int parseStatus(int tranCode, int status) {

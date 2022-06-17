@@ -26,12 +26,19 @@ public interface DAccessLevelDoorMapper extends BaseMapper<DAccessLevelDoor> {
      */
     List<AccessLevelInfo> selectAllByControllerId(@Param("controllerId") Integer controllerId);
 
+    List<AccessLevelInfo> selectListByControllerId(@Param("controllerId") Integer controllerId,
+                                                   @Param("list") List<Integer> list);
+
     /**
      * 梯控访问权限
      * @param controllerId
      * @return
      */
     List<AccessLevelInfo> selectAllByControllerIdForEle(@Param("controllerId") Integer controllerId);
+
+    List<AccessLevelInfo> selectListByControllerIdForEle(@Param("controllerId") Integer controllerId,
+                                                         @Param("list") List<Integer> list);
+
 
     /**
      * 电梯级别获取

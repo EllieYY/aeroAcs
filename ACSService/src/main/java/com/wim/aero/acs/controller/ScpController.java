@@ -171,15 +171,28 @@ public class ScpController {
         return ResultBeanUtil.makeOkResp();
     }
 
-    @ApiOperation(value = "下载访问级别")
+    @ApiOperation(value = "按控制器下载所有访问级别")
     @RequestMapping(value = "/alvl/reload", method = {RequestMethod.POST})
     public ResultBean<List<CmdDownloadInfo>> reloadAvls(@RequestBody AlvlRequestInfo request) {
-        int scpId = request.getScpId();
-        if (!scpService.isValidScpId(scpId)) {
-            return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
-        }
+//        int scpId = request.getScpId();
+//        if (!scpService.isValidScpId(scpId)) {
+//            return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
+//        }
 
         accessConfigService.accessLevelConfig(request);
+
+        return ResultBeanUtil.makeOkResp();
+    }
+
+    @ApiOperation(value = "按控制器下载指定访问级别")
+    @RequestMapping(value = "/alvl/reload/list", method = {RequestMethod.POST})
+    public ResultBean<List<CmdDownloadInfo>> reloadAvlsList(@RequestBody AlvlListRequestInfo request) {
+//        int scpId = request.getScpId();
+//        if (!scpService.isValidScpId(scpId)) {
+//            return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
+//        }
+
+        accessConfigService.accessLevelListConfig(request);
 
         return ResultBeanUtil.makeOkResp();
     }

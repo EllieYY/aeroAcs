@@ -240,10 +240,47 @@ public class AccessConfigService {
         List<ScpCmd> cmdList = new ArrayList<>();
         accessLevelConfig(request.getScpId(), request.isEle(), cmdList);
 
+        log.info("[scp全部访问级别更新] - {}", cmdList.toString());
         // 下发到控制器
         requestPendingCenter.sendCmdList(request, cmdList);
     }
 
+    /**
+     * 控制器指定访问级别更新
+     * @param
+     * @param
+     */
+    public void accessLevelListConfig(AlvlListRequestInfo request) {
+        int scpId = request.getScpId();
+        boolean isEleScp = request.isEle();
+        List<Integer> alvList = request.getAlvList();
+        if (alvList.size() <= 0) {
+            return;
+        }
+
+        List<ScpCmd> cmdList = new ArrayList<>();
+        List<AccessLevelInfo> list = new ArrayList<>();
+        if (isEleScp) {
+            list = accessLevelService.getListByScpId(scpId, alvList);
+        } else {
+            list = accessLevelService.getListByScpId(scpId, alvList);
+        }
+        for(AccessLevelInfo item:list) {
+            // Command 124
+            AccessLevelTest alTest = AccessLevelTest.fromDb(item);
+            String alTestMsg = RequestMessage.encode(scpId, alTest);
+            cmdList.add(new ScpCmd(scpId, alTestMsg, IdUtil.nextId()));
+
+            // Command 2116: Access Level Configuration Extended
+            AccessLevelExtended alExtended = AccessLevelExtended.fromDb(item);
+            String alExtendedMsg = RequestMessage.encode(scpId, alExtended);
+            cmdList.add(new ScpCmd(scpId, alExtendedMsg, IdUtil.nextId()));
+        }
+
+        log.info("[scp部分访问级别更新] - {}", cmdList.toString());
+        // 下发到控制器
+        requestPendingCenter.sendCmdList(request, cmdList);
+    }
 
 
     /**

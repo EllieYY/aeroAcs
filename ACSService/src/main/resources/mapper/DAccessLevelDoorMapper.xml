@@ -47,6 +47,25 @@
             a.ele_access_id = b.ele_access_id
     </select>
 
+    <select id="selectListByControllerIdForEle" resultMap="ALInfoMap">
+        select
+            a.controller_id as scpId,
+            a.ele_access_id as alId,
+            a.ele_level_id as tzId,
+            a.acr_number as acrId,
+            b.begin_date as activeDate,
+            b.end_date as deactiveDate,
+            b.flag as nEscortCode
+        from ele_access_level_detail a, ele_access_level b
+        where
+            controller_id = #{controllerId,jdbcType=NUMERIC} and
+            a.ele_access_id = b.ele_access_id and
+            a.ele_access_id IN
+            <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+    </select>
+
     <select id="selectAllByControllerId" resultMap="ALInfoMap">
         select
             a.controller_id as scpId,
@@ -60,6 +79,25 @@
         where
             controller_id = #{controllerId,jdbcType=NUMERIC} and
             a.access_level_id = b.access_level_id
+    </select>
+
+    <select id="selectListByControllerId" resultMap="ALInfoMap">
+        select
+            a.controller_id as scpId,
+            a.access_level_id as alId,
+            a.schedules_group_id as tzId,
+            a.acr_number as acrId,
+            b.begin_date as activeDate,
+            b.end_date as deactiveDate,
+            b.flag as nEscortCode
+        from d_access_level_door a, d_access_level b
+        where
+            controller_id = #{controllerId,jdbcType=NUMERIC} and
+            a.access_level_id = b.access_level_id and
+            a.access_level_id IN
+            <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
     </select>
 
 

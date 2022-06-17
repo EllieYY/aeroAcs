@@ -49,9 +49,9 @@ public class TypeCoS extends TransactionBody {
         // 状态事件
         int deviceStatus = Constants.TRAN_CODE_MAP.get(tranCode);
         int targetType = this.cosSrcMap.get(sourceType);
-        queueProducer.sendStatusMessage(
-                new StatusMessage(index, date, scpId,
-                        sourceType, sourceNum, tranType, tranCode, deviceStatus, targetType, this.toString()));
+
+        queueProducer.sendStatusMessage(new AlarmMessage(index, date, scpId,
+                        sourceType, sourceNum, tranType, tranCode, deviceStatus, targetType, this.toString(), this.status));
 
     }
 
