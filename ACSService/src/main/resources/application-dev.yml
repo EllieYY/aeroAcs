@@ -17,6 +17,6 @@ spring:
 #url: https://192.168.2.236:5000
 
 comm-service-info:
-  url: http://192.168.2.147:5000
+  url: http://192.168.2.234:5000
 
 
