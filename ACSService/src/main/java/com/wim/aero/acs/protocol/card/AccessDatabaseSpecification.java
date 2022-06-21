@@ -83,7 +83,7 @@ public class AccessDatabaseSpecification extends Operation {
     @CmdProp(index = 40)
     private Integer nAssetTimeout = 0; // Set to 0 - N/A
     @CmdProp(index = 41)
-    private Integer bAccExceptionList = 0; // Indicates if access exception lists are being used
+    private Integer bAccExceptionList = 1; // Indicates if access exception lists are being used
     @CmdProp(index = 42)
     private Integer adbFlags = 0;   // Flags field for specifying additional flags
 

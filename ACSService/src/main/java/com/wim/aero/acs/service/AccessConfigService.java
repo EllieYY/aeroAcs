@@ -27,6 +27,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -173,18 +174,18 @@ public class AccessConfigService {
      * @param request
      */
     public void cardBlocked(CardBlockedRequestInfo request) {
-        List<String> cardList = request.getCardList();
+        String cardNo = request.getCardNo();
+        List<String> cardList = Arrays.asList(cardNo);
         // 查找拥有这张卡的控制器
         List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
 
         // 组织报文
         List<ScpCmd> cmdList = new ArrayList<>();
         for (Integer scpId:scpIdList) {
-            for (String cardNo : cardList) {
-                AccessLevelException operation = new AccessLevelException(scpId, cardNo, request.getTz(), request.isBlocked());
-                String msg = RequestMessage.encode(scpId, operation);
-                cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
-            }
+            AccessLevelException operation = new AccessLevelException(scpId, cardNo, request.getReaderIdList());
+            String msg = RequestMessage.encode(scpId, operation);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+
         }
 
         log.info("卡冻结-卡挂失 {}", cmdList.toString());

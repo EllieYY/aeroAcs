@@ -155,15 +155,14 @@
              4 * ISNULL(a.apb_flag, 0) +
              8 * ISNULL(a.disabled_flag, 0) +
              16 * ISNULL(a.card_pwd_flag, 0))  as flags,
-            (case b.schedules_group_id
-                when 0 then 0
+            (case
+                when b.schedules_group_id = 0 or a.state != '0' then 0
                 else b.access_level_id end) as alId,
             b.controller_id as scpId
         from c_card_info a
         left join d_employee_access_reader b
         on a.card_no = b.card_no
         where
-            a.state = '0' and
             a.card_no IN
             <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
                 #{id}
@@ -184,14 +183,14 @@
         4 * ISNULL(a.apb_flag, 0) +
         8 * ISNULL(a.disabled_flag, 0) +
         16 * ISNULL(a.card_pwd_flag, 0))  as flags,
-        (case b.ele_level_id
-            when 0 then 0
+        (case
+            when b.ele_level_id = 0 or a.state != '0' then 0
             else b.ele_access_id end) as alId,
         b.controller_id as scpId
         from c_card_info a
         left join ele_employee_access_reader b
         on a.card_no = b.card_no
-        where a.state = '0' and a.card_no IN
+        where  a.card_no IN
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
             #{id}
         </foreach>

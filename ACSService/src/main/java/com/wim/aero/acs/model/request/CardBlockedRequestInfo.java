@@ -16,16 +16,9 @@ import java.util.List;
 @Data
 @ApiModel(value = "卡对应的单个门冻结-解冻or挂失-解挂请求参数")
 public class CardBlockedRequestInfo extends TaskRequest {
-    @ApiModelProperty(value = "时间组编号")
-    @JsonProperty(defaultValue = "0")
-    private int tz;
+    @ApiModelProperty(value = "要冻结的读卡器逻辑id")
+    private List<Integer> readerIdList;
 
-//    @ApiModelProperty(value = "true-冻结or挂失  false-解冻or解挂")
-//    private int readerId blocked;
-
-    @ApiModelProperty(value = "true-冻结or挂失  false-解冻or解挂")
-    private boolean blocked;
-
-    @ApiModelProperty(value = "卡号列表")
-    private List<String> cardList;
+    @ApiModelProperty(value = "卡号")
+    private String cardNo;
 }

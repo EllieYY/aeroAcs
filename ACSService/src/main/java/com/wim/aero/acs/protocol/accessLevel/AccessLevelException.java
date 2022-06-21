@@ -31,19 +31,15 @@ public class AccessLevelException extends Operation {
     private List<ReaderTz> readerTzList = new ArrayList<>();
 
 
-    public AccessLevelException(int scpId, String nCardholderId, int tz, boolean block) {
+    public AccessLevelException(int scpId, String nCardholderId, List<Integer> readerList) {
         this.scp_number = scpId;
         this.nCardholderId = nCardholderId;
+        int size = readerList.size();
 
-        if (block) {
-            nEntries = 64;
-            for (int i = 0; i < nEntries; i++) {
-                readerTzList.add(new ReaderTz(i, tz));
-//                if (i == readerId) {
-//                    readerTzList.add(new ReaderTz(i, tz));
-//                } else {
-//                    readerTzList.add(new ReaderTz(i, 0));
-//                }
+        if (size > 0) {
+            nEntries = size;
+            for (Integer readerId:readerList) {
+                readerTzList.add(new ReaderTz(readerId, 0));
             }
         } else {
             nEntries = 0;
