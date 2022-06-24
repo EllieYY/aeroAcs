@@ -3,10 +3,7 @@ package com.wim.aero.acs.service;
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.config.DSTConfig;
 import com.wim.aero.acs.config.ScpSpecificationConfig;
-import com.wim.aero.acs.db.entity.CardFormat;
-import com.wim.aero.acs.db.entity.DevControllerCommonAttribute;
-import com.wim.aero.acs.db.entity.DevControllerDetail;
-import com.wim.aero.acs.db.entity.TrigScpProcDetail;
+import com.wim.aero.acs.db.entity.*;
 import com.wim.aero.acs.db.service.impl.*;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.DST;
@@ -28,6 +25,7 @@ import com.wim.aero.acs.protocol.device.reader.AcrStatusCommand;
 import com.wim.aero.acs.protocol.trigger.ActionSpecification;
 import com.wim.aero.acs.protocol.trigger.ProcedureControl;
 import com.wim.aero.acs.protocol.trigger.TriggerSpecificationExtend;
+import com.wim.aero.acs.protocol.trigger.TriggerVariableControl;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +55,7 @@ public class ScpService {
     private final TriggerInfoServiceImpl triggerInfoService;
     private final DevControllerDetailServiceImpl controllerDetailService;
     private final ScpSpecificationConfig scpSpecificationConfig;
+    private final TriggerVarServiceImpl triggerVarService;
 
     @Autowired
     public ScpService(DevControllerDetailServiceImpl devControllerDetailService,
@@ -69,7 +68,7 @@ public class ScpService {
                       TrigScpProcDetailServiceImpl trigScpProcDetailService,
                       TriggerInfoServiceImpl triggerInfoService,
                       DevControllerDetailServiceImpl controllerDetailService,
-                      ScpSpecificationConfig scpSpecificationConfig) {
+                      ScpSpecificationConfig scpSpecificationConfig, TriggerVarServiceImpl triggerVarService) {
         this.devControllerDetailService = devControllerDetailService;
         this.devControllerCommonAttributeService = devControllerCommonAttributeService;
         this.cardFormatService = cardFormatService;
@@ -81,6 +80,7 @@ public class ScpService {
         this.triggerInfoService = triggerInfoService;
         this.controllerDetailService = controllerDetailService;
         this.scpSpecificationConfig = scpSpecificationConfig;
+        this.triggerVarService = triggerVarService;
     }
     
     public void scpOnlineStateNotify(int scpId, int state) {
@@ -358,8 +358,8 @@ public class ScpService {
         // 卡格式配置 1102
         cardFormatConfig(scpId, cmdList);
 
-        //TODO: 触发器配置
-//        triggerConfig(scpId, cmdList);
+        // 触发器配置
+        triggerConfig(scpId, cmdList);
 
         log.info("[{} - scp配置]", scpId);
 
@@ -460,6 +460,14 @@ public class ScpService {
      * @param cmdList
      */
     public void triggerConfig(int scpId, List<ScpCmd> cmdList) {
+        // 313 触发器变量
+        List<TriggerVar> triggerVarList = triggerVarService.getTriVarByScpId(scpId);
+        for (TriggerVar var:triggerVarList) {
+            TriggerVariableControl option = TriggerVariableControl.fromDb(var);
+            String msg = RequestMessage.encode(scpId, option);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+
         // 118
         List<TrigScpProcDetail> details = trigScpProcDetailService.getProcDetailsByScp(scpId);
         for (TrigScpProcDetail detail: details) {

@@ -53,8 +53,9 @@ public class SqlServerGenerator {
 //        tables.add("ele_access_level");
 //        tables.add("ele_level_detail");
 //        tables.add("e_event_record");
-        tables.add("trig_scp_proc_detail");
-        tables.add("trigger_info");
+//        tables.add("trig_scp_proc_detail");
+//        tables.add("trigger_info");
+        tables.add("trigger_var");
 
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)
                 .globalConfig(builder -> {

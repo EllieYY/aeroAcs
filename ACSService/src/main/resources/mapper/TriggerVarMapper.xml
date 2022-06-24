@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.TriggerVarMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.TriggerVar">
+        <result column="seq_no" property="seqNo" />
+        <result column="controller_id" property="controllerId" />
+        <result column="var_id" property="varId" />
+        <result column="var_name" property="varName" />
+        <result column="var_value" property="varValue" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        seq_no, controller_id, var_id, var_name, var_value
+    </sql>
+    <select id="selectAllByControllerId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from trigger_var
+        where
+        controller_id = #{controllerId,jdbcType=NUMERIC}
+    </select>
+
+</mapper>

@@ -29,11 +29,11 @@ public class DAccessLevelDoorServiceImpl extends ServiceImpl<DAccessLevelDoorMap
     }
 
     public List<AccessLevelInfo> getByScpIdForEle(int scpId) {
-        return this.baseMapper.selectAllByControllerId(scpId);
+        return this.baseMapper.selectAllByControllerIdForEle(scpId);
     }
 
     public List<AccessLevelInfo> getListByScpIdForEle(int scpId, List<Integer> alvList) {
-        return this.baseMapper.selectListByControllerId(scpId, alvList);
+        return this.baseMapper.selectListByControllerIdForEle(scpId, alvList);
     }
 
     public List<EleAccessLevelInfo> getEleLevelByScp(int scpId) {

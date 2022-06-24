@@ -1,5 +1,6 @@
 package com.wim.aero.acs.protocol.trigger;
 
+import com.wim.aero.acs.db.entity.TriggerVar;
 import com.wim.aero.acs.message.Operation;
 import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
@@ -14,11 +15,20 @@ import org.springframework.scheduling.Trigger;
 @Data
 public class TriggerVariableControl  extends Operation {
     @CmdProp(index = 2)
-    private int scpNumber;   // SCP number
+    private Integer scpNumber;   // SCP number
 
     @CmdProp(index = 3)
-    private int tvNumber;    // org.springframework.scheduling. Trigger variable number to set or clear (1to 127)
+    private Integer tvNumber;    // org.springframework.scheduling. Trigger variable number to set or clear (1to 127)
 
     @CmdProp(index = 4)
-    private int setClear;    // Trigger variable value to set. Use zero to clear.
+    private Integer setClear;    // Trigger variable value to set. Use zero to clear.
+
+    public static TriggerVariableControl fromDb(TriggerVar detail) {
+        TriggerVariableControl result = new TriggerVariableControl();
+        result.scpNumber = detail.getControllerId();
+        result.tvNumber = detail.getVarId();
+        result.setClear = detail.getVarValue();
+
+        return result;
+    }
 }

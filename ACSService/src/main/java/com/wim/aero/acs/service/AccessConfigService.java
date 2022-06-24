@@ -264,7 +264,7 @@ public class AccessConfigService {
         if (isEleScp) {
             list = accessLevelService.getListByScpId(scpId, alvList);
         } else {
-            list = accessLevelService.getListByScpId(scpId, alvList);
+            list = accessLevelService.getListByScpIdForEle(scpId, alvList);
         }
         for(AccessLevelInfo item:list) {
             // Command 124
