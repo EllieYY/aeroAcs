@@ -24,16 +24,16 @@ public class DAccessLevelDoorServiceImpl extends ServiceImpl<DAccessLevelDoorMap
         return this.baseMapper.selectAllByControllerId(scpId);
     }
 
-    public List<AccessLevelInfo> getListByScpId(int scpId, List<Integer> alvList) {
-        return this.baseMapper.selectListByControllerId(scpId, alvList);
+    public List<AccessLevelInfo> getAlvList(List<Integer> alvList) {
+        return this.baseMapper.selectListByControllerId(alvList);
     }
 
     public List<AccessLevelInfo> getByScpIdForEle(int scpId) {
         return this.baseMapper.selectAllByControllerIdForEle(scpId);
     }
 
-    public List<AccessLevelInfo> getListByScpIdForEle(int scpId, List<Integer> alvList) {
-        return this.baseMapper.selectListByControllerIdForEle(scpId, alvList);
+    public List<AccessLevelInfo> getAlvListForEle(List<Integer> alvList) {
+        return this.baseMapper.selectListByControllerIdForEle(alvList);
     }
 
     public List<EleAccessLevelInfo> getEleLevelByScp(int scpId) {

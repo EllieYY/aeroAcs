@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @description: 10.7 Command 3305: Card Delete
  **/
 @Data
+
 @AllArgsConstructor
 public class CardDelete extends Operation {
     @CmdProp(index = 2)

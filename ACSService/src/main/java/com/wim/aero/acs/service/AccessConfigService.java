@@ -252,7 +252,7 @@ public class AccessConfigService {
      * @param
      */
     public void accessLevelListConfig(AlvlListRequestInfo request) {
-        int scpId = request.getScpId();
+//        int scpId = request.getScpId();
         boolean isEleScp = request.isEle();
         List<Integer> alvList = request.getAlvList();
         if (alvList.size() <= 0) {
@@ -262,11 +262,12 @@ public class AccessConfigService {
         List<ScpCmd> cmdList = new ArrayList<>();
         List<AccessLevelInfo> list = new ArrayList<>();
         if (isEleScp) {
-            list = accessLevelService.getListByScpId(scpId, alvList);
+            list = accessLevelService.getAlvListForEle(alvList);
         } else {
-            list = accessLevelService.getListByScpIdForEle(scpId, alvList);
+            list = accessLevelService.getAlvList(alvList);
         }
         for(AccessLevelInfo item:list) {
+            int scpId = item.getNScpNumber();
             // Command 124
             AccessLevelTest alTest = AccessLevelTest.fromDb(item);
             String alTestMsg = RequestMessage.encode(scpId, alTest);

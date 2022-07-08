@@ -17,16 +17,16 @@ import java.util.stream.Collectors;
 @Data
 public class TriggerSpecificationExtend extends Operation {
     @CmdProp(index = 2)
-    private int lastModified = 0;
+    private Integer lastModified = 0;
 
     @CmdProp(index = 3)
-    private int scpNumber;  // SCP number
+    private Integer scpNumber;  // SCP number
 
     @CmdProp(index = 4)
-    private int trgrNumber; // Trigger number
+    private Integer trgrNumber; // Trigger number
 
     @CmdProp(index = 5)
-    private int command; // org.apache.activemq.command.Command to issue to the procedure:
+    private Integer command; // org.apache.activemq.command.Command to issue to the procedure:
     //    Value Command description
     // 1 Abort a delayed procedure
     // 2 Execute actions with prefix 0
@@ -39,49 +39,49 @@ public class TriggerSpecificationExtend extends Operation {
     // 9 Resume a delayed procedure and execute actions with prefix 1024
 
     @CmdProp(index = 6)
-    private int procNum;
+    private Integer procNum;
 
     @CmdProp(index = 7)
-    private int srcType;
+    private Integer srcType;
 
     @CmdProp(index = 8)
-    private int srcNumber;
+    private Integer srcNumber;
 
     @CmdProp(index = 9)
-    private int tranType;
+    private Integer tranType;
 
     @CmdProp(index = 10)
-    private long tranCodeMap0 = 0;
+    private Long tranCodeMap0;
 
     @CmdProp(index = 11)
-    private long tranCodeMap1 = 0;
+    private Long tranCodeMap1;
 
     @CmdProp(index = 12)
-    private int timezone;
+    private Integer timezone;
 
     @CmdProp(index = 13)
-    private int var1;
+    private Integer var1;
 
     @CmdProp(index = 14)
-    private int var2;
+    private Integer var2;
 
     @CmdProp(index = 15)
-    private int var3;
+    private Integer var3;
 
     @CmdProp(index = 16)
-    private int var4;
+    private Integer var4;
 
     @CmdProp(index = 17)
-    private int arg1;
+    private Integer arg1;
 
     @CmdProp(index = 18)
-    private int arg2;
+    private Integer arg2;
 
     @CmdProp(index = 19)
-    private int arg3;
+    private Integer arg3;
 
     @CmdProp(index = 20)
-    private int arg4;
+    private Integer arg4;
 
     public static TriggerSpecificationExtend fromDb(TriggerInfoEx detail) {
         TriggerSpecificationExtend result = new TriggerSpecificationExtend();

@@ -55,7 +55,7 @@ public class TypeCoS extends TransactionBody {
 
     }
 
-    private static  final Map<Integer, Integer> cosSrcMap = Map.of(
+    private static final Map<Integer, Integer> cosSrcMap = Map.of(
             0x02, Constants.TRAN_TABLE_SRC_MP,   // 控制器内部报警点 cos
             0x05, Constants.TRAN_TABLE_SRC_SIO,   // sio防撬 cos
             0x06, Constants.TRAN_TABLE_SRC_SIO,   // sio电源 cos

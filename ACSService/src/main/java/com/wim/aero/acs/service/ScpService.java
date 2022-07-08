@@ -85,7 +85,9 @@ public class ScpService {
     
     public void scpOnlineStateNotify(int scpId, int state) {
         StatusMessage message = new StatusMessage(
-                0, System.currentTimeMillis(), scpId, Constants.TRAN_TABLE_SRC_SCP, scpId, 0, 0, state, Constants.TRAN_TABLE_SRC_SCP,"");
+                0, System.currentTimeMillis(), scpId, Constants.TRAN_TABLE_SRC_SCP,
+                scpId, 0, 0, state,
+                Constants.TRAN_TABLE_SRC_SCP,"");
         queueProducer.sendStatusMessage(message);
     }
 
@@ -168,11 +170,13 @@ public class ScpService {
      * @param status
      */
     public void scpStateUpdate(int scpId, int status) {
+        String srcStr = "通信服务上报控制器状态：" + scpId + ":" + status;
         // 设备状态：0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭
         int deviceState = (status == 1) ? 1 : 0;
         StatusMessage message = new StatusMessage(
                 0, System.currentTimeMillis(), scpId,
-                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, deviceState, Constants.TRAN_TABLE_SRC_SCP,this.toString());
+                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0,
+                deviceState, Constants.TRAN_TABLE_SRC_SCP, srcStr);
         queueProducer.sendStatusMessage(message);
     }
 

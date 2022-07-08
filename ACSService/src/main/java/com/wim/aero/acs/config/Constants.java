@@ -34,6 +34,27 @@ public interface Constants {
     int MT2 = 2;
 
 
+//    public static readonly int ERR_SUCCED = 0;
+//    public static readonly int ERR_FAIL_2_SCP = 1;
+//    public static readonly int ERR_SCP_NOT_CREATE = 2;
+//    public static readonly int ERR_CHANNEL_NOT_CREATE = 3;
+//    public static readonly int ERR_DRIVER_UNINIT = 4;
+//    public static readonly int ERR_SCP_RECREATE = 5;
+//    public static readonly int ERR_SCP_ATTACH_CHANNEL = 6;
+//    public static readonly int ERR_CMD_INVALID = 7;
+//    static status()
+//    {
+//        err_msg.Add(ERR_SUCCED,                 "向SCP发送命令成功");
+//        err_msg.Add(ERR_FAIL_2_SCP,             "向SCP发送命令失败");
+//        err_msg.Add(ERR_SCP_NOT_CREATE,         "SCP未创建");
+//        err_msg.Add(ERR_CHANNEL_NOT_CREATE,     "Channel未创建");
+//        err_msg.Add(ERR_DRIVER_UNINIT,          "驱动未初始化");
+//        err_msg.Add(ERR_SCP_RECREATE,           "重复创建SCP");
+//        err_msg.Add(ERR_SCP_ATTACH_CHANNEL,     "SCP绑定Channel失败");
+//        err_msg.Add(ERR_CMD_INVALID,            "SCP命令非法");
+//    }
+
+
     /** 最终统一状态： 0 - 离线/无效  1 - 在线/正常  2 - 报警  3 - 故障 4 - 打开  5 - 关闭  6 - 在线（持续状态判断） */
     int TRAGET_STATE_INVALID = 0;
     int TRAGET_STATE_VALID = 1;

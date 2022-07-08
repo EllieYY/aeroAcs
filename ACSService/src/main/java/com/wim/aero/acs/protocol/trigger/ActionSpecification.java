@@ -18,18 +18,18 @@ import java.util.Optional;
 @Data
 public class ActionSpecification extends Operation {
     @CmdProp(index = 2)
-    private int lastModified = 0;  // Set to 0
+    private Integer lastModified = 0;  // Set to 0
 
     @CmdProp(index = 3)
-    private int scpNumber;   // SCP number
+    private Integer scpNumber;   // SCP number
 
     @CmdProp(index = 4)
-    private int procNumber; // 0 to nProc-1,
+    private Integer procNumber; // 0 to nProc-1,
 
     @CmdProp(index = 5)
     private String actionType;   // 需要加prefix
 
-    @CmdProp(index = 6, enCodec = "formatList")
+    @CmdProp(index = 6, enCodec = "formatStrList")
     private List<String> paramList = new ArrayList<>();
 
     public static ActionSpecification fromDb(TrigScpProcDetail detail) {
@@ -37,7 +37,7 @@ public class ActionSpecification extends Operation {
         result.setScpNumber(detail.getControllerId());
         result.setProcNumber(detail.getProcId());
 
-        int prefix = detail.getPrefix();
+        int prefix = Optional.ofNullable(detail.getPrefix()).orElse(0);
         int actionType = detail.getFunctionId();
         result.setActionType(Integer.toString(prefix) + Integer.toString(actionType));
 

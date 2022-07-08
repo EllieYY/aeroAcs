@@ -32,6 +32,10 @@ public class FieldParser {
         return String.join(" ", val.stream().map(String::valueOf).collect(Collectors.toList()));
     }
 
+    public static String formatStrList(List<String> val) {
+        return String.join(" ", val.stream().map(String::valueOf).collect(Collectors.toList()));
+    }
+
     public static String formatTimeInterval(List<TimeInterval> valList) {
         return String.join(" ", valList.stream().map(TimeInterval::toString).collect(Collectors.toList()));
     }
