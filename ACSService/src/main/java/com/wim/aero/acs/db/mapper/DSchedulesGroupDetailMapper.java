@@ -21,4 +21,8 @@ public interface DSchedulesGroupDetailMapper extends BaseMapper<DSchedulesGroupD
     List<TimeZone> selectByScpId(@Param("scpId") int scpId);
 
     List<TimeZone> selectByScpIdForEle(@Param("scpId") int scpId);
+
+    // 查找所有时间组
+    List<TimeZone> selectAllForScp(@Param("scpId") int scpId);
+
 }

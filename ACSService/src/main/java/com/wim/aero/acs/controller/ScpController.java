@@ -78,11 +78,11 @@ public class ScpController {
 
         List<ScpCmd> cmdList = new ArrayList<>();
         scpService.configScp(request, cmdList);
-        accessConfigService.accessConfig(request, cmdList);
-        sioService.configSioForScp(request, cmdList);
-
-        // 报文发送
-        requestPendingCenter.sendCmdList(request, cmdList);
+//        accessConfigService.accessConfig(request, cmdList);
+//        sioService.configSioForScp(request, cmdList);
+//
+//        // 报文发送
+//        requestPendingCenter.sendCmdList(request, cmdList);
 
         return ResultBeanUtil.makeOkResp();
     }

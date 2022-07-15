@@ -239,6 +239,11 @@ public class AccessConfigService {
     public void accessLevelConfig(AlvlRequestInfo request) {
         // 组织报文
         List<ScpCmd> cmdList = new ArrayList<>();
+
+        // 下载时间组
+        addTimeZone(request.getScpId(), request.isEle(), cmdList);
+
+        // 下载访问级别
         accessLevelConfig(request.getScpId(), request.isEle(), cmdList);
 
         log.info("[scp全部访问级别更新] - {}", cmdList.toString());
@@ -332,12 +337,12 @@ public class AccessConfigService {
      */
     public void addTimeZone(int scpId, boolean isEleScp, List<ScpCmd> cmdList) {
         // command 3103
-        List<TimeZone> list = new ArrayList<>();
-        if (isEleScp) {
-            list = schedulesGroupService.getTimeZonesForEleScp(scpId);
-        } else {
-            list = schedulesGroupService.getTimeZonesByScp(scpId);
-        }
+        List<TimeZone> list = schedulesGroupService.getAllTimeZonesForScp(scpId);
+//        if (isEleScp) {
+//            list = schedulesGroupService.getTimeZonesForEleScp(scpId);
+//        } else {
+//            list = schedulesGroupService.getTimeZonesByScp(scpId);
+//        }
         for(TimeZone item:list) {
             item.updateIntervalSize();
             String msg = RequestMessage.encode(scpId, item);

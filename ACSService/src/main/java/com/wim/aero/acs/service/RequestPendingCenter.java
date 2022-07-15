@@ -202,7 +202,7 @@ public class RequestPendingCenter implements CacheManagerAware {
             return false;
         }
 
-        log.info("[消息匹配] seq:{}, code:{}, streamId:{}", seqNo, code, streamList.toString());
+//        log.info("[消息匹配] seq:{}, code:{}, streamId:{}", seqNo, code, streamList.toString());
 
         List<TaskDetail> taskDetailList = new ArrayList<>();
         for (String key:streamList) {

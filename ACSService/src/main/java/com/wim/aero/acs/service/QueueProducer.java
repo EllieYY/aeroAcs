@@ -84,7 +84,7 @@ public class QueueProducer {
         }
 
         String messageStr = JsonUtil.toJson(scpSeqMessage);
-        log.info("[{} - 匹配失败，命令执行结果入队等待] - {}", scpSeqMessage.getScpId(), messageStr);
+//        log.info("[{} - 匹配失败，命令执行结果入队等待] - {}", scpSeqMessage.getScpId(), messageStr);
         this.sendMessage(scpSeqQueue, messageStr);
     }
 

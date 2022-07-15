@@ -56,6 +56,8 @@ public class ScpService {
     private final DevControllerDetailServiceImpl controllerDetailService;
     private final ScpSpecificationConfig scpSpecificationConfig;
     private final TriggerVarServiceImpl triggerVarService;
+    private final SioService sioService;
+    private final AccessConfigService accessConfigService;
 
     @Autowired
     public ScpService(DevControllerDetailServiceImpl devControllerDetailService,
@@ -68,7 +70,10 @@ public class ScpService {
                       TrigScpProcDetailServiceImpl trigScpProcDetailService,
                       TriggerInfoServiceImpl triggerInfoService,
                       DevControllerDetailServiceImpl controllerDetailService,
-                      ScpSpecificationConfig scpSpecificationConfig, TriggerVarServiceImpl triggerVarService) {
+                      ScpSpecificationConfig scpSpecificationConfig,
+                      TriggerVarServiceImpl triggerVarService,
+                      SioService sioService,
+                      AccessConfigService accessConfigService) {
         this.devControllerDetailService = devControllerDetailService;
         this.devControllerCommonAttributeService = devControllerCommonAttributeService;
         this.cardFormatService = cardFormatService;
@@ -81,6 +86,8 @@ public class ScpService {
         this.controllerDetailService = controllerDetailService;
         this.scpSpecificationConfig = scpSpecificationConfig;
         this.triggerVarService = triggerVarService;
+        this.sioService = sioService;
+        this.accessConfigService = accessConfigService;
     }
     
     public void scpOnlineStateNotify(int scpId, int state) {
@@ -336,6 +343,8 @@ public class ScpService {
      */
     @Async
     public void configScp(ScpRequestInfo requestInfo, List<ScpCmd> cmdList) {
+        log.info(" taskId = {}", requestInfo.getTaskId());
+
         int scpId = requestInfo.getScpId();
 //        List<ScpCmd> cmdList = new ArrayList<>();
         scpSpecification(scpId, cmdList);
@@ -366,6 +375,15 @@ public class ScpService {
         triggerConfig(scpId, cmdList);
 
         log.info("[{} - scp配置]", scpId);
+
+        // 访问权限配置
+        accessConfigService.accessConfig(requestInfo, cmdList);
+
+        // 硬件配置
+        sioService.configSioForScp(requestInfo, cmdList);
+
+        // 报文发送
+        requestPendingCenter.sendCmdList(requestInfo, cmdList);
 
 //        for(ScpCmd cmd:cmdList) {
 //            System.out.println(cmd.getCommand());
@@ -482,10 +500,13 @@ public class ScpService {
 
         // 1117  TriggerSpecificationExtend
         List<TriggerInfoEx> triggerInfoExList = triggerInfoService.getTriggerInfoForScp(scpId);
+//        log.info("[before] scpId:{}  1117 size: {}, cmdList size:{}", scpId, triggerInfoExList.size(), cmdList.size());
         for(TriggerInfoEx trigger:triggerInfoExList) {
             TriggerSpecificationExtend specification = TriggerSpecificationExtend.fromDb(trigger);
             String msg = RequestMessage.encode(scpId, specification);
             cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+//            log.info("adding {}", cmdList.size());
         }
+//        log.info("[after] scpId:{} cmdList size:{}", scpId, cmdList.size());
     }
 }

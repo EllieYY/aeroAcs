@@ -45,7 +45,7 @@ public class DeviceStatusController {
     @RequestMapping(value = "/cards", method = {RequestMethod.POST})
     public ResultBean<String> cardsCountCommand(@RequestBody ScpCardsRequest request) {
 
-//        scpService.requestDeviceStatus(request);
+        scpService.cardAmountRequest(request);
         return ResultBeanUtil.makeOkResp();
     }
 }
