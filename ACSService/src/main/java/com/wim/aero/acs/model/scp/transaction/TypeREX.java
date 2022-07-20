@@ -27,7 +27,7 @@ import java.util.Map;
  * 9 - exit cycle: started
  **/
 @Data
-public class TypeREX extends TransactionBody {
+public class TypeREX extends TransactionBody implements AccessEvent {
     private int rex_number;				// rex that initiated the request (0 or 1)
 
     @Override
@@ -60,5 +60,10 @@ public class TypeREX extends TransactionBody {
                         Constants.TRAN_TABLE_SRC_MP, transaction.toString())
         );
 
+    }
+
+    @Override
+    public String getCardHolder() {
+        return "REX " + rex_number;
     }
 }

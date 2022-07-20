@@ -12,15 +12,11 @@ import lombok.Data;
  * @description:
  **/
 @Data
-@ApiModel(value = "过程执行命令参数")
-public class ProcedureCommandRequest extends TaskRequest {
+@ApiModel(value = "触发器变量删除参数")
+public class TriggerVarCommandRequest extends TaskRequest {
     @ApiModelProperty(value = "控制器id", required = true)
     private int scpId;
 
-    @ApiModelProperty(value = "过程id", required = true)
-    private int procedureId;
-
-    @ApiModelProperty(value = "执行动作前缀: [0 256 512 1024]，可不填，默认值是0")
-    @JsonProperty(defaultValue = "0")
-    private int prefix;
+    @ApiModelProperty(value = "触发器变量id", required = true)
+    private int varId;
 }

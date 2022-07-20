@@ -2,7 +2,10 @@ package com.wim.aero.acs.service;
 
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.db.entity.EEventRecord;
+import com.wim.aero.acs.db.service.impl.EEventCodeDetailDevServiceImpl;
 import com.wim.aero.acs.db.service.impl.EEventRecordServiceImpl;
+import com.wim.aero.acs.model.mq.AccessMessage;
+import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
 import com.wim.aero.acs.model.scp.reply.EnScpReplyType;
 import com.wim.aero.acs.model.scp.reply.ReplyBody;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,12 +36,17 @@ public class ScpMessageService {
     private final EEventRecordServiceImpl eventRecordService;
     private final ScpCenter scpCenter;
     private static Map<Integer, Integer> eventLogSrcMap;
+    private final EEventCodeDetailDevServiceImpl eventCodeDetailDevService;
 
     @Autowired
-    public ScpMessageService(QueueProducer queueProducer, EEventRecordServiceImpl eventRecordService, ScpCenter scpCenter) {
+    public ScpMessageService(QueueProducer queueProducer,
+                             EEventRecordServiceImpl eventRecordService,
+                             ScpCenter scpCenter,
+                             EEventCodeDetailDevServiceImpl eventCodeDetailDevService) {
         this.queueProducer = queueProducer;
         this.eventRecordService = eventRecordService;
         this.scpCenter = scpCenter;
+        this.eventCodeDetailDevService = eventCodeDetailDevService;
 
         eventLogSrcMap = new HashMap<>();
         eventLogSrcMap.put(0x00, Constants.TRAN_TABLE_SRC_SCP);
@@ -65,7 +74,7 @@ public class ScpMessageService {
         eventLogSrcMap.put(0x12, Constants.TRAN_TABLE_SRC_SCP);
         eventLogSrcMap.put(0x13, Constants.TRAN_TABLE_SRC_SCP);
         eventLogSrcMap.put(0x14, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x15, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x15, Constants.TRAN_TABLE_SRC_ACR);
         eventLogSrcMap.put(0x16, Constants.TRAN_TABLE_SRC_SCP);
 
         eventLogSrcMap.put(0x17, Constants.TRAN_TABLE_SRC_MP);
@@ -92,13 +101,6 @@ public class ScpMessageService {
         // 事务信息入总库
         saveEventInfo(transaction);
 
-        //日志事件
-        int targerSrcCode = eventLogSrcMap.get(sourceType);
-        LogMessage message = new LogMessage(eventNo, date, scpId, sourceType, sourceNum, tranType, tranCode,
-                targerSrcCode,
-                transaction.toString());
-        queueProducer.sendLogMessage(message);
-
         if (!TransactionType.isProtocolCode(sourceType, tranType)) {
             log.info("不支持的SCPReplyTransaction类型 - {}", transaction.toString());
             return;
@@ -110,7 +112,44 @@ public class ScpMessageService {
         Class<TransactionBody> bodyClazz = TransactionType.fromCode(sourceType, tranType).getTransClazz();
         TransactionBody body = JsonUtil.fromJson(transaction.getArgJsonStr(), bodyClazz);
 
-        body.process(queueProducer, transaction);
+        // body.process(queueProducer, transaction);
+
+        // 筛选后分发
+        List<Integer> mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, null);
+//        log.info("mqType: {}", mqMsgTypeList.toString());
+
+        int targerSrcCode = eventLogSrcMap.get(sourceType);
+        for (Integer mqType:mqMsgTypeList) {
+            String cardNo = "";
+            if (mqType == Constants.MQ_ACCESS) {
+                if (body instanceof AccessEvent) {
+                    cardNo = ((AccessEvent) body).getCardHolder();
+                } else {
+                    log.error("can not get cardholder info, {}", transaction.toString());
+                }
+                queueProducer.sendAccessMessage(
+                        new AccessMessage(eventNo, date, scpId, sourceType, sourceNum, tranType, tranCode, cardNo,
+                                targerSrcCode, transaction.toString())
+                );
+            } else if (mqType == Constants.MQ_WARNING) {
+                int stateCode = -1;
+                int deviceStatus = -1;
+                if (body instanceof AlarmEvent) {
+                    deviceStatus = ((AlarmEvent) body).getDeviceState(tranCode);
+                    stateCode = ((AlarmEvent) body).getStateCode();
+                } else {
+                    log.error("can not get state info, {}", transaction.toString());
+                }
+                queueProducer.sendStatusMessage(new AlarmMessage(eventNo, date, scpId,
+                        sourceType, sourceNum, tranType, tranCode, deviceStatus, targerSrcCode, transaction.toString(), stateCode));
+
+            } else if (mqType == Constants.MQ_LOG) {
+                LogMessage message = new LogMessage(eventNo, date, scpId, sourceType, sourceNum, tranType, tranCode,
+                        targerSrcCode,
+                        transaction.toString());
+                queueProducer.sendLogMessage(message);
+            }
+        }
     }
 
     private void saveEventInfo(SCPReplyTransaction transaction) {

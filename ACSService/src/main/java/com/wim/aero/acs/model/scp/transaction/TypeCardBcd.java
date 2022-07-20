@@ -19,7 +19,7 @@ import java.util.Date;
  **/
 @Data
 @Slf4j
-public class TypeCardBcd extends TransactionBody {
+public class TypeCardBcd extends TransactionBody implements AccessEvent {
     private int digit_count;			// number of valid digits (0-9 plus A-F)
     private String bcd_array;		// each entry holds a hex digit: 0x0 - 0xF
 
@@ -39,5 +39,12 @@ public class TypeCardBcd extends TransactionBody {
                 new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
                         Constants.TRAN_TABLE_SRC_ACR, this.toString())
         );
+    }
+
+    @Override
+    public String getCardHolder() {
+        int length = bcd_array.length();
+        int targetLength = digit_count > length ? digit_count : length;
+        return bcd_array.substring(0, targetLength);
     }
 }

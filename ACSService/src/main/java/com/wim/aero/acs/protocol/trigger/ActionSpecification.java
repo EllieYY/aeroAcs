@@ -38,8 +38,9 @@ public class ActionSpecification extends Operation {
         result.setProcNumber(detail.getProcId());
 
         int prefix = Optional.ofNullable(detail.getPrefix()).orElse(0);
+        String prefixStr = prefix == 0 ? "" : Integer.toString(prefix);
         int actionType = detail.getFunctionId();
-        result.setActionType(Integer.toString(prefix) + Integer.toString(actionType));
+        result.setActionType(prefixStr + Integer.toString(actionType));
 
         List<String> allParamList = new ArrayList<>();
         allParamList.add(Optional.ofNullable(detail.getPara01()).orElse(0).toString());
@@ -62,5 +63,15 @@ public class ActionSpecification extends Operation {
 
         return result;
     }
+
+    public static ActionSpecification procClear(int scpId, int procId) {
+        ActionSpecification result = new ActionSpecification();
+        result.setScpNumber(scpId);
+        result.setProcNumber(procId);
+        result.setActionType("0");
+
+        return result;
+    }
+
 
 }

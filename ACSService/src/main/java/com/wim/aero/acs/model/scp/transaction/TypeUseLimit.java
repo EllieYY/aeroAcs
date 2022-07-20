@@ -17,7 +17,7 @@ import java.util.Date;
  * 1 - use limit changed, reporting new limit
  **/
 @Data
-public class TypeUseLimit extends TransactionBody {
+public class TypeUseLimit extends TransactionBody implements AccessEvent {
     private int ueeCount;				// the updated use count as a result of this access
     private long cardholderId;			// cardholder ID number
 
@@ -36,5 +36,10 @@ public class TypeUseLimit extends TransactionBody {
                 new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
                         Constants.TRAN_TABLE_SRC_ACR, this.toString())
         );
+    }
+
+    @Override
+    public String getCardHolder() {
+        return String.valueOf(cardholderId);
     }
 }

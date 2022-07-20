@@ -20,7 +20,7 @@ import lombok.Data;
  * 5 - fault (fault type is encoded in door_status byte
  **/
 @Data
-public class TypeCoSDoor extends TransactionBody {
+public class TypeCoSDoor extends TransactionBody implements AlarmEvent {
     // status code byte encoding:
     //		0x07 - status mask: 0=inactive, 1=active, 2-7=supervisory fault codes:
     //				2==ground, 3==short, 4==open, 5==foreign voltage, 6==non-settling
@@ -74,5 +74,15 @@ public class TypeCoSDoor extends TransactionBody {
             targetStatus = Constants.TRAGET_STATE_CLOSE;
         }
         return targetStatus;
+    }
+
+    @Override
+    public int getDeviceState(int tranCode) {
+        return parseStatus(tranCode, this.door_status);
+    }
+
+    @Override
+    public int getStateCode() {
+        return this.door_status;
     }
 }

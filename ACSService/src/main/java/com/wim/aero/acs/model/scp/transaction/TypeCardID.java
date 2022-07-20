@@ -59,7 +59,7 @@ import java.util.Date;
  * // 		43 - request denied: known card denied access from cache
  **/
 @Data
-public class TypeCardID extends TransactionBody {
+public class TypeCardID extends TransactionBody implements AccessEvent {
     private int	format_number;			// index to the format table that was used, negative if reverse read
     private long cardholder_id;			// cardholder ID number
     private int	floor_number;			// zero if not available (or not supported), else 1==first floor, ...
@@ -82,5 +82,10 @@ public class TypeCardID extends TransactionBody {
                 new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
                         Constants.TRAN_TABLE_SRC_ACR, this.toString())
         );
+    }
+
+    @Override
+    public String getCardHolder() {
+        return String.valueOf(cardholder_id);
     }
 }

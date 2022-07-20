@@ -24,7 +24,7 @@ import java.util.Map;
  * 7 - Entry delay in progress
  **/
 @Data
-public class TypeCoS extends TransactionBody {
+public class TypeCoS extends TransactionBody implements AlarmEvent {
     // status code byte encoding:
     //		0x07 - status mask: 0=inactive, 1=active, 2-7=supervisory fault codes:
     //				2==ground, 3==short, 4==open, 5==foreign voltage, 6==non-settling
@@ -69,4 +69,13 @@ public class TypeCoS extends TransactionBody {
     );
 
 
+    @Override
+    public int getDeviceState(int tranCode) {
+        return Constants.TRAN_CODE_MAP.get(tranCode);
+    }
+
+    @Override
+    public int getStateCode() {
+        return status;
+    }
 }

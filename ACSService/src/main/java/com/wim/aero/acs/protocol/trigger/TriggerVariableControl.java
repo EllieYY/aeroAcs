@@ -13,7 +13,7 @@ import org.springframework.scheduling.Trigger;
  * @description: 12.7 Command 313: Trigger Variable Control Command
  **/
 @Data
-public class TriggerVariableControl  extends Operation {
+public class TriggerVariableControl extends Operation {
     @CmdProp(index = 2)
     private Integer scpNumber;   // SCP number
 
@@ -28,6 +28,15 @@ public class TriggerVariableControl  extends Operation {
         result.scpNumber = detail.getControllerId();
         result.tvNumber = detail.getVarId();
         result.setClear = detail.getVarValue();
+
+        return result;
+    }
+
+    public static TriggerVariableControl varDelate(int scpId, int varId) {
+        TriggerVariableControl result = new TriggerVariableControl();
+        result.scpNumber = scpId;
+        result.tvNumber = varId;
+        result.setClear = 0;
 
         return result;
     }

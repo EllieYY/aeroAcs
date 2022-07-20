@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wim.aero.acs.db.mapper.EEventCodeDetailDevMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wim.aero.acs.db.entity.EEventCodeDetailDev">
+        <id column="seq_no" property="seqNo" />
+        <result column="event_record_id" property="eventRecordId" />
+        <result column="event_source_type" property="eventSourceType" />
+        <result column="source_code" property="sourceCode" />
+        <result column="event_type" property="eventType" />
+        <result column="event_type_code" property="eventTypeCode" />
+        <result column="change_state" property="changeState" />
+        <result column="event_memo" property="eventMemo" />
+        <result column="translate_memo" property="translateMemo" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        seq_no, event_record_id, event_source_type, source_code, event_type, event_type_code, change_state, event_memo, translate_memo, create_by, create_time, update_by, update_time
+    </sql>
+    <select id="selectAllByEventTypeAndEventTypeCodeAndEventSourceType" resultType="java.lang.Integer">
+        select
+            DISTINCT(b.msg_type)
+        from e_event_code_detail_dev a, e_event_code_detail b
+        where
+            a.event_record_id = b.event_record_id
+        AND a.event_type = #{eventType,jdbcType=NUMERIC}
+        AND a.event_type_code = #{eventTypeCode,jdbcType=NUMERIC}
+        AND a.event_source_type = #{eventSourceType,jdbcType=NUMERIC}
+        <if test="changeState != null">
+            AND a.change_state = #{changeState}
+        </if>
+    </select>
+
+</mapper>

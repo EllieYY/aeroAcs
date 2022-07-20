@@ -267,6 +267,40 @@ public class ScpService {
     }
 
     /**
+     * 删除过程
+     * @param request
+     * @return
+     */
+    public int procedureClear(ProcedureCommandRequest request) {
+        int scpId = request.getScpId();
+
+        ActionSpecification operation = ActionSpecification.procClear(scpId, request.getProcedureId());
+        String msg = RequestMessage.encode(scpId, operation);
+        log.info("[{} - 过程删除] msg={}", scpId, msg);
+
+        // 向设备发送
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+        return requestPendingCenter.sendCmd(request, cmd);
+    }
+
+    /**
+     * 删除触发器变量
+     * @param request
+     * @return
+     */
+    public int triggerVarDelete(TriggerVarCommandRequest request) {
+        int scpId = request.getScpId();
+
+        TriggerVariableControl operation = TriggerVariableControl.varDelate(scpId, request.getVarId());
+        String msg = RequestMessage.encode(scpId, operation);
+        log.info("[{} - 触发器变量删除] msg={}", scpId, msg);
+
+        // 向设备发送
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+        return requestPendingCenter.sendCmd(request, cmd);
+    }
+
+    /**
      * 卡容量查询
      * @param request
      */
@@ -509,4 +543,5 @@ public class ScpService {
         }
 //        log.info("[after] scpId:{} cmdList size:{}", scpId, cmdList.size());
     }
+
 }

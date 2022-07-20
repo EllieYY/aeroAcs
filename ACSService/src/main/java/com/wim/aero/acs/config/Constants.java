@@ -33,6 +33,11 @@ public interface Constants {
     int WGND = 1;
     int MT2 = 2;
 
+    // mq消息类型定义 —— 数据字典
+    int MQ_ACCESS = 1;
+    int MQ_WARNING = 2;
+    int MQ_LOG = 3;
+
 
 //    public static readonly int ERR_SUCCED = 0;
 //    public static readonly int ERR_FAIL_2_SCP = 1;

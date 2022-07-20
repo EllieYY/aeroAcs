@@ -18,7 +18,7 @@ import java.util.Date;
  * // 		2 - access granted, invalid card format
  **/
 @Data
-public class TypeCardBin extends TransactionBody {
+public class TypeCardBin extends TransactionBody implements AccessEvent {
     private int bit_count;			// number of valid data bits
     private String bit_array;		// first bit is (0x80 & bit_array[0])
 
@@ -39,5 +39,12 @@ public class TypeCardBin extends TransactionBody {
                 new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
                         Constants.TRAN_TABLE_SRC_ACR, this.toString())
         );
+    }
+
+    @Override
+    public String getCardHolder() {
+        int length = bit_array.length();
+        int targetLength = bit_count > length ? bit_count : length;
+        return bit_array.substring(0, targetLength);
     }
 }
