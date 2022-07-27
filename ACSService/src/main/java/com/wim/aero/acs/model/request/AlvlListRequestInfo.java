@@ -20,7 +20,7 @@ public class AlvlListRequestInfo extends TaskRequest {
     private int scpId;
 
     @ApiModelProperty(value = "是否梯控")
-    @JsonProperty(value = "isEle")
+    @JsonProperty(value = "isEle", defaultValue = "false")
     private boolean isEle;
 
     @ApiModelProperty(value = "访问级别列表")

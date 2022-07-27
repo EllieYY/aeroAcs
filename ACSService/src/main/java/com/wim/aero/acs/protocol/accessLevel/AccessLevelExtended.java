@@ -47,6 +47,9 @@ public class AccessLevelExtended extends Operation {
         // 对应读写器编号位置填对应时间组编号
         List<ACRTz> acrTzList = info.getTzList();
         for(ACRTz item:acrTzList) {
+            if (item.getState() != 0) {
+                continue;
+            }
             int tzNo = item.getTz();
             int acrNo = item.getAcrId();
             if (acrNo >= 0 && acrNo < 64) {

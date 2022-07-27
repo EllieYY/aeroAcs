@@ -166,6 +166,9 @@ public class ScpService {
             SCPDriver driver = SCPDriver.fromDb(detail);
             String msg = RequestMessage.encode(scpId, driver);
             cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+
+            // 1105和1107
+            scpSpecification(scpId, cmdList);
         }
 
         return cmdList;
@@ -274,7 +277,8 @@ public class ScpService {
     public int procedureClear(ProcedureCommandRequest request) {
         int scpId = request.getScpId();
 
-        ActionSpecification operation = ActionSpecification.procClear(scpId, request.getProcedureId());
+        ActionSpecification operation =
+                ActionSpecification.procClear(scpId, request.getProcedureId(), request.getPrefix());
         String msg = RequestMessage.encode(scpId, operation);
         log.info("[{} - 过程删除] msg={}", scpId, msg);
 
@@ -289,15 +293,23 @@ public class ScpService {
      * @return
      */
     public int triggerVarDelete(TriggerVarCommandRequest request) {
-        int scpId = request.getScpId();
+        List<TriggerVarCommand> list = request.getInfoList();
+        if (list.isEmpty()) {
+            return 0;
+        }
 
-        TriggerVariableControl operation = TriggerVariableControl.varDelate(scpId, request.getVarId());
-        String msg = RequestMessage.encode(scpId, operation);
-        log.info("[{} - 触发器变量删除] msg={}", scpId, msg);
+        List<ScpCmd> cmdList = new ArrayList<>();
+        for (TriggerVarCommand item:list) {
+            int scpId = item.getScpId();
 
-        // 向设备发送
-        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
-        return requestPendingCenter.sendCmd(request, cmd);
+            TriggerVariableControl operation = TriggerVariableControl.varDelate(scpId, item.getVarId());
+            String msg = RequestMessage.encode(scpId, operation);
+            log.info("[{} - 触发器变量删除] msg={}", scpId, msg);
+
+            // 向设备发送
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+        }
+        return requestPendingCenter.sendCmdList(request, cmdList);
     }
 
     /**
@@ -340,7 +352,7 @@ public class ScpService {
 
     private void sioStatusCmds(int scpId, List<Integer> sioList, List<ScpCmd> cmdList) {
         for (Integer sioId:sioList) {
-            ControlPointStatusCommand operation = new ControlPointStatusCommand(scpId, sioId, 1);
+            SIOStatusCommand operation = new SIOStatusCommand(scpId, sioId, 1);
             String msg = RequestMessage.encode(scpId, operation);
             cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
         }

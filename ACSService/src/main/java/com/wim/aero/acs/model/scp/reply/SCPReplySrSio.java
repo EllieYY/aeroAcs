@@ -1,6 +1,7 @@
 package com.wim.aero.acs.model.scp.reply;
 
 import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
 import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.service.QueueProducer;
@@ -55,7 +56,7 @@ public class SCPReplySrSio extends ReplyBody {
     private int nOemCode;				// OEM code assigned to this SIO (0 == none)
     private byte  nEncConfig;			// SIO comm encryption support: 0=None, 1=AES Default Key, 2=AES Master/Secret Key, 3= PKI, 6=AES256 Session key
     private byte  nEncKeyStatus;		// Status of Master/Secret Key; 0=Not Loaded to EP, 1=Loaded, unverified, 2=Loaded, conflicts w/SIO, 3=Loaded, Verified, 4=AES256 Verified.
-    private List<Integer>  mac_addr;			// 6 MAC Address, if applicable, LSB first.
+    private String  mac_addr;			// 6 MAC Address, if applicable, LSB first.
     private int emg_stat;				// emergency switch status: TranCoS::status encoded
 
 
@@ -75,11 +76,11 @@ public class SCPReplySrSio extends ReplyBody {
 
         // 更新sio状态
         int status = this.sioStateMap.get(com_status);
-        StatusMessage sMessage = new StatusMessage(
-                0, System.currentTimeMillis(), scpId,
+        AlarmMessage sMessage = new AlarmMessage(
+                -1, System.currentTimeMillis(), scpId,
                 Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, status,
                 Constants.TRAN_TABLE_SRC_SIO,
-                this.toString());
+                this.toString(), com_status);
         queueProducer.sendStatusMessage(sMessage);
     }
 

@@ -1,8 +1,10 @@
 package com.wim.aero.acs.model.scp.reply;
 
 import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
 import com.wim.aero.acs.service.QueueProducer;
+import com.wim.aero.acs.service.ScpMessageService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,10 +36,15 @@ public class SCPReplySrAcr extends ReplyBody {
 
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
+        int deviceStatus = ScpMessageService.getPointStatus(door_status);
+        int tranCode = ScpMessageService.getTranCodeByCosState(door_status);
 
-//        LogMessage message = new LogMessage(
-//                0, System.currentTimeMillis(), scpId,
-//                Constants.tranTypeAcr, number, Constants.customTranType, 0, this.toString());
-//        queueProducer.sendLogMessage(message);
+        AlarmMessage sMessage = new AlarmMessage(
+                -1, System.currentTimeMillis(), scpId,
+                Constants.tranSrcACR, number, 0x09, tranCode, deviceStatus,
+                Constants.TRAN_TABLE_SRC_ACR,
+                this.toString(),
+                door_status);
+        queueProducer.sendStatusMessage(sMessage);
     }
 }

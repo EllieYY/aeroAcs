@@ -17,10 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @title: TransactionService
@@ -36,6 +33,8 @@ public class ScpMessageService {
     private final EEventRecordServiceImpl eventRecordService;
     private final ScpCenter scpCenter;
     private static Map<Integer, Integer> eventLogSrcMap;
+    private static Map<Integer, Integer> cosStateCodeMap;
+    private static Map<Integer, Integer> stateCode2TranCodeMap;
     private final EEventCodeDetailDevServiceImpl eventCodeDetailDevService;
 
     @Autowired
@@ -48,40 +47,12 @@ public class ScpMessageService {
         this.scpCenter = scpCenter;
         this.eventCodeDetailDevService = eventCodeDetailDevService;
 
-        eventLogSrcMap = new HashMap<>();
-        eventLogSrcMap.put(0x00, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x01, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x02, Constants.TRAN_TABLE_SRC_MP);
-
-        eventLogSrcMap.put(0x03, Constants.TRAN_TABLE_SRC_SIO);
-        eventLogSrcMap.put(0x04, Constants.TRAN_TABLE_SRC_SIO);
-        eventLogSrcMap.put(0x05, Constants.TRAN_TABLE_SRC_SIO);
-        eventLogSrcMap.put(0x06, Constants.TRAN_TABLE_SRC_SIO);
-
-        eventLogSrcMap.put(0x07, Constants.TRAN_TABLE_SRC_MP);
-        eventLogSrcMap.put(0x08, Constants.TRAN_TABLE_SRC_CP);
-
-        eventLogSrcMap.put(0x09, Constants.TRAN_TABLE_SRC_ACR);
-        eventLogSrcMap.put(0x0A, Constants.TRAN_TABLE_SRC_ACR);
-        eventLogSrcMap.put(0x0B, Constants.TRAN_TABLE_SRC_ACR);
-
-        eventLogSrcMap.put(0x0D, Constants.TRAN_TABLE_SRC_ACR);
-        eventLogSrcMap.put(0x0E, Constants.TRAN_TABLE_SRC_ACR);
-
-        eventLogSrcMap.put(0x0F, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x10, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x11, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x12, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x13, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x14, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x15, Constants.TRAN_TABLE_SRC_ACR);
-        eventLogSrcMap.put(0x16, Constants.TRAN_TABLE_SRC_SCP);
-
-        eventLogSrcMap.put(0x17, Constants.TRAN_TABLE_SRC_MP);
-
-        eventLogSrcMap.put(0x18, Constants.TRAN_TABLE_SRC_SCP);
-        eventLogSrcMap.put(0x19, Constants.TRAN_TABLE_SRC_SCP);
+        initEventLogSrcMap();
+        initCosStateMap();
+        initTranCodeMap();
     }
+
+
 
 
     public void dealTransaction(SCPReplyTransaction transaction) {
@@ -115,8 +86,13 @@ public class ScpMessageService {
         // body.process(queueProducer, transaction);
 
         // 筛选后分发
-        List<Integer> mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, null);
-//        log.info("mqType: {}", mqMsgTypeList.toString());
+        List<Integer> mqMsgTypeList = new ArrayList<>();
+        if (body instanceof AlarmEvent) {
+            int stateCode = ((AlarmEvent) body).getStateCode();
+            mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, stateCode);
+        } else {
+            mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, null);
+        }
 
         int targerSrcCode = eventLogSrcMap.get(sourceType);
         for (Integer mqType:mqMsgTypeList) {
@@ -150,6 +126,12 @@ public class ScpMessageService {
                 queueProducer.sendLogMessage(message);
             }
         }
+
+//        // TODO: 删除
+//        LogMessage message = new LogMessage(eventNo, date, scpId, sourceType, sourceNum, tranType, tranCode,
+//                targerSrcCode,
+//                transaction.toString());
+//        queueProducer.sendLogMessage(message);
     }
 
     private void saveEventInfo(SCPReplyTransaction transaction) {
@@ -205,6 +187,86 @@ public class ScpMessageService {
         // 业务处理
 //        int scpId = reply.getScpId();
         body.process(queueProducer, scpId);
+    }
+
+    public static int getPointStatus(int cosStateCode) {
+        return cosStateCodeMap.get(cosStateCode);
+    }
+
+    public static int getTranCodeByCosState(int cosStateCode) {
+        return stateCode2TranCodeMap.get(cosStateCode);
+    }
+
+
+    private void initEventLogSrcMap() {
+        eventLogSrcMap = new HashMap<>();
+        eventLogSrcMap.put(0x00, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x01, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x02, Constants.TRAN_TABLE_SRC_MP);
+
+        eventLogSrcMap.put(0x03, Constants.TRAN_TABLE_SRC_SIO);
+        eventLogSrcMap.put(0x04, Constants.TRAN_TABLE_SRC_SIO);
+        eventLogSrcMap.put(0x05, Constants.TRAN_TABLE_SRC_SIO);
+        eventLogSrcMap.put(0x06, Constants.TRAN_TABLE_SRC_SIO);
+
+        eventLogSrcMap.put(0x07, Constants.TRAN_TABLE_SRC_MP);
+        eventLogSrcMap.put(0x08, Constants.TRAN_TABLE_SRC_CP);
+
+        eventLogSrcMap.put(0x09, Constants.TRAN_TABLE_SRC_ACR);
+        eventLogSrcMap.put(0x0A, Constants.TRAN_TABLE_SRC_ACR);
+        eventLogSrcMap.put(0x0B, Constants.TRAN_TABLE_SRC_ACR);
+
+        eventLogSrcMap.put(0x0D, Constants.TRAN_TABLE_SRC_ACR);
+        eventLogSrcMap.put(0x0E, Constants.TRAN_TABLE_SRC_ACR);
+
+        eventLogSrcMap.put(0x0F, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x10, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x11, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x12, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x13, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x14, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x15, Constants.TRAN_TABLE_SRC_ACR);
+        eventLogSrcMap.put(0x16, Constants.TRAN_TABLE_SRC_SCP);
+
+        eventLogSrcMap.put(0x17, Constants.TRAN_TABLE_SRC_MP);
+
+        eventLogSrcMap.put(0x18, Constants.TRAN_TABLE_SRC_SCP);
+        eventLogSrcMap.put(0x19, Constants.TRAN_TABLE_SRC_SCP);
+    }
+
+
+    private void initCosStateMap() {
+        cosStateCodeMap = new HashMap<>();
+        cosStateCodeMap.put(0x00, Constants.TRAGET_STATE_VALID);
+        cosStateCodeMap.put(0x01, Constants.TRAGET_STATE_VALID);
+        cosStateCodeMap.put(0x02, Constants.TRAGET_STATE_FAULT);
+        cosStateCodeMap.put(0x03, Constants.TRAGET_STATE_CLOSE);
+        cosStateCodeMap.put(0x04, Constants.TRAGET_STATE_OPEN);
+        cosStateCodeMap.put(0x05, Constants.TRAGET_STATE_FAULT);
+        cosStateCodeMap.put(0x06, Constants.TRAGET_STATE_FAULT);
+        cosStateCodeMap.put(0x07, Constants.TRAGET_STATE_FAULT);
+        cosStateCodeMap.put(0x08, Constants.TRAGET_STATE_INVALID);
+        cosStateCodeMap.put(0x10, Constants.TRAGET_STATE_VALID);
+        cosStateCodeMap.put(0x20, Constants.TRAGET_STATE_VALID);
+        cosStateCodeMap.put(0x40, Constants.TRAGET_STATE_VALID);
+        cosStateCodeMap.put(0x80, Constants.TRAGET_STATE_VALID);
+    }
+
+    private void initTranCodeMap() {
+        stateCode2TranCodeMap = new HashMap<>();
+        stateCode2TranCodeMap.put(0x00, Constants.COS_TRAN_Secure);
+        stateCode2TranCodeMap.put(0x01, Constants.COS_TRAN_Alarm);
+        stateCode2TranCodeMap.put(0x02, Constants.COS_TRAN_Fault);
+        stateCode2TranCodeMap.put(0x03, Constants.COS_TRAN_Fault);
+        stateCode2TranCodeMap.put(0x04, Constants.COS_TRAN_Fault);
+        stateCode2TranCodeMap.put(0x05, Constants.COS_TRAN_Fault);
+        stateCode2TranCodeMap.put(0x06, Constants.COS_TRAN_Fault);
+        stateCode2TranCodeMap.put(0x07, Constants.COS_TRAN_Fault);
+        stateCode2TranCodeMap.put(0x08, Constants.COS_TRAN_Disconnected);
+        stateCode2TranCodeMap.put(0x10, Constants.COS_TRAN_Secure);
+        stateCode2TranCodeMap.put(0x20, Constants.COS_TRAN_Exit);
+        stateCode2TranCodeMap.put(0x40, Constants.COS_TRAN_Entry);
+        stateCode2TranCodeMap.put(0x80, Constants.COS_TRAN_Unknown);
     }
 
 }

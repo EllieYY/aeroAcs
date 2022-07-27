@@ -1,8 +1,10 @@
 package com.wim.aero.acs.model.scp.reply;
 
 import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
 import com.wim.aero.acs.service.QueueProducer;
+import com.wim.aero.acs.service.ScpMessageService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,15 +25,25 @@ public class SCPReplySrMp extends ReplyBody {
 
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
-//        String info = "FirstCp:" + first + ", ";
-//        for (int i = 0;i < count; i++) {
-//            info += (first + i) + ":" + status.get(i);
-//        }
-//        log.info(info);
+        if ( count == 1 && status.size() > 0) {
+            int cosState = status.get(0);
+            int deviceStatus = ScpMessageService.getPointStatus(cosState);
+            int tranCode = ScpMessageService.getTranCodeByCosState(cosState);
 
-//        LogMessage message = new LogMessage(
-//                0, System.currentTimeMillis(), scpId,
-//                Constants.tranSrcMP, first, Constants.customTranType, 0, this.toString());
-//        queueProducer.sendLogMessage(message);
+            AlarmMessage sMessage = new AlarmMessage(
+                    -1, System.currentTimeMillis(), scpId,
+                    Constants.tranSrcMP, first, 0x07, tranCode, deviceStatus,
+                    Constants.TRAN_TABLE_SRC_MP,
+                    this.toString(),
+                    cosState);
+            queueProducer.sendStatusMessage(sMessage);
+        } else {
+//        // 逻辑编号未必是连续的
+            String info = "FirstMp:" + first + ", ";
+            for (int i = 0; i < count; i++) {
+                info += (first + i) + ":" + status.get(i);
+            }
+            log.error("非法报警点状态上报：{}", info);
+        }
     }
 }

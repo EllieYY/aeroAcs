@@ -179,6 +179,7 @@ public class ScpController {
 //            return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
 //        }
 
+        log.info("按控制器下载所有访问级别：{}", request.toString());
         accessConfigService.accessLevelConfig(request);
 
         return ResultBeanUtil.makeOkResp();
@@ -192,6 +193,7 @@ public class ScpController {
 //            return ResultBeanUtil.makeResp(1001, "控制器" + scpId +"数据不存在。");
 //        }
 
+        log.info("指定访问级别下载：{}", request.toString());
         accessConfigService.accessLevelListConfig(request);
 
         return ResultBeanUtil.makeOkResp();
@@ -232,6 +234,28 @@ public class ScpController {
         int code = scpService.eventExtraction(request);
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("提取事件命令已下发");
+        } else {
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+        }
+    }
+
+    @ApiOperation(value = "删除过程")
+    @RequestMapping(value = "/procedure/del", method = {RequestMethod.POST})
+    public ResultBean<String> procedureDelete(@RequestBody ProcedureCommandRequest request) {
+        int code = scpService.procedureClear(request);
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("删除过程命令已下发");
+        } else {
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+        }
+    }
+
+    @ApiOperation(value = "删除触发器变量")
+    @RequestMapping(value = "/triggerVar/del", method = {RequestMethod.POST})
+    public ResultBean<String> triggerVarDelete(@RequestBody TriggerVarCommandRequest request) {
+        int code = scpService.triggerVarDelete(request);
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("删除触发器变量命令已下发");
         } else {
             return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
         }

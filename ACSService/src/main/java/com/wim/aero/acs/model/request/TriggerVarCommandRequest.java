@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @title: ProcedureCommandRequest
  * @author: Ellie
@@ -14,9 +16,6 @@ import lombok.Data;
 @Data
 @ApiModel(value = "触发器变量删除参数")
 public class TriggerVarCommandRequest extends TaskRequest {
-    @ApiModelProperty(value = "控制器id", required = true)
-    private int scpId;
-
-    @ApiModelProperty(value = "触发器变量id", required = true)
-    private int varId;
+    @ApiModelProperty(value = "触发器变量列表", required = true)
+    private List<TriggerVarCommand> infoList;
 }

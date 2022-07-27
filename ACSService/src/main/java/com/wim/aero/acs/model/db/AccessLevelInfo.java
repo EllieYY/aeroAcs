@@ -20,5 +20,4 @@ public class AccessLevelInfo {
     private String nEscortCode;
 
     private List<ACRTz> tzList;
-
 }

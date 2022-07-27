@@ -64,11 +64,13 @@ public class ActionSpecification extends Operation {
         return result;
     }
 
-    public static ActionSpecification procClear(int scpId, int procId) {
+    public static ActionSpecification procClear(int scpId, int procId, int prefix) {
         ActionSpecification result = new ActionSpecification();
         result.setScpNumber(scpId);
         result.setProcNumber(procId);
-        result.setActionType("0");
+
+        String prefixStr = prefix == 0 ? "" : Integer.toString(prefix);
+        result.setActionType(prefixStr + Integer.toString(0));
 
         return result;
     }

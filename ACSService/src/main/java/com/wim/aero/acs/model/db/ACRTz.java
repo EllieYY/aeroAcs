@@ -12,4 +12,5 @@ import lombok.Data;
 public class ACRTz {
     private int acrId;
     private int tz;
+    private int state;
 }
