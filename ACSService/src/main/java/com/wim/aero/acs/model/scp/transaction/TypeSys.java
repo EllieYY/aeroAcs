@@ -78,6 +78,8 @@ public class TypeSys extends TransactionBody {
             }
         } else if (tranCode == 4) {
             result = Constants.TRAGET_STATE_WARN;
+        } else if (tranCode == 5) {
+            result = Constants.TRAGET_STATE_VALID;
         } else {
             result = Constants.TRAGET_STATE_VALID;
         }

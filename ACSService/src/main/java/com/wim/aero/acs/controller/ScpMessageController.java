@@ -1,6 +1,8 @@
 package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.model.command.ScpCmd;
+import com.wim.aero.acs.model.request.CardCmd;
+import com.wim.aero.acs.model.request.CardCmdReloadRequest;
 import com.wim.aero.acs.model.request.CmdReloadRequestInfo;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
@@ -9,6 +11,7 @@ import com.wim.aero.acs.model.scp.reply.SCPReplyTranStatus;
 import com.wim.aero.acs.model.scp.transaction.SCPReplyTransaction;
 import com.wim.aero.acs.service.RequestPendingCenter;
 import com.wim.aero.acs.service.ScpMessageService;
+import com.wim.aero.acs.util.IdUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +33,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping("/message/scp")
-@Api(tags = "控制器消息上报接口")
+@Api(tags = "控制器消息接口")
 public class ScpMessageController {
 
     private final ScpMessageService scpMessageService;
@@ -46,12 +50,37 @@ public class ScpMessageController {
      * @return
      * @throws Exception
      */
-    @ApiOperation(value = "失败指令重发")
+    @ApiOperation(value = "失败任务指令重发")
     @RequestMapping(value = "/cmd/redo", method = {RequestMethod.POST})
-    public ResultBean<String> scpNakNotify(@RequestBody CmdReloadRequestInfo request) {
+    public ResultBean<String> scpCmdRedo(@RequestBody CmdReloadRequestInfo request) {
         log.info(request.toString());
 
         requestPendingCenter.sendCmdList(request, request.getCmdList());
+
+        return ResultBeanUtil.makeOkResp(request.toString());
+    }
+
+    /**
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "失败授权指令重发")
+    @RequestMapping(value = "/cmd/card/redo", method = {RequestMethod.POST})
+    public ResultBean<String> cardCmdRedo(@RequestBody CardCmdReloadRequest request) {
+        log.info(request.toString());
+
+        // 命令重发
+        List<CardCmd> cardCmdList = request.getCmdList();
+        List<ScpCmd> cmdList = new ArrayList<>();
+        for (CardCmd cardCmd:cardCmdList) {
+            ScpCmd cmd = new ScpCmd(cardCmd.getScpId(), cardCmd.getCommand(), IdUtil.nextId());
+            cmd.setType(cardCmd.getType());
+            cmd.setAlvlListStr(cardCmd.getAlvlListStr());
+            cmd.setCardNo(cardCmd.getCardNo());
+            cmdList.add(cmd);
+        }
+        requestPendingCenter.sendCmdList(request, cmdList);
 
         return ResultBeanUtil.makeOkResp(request.toString());
     }

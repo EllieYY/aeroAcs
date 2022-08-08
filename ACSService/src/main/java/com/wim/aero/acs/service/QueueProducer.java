@@ -33,12 +33,13 @@ public class QueueProducer {
     private final Queue logQueue;
     private final Queue statusQueue;
     private final Queue scpSeqQueue;
+    private final Queue scpMacQueue;
     private final RequestPendingCenter requestPendingCenter;
 
     @Autowired
     public QueueProducer(JmsMessagingTemplate jmsMessagingTemplate, ThreadPoolTaskExecutor threadPoolTaskExecutor,
                          Queue accessQueue, Queue alarmQueue, Queue logQueue, Queue statusQueue, Queue scpSeqQueue,
-                         RequestPendingCenter requestPendingCenter) {
+                         Queue scpMacQueue, RequestPendingCenter requestPendingCenter) {
         this.jmsMessagingTemplate = jmsMessagingTemplate;
         this.threadPoolTaskExecutor = threadPoolTaskExecutor;
         this.accessQueue = accessQueue;
@@ -46,7 +47,14 @@ public class QueueProducer {
         this.logQueue = logQueue;
         this.statusQueue = statusQueue;
         this.scpSeqQueue = scpSeqQueue;
+        this.scpMacQueue = scpMacQueue;
         this.requestPendingCenter = requestPendingCenter;
+    }
+
+    public void sendScpMacMessage(ScpMacMessage macMessage) {
+        String messageStr = JsonUtil.toJson(macMessage);
+        log.info("[{} - mac上报] - {}",macMessage.getScpId(), messageStr);
+        this.sendMessage(scpMacQueue, messageStr);
     }
 
     public void sendLogMessage(LogMessage logMessage) {

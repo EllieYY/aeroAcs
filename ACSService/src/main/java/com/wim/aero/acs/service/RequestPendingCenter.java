@@ -3,7 +3,9 @@ package com.wim.aero.acs.service;
 //import io.netty.example.study.common.OperationResult;
 
 import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.db.entity.DEmployeeAuth;
 import com.wim.aero.acs.db.entity.TaskDetail;
+import com.wim.aero.acs.db.service.impl.DEmployeeAuthServiceImpl;
 import com.wim.aero.acs.db.service.impl.TaskDetailServiceImpl;
 import com.wim.aero.acs.model.TaskCommandState;
 import com.wim.aero.acs.model.command.CommandInfo;
@@ -20,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Service
@@ -33,11 +34,16 @@ public class RequestPendingCenter implements CacheManagerAware {
     private final TaskDetailServiceImpl taskDetailService;
     private final RestUtil restUtil;
     private final ExpireCacheManager expireCacheManager;
+    private final DEmployeeAuthServiceImpl employeeAuthService;
     @Autowired
-    public RequestPendingCenter(TaskDetailServiceImpl taskDetailService, RestUtil restUtil, ExpireCacheManager expireCacheManager) {
+    public RequestPendingCenter(TaskDetailServiceImpl taskDetailService,
+                                RestUtil restUtil,
+                                ExpireCacheManager expireCacheManager,
+                                DEmployeeAuthServiceImpl employeeAuthService) {
         this.taskDetailService = taskDetailService;
         this.restUtil = restUtil;
         this.expireCacheManager = expireCacheManager;
+        this.employeeAuthService = employeeAuthService;
         setCacheManager(expireCacheManager);
         expireCacheManager.startManager();
     }
@@ -104,6 +110,13 @@ public class RequestPendingCenter implements CacheManagerAware {
             CommandInfo commandInfo = new CommandInfo(
                     taskId, taskName, taskSource, cmd.getStreamId(), cmd.getScpId(), cmd.getCommand(), 0);
 
+            commandInfo.setType(cmd.getType());
+            // 卡片删除和增加
+            if (cmd.getType() == Constants.SCP_CMD_CARD_ADD || cmd.getType() == Constants.SCP_CMD_CARD_DEL) {
+                commandInfo.setCardNo(cmd.getCardNo());
+                commandInfo.setAlvlListStr(cmd.getAlvlListStr());
+            }
+
             // 更新集合
             cmdCache.put(cmd.getStreamId(), commandInfo);
 
@@ -160,15 +173,15 @@ public class RequestPendingCenter implements CacheManagerAware {
                     state = TaskCommandState.FAIL.value();
                     result.add(commandInfo);
 
-                    Date curTime = commandInfo.getCmdDate();
-                    taskDetailList.add(new TaskDetail(
-                            commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
-                            commandInfo.getCommand(),
-                            curTime, new Date(), DateUtil.dateAddMins(curTime,20),
-                            state,
-                            commandInfo.getStreamId(),
-                            response.toString()
-                    ));
+//                    Date curTime = commandInfo.getCmdDate();
+//                    taskDetailList.add(new TaskDetail(
+//                            commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
+//                            commandInfo.getCommand(),
+//                            curTime, new Date(), DateUtil.dateAddMins(curTime,20),
+//                            state,
+//                            commandInfo.getStreamId(),
+//                            response.toString()
+//                    ));
                 }
             } else {
                 log.error("[{} - 通信服务错误] 返回未定义streamId : {}", scpId, streamId);
@@ -212,7 +225,6 @@ public class RequestPendingCenter implements CacheManagerAware {
             if (commandInfo == null) {
                 log.info("streamId超时：{}", key);
             } else {
-
                 commandInfo.setReason(reason);
                 commandInfo.setCommandStatus(code);
 
@@ -227,6 +239,8 @@ public class RequestPendingCenter implements CacheManagerAware {
                 removeStreamId(key);
             }
 
+            log.info("cmdInfo:{}", commandInfo.toString());
+
             Date curTime = commandInfo.getCmdDate();
             TaskDetail entity = new TaskDetail(
                     commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
@@ -238,6 +252,30 @@ public class RequestPendingCenter implements CacheManagerAware {
             );
             // 改成单条更新
             taskDetailService.updateById(entity);
+
+            // 授权表写入
+            if (commandInfo.getType() == Constants.SCP_CMD_CARD_ADD ||
+                    commandInfo.getType() == Constants.SCP_CMD_CARD_DEL) {
+
+                String cardNo = commandInfo.getCardNo();
+                DEmployeeAuth employeeAuth = employeeAuthService.getOneByScpIdAndCard(scpId, cardNo);
+                if (employeeAuth == null) {
+                    employeeAuth = new DEmployeeAuth();
+                }
+
+//                log.info("查找授权表记录：{}", employeeAuth.toString());
+
+                employeeAuth.setCardNo(cardNo);
+                employeeAuth.setControllerId(scpId);
+                employeeAuth.setAccessLevelIdList(commandInfo.getAlvlListStr());
+                employeeAuth.setStartTime(scpSeqMessage.getCmdDate());
+                employeeAuth.setStatus(state);
+                employeeAuth.setDetail(detail);
+                employeeAuth.setMessage(commandInfo.getCommand());
+
+                boolean saveOk = employeeAuthService.saveOrUpdate(employeeAuth);
+                log.info("授权表保存：{} - {}", saveOk, employeeAuth.toString());
+            }
 
             taskDetailList.add(entity);
         }

@@ -22,6 +22,7 @@ import com.wim.aero.acs.protocol.timezone.TimeZone;
 import com.wim.aero.acs.util.IdUtil;
 import com.wim.aero.acs.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @title: AccessConfigService
@@ -148,19 +150,23 @@ public class AccessConfigService {
      * @param
      * @return 发送失败的结果
      */
-    public void deleteCards(CardRequestInfo request) {
-        List<String> cardList = request.getCardList();
+    public void deleteCards(CardListDeleteRequest request) {
+        List<CardDeleteInfo> cardList = request.getCardDelList();
 
-        // 查找拥有这张卡的控制器
-        List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
-
-        // 组织报文
         List<ScpCmd> cmdList = new ArrayList<>();
-        for (Integer scpId:scpIdList) {
-            for (String cardNo : cardList) {
+        for (CardDeleteInfo item:cardList) {
+            String cardNo = item.getCardNo();
+            List<Integer> scpIdList = item.getScpIdList();
+            for (Integer scpId : scpIdList) {
                 CardDelete operation = new CardDelete(scpId, cardNo);
                 String msg = RequestMessage.encode(scpId, operation);
-                cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+
+                ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+                cmd.setType(Constants.SCP_CMD_CARD_DEL);
+                cmd.setCardNo(cardNo);
+                cmd.setAlvlListStr("0");
+
+                cmdList.add(cmd);
             }
         }
 
@@ -217,7 +223,13 @@ public class AccessConfigService {
                 }
                 String msg = RequestMessage.encode(scpId, item);
                 ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+                cmd.setType(Constants.SCP_CMD_CARD_ADD);
                 cmd.setCardNo(item.getCardNumber());
+
+                // 访问级别列表去重，逗号分割
+                List<Integer> alvlList = item.getAlvl().stream().distinct().collect(Collectors.toList());
+                cmd.setAlvlListStr(StringUtils.join(alvlList, ","));
+
                 cmdList.add(cmd);
 
 //            log.info(item.toString());

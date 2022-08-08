@@ -19,7 +19,7 @@ public class CardRequestInfo  extends TaskRequest {
     @ApiModelProperty(value = "卡号列表")
     private List<String> cardList;
 
-    @ApiModelProperty(value = "是否是梯控设备加卡")
+    @ApiModelProperty(value = "是否是梯控设备加卡，删卡接口可不填此参数")
     @JsonProperty(defaultValue = "false")
     private boolean isEleScp;
 }

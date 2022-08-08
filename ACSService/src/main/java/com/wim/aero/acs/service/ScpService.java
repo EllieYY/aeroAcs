@@ -313,6 +313,17 @@ public class ScpService {
     }
 
     /**
+     * 控制器下线
+     * @param request
+     * @return
+     */
+    public int scpOffine(ScpRequestInfo request) {
+        log.info("scp offline: {}", request.toString());
+        int scpId = request.getScpId();
+        return restUtil.doScpOffline(scpId).getCode();
+    }
+
+    /**
      * 卡容量查询
      * @param request
      */

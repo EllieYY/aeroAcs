@@ -12,10 +12,10 @@ import java.util.Arrays;
  **/
 public enum PrefixType {
     PREFIX_0(0, 2),
-    PREFIX_256(0, 4),
-    PREFIX_512(0, 5),
-    PREFIX_1024(0, 6),
-    UNKNOWN(0, 1);
+    PREFIX_256(256, 4),
+    PREFIX_512(512, 5),
+    PREFIX_1024(1024, 6),
+    UNKNOWN(-1, 1);
 
     public int getPrefix() {
         return prefix;

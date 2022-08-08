@@ -4,9 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wim.aero.acs.aop.excption.ServiceException;
 import com.wim.aero.acs.config.CommServiceInfo;
-import com.wim.aero.acs.model.command.MultiCmdResponse;
-import com.wim.aero.acs.model.command.ScpCmd;
-import com.wim.aero.acs.model.command.ScpCmdResponse;
+import com.wim.aero.acs.model.command.*;
 import com.wim.aero.acs.model.result.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +35,43 @@ public class RestUtil {
     public RestUtil(RestTemplate restTemplate, CommServiceInfo commServiceInfo) {
         this.restTemplate = restTemplate;
         this.commServiceInfo = commServiceInfo;
+    }
+
+
+    /**
+     * 控制器下线指令
+     * @param
+     * @return
+     */
+    public ScpOfflineResponse doScpOffline(int scpId) {
+        String url = commServiceInfo.getUrl() + "/ScpOffline";
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        String cmdStr = "";
+        try {
+            cmdStr = mapper.writeValueAsString(new ScpIdInfo(scpId));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        log.info("[scpOffline]- {}", cmdStr);
+
+        HttpResult result = post(url, cmdStr);
+        if (result.getCode() > 300) {
+            log.error("{} - {}", result.getCode(), result.getBody());
+            throw new ServiceException("rest template error code:" + result.getCode());
+        }
+
+        try {
+            ScpOfflineResponse pts = mapper.readValue(result.getBody(), ScpOfflineResponse.class);
+            log.info(pts.toString());
+            return pts;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**

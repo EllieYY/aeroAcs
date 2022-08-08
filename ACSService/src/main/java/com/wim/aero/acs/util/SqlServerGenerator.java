@@ -56,7 +56,8 @@ public class SqlServerGenerator {
 //        tables.add("trig_scp_proc_detail");
 //        tables.add("trigger_info");
 //        tables.add("trigger_var");
-        tables.add("e_event_code_detail_dev");
+//        tables.add("e_event_code_detail_dev");
+        tables.add("d_employee_auth");
 
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)
                 .globalConfig(builder -> {

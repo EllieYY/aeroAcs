@@ -87,6 +87,7 @@ public class ScpController {
         return ResultBeanUtil.makeOkResp();
     }
 
+
     @ApiOperation(value = "硬件删除")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST})
     public ResultBean<String> deleteScp(@RequestBody ScpRequestInfo request) {
@@ -256,6 +257,23 @@ public class ScpController {
         int code = scpService.triggerVarDelete(request);
         if (code == Constants.REST_CODE_SUCCESS) {
             return ResultBeanUtil.makeOkResp("删除触发器变量命令已下发");
+        } else {
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+        }
+    }
+
+    @ApiOperation(value = "控制器下线")
+    @RequestMapping(value = "/offline", method = {RequestMethod.POST})
+    public ResultBean<String> doScpOffine(@RequestBody ScpRequestInfo request) {
+        int scpId = request.getScpId();
+        if (!scpService.isValidScpId(scpId)) {
+            log.error("控制器{}数据不存在。", scpId);
+            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, "控制器不存在:" + scpId);
+        }
+//        log.info(request.toString());
+        int code = scpService.scpOffine(request);
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("控制器下线命令已下发");
         } else {
             return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
         }

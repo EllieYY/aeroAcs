@@ -2,6 +2,7 @@ package com.wim.aero.acs.controller;
 
 
 import com.wim.aero.acs.model.request.CardBlockedRequestInfo;
+import com.wim.aero.acs.model.request.CardListDeleteRequest;
 import com.wim.aero.acs.model.request.CardRequestInfo;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
@@ -50,11 +51,9 @@ public class CardController {
 
     @ApiOperation(value = "删除卡片")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST})
-    public ResultBean<String> deleteCards(@RequestBody CardRequestInfo cardInfo) {
-        if (cardInfo.getCardList().size() == 0) {
-            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, null);
-        }
+    public ResultBean<String> deleteCards(@RequestBody CardListDeleteRequest cardInfo) {
 
+        log.info("卡片删除：{}", cardInfo.toString());
         // 删除卡
         accessConfigService.deleteCards(cardInfo);
 

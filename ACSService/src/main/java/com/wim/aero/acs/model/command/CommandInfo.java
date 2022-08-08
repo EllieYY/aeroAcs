@@ -1,5 +1,7 @@
 package com.wim.aero.acs.model.command;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wim.aero.acs.config.Constants;
 import lombok.Data;
 
 import java.util.Date;
@@ -23,6 +25,10 @@ public class CommandInfo {
     private int reason;        // SCPReplyComnd返回内容
     private Date cmdDate;         // 命令时间
     private int commCode;         // 控制器通信服务返回的错误码
+
+    private String cardNo = "";
+    private String alvlListStr = "0";
+    private int type = Constants.SCP_CMD_NORMAL;
 
     public CommandInfo(long taskId, String taskName, int taskSource, String streamId, String scpId, String command, int commandStatus) {
         this.streamId = streamId;

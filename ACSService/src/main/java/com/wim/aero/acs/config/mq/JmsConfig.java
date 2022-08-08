@@ -50,6 +50,9 @@ public class JmsConfig {
     @Value("${spring.activemq.queueName.scpSeqQueue}")
     private String scpSeqQueueName;
 
+    @Value("${spring.activemq.queueName.scpMacQueue}")
+    private String scpMacQueueName;
+
     @Bean("accessQueue")
     public Queue accessQueue() {
         return new ActiveMQQueue(accessQueueName);
@@ -73,6 +76,11 @@ public class JmsConfig {
     @Bean("scpSeqQueue")
     public Queue scpSeqQueue() {
         return new ActiveMQQueue(scpSeqQueueName);
+    }
+
+    @Bean("scpMacQueue")
+    public Queue scpMacQueue() {
+        return new ActiveMQQueue(scpMacQueueName);
     }
 
 

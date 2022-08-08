@@ -21,6 +21,12 @@ public interface Constants {
     // 单次加卡数量
     int BATCH_CARD_COUNT = 150;
 
+    // 命令类型
+    int SCP_CMD_NORMAL = 0;        // 其他
+    int SCP_CMD_CARD_ADD = 1;      // 加卡
+    int SCP_CMD_CARD_DEL = 1;      // 删卡
+
+
     // 命令执行状态
     // - 0 = FAILED (could not send, SCP off-line)
     // - 1 = OK (delivered and accepted),

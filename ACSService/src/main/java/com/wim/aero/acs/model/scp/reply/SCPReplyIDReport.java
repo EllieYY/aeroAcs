@@ -2,6 +2,7 @@ package com.wim.aero.acs.model.scp.reply;
 
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.model.mq.ScpMacMessage;
 import com.wim.aero.acs.service.QueueProducer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -61,6 +62,9 @@ public class SCPReplyIDReport extends ReplyBody {
                 Constants.TRAN_TABLE_SRC_SCP,
                 detail);
         queueProducer.sendLogMessage(message);
-        log.info(this.toString());
+//        log.info(this.toString());
+
+        // MAC地址上报
+        queueProducer.sendScpMacMessage(new ScpMacMessage(scpId, mac_addr));
     }
 }

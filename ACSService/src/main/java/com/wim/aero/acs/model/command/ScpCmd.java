@@ -2,6 +2,7 @@ package com.wim.aero.acs.model.command;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.wim.aero.acs.config.Constants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -31,6 +32,10 @@ public class ScpCmd {
 
     @JsonIgnore
     private String cardNo = "";
+    @JsonIgnore
+    private String alvlListStr = "0";
+    @JsonIgnore
+    private int type = Constants.SCP_CMD_NORMAL;
 
     public ScpCmd(int scpId, String command, String streamId) {
         this.scpId = String.valueOf(scpId);
