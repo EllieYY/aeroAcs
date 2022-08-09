@@ -239,7 +239,7 @@ public class RequestPendingCenter implements CacheManagerAware {
                 removeStreamId(key);
             }
 
-            log.info("cmdInfo:{}", commandInfo.toString());
+//            log.info("cmdInfo:{}", commandInfo.toString());
 
             Date curTime = commandInfo.getCmdDate();
             TaskDetail entity = new TaskDetail(
@@ -274,7 +274,7 @@ public class RequestPendingCenter implements CacheManagerAware {
                 employeeAuth.setMessage(commandInfo.getCommand());
 
                 boolean saveOk = employeeAuthService.saveOrUpdate(employeeAuth);
-                log.info("授权表保存：{} - {}", saveOk, employeeAuth.toString());
+//                log.info("授权表保存：{} - {}", saveOk, employeeAuth.toString());
             }
 
             taskDetailList.add(entity);

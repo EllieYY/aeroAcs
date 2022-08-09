@@ -1,5 +1,6 @@
 package com.wim.aero.acs.service;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.db.entity.Apb;
 import com.wim.aero.acs.db.entity.DHoliday;
@@ -24,6 +25,7 @@ import com.wim.aero.acs.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -131,15 +133,22 @@ public class AccessConfigService {
         log.info("加卡 {}", cardList.toString());
         List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, Constants.BATCH_CARD_COUNT);
         for (List<String> batchCard:batchCardList) {
+            if (batchCard.size() <= 0) {
+                continue;
+            }
             log.info("[batch card] {}", batchCard.toString());
             //添加冻结状态判断 梯控
             List<CardAdd> cardAddList = new ArrayList<>();
-            if (isEleScp) {
-                cardAddList = cardInfoService.getByCardListForEleScp(batchCard);
-            } else {
-                cardAddList = cardInfoService.getByCardList(batchCard);
+            try {
+                if (isEleScp) {
+                    cardAddList = cardInfoService.getByCardListForEleScp(batchCard);
+                } else {
+                    cardAddList = cardInfoService.getByCardList(batchCard);
+                }
+            } catch (DataAccessException e) {
+                log.error("[授权关系查询出错batch card] {}", batchCard.toString());
+                log.error(e.toString());
             }
-
 
             packageCardMessages(request, cardAddList);
         }

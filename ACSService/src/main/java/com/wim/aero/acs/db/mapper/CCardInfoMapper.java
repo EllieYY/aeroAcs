@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.wim.aero.acs.db.entity.CCardInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.dao.DataAccessException;
 
 /**
  * <p>
@@ -23,16 +24,16 @@ public interface CCardInfoMapper extends BaseMapper<CCardInfo> {
 //    List<CardAdd> selectAllByAccessLevels(@Param("list") List<Integer> alList);
 
     /** 通过控制器id找卡 -- 普通控制器 */
-    List<CardAdd> selectAllByScpId(@Param("scpId") Integer scpId);
+    List<CardAdd> selectAllByScpId(@Param("scpId") Integer scpId) throws DataAccessException;
 
     /** 通过控制器id找卡 -- 电梯控制器 */
-    List<CardAdd> selectAllByEleScpId(@Param("scpId") Integer scpId);
+    List<CardAdd> selectAllByEleScpId(@Param("scpId") Integer scpId) throws DataAccessException;
 
     /** 通过卡号找授权信息 -- 普通控制器 */
-    List<CardAdd> selectAllByCardList(@Param("list") List<String> list);
+    List<CardAdd> selectAllByCardList(@Param("list") List<String> list) throws DataAccessException;
 
     /** 通过卡号找授权信息 -- 电梯控制器 */
-    List<CardAdd> selectAllByCardListForEle(@Param("list") List<String> list);
+    List<CardAdd> selectAllByCardListForEle(@Param("list") List<String> list) throws DataAccessException;
 
     List<Integer> selectScpIdsByCardNo(@Param("list") List<String> list);
 }

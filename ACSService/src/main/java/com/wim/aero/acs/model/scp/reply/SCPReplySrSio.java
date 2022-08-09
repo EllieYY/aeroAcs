@@ -78,7 +78,7 @@ public class SCPReplySrSio extends ReplyBody {
         int status = this.sioStateMap.get(com_status);
         AlarmMessage sMessage = new AlarmMessage(
                 -1, System.currentTimeMillis(), scpId,
-                Constants.tranSrcScpCom, scpId, Constants.customTranType, 0, status,
+                Constants.tranSrcSioCom, number, Constants.customTranType, 0, status,
                 Constants.TRAN_TABLE_SRC_SIO,
                 this.toString(), com_status);
         queueProducer.sendStatusMessage(sMessage);

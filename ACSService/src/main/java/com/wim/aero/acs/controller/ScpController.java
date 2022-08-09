@@ -91,9 +91,22 @@ public class ScpController {
     @ApiOperation(value = "硬件删除")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST})
     public ResultBean<String> deleteScp(@RequestBody ScpRequestInfo request) {
-        scpService.deleteScp(request);
+//        scpService.deleteScp(request);
 
-        return ResultBeanUtil.makeOkResp("正在与scp断开连接...");
+        int scpId = request.getScpId();
+        if (!scpService.isValidScpId(scpId)) {
+            log.error("控制器{}数据不存在。", scpId);
+            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, "控制器不存在:" + scpId);
+        }
+//        log.info(request.toString());
+        int code = scpService.scpOffine(request);
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("控制器删除命令已下发");
+        } else {
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+        }
+
+//        return ResultBeanUtil.makeOkResp("正在与scp断开连接...");
     }
 
     /**

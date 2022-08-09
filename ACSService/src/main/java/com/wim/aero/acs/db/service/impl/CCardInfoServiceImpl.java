@@ -5,6 +5,7 @@ import com.wim.aero.acs.db.mapper.CCardInfoMapper;
 import com.wim.aero.acs.db.service.CCardInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wim.aero.acs.protocol.card.CardAdd;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class CCardInfoServiceImpl extends ServiceImpl<CCardInfoMapper, CCardInfo
     /**
      * 通过卡号找卡的权限信息 -- 普通控制器
      */
-    public List<CardAdd> getByCardList(List<String> cardList) {
+    public List<CardAdd> getByCardList(List<String> cardList) throws DataAccessException {
         return this.baseMapper.selectAllByCardList(cardList);
     }
 
@@ -57,7 +58,7 @@ public class CCardInfoServiceImpl extends ServiceImpl<CCardInfoMapper, CCardInfo
      * @param cardList
      * @return
      */
-    public List<CardAdd> getByCardListForEleScp(List<String> cardList) {
+    public List<CardAdd> getByCardListForEleScp(List<String> cardList) throws DataAccessException {
         return this.baseMapper.selectAllByCardListForEle(cardList);
     }
 
