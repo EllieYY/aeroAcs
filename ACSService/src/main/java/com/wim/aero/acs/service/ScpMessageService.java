@@ -88,7 +88,7 @@ public class ScpMessageService {
         // 筛选后分发
         List<Integer> mqMsgTypeList = new ArrayList<>();
         if (body instanceof AlarmEvent) {
-            int stateCode = ((AlarmEvent) body).getStateCode();
+            int stateCode = ((AlarmEvent) body).getStateCode(tranCode);
             mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, stateCode);
         } else {
             mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, null);
@@ -112,7 +112,7 @@ public class ScpMessageService {
                 int deviceStatus = -1;
                 if (body instanceof AlarmEvent) {
                     deviceStatus = ((AlarmEvent) body).getDeviceState(tranCode);
-                    stateCode = ((AlarmEvent) body).getStateCode();
+                    stateCode = ((AlarmEvent) body).getStateCode(tranCode);
                 } else {
                     log.error("can not get state info, {}", transaction.toString());
                 }
@@ -127,11 +127,6 @@ public class ScpMessageService {
             }
         }
 
-//        // TODO: 删除
-//        LogMessage message = new LogMessage(eventNo, date, scpId, sourceType, sourceNum, tranType, tranCode,
-//                targerSrcCode,
-//                transaction.toString());
-//        queueProducer.sendLogMessage(message);
     }
 
     private void saveEventInfo(SCPReplyTransaction transaction) {

@@ -45,7 +45,7 @@ public class ExpireCache<K, V> extends ConcurrentHashMap<K, V> implements Cache<
 
 	@Override
 	public V put(K key, V value) {
-		return super.put(key, (V) new ExpireCacheData<>(value, 1200));
+		return super.put(key, (V) new ExpireCacheData<>(value, 1800));
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class ExpireCache<K, V> extends ConcurrentHashMap<K, V> implements Cache<
 	 */
 	@Override
 	public V put(K key, V data, Supplier<Object> load) {
-		return super.put(key, (V) new ExpireCacheData<>(data, 1200, load));
+		return super.put(key, (V) new ExpireCacheData<>(data, 1800, load));
 	}
 
 

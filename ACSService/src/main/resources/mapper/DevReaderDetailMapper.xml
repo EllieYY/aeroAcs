@@ -105,4 +105,29 @@
         device_id = #{deviceId,jdbcType=NUMERIC}
     </select>
 
+
+    <select id="CountByInputInfo" resultType="int">
+        select
+        count(*)
+        from dev_reader_detail
+        where
+        controller_id = #{scpId,jdbcType=NUMERIC} and
+              (
+            (door_sio = #{sioId} and door_number = #{inputNo}) or
+            (rex0_sio = #{sioId} and rex0_number = #{inputNo}) or
+            (rex1_sio = #{sioId} and rex1_number = #{inputNo})
+                  )
+    </select>
+
+
+    <select id="CountByOutputInfo" resultType="int">
+        select
+            count(*)
+        from dev_reader_detail
+        where
+            controller_id = #{scpId} and
+              strk_sio = #{sioId} and
+              strk_number = #{outputNo}
+    </select>
+
 </mapper>

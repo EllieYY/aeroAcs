@@ -36,4 +36,5 @@ public class DevInputDetailServiceImpl extends ServiceImpl<DevInputDetailMapper,
     public List<DevInputDetail> getByScpId(int scpId) {
         return this.baseMapper.selectAllByControllerId(scpId);
     }
+
 }

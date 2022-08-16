@@ -25,7 +25,8 @@
     <update id="updateStatusAndMsgReturnTimeByUid">
         update task_detail
         set status          = #{status,jdbcType=VARCHAR},
-            msg_return_time = #{msgReturnTime}
+            msg_return_time = #{msgReturnTime},
+            detail = #{detail}
         where uid = #{uid}
     </update>
 

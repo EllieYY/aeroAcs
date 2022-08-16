@@ -20,6 +20,7 @@ public interface TaskDetailMapper extends BaseMapper<TaskDetail> {
 
     int updateStatusAndMsgReturnTimeByUid(
             @Param("status") String status,
+            @Param("detail") String detail,
             @Param("msgReturnTime") Date msgReturnTime,
             @Param("uid") String uid);
 

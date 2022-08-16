@@ -19,3 +19,4 @@ public class TriggerVarCommandRequest extends TaskRequest {
     @ApiModelProperty(value = "触发器变量列表", required = true)
     private List<TriggerVarCommand> infoList;
 }
+

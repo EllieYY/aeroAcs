@@ -26,6 +26,7 @@ import com.wim.aero.acs.protocol.device.mp.MonitorPointMask;
 import com.wim.aero.acs.protocol.device.mp.MpGroupCommand;
 import com.wim.aero.acs.protocol.device.reader.ACRConfig;
 import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
+import com.wim.aero.acs.protocol.device.reader.ReaderLED;
 import com.wim.aero.acs.protocol.device.reader.ReaderSpecification;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -79,6 +80,10 @@ public class SioService {
         inputConfig(scpId, cmdList);
         outputConfig(scpId, cmdList);
         readerConfig(scpId, cmdList);
+
+        // readerLED配置
+        readerLEDConfig(scpId, cmdList);
+
 
         log.info("[{} - sio配置]", scpId);
 //        for(ScpCmd cmd:cmdList) {
@@ -212,6 +217,14 @@ public class SioService {
             String specificationMsg = RequestMessage.encode(scpId, specification);
             cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
 
+            // 控制器scpId、sio板编号、输入点物理编号
+            int sioId = input.getSioNumber();
+            int inputNo = input.getInput();
+            // 判断是否是已配置
+            if (readerDetailService.isInputConfigured(scpId, sioId, inputNo)) {
+                continue;
+            }
+
             // Monitor Point Configuration(Command113)
             MonitorPointConfig config = MonitorPointConfig.fromDb(input);
             String configMsg = RequestMessage.encode(scpId, config);
@@ -232,6 +245,14 @@ public class SioService {
             OutputPointSpecification specification = OutputPointSpecification.fromDb(output);
             String specificationMsg = RequestMessage.encode(scpId, specification);
             cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
+
+            // 控制器scpId、sio板编号、输出点物理编号
+            int sioId = output.getSioNumber();
+            int outputNo = output.getOutput();
+            // 判断是否是已配置
+            if (readerDetailService.isOutputConfigured(scpId, sioId, outputNo)) {
+                continue;
+            }
 
             // ControlPointConfiguration (Command 114)
             ControlPointConfig config = ControlPointConfig.fromDb(output);
@@ -259,6 +280,17 @@ public class SioService {
             String configMsg = RequestMessage.encode(scpId, config);
             cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
         }
+    }
+
+    /**
+     * reader LED配置
+     * @param scpId
+     * @param cmdList
+     */
+    public void readerLEDConfig(int scpId, List<ScpCmd> cmdList) {
+        ReaderLED operation = ReaderLED.defualtSetting(scpId);
+        String msg = RequestMessage.encode(scpId, operation);
+        cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
     }
 
 

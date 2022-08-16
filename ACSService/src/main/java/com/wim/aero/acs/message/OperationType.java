@@ -42,6 +42,7 @@ public enum OperationType {
     INPUT_110(110, InputPointSpecification.class),
     OUTPUT_111(111, OutputPointSpecification.class),
     READER_112(112, ReaderSpecification.class),
+    READER_LED(122, ReaderLED.class),
     MP_113(113, MonitorPointConfig.class),
     CP_114(114, ControlPointConfig.class),
     ACR_115(115, ACRConfig.class),
@@ -55,7 +56,7 @@ public enum OperationType {
     // card
     CARD_MT_1102(1102, MT2CardFormat.class),
     CARD_WIEGAND_1102(1102, WiegandCardFormat.class),
-    CARD_INFO_5304(8304, CardAdd.class),
+    CARD_INFO_5304(5304, CardAdd.class),
     CARD_DEL(3305, CardDelete.class),
 
     // 访问级别

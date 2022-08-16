@@ -45,4 +45,21 @@ public class DevReaderDetailServiceImpl extends ServiceImpl<DevReaderDetailMappe
     public AcrStrikeInfo getAcrStrike(int deviceId) {
         return this.baseMapper.selectStrikeByDeviceId(deviceId);
     }
+
+    /**
+     * 判断输入点是否已配置
+     * @return
+     */
+    public boolean isInputConfigured(int scpId, int sioId, int inputNo) {
+        return this.baseMapper.CountByInputInfo(scpId, sioId, inputNo) > 0;
+    }
+
+
+    /**
+     * 判断输出点是否已配置
+     * @return
+     */
+    public boolean isOutputConfigured(int scpId, int sioId, int outputNo) {
+        return this.baseMapper.CountByOutputInfo(scpId, sioId, outputNo) > 0;
+    }
 }

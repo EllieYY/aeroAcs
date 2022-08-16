@@ -53,7 +53,7 @@ public class QueueProducer {
 
     public void sendScpMacMessage(ScpMacMessage macMessage) {
         String messageStr = JsonUtil.toJson(macMessage);
-        log.info("[{} - mac上报] - {}",macMessage.getScpId(), messageStr);
+//        log.info("[{} - mac上报] - {}",macMessage.getScpId(), messageStr);
         this.sendMessage(scpMacQueue, messageStr);
     }
 
@@ -65,19 +65,19 @@ public class QueueProducer {
 
     public void sendAlarmMessage(StatusMessage alarmMessage) {
         String messageStr = JsonUtil.toJson(alarmMessage);
-        log.info("[{} - 报警事件] - {}", alarmMessage.getControllerId(), messageStr);
+//        log.info("[{} - 报警事件] - {}", alarmMessage.getControllerId(), messageStr);
         this.sendMessage(alarmQueue, messageStr);
     }
 
     public void sendAccessMessage(AccessMessage accessMessage) {
         String messageStr = JsonUtil.toJson(accessMessage);
-        log.info("[{} - 刷卡事件] - {}",accessMessage.getControllerId(), messageStr);
+//        log.info("[{} - 刷卡事件] - {}",accessMessage.getControllerId(), messageStr);
         this.sendMessage(accessQueue, messageStr);
     }
 
     public void sendStatusMessage(StatusMessage statusMessage) {
         String messageStr = JsonUtil.toJson(statusMessage);
-        log.info("[{} - 状态事件] - {}", statusMessage.getControllerId(), messageStr);
+//        log.info("[{} - 状态事件] - {}", statusMessage.getControllerId(), messageStr);
         this.sendMessage(statusQueue, messageStr);
 
          // 报警事件

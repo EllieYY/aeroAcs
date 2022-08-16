@@ -61,7 +61,7 @@ public class TypeCoSDoor extends TransactionBody implements AlarmEvent {
         queueProducer.sendStatusMessage(
                 new AlarmMessage(index, date, scpId,
                         sourceType, sourceNum, tranType, tranCode, deviceStatus,
-                        Constants.TRAN_TABLE_SRC_ACR, this.toString(), this.door_status));
+                        Constants.TRAN_TABLE_SRC_ACR, this.toString(), getStateCode(tranCode)));
     }
 
     public int parseStatus(int tranCode, int status) {
@@ -82,7 +82,11 @@ public class TypeCoSDoor extends TransactionBody implements AlarmEvent {
     }
 
     @Override
-    public int getStateCode() {
-        return this.door_status;
+    public int getStateCode(int tranCode) {
+        if (tranCode == 4) {
+            return this.ap_status;
+        } else {
+            return this.door_status;
+        }
     }
 }

@@ -79,6 +79,10 @@ public class SCPDriver extends Operation {
     }
 
     private static String formatIp(String ip, Integer port) {
-        return ip + "." + port;
+
+//        return ip + "." + port;
+
+        // TODO: 暂定使用默认端口3001，报文中可不进行端口配置
+        return ip;
     }
 }

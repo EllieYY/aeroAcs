@@ -75,7 +75,7 @@ public class TypeCoS extends TransactionBody implements AlarmEvent {
     }
 
     @Override
-    public int getStateCode() {
+    public int getStateCode(int tranCode) {
         return status;
     }
 }

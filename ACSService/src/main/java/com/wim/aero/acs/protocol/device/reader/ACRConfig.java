@@ -82,7 +82,7 @@ public class ACRConfig extends Operation {
     private Integer strikeTimeMax; // 开门提示时间 IMaximum strike activation, in seconds; valid values are strike_t_min to 255.
 
 
-    @CmdProp(index = 13, defaultValue = "0")
+    @CmdProp(index = 13, defaultValue = "1")
     private Integer strikeMode; // 门磁上电
 
     // 门

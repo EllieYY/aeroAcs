@@ -136,7 +136,7 @@ public class RequestPendingCenter implements CacheManagerAware {
             taskDetail.setScpId(Integer.parseInt(cmd.getScpId()));
 
             taskDetailService.save(taskDetail);
-            taskDetailList.add(taskDetail);
+//            taskDetailList.add(taskDetail);
         }
 
 //        taskDetailService.saveBatch(taskDetailList);
@@ -182,6 +182,8 @@ public class RequestPendingCenter implements CacheManagerAware {
 //                            commandInfo.getStreamId(),
 //                            response.toString()
 //                    ));
+                    // 单条更新
+                    taskDetailService.updateTaskState(state, response.toString(), new Date(), commandInfo.getStreamId());
                 }
             } else {
                 log.error("[{} - 通信服务错误] 返回未定义streamId : {}", scpId, streamId);
@@ -224,6 +226,7 @@ public class RequestPendingCenter implements CacheManagerAware {
             CommandInfo commandInfo = cmdCache.get(key);
             if (commandInfo == null) {
                 log.info("streamId超时：{}", key);
+                continue;
             } else {
                 commandInfo.setReason(reason);
                 commandInfo.setCommandStatus(code);
@@ -241,17 +244,17 @@ public class RequestPendingCenter implements CacheManagerAware {
 
 //            log.info("cmdInfo:{}", commandInfo.toString());
 
-            Date curTime = commandInfo.getCmdDate();
-            TaskDetail entity = new TaskDetail(
-                    commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
-                    commandInfo.getCommand(),
-                    curTime, scpSeqMessage.getCmdDate(), DateUtil.dateAddMins(curTime,5),
-                    state,
-                    commandInfo.getStreamId(),
-                    detail
-            );
+//            Date curTime = commandInfo.getCmdDate();
+//            TaskDetail entity = new TaskDetail(
+//                    commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
+//                    commandInfo.getCommand(),
+//                    curTime, scpSeqMessage.getCmdDate(), DateUtil.dateAddMins(curTime,5),
+//                    state,
+//                    commandInfo.getStreamId(),
+//                    detail
+//            );
             // 改成单条更新
-            taskDetailService.updateById(entity);
+            taskDetailService.updateTaskState(state, detail, scpSeqMessage.getCmdDate(), commandInfo.getStreamId());
 
             // 授权表写入
             if (commandInfo.getType() == Constants.SCP_CMD_CARD_ADD ||
@@ -277,7 +280,7 @@ public class RequestPendingCenter implements CacheManagerAware {
 //                log.info("授权表保存：{} - {}", saveOk, employeeAuth.toString());
             }
 
-            taskDetailList.add(entity);
+//            taskDetailList.add(entity);
         }
 
 //        taskDetailService.updateTaskStateBatch(taskDetailList);

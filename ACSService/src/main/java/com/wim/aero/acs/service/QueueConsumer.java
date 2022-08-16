@@ -42,7 +42,10 @@ public class QueueConsumer {
             return;
         }
 
-//        log.info("[mq消息消费] {}", message);
+//        log.info("[mq消息消费] {} - {} : {}", messageObj.getScpId(), messageObj.getSeq(), messageObj.getStatus());
+//        requestPendingCenter.commandResponse(messageObj);
+//        session.recover();    // 重发
+
         if (requestPendingCenter.commandResponse(messageObj)) {
             message.acknowledge();
         } else {
