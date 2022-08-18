@@ -36,7 +36,7 @@ public class CardController {
         this.accessConfigService = accessConfigService;
     }
 
-    @ApiOperation(value = "添加卡片到控制器-权限修改，个人卡冻结挂失")
+    @ApiOperation(value = "添加卡片到控制器-权限修改")
     @RequestMapping(value = "/add", method = {RequestMethod.POST})
     public ResultBean<String> addCards(@RequestBody CardRequestInfo cardInfo) {
         if (cardInfo.getCardList().size() == 0) {

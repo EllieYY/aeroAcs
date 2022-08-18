@@ -8,6 +8,7 @@ import com.wim.aero.acs.db.service.impl.*;
 import com.wim.aero.acs.message.RequestMessage;
 import com.wim.aero.acs.model.DST;
 import com.wim.aero.acs.model.command.ScpCmd;
+import com.wim.aero.acs.model.command.ScpConnectInfo;
 import com.wim.aero.acs.model.db.TriggerInfoEx;
 import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.model.request.*;
@@ -157,18 +158,40 @@ public class ScpService {
      * 获取设备连接报文
      * @return
      */
-    public List<ScpCmd> getAllScpConnectMsg() {
+    public List<ScpConnectInfo> getAllScpConnectMsg() {
         List<DevControllerDetail> detailList = devControllerDetailService.list();
-        List<ScpCmd> cmdList = new ArrayList<>();
+        List<ScpConnectInfo> cmdList = new ArrayList<>();
         for (DevControllerDetail detail:detailList) {
             int scpId = detail.getDeviceId();
+            String ipStr = detail.getDeviceIp();
+
             // Create SCP (Command 1013)
             SCPDriver driver = SCPDriver.fromDb(detail);
             String msg = RequestMessage.encode(scpId, driver);
-            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+            cmdList.add(new ScpConnectInfo(scpId, ipStr, msg));
 
             // 1105和1107
-            scpSpecification(scpId, cmdList);
+            // SCPDevice Specification(Command 1107)
+            SCPSpecification scpSpecification = new SCPSpecification(scpId);
+            String specificationMsg = RequestMessage.encode(scpId, scpSpecification);
+            cmdList.add(new ScpConnectInfo(scpId, ipStr, specificationMsg));
+
+            // Access Database Specification (Command 1105)
+            DevControllerCommonAttribute adDetail = devControllerCommonAttributeService.getADSpecification();
+            AccessDatabaseSpecification adSpecification = AccessDatabaseSpecification.fromDb(scpId, adDetail);
+            String adSpecificationMsg = RequestMessage.encode(scpId, adSpecification);
+            cmdList.add(new ScpConnectInfo(scpId, ipStr, adSpecificationMsg));
+
+            // 判断是否是梯控设备
+            boolean isEleScp = controllerDetailService.isEleScp(scpId);
+            if (!isEleScp) {
+                continue;
+            }
+            // Command 501: Elevator Access Level Specification
+            int floors = Optional.ofNullable(adDetail.getElevatorFloorNum()).orElse(64);
+            ElevatorALsSpecification ealSpecification = new ElevatorALsSpecification(scpId, floors);
+            String ealMsg = RequestMessage.encode(scpId, ealSpecification);
+            cmdList.add(new ScpConnectInfo(scpId, ipStr, ealMsg));
         }
 
         return cmdList;

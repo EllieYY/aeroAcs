@@ -2,6 +2,7 @@ package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.command.CmdDownloadInfo;
+import com.wim.aero.acs.model.command.ScpConnectInfo;
 import com.wim.aero.acs.model.request.*;
 import com.wim.aero.acs.model.command.ScpCmd;
 import com.wim.aero.acs.model.command.ScpCmdResponse;
@@ -300,7 +301,7 @@ public class ScpController {
      */
     @ApiOperation(value = "通信后台使用 - 获取所有控制器连接报文")
     @RequestMapping(value = "/all/connect", method = {RequestMethod.POST, RequestMethod.GET})
-    public List<ScpCmd> scpConfig() {
+    public List<ScpConnectInfo> scpConfig() {
         return scpService.getAllScpConnectMsg();
     }
 
