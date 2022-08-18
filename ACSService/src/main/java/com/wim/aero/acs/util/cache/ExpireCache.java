@@ -48,6 +48,14 @@ public class ExpireCache<K, V> extends ConcurrentHashMap<K, V> implements Cache<
 		return super.put(key, (V) new ExpireCacheData<>(value, 1800));
 	}
 
+	@Override
+	public V put(K key, V value, int expire) {
+		if (expire <= 0) {
+			expire = 60;
+		}
+		return super.put(key, (V) new ExpireCacheData<>(value, expire));
+	}
+
 	/**
 	 * 获取缓存中的数据（避免强类型转换的麻烦）
 	 * 

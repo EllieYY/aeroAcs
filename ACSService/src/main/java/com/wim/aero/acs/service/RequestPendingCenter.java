@@ -50,11 +50,13 @@ public class RequestPendingCenter implements CacheManagerAware {
 
     private Cache<String, ScpSeq> mapCache;
     private Cache<String, CommandInfo> cmdCache;
+    private Cache<String, ScpSeqMessage> seqCache;
 
     @Override
     public void setCacheManager(CacheManager cacheManager) {
         mapCache = cacheManager.getCache("streamSeq");
         cmdCache = cacheManager.getCache("command");
+        seqCache = cacheManager.getCache("seqCache");
     }
 
 
@@ -118,6 +120,7 @@ public class RequestPendingCenter implements CacheManagerAware {
             }
 
             // 更新集合
+//            log.info("add cmdCache:{}", cmd.getStreamId());
             cmdCache.put(cmd.getStreamId(), commandInfo);
 
             Date curTime = commandInfo.getCmdDate();
@@ -163,27 +166,31 @@ public class RequestPendingCenter implements CacheManagerAware {
                 commandInfo.setSeqId(seqNo);
                 commandInfo.setCommCode(code);
 
-
                 String state = TaskCommandState.INIT.value();
-                if (code == Constants.REST_CODE_SUCCESS) {
-                    cmdCache.put(streamId, commandInfo);
-                    mapCache.put(streamId, new ScpSeq(scpId, seqNo));
-                } else {
+                if (code != Constants.REST_CODE_SUCCESS) {   // 明确下发失败的
                     cmdCache.remove(streamId);
                     state = TaskCommandState.FAIL.value();
                     result.add(commandInfo);
 
-//                    Date curTime = commandInfo.getCmdDate();
-//                    taskDetailList.add(new TaskDetail(
-//                            commandInfo.getTaskId(), commandInfo.getTaskName(), commandInfo.getTaskSource(),
-//                            commandInfo.getCommand(),
-//                            curTime, new Date(), DateUtil.dateAddMins(curTime,20),
-//                            state,
-//                            commandInfo.getStreamId(),
-//                            response.toString()
-//                    ));
                     // 单条更新
                     taskDetailService.updateTaskState(state, response.toString(), new Date(), commandInfo.getStreamId());
+                } else {
+                    // 做匹配
+                    String seqKey = getSeqKey(scpId, seqNo);
+                    ScpSeqMessage seqMessage = seqCache.get(seqKey);
+                    if (seqMessage == null) {    // 匹配失败
+                        cmdCache.put(streamId, commandInfo);
+                        mapCache.put(streamId, new ScpSeq(scpId, seqNo));
+                    } else {                     // 匹配成功
+                        cmdCache.remove(streamId);
+                        state = TaskCommandState.SUCCESS.value();
+
+                        // 单条更新
+                        taskDetailService.updateTaskState(state,
+                                seqMessage.getDetail(),
+                                commandInfo.getCmdDate(),
+                                commandInfo.getStreamId());
+                    }
                 }
             } else {
                 log.error("[{} - 通信服务错误] 返回未定义streamId : {}", scpId, streamId);
@@ -203,10 +210,20 @@ public class RequestPendingCenter implements CacheManagerAware {
         }
     }
 
+
+    private String getSeqKey(int scpId, long seqNo) {
+        return scpId + ":" + seqNo;
+    }
+
     /** 控制器返回命令生效结果 */
     public boolean commandResponse(ScpSeqMessage scpSeqMessage) {
         int scpId = scpSeqMessage.getScpId();
         long seqNo = scpSeqMessage.getSeq();
+
+//        // TODO:入缓存
+//        String seqKey = getSeqKey(scpId, seqNo);
+//        seqCache.put(seqKey, scpSeqMessage, Constants.SEQ_EXPIRE_SEC);
+
         int code = scpSeqMessage.getStatus();
         int reason = scpSeqMessage.getReason();
         String detail = scpSeqMessage.getDetail();
@@ -226,6 +243,8 @@ public class RequestPendingCenter implements CacheManagerAware {
             CommandInfo commandInfo = cmdCache.get(key);
             if (commandInfo == null) {
                 log.info("streamId超时：{}", key);
+                // 改成单条更新
+                taskDetailService.updateTaskState(state, "超时", scpSeqMessage.getCmdDate(), key);
                 continue;
             } else {
                 commandInfo.setReason(reason);
@@ -310,10 +329,12 @@ public class RequestPendingCenter implements CacheManagerAware {
     private void removeStreamId(String streamId) {
         if (mapCache.containsKey(streamId)) {
             mapCache.remove(streamId);
+//            log.info("map移除 {}", streamId);
         }
 
         if (cmdCache.containsKey(streamId)) {
             cmdCache.remove(streamId);
+//            log.info("cmd移除 {}", streamId);
         }
     }
 

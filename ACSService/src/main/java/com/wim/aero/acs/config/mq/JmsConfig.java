@@ -149,7 +149,7 @@ public class JmsConfig {
         //重发次数,默认为6次   这里设置为5次
         redeliveryPolicy.setMaximumRedeliveries(6);
         //重发时间间隔,默认为1秒
-        redeliveryPolicy.setInitialRedeliveryDelay(1000);
+        redeliveryPolicy.setInitialRedeliveryDelay(500);
         //第一次失败后重新发送之前等待500毫秒,第二次失败再等待500 * 2毫秒,这里的2就是value
         redeliveryPolicy.setBackOffMultiplier(2);
         //最大传送延迟，只在useExponentialBackOff为true时有效（V5.5），假设首次重连间隔为10ms，倍数为2，那么第

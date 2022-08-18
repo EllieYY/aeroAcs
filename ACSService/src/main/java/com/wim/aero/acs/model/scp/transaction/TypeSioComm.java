@@ -24,7 +24,7 @@ import java.util.Map;
  **/
 @Data
 @Slf4j
-public class TypeSioComm extends TransactionBody {
+public class TypeSioComm extends TransactionBody implements AlarmEvent {
 
     private int	comm_sts;			// comm status
                                     //  0 - not configured
@@ -88,6 +88,26 @@ public class TypeSioComm extends TransactionBody {
                         Constants.TRAN_TABLE_SRC_SIO,
                         this.toString()));
 
+    }
+
+    @Override
+    public int getDeviceState(int tranCode) {
+        int targetState = statusMap.get(comm_sts);
+        // 处理online状态下，ser_num值持续的2以及值为4的情况
+        if (comm_sts == 3) {
+            if (ser_num == 4) {
+                targetState = Constants.TRAGET_STATE_WARN;
+            } else if (ser_num == 2) {
+                targetState = Constants.TRAGET_STATE_CONTINUOUSLY;
+            }
+        }
+
+        return targetState;
+    }
+
+    @Override
+    public int getStateCode(int tranCode) {
+        return -1;
     }
 
     /**---------------------------------------------------------------------------

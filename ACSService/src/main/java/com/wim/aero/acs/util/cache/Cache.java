@@ -48,6 +48,15 @@ public interface Cache<K, V> {
 	 * @param value 值
 	 * @return 值
 	 */
+	V put(K key, V value, int sec);
+
+	/**
+	 * 添加缓存键值对
+	 *
+	 * @param key   键
+	 * @param value 值
+	 * @return 值
+	 */
 	V put(K key, V value, Supplier<Object> load);
 
 

@@ -15,6 +15,9 @@ public interface Constants {
     int REST_CODE_SUCCESS = 0;
     long CONNECT_TASK_ID = -1;
 
+    // 控制器消息缓存时间 单位秒
+    int SEQ_EXPIRE_SEC = 300;
+
     // 单次发送命令条数
     int BATCH_CMD_COUNT = 150;
 
