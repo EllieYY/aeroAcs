@@ -209,7 +209,7 @@ public class ACRConfig extends Operation {
 
         // 2s unit
         Integer dcHeld = Optional.ofNullable(detail.getDcHeld()).orElse(2);
-        result.setDcHeld(dcHeld / 2);
+        result.setDcHeld(1 + dcHeld / 2);
 
         result.setStrkSio(detail.getStrkSio());
         result.setStrkNumber(detail.getStrkNumber());
