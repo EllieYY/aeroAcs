@@ -19,7 +19,7 @@ public interface Constants {
     int SEQ_EXPIRE_SEC = 300;
 
     // 单次发送命令条数
-    int BATCH_CMD_COUNT = 150;
+    int BATCH_CMD_COUNT = 50;
 
     // 单次加卡数量
     int BATCH_CARD_COUNT = 150;

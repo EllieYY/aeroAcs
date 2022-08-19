@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -71,6 +72,9 @@ public class RequestPendingCenter implements CacheManagerAware {
         add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), Arrays.asList(cmd));
         ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
         updateSeq(Arrays.asList(response));
+
+        // TODO:改造
+
         return response.getCode();
     }
 
@@ -88,18 +92,105 @@ public class RequestPendingCenter implements CacheManagerAware {
         List<List<ScpCmd>> batchCardList = StringUtil.fixedGrouping(cmdList, Constants.BATCH_CMD_COUNT);
         for (List<ScpCmd> batchCmd:batchCardList) {
 
-            this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), batchCmd);
-//        restUtil.sendMultiCmd(cmdList);
+//            this.add(request.getTaskId(), request.getTaskName(), request.getTaskSource(), batchCmd);
 
             List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(batchCmd);
+            Map<String, ScpCmdResponse>  responseMap =
+                    responseList.stream().collect(Collectors.toMap(ScpCmdResponse::getStreamId, item -> item));
+
+            // TODO:
+            log.info("[通信服务响应命令条数] - {}", responseList.size());
+            log.info(responseList.toString());
+            commandCollected(request, batchCmd, responseMap);
+
+
             int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
             if (sum == 0) {
                 return -1;
             }
-            this.updateSeq(responseList);
+//            this.updateSeq(responseList);
         }
 
         return 0;
+    }
+
+    private void commandCollected(TaskRequest request, List<ScpCmd> batchCmd, Map<String, ScpCmdResponse> responseMap) {
+
+
+        long taskId = request.getTaskId();
+        String taskName = request.getTaskName();
+        int taskSource = request.getTaskSource();
+
+        for (ScpCmd cmd:batchCmd) {
+            String uid = cmd.getStreamId();
+            String commandStatus = TaskCommandState.FAIL.value();
+            Date cmdTime = new Date();
+            String detail = cmd.toString();
+            ScpCmdResponse cmdResponse = responseMap.get(uid);
+
+            // 有返回结果的
+            if (cmdResponse != null) {
+                int code = cmdResponse.getCode();
+                if (code != Constants.REST_CODE_SUCCESS) {   // 下发失败的：修改status、detail，不进缓存，存对应关系
+                    commandStatus = TaskCommandState.FAIL.value();
+                    detail = cmdResponse.toString();
+
+                    //TODO：授权汇总表更新
+
+
+                } else {   // 下发成功的：修改status初始状态，进缓存
+                    // 命令信息组装
+                    String scpIdStr = cmd.getScpId();
+                    commandStatus = TaskCommandState.INIT.value();
+                    CommandInfo commandInfo = new CommandInfo(
+                            taskId, taskName, taskSource,
+                            uid, scpIdStr, cmd.getCommand(), code);
+                    commandInfo.setType(cmd.getType());
+                    if (cmd.getType() == Constants.SCP_CMD_CARD_ADD || cmd.getType() == Constants.SCP_CMD_CARD_DEL) {
+                        commandInfo.setCardNo(cmd.getCardNo());
+                        commandInfo.setAlvlListStr(cmd.getAlvlListStr());
+                    }
+
+                    // 进入缓存
+                    int scpId = cmdResponse.getScpId();
+                    long seqNo = Long.parseLong(cmdResponse.getSequenceNumber());
+
+                    // 做匹配
+                    String seqKey = getSeqKey(scpId, seqNo);
+                    ScpSeqMessage seqMessage = seqCache.get(seqKey);
+                    if (seqMessage == null) {    // 匹配失败
+                        cmdCache.put(uid, commandInfo);
+                        mapCache.put(uid, new ScpSeq(scpId, seqNo));
+                    } else {                     // 匹配成功
+                        log.info("匹配成功");
+                        commandStatus = TaskCommandState.SUCCESS.value();
+                        detail = seqMessage.getDetail();
+                    }
+//                    cmdCache.put(uid, commandInfo);
+//                    mapCache.put(uid, new ScpSeq(scpId, seqNo));
+                }
+            }
+
+            // 存入数据库
+            commandStatus = (taskId == Constants.CONNECT_TASK_ID) ?
+                    TaskCommandState.SUCCESS.value() : TaskCommandState.INIT.value();
+
+            TaskDetail taskDetail = new TaskDetail(
+                    taskId, taskName, taskSource, cmd.getCommand(),
+                    cmdTime, cmdTime, DateUtil.dateAddMins(cmdTime,5),
+                    commandStatus,
+                    cmd.getStreamId(),
+                    detail
+            );
+
+            taskDetail.setCardNo(cmd.getCardNo());
+            taskDetail.setScpId(Integer.parseInt(cmd.getScpId()));
+
+            taskDetailService.save(taskDetail);
+        }
+
+        printMap(cmdCache);
+        printMap(mapCache);
     }
 
 
@@ -144,6 +235,7 @@ public class RequestPendingCenter implements CacheManagerAware {
 
 //        taskDetailService.saveBatch(taskDetailList);
     }
+
 
     /** 更新seqNo */
     public List<CommandInfo> updateSeq(List<ScpCmdResponse> cmdResponseList) {
@@ -234,7 +326,7 @@ public class RequestPendingCenter implements CacheManagerAware {
             return false;
         }
 
-//        log.info("[消息匹配] seq:{}, code:{}, streamId:{}", seqNo, code, streamList.toString());
+        log.info("[消息匹配] seq:{}, code:{}, streamId:{}", seqNo, code, streamList.toString());
 
         List<TaskDetail> taskDetailList = new ArrayList<>();
         for (String key:streamList) {
