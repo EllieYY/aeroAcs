@@ -154,8 +154,6 @@ public class RequestPendingCenter implements CacheManagerAware {
 
                 } else {   // 下发成功的：修改status初始状态，进缓存
                     // 命令信息组装
-
-
                     String scpIdStr = cmd.getScpId();
                     commandStatus = TaskCommandState.INIT.value();
                     CommandInfo commandInfo = new CommandInfo(
@@ -178,12 +176,12 @@ public class RequestPendingCenter implements CacheManagerAware {
                         commandStatus = TaskCommandState.SUCCESS.value();
                         detail = seqMessage.getDetail();
                     }
+
+                    // 存入数据库
+                    commandStatus = (taskId == Constants.CONNECT_TASK_ID) ?
+                            TaskCommandState.SUCCESS.value() : commandStatus;
                 }
             }
-
-            // 存入数据库
-            commandStatus = (taskId == Constants.CONNECT_TASK_ID) ?
-                    TaskCommandState.SUCCESS.value() : TaskCommandState.INIT.value();
 
             TaskDetail taskDetail = new TaskDetail(
                     taskId, taskName, taskSource, cmd.getCommand(),

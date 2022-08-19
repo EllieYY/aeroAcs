@@ -158,7 +158,7 @@ public class ScpMessageService {
     }
 
 
-    public void dealScpeply(SCPReply reply) {
+    public void dealScpReply(SCPReply reply) {
         int type = reply.getType();
 
         // 入日志库
@@ -192,10 +192,18 @@ public class ScpMessageService {
     }
 
     public static int getPointStatus(int cosStateCode) {
+        if (!cosStateCodeMap.containsKey(cosStateCode)) {
+            log.error("[getPointStatus] 非法状态 {}", cosStateCode);
+            return Constants.TRAGET_STATE_FAULT;
+        }
         return cosStateCodeMap.get(cosStateCode);
     }
 
     public static int getTranCodeByCosState(int cosStateCode) {
+        if (!stateCode2TranCodeMap.containsKey(cosStateCode)) {
+            log.error("[getTranCodeByCosState] 非法状态 {}", cosStateCode);
+            return Constants.COS_TRAN_Fault;
+        }
         return stateCode2TranCodeMap.get(cosStateCode);
     }
 

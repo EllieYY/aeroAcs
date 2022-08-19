@@ -99,7 +99,7 @@ public class ScpMessageController {
 //        log.info(request.toString());
 
         // 数据处理
-        scpMessageService.dealScpeply(request);
+        scpMessageService.dealScpReply(request);
 
         return ResultBeanUtil.makeOkResp(request.toString());
     }
