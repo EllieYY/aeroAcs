@@ -7,6 +7,7 @@ import com.wim.aero.acs.db.service.impl.EEventRecordServiceImpl;
 import com.wim.aero.acs.model.mq.AccessMessage;
 import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.model.scp.reply.EnScpReplyType;
 import com.wim.aero.acs.model.scp.reply.ReplyBody;
 import com.wim.aero.acs.model.scp.reply.ReplyType;
@@ -116,8 +117,14 @@ public class ScpMessageService {
                 } else {
                     log.error("can not get state info, {}", transaction.toString());
                 }
-                queueProducer.sendStatusMessage(new AlarmMessage(eventNo, date, scpId,
+
+                if (stateCode == -1) {    // 没有状态值的，报状态事件
+                    queueProducer.sendStatusMessage(new StatusMessage(eventNo, date, scpId,
+                         sourceType, sourceNum, tranType, tranCode, deviceStatus, targerSrcCode, transaction.toString()));
+                } else {    // 有状态值的，按报警
+                    queueProducer.sendAlarmMessage(new AlarmMessage(eventNo, date, scpId,
                         sourceType, sourceNum, tranType, tranCode, deviceStatus, targerSrcCode, transaction.toString(), stateCode));
+                }
 
             } else if (mqType == Constants.MQ_LOG) {
                 LogMessage message = new LogMessage(eventNo, date, scpId, sourceType, sourceNum, tranType, tranCode,

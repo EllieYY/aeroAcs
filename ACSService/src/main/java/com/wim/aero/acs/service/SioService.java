@@ -24,10 +24,7 @@ import com.wim.aero.acs.protocol.device.mp.InputPointSpecification;
 import com.wim.aero.acs.protocol.device.mp.MonitorPointConfig;
 import com.wim.aero.acs.protocol.device.mp.MonitorPointMask;
 import com.wim.aero.acs.protocol.device.mp.MpGroupCommand;
-import com.wim.aero.acs.protocol.device.reader.ACRConfig;
-import com.wim.aero.acs.protocol.device.reader.ACRModeConfig;
-import com.wim.aero.acs.protocol.device.reader.ReaderLED;
-import com.wim.aero.acs.protocol.device.reader.ReaderSpecification;
+import com.wim.aero.acs.protocol.device.reader.*;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.RequestInfo;
@@ -108,6 +105,48 @@ public class SioService {
         ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
         return requestPendingCenter.sendCmd(request, cmd);
     }
+
+    /**
+     * 读卡器开门
+     * @param scpId
+     * @param acrId
+     * @param strikeTM 开门时间
+     */
+    public int doorMomentaryUnlock(TaskRequest request, int scpId, int acrId, int strikeTM) {
+        // 311
+        MomentaryUnlock config = new MomentaryUnlock();
+        config.setScpNumber(scpId);
+        config.setAcrNumber(acrId);
+        config.setStrkTm(strikeTM);
+
+        String msg = RequestMessage.encode(scpId, config);
+        log.info("[{} - ACR MomentaryUnlock]开门 msg={}", scpId, msg);
+
+        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+        return requestPendingCenter.sendCmd(request, cmd);
+    }
+
+    /**
+     * 读卡器开门
+     * @param scpId
+     * @param acrId
+     * @param setAlarm true设防 false 撤防
+     */
+    public int acrMask(TaskRequest request, int scpId, int acrId, boolean setAlarm) {
+        // TODO:
+//        MomentaryUnlock config = new MomentaryUnlock();
+//        config.setScpNumber(scpId);
+//        config.setAcrNumber(acrId);
+//        config.setStrkTm(strikeTM);
+//
+//        String msg = RequestMessage.encode(scpId, config);
+//        log.info("[{} - ACR MomentaryUnlock]开门 msg={}", scpId, msg);
+//
+//        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
+//        return requestPendingCenter.sendCmd(request, cmd);
+        return 0;
+    }
+
 
     /**
      * 控制点远程控制命令

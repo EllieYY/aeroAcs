@@ -63,10 +63,14 @@ public class QueueProducer {
         this.sendMessage(logQueue, messageStr);
     }
 
-    public void sendAlarmMessage(StatusMessage alarmMessage) {
+    public void sendAlarmMessage(AlarmMessage alarmMessage) {
         String messageStr = JsonUtil.toJson(alarmMessage);
-//        log.info("[{} - 报警事件] - {}", alarmMessage.getControllerId(), messageStr);
+        log.info("[{} - 报警事件] - {}", alarmMessage.getControllerId(), messageStr);
+
+        // 报警事件同时也报状态
+        sendStatusMessage(alarmMessage);
         this.sendMessage(alarmQueue, messageStr);
+
     }
 
     public void sendAccessMessage(AccessMessage accessMessage) {
@@ -79,11 +83,6 @@ public class QueueProducer {
         String messageStr = JsonUtil.toJson(statusMessage);
         log.info("[{} - 状态事件] - {}", statusMessage.getControllerId(), messageStr);
         this.sendMessage(statusQueue, messageStr);
-
-         // 报警事件
-        if (statusMessage.getStatus() == Constants.TRAGET_STATE_WARN) {
-            this.sendAlarmMessage(statusMessage);
-        }
     }
 
     public void sendScpMessage(ScpSeqMessage scpSeqMessage) {
@@ -92,7 +91,7 @@ public class QueueProducer {
         }
 
         String messageStr = JsonUtil.toJson(scpSeqMessage);
-        log.info("[{} - 匹配失败，命令执行结果入队等待] - {}", scpSeqMessage.getScpId(), messageStr);
+//        log.info("[{} - 匹配失败，命令执行结果入队等待] - {}", scpSeqMessage.getScpId(), messageStr);
         this.sendMessage(scpSeqQueue, messageStr);
     }
 

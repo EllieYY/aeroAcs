@@ -86,6 +86,7 @@ public enum OperationType {
     MP_MASK(306, MonitorPointMask.class),
     CP_COMMAND(307, ControlPointCommand.class),
     ACR_MODE(308, ACRModeConfig.class),
+    ACR_UNLOCK(311, MomentaryUnlock.class),
 
     MP_GROUP_MASK(321, MpGroupCommand.class),
 

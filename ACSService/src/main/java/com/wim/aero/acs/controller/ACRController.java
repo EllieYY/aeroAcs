@@ -1,7 +1,9 @@
 package com.wim.aero.acs.controller;
 
 import com.wim.aero.acs.config.Constants;
+import com.wim.aero.acs.model.request.AcrMaskRequestInfo;
 import com.wim.aero.acs.model.request.AcrRequestInfo;
+import com.wim.aero.acs.model.request.AcrUnlockRequestInfo;
 import com.wim.aero.acs.model.result.RespCode;
 import com.wim.aero.acs.model.result.ResultBean;
 import com.wim.aero.acs.model.result.ResultBeanUtil;
@@ -34,10 +36,9 @@ public class ACRController {
         this.sioService = sioService;
     }
 
-
-    @ApiOperation(value = "开门、关门")
+    @ApiOperation(value = "开门、关门 （弃用待定中）")
     @RequestMapping(value = "/strike/command", method = {RequestMethod.POST})
-    public ResultBean<String> doorOpen(@RequestBody AcrRequestInfo request) {
+    public ResultBean<String> doorOpenAndClose(@RequestBody AcrRequestInfo request) {
         // 命令类型校验
         int commandCode = request.getCommand();
         ControlPointCommandType type = ControlPointCommandType.fromTypeCode(commandCode);
@@ -51,6 +52,31 @@ public class ACRController {
 
         return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
     }
+
+    @ApiOperation(value = "开门")
+    @RequestMapping(value = "/strike/open", method = {RequestMethod.POST})
+    public ResultBean<String> doorOpen(@RequestBody AcrUnlockRequestInfo request) {
+
+        int code = sioService.doorMomentaryUnlock(request, request.getScpId(), request.getAcrId(), request.getStrikeTime());
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("命令下发成功");
+        }
+
+        return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+    }
+
+    @ApiOperation(value = "读卡器设防撤防")
+    @RequestMapping(value = "/mask", method = {RequestMethod.POST})
+    public ResultBean<String> acrMask(@RequestBody AcrMaskRequestInfo request) {
+
+        int code = sioService.acrMask(request, request.getScpId(), request.getAcrId(), request.isFlag());
+        if (code == Constants.REST_CODE_SUCCESS) {
+            return ResultBeanUtil.makeOkResp("命令下发成功");
+        }
+
+        return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+    }
+
 
     @ApiOperation(value = "设置读卡器模式 - 常开、常闭等")
     @RequestMapping(value = "/mode", method = {RequestMethod.POST})
