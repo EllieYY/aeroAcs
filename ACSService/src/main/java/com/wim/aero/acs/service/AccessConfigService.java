@@ -128,29 +128,38 @@ public class AccessConfigService {
     public void addCards(CardRequestInfo request) {
         boolean isEleScp = request.isEleScp();
 
-        // 卡数量控制
         List<String> cardList = request.getCardList();
         log.info("加卡 {}", cardList.toString());
-        List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, Constants.BATCH_CARD_COUNT);
-        for (List<String> batchCard:batchCardList) {
-            if (batchCard.size() <= 0) {
-                continue;
-            }
-            log.info("[batch card] {}", batchCard.toString());
-            //添加冻结状态判断 梯控
-            List<CardAdd> cardAddList = new ArrayList<>();
-            try {
-                if (isEleScp) {
-                    cardAddList = cardInfoService.getByCardListForEleScp(batchCard);
-                } else {
-                    cardAddList = cardInfoService.getByCardList(batchCard);
-                }
-            } catch (DataAccessException e) {
-                log.error("[授权关系查询出错batch card] {}", batchCard.toString());
-                log.error(e.toString());
-            }
+        List<Integer> scpIdList = new ArrayList<>();
+        if (isEleScp) {
+            scpIdList = cardInfoService.getScpIdsByCardNoForEle(cardList);
+        } else {
+            scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
+        }
 
-            packageCardMessages(request, cardAddList);
+        // 卡数量控制
+        for (Integer scpId:scpIdList) {
+            List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, Constants.BATCH_CARD_COUNT);
+            for (List<String> batchCard : batchCardList) {
+                if (batchCard.size() <= 0) {
+                    continue;
+                }
+                log.info("[batch card] {} - {}", scpId, batchCard.toString());
+                //添加冻结状态判断 梯控
+                List<CardAdd> cardAddList = new ArrayList<>();
+                try {
+                    if (isEleScp) {
+                        cardAddList = cardInfoService.getByCardListAndScpIdForEleScp(scpId, batchCard);
+                    } else {
+                        cardAddList = cardInfoService.getByCardListAndScpId(scpId, batchCard);
+                    }
+                } catch (DataAccessException e) {
+                    log.error("[授权关系查询出错batch card] {}-{}", scpId, batchCard.toString());
+                    log.error(e.toString());
+                }
+
+                packageCardMessages(request, cardAddList);
+            }
         }
     }
 
@@ -193,6 +202,9 @@ public class AccessConfigService {
         List<String> cardList = Arrays.asList(cardNo);
         // 查找拥有这张卡的控制器
         List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
+
+        // TODO:梯控冻结
+
 
         // 组织报文
         List<ScpCmd> cmdList = new ArrayList<>();

@@ -149,7 +149,6 @@
         select
             a.card_no, a.pin, a.apb_id, a.times,
             DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_begin_time) as activeTime,
-            DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_begin_time) as activeTime,
             DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_end_time) as deactiveTime,
             DATEDIFF ( day , '1900/01/01 00:00:00', a.holiday_begin_time) as holidayDate,
             DATEDIFF ( day , a.holiday_begin_time, a.holiday_end_time) as holidayDays,
@@ -201,12 +200,75 @@
     </select>
 
 
+    <select id="selectAllByScpAndCardList" resultMap="CardInfoMap">
+        select
+        a.card_no, a.pin, a.apb_id, a.times,
+        DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_begin_time) as activeTime,
+        DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_end_time) as deactiveTime,
+        DATEDIFF ( day , '1900/01/01 00:00:00', a.holiday_begin_time) as holidayDate,
+        DATEDIFF ( day , a.holiday_begin_time, a.holiday_end_time) as holidayDays,
+        DATEDIFF ( day , '1900/01/01 00:00:00', a.temp_upgrade_begin_time) as tmpDate,
+        DATEDIFF ( day , a.temp_upgrade_begin_time, a.temp_upgrade_end_time) as tmpDays,
+        (1 + 2 * ISNULL(a.first_card_flag, 0) +
+        4 * ISNULL(a.apb_flag, 0) +
+        8 * ISNULL(a.disabled_flag, 0) +
+        16 * ISNULL(a.card_pwd_flag, 0))  as flags,
+        (case
+        when b.schedules_group_id = 0 or a.state != '0' then 0
+        else b.access_level_id end) as alId,
+        b.controller_id as scpId
+        from c_card_info a
+        left join d_employee_access_reader b
+        on a.card_no = b.card_no and b.controller_id = #{scpId}
+        where
+        a.card_no IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+
+    <select id="selectAllByScpAndCardListForEle" resultMap="CardInfoMap">
+        select
+        a.card_no, a.pin, a.apb_id, a.times,
+        DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_begin_time) as activeTime,
+        DATEDIFF ( second , '1970/01/01 00:00:00', a.effect_end_time) as deactiveTime,
+        DATEDIFF ( day , '1900/01/01 00:00:00', a.holiday_begin_time) as holidayDate,
+        DATEDIFF ( day , a.holiday_begin_time, a.holiday_end_time) as holidayDays,
+        DATEDIFF ( day , '1900/01/01 00:00:00', a.temp_upgrade_begin_time) as tmpDate,
+        DATEDIFF ( day , a.temp_upgrade_begin_time, a.temp_upgrade_end_time) as tmpDays,
+        (1 + 2 * ISNULL(a.first_card_flag, 0) +
+        4 * ISNULL(a.apb_flag, 0) +
+        8 * ISNULL(a.disabled_flag, 0) +
+        16 * ISNULL(a.card_pwd_flag, 0))  as flags,
+        (case
+        when b.ele_level_id = 0 or a.state != '0' then 0
+        else b.ele_access_id end) as alId,
+        b.controller_id as scpId
+        from c_card_info a
+        left join ele_employee_access_reader b
+        on a.card_no = b.card_no and b.controller_id = #{scpId}
+        where  a.card_no IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
 
     <select id="selectScpIdsByCardNo" resultType="java.lang.Integer" parameterType="java.util.List">
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
             select
             distinct controller_id
             from d_employee_access_reader
+            where card_no = #{id}
+        </foreach>
+    </select>
+
+    <select id="selectScpIdsByCardNoForEle" resultType="java.lang.Integer" parameterType="java.util.List">
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            select
+            distinct controller_id
+            from ele_employee_access_reader
             where card_no = #{id}
         </foreach>
     </select>

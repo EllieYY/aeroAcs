@@ -35,5 +35,16 @@ public interface CCardInfoMapper extends BaseMapper<CCardInfo> {
     /** 通过卡号找授权信息 -- 电梯控制器 */
     List<CardAdd> selectAllByCardListForEle(@Param("list") List<String> list) throws DataAccessException;
 
+
+    /** 通过卡号和控制器找授权信息 -- 普通控制器 */
+    List<CardAdd> selectAllByScpAndCardList(@Param("scpId") Integer scpId, @Param("list") List<String> list) throws DataAccessException;
+
+    /** 通过卡号和控制器找授权信息 -- 电梯控制器 */
+    List<CardAdd> selectAllByScpAndCardListForEle(@Param("scpId") Integer scpId, @Param("list") List<String> list) throws DataAccessException;
+
+    /** 通过卡号列表找控制器 -- 普通控制器 */
     List<Integer> selectScpIdsByCardNo(@Param("list") List<String> list);
+
+    /** 通过卡号列表找控制器 -- 电梯控制器 */
+    List<Integer> selectScpIdsByCardNoForEle(@Param("list") List<String> list);
 }

@@ -93,7 +93,7 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 15, defaultValue = "-1")
     private Integer doorNumber = -1; // Door contact link: Input number on the specified SIO (door_sio). 0 ~ nInputs -1. Use -1 for not used.
 
-    @CmdProp(index = 16, defaultValue = "0")
+    @CmdProp(index = 16, defaultValue = "10")
     private Integer dcHeld; // Delay before held open alarm is reported (2 second units). Valid values are 1 to 32767.
 
     // 出门按钮
@@ -122,13 +122,13 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 24, defaultValue = "-1")
     private Integer altrdrNumber = -1; // 0 ~ nReaders
 
-    @CmdProp(index = 25)
+    @CmdProp(index = 25, defaultValue = "0")
     private Integer altrdrSpec;
 
     @CmdProp(index = 26)
     private Integer cdFormat;  // 卡格式目录
 
-    @CmdProp(index = 27)
+    @CmdProp(index = 27, defaultValue = "0")
     private Integer apbMode;
 
     @CmdProp(index = 28)
@@ -137,19 +137,19 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 29)
     private Integer apbTo = 1;
 
-    @CmdProp(index = 30)
+    @CmdProp(index = 30, defaultValue = "0")
     private Integer spare = 0;
 
     @CmdProp(index = 31)
     private Integer actlFlags;
 
-    @CmdProp(index = 32)
+    @CmdProp(index = 32, defaultValue = "1")
     private Integer offlineMode;
 
-    @CmdProp(index = 33)
+    @CmdProp(index = 33, defaultValue = "5")
     private Integer defaultMode;
 
-    @CmdProp(index = 34)
+    @CmdProp(index = 34, defaultValue = "1")
     private Integer defaultLedMode;
 
     @CmdProp(index = 35)
@@ -165,12 +165,12 @@ public class ACRConfig extends Operation {
     private Integer dcHeld2;   // ADA开门过长报警时间
 
 //    // 暂时不用
-//    @CmdProp(index = 39)
-//    private Integer strkFollowPulse = 0;
-//    @CmdProp(index = 40)
-//    private Integer strkFollowDelay = 0;
-//    @CmdProp(index = 41)
-//    private Integer nAuthModFlags = 0;
+    @CmdProp(index = 39)
+    private Integer strkFollowPulse = 0;
+    @CmdProp(index = 40)
+    private Integer strkFollowDelay = 0;
+    @CmdProp(index = 41)
+    private Integer nAuthModFlags = 0;
 
 //    @CmdProp(index = 42)
 //    private Integer nExtFeatureType = 0;
@@ -209,7 +209,7 @@ public class ACRConfig extends Operation {
 
         // 2s unit
         Integer dcHeld = Optional.ofNullable(detail.getDcHeld()).orElse(2);
-        result.setDcHeld(1 + dcHeld / 2);
+        result.setDcHeld((1 + dcHeld) / 2);
 
         result.setStrkSio(detail.getStrkSio());
         result.setStrkNumber(detail.getStrkNumber());
