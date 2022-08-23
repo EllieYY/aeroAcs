@@ -33,8 +33,8 @@ public class ExpireCacheManager extends ConcurrentHashMap<String, Cache<?, ?>> i
                          * 另外：有 load 的总是不会返回 null，所以这里不用考虑有 load 的 ExpireCacheData。
                          * 而且有 load 的也不应该被 kill
                          */
-                        if (obj == null && !key.equals("seqCache")) {
-//                            log.info("[timeout remove] {} : {}", key, expiredCacheKey);
+                        if (obj == null) {
+                            log.info("[timeout remove] {} : {}", key, expiredCacheKey);
                             cache.remove(expiredCacheKey);
                         }
                     }

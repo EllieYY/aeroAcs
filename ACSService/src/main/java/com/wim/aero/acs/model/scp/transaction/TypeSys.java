@@ -21,7 +21,7 @@ import lombok.Data;
  * //			7 - Card Database cleared due to SRAM buffer overflow  故障
  **/
 @Data
-public class TypeSys extends TransactionBody {
+public class TypeSys extends TransactionBody implements AlarmEvent {
     private byte error_code;				// non-zero indicates an error unless it's tran_code == 1 then it's power up diagnostics
                                             // Power Up diagnostics are interpreted as follows:
                                             // bit 0 = Loss of lock
@@ -84,5 +84,15 @@ public class TypeSys extends TransactionBody {
             result = Constants.TRAGET_STATE_VALID;
         }
         return result;
+    }
+
+    @Override
+    public int getDeviceState(int tranCode) {
+        return getTragetState(tranCode);
+    }
+
+    @Override
+    public int getStateCode(int tranCode) {
+        return -1;
     }
 }

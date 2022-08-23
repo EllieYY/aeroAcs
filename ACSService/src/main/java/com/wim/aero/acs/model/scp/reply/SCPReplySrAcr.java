@@ -3,6 +3,7 @@ package com.wim.aero.acs.model.scp.reply;
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.model.scp.transaction.AlarmEvent;
 import com.wim.aero.acs.service.QueueProducer;
 import com.wim.aero.acs.service.ScpMessageService;
 import lombok.Data;
@@ -47,4 +48,5 @@ public class SCPReplySrAcr extends ReplyBody {
                 door_status);
         queueProducer.sendStatusMessage(sMessage);
     }
+
 }
