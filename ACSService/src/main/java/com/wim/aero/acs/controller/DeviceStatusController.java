@@ -41,7 +41,7 @@ public class DeviceStatusController {
         return ResultBeanUtil.makeOkResp();
     }
 
-    @ApiOperation(value = "卡数量查询")
+    @ApiOperation(value = "卡数量和MAC查询")
     @RequestMapping(value = "/cards", method = {RequestMethod.POST})
     public ResultBean<String> cardsCountCommand(@RequestBody ScpCardsRequest request) {
 

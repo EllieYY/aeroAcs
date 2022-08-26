@@ -35,6 +35,7 @@ public class SCPReplyCmndStatus extends ReplyBody {
 
 //        log.info("[Command返回] {} - {}", scpId, this.toString());
 
+
         // 推送消息队列中
         queueProducer.sendScpMessage(new ScpSeqMessage(scpId, sequence_number, status, reason, this.toString()));
 

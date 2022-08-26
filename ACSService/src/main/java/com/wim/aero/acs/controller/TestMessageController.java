@@ -174,9 +174,10 @@ public class TestMessageController {
 
     @RequestMapping(value = "/test/mq/productor", method = {RequestMethod.POST})
     public ResultBean<String> productMessage(@RequestBody ScpSeqMessage request) {
-        for (int i = 0; i < 5000; i++) {
-            queueProducer.sendScpMessage(request);
-        }
+        //queueProducer.sendScpMessage(request);
+
+//        queueProducer.sendDelayScpMessage(request, 5);
+
 
         return ResultBeanUtil.makeOkResp();
     }

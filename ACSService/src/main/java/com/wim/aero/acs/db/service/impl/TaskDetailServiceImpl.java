@@ -21,8 +21,8 @@ import java.util.List;
 @Service
 public class TaskDetailServiceImpl extends ServiceImpl<TaskDetailMapper, TaskDetail> implements TaskDetailService {
 
-    public void updateTaskState(String status, String detail, Date msgReturnTime, String uid) {
-        this.baseMapper.updateStatusAndMsgReturnTimeByUid(status, detail, msgReturnTime, uid);
+    public int updateTaskState(String status, String detail, Date msgReturnTime, String uid) {
+        return this.baseMapper.updateStatusAndMsgReturnTimeByUid(status, detail, msgReturnTime, uid);
     }
 
     public void updateTaskStateBatch(List<TaskDetail> detailList) {

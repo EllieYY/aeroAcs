@@ -22,4 +22,8 @@ public class CardRequestInfo  extends TaskRequest {
     @ApiModelProperty(value = "是否是梯控设备加卡，删卡接口可不填此参数")
     @JsonProperty(defaultValue = "false")
     private boolean isEleScp;
+
+    @ApiModelProperty(value = "控制器id")
+    @JsonProperty(defaultValue = "0")
+    private int scpId;
 }

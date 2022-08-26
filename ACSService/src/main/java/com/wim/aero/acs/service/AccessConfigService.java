@@ -130,23 +130,40 @@ public class AccessConfigService {
 
         List<String> cardList = request.getCardList();
         log.info("加卡 {}", cardList.toString());
-        List<Integer> scpIdList = new ArrayList<>();
-        if (isEleScp) {
-            scpIdList = cardInfoService.getScpIdsByCardNoForEle(cardList);
-        } else {
-            scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
-        }
 
         // 卡数量控制
-        for (Integer scpId:scpIdList) {
-            List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, Constants.BATCH_CARD_COUNT);
-            for (List<String> batchCard : batchCardList) {
-                if (batchCard.size() <= 0) {
-                    continue;
+        List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, Constants.BATCH_CARD_DATA_COUNT);
+        for (List<String> batchCard : batchCardList) {
+            if (batchCard.size() <= 0) {
+                continue;
+            }
+
+            int scpId = request.getScpId();
+            log.info("[batch card] {} - {}:{}", scpId, batchCard.size(), batchCard.toString());
+
+            List<CardAdd> cardAddList = new ArrayList<>();
+            if (scpId == 0) {
+                try {
+                    if (isEleScp) {
+                        cardAddList = cardInfoService.getByCardListForEleScp(batchCard);
+                    } else {
+                        cardAddList = cardInfoService.getByCardList(batchCard);
+                    }
+                } catch (DataAccessException e) {
+                    log.error("[授权关系查询出错batch card] {}", batchCard.toString());
+                    log.error(e.toString());
                 }
-                log.info("[batch card] {} - {}", scpId, batchCard.toString());
+            } else {
+//            List<Integer> scpIdList = new ArrayList<>();
+//            if (isEleScp) {
+//                scpIdList = cardInfoService.getScpIdsByCardNoForEle(batchCard);
+//            } else {
+//                scpIdList = cardInfoService.getScpIdsByCardNo(batchCard);
+//            }
+//
+//            for (Integer scpId : scpIdList) {
+//                log.info("[batch card] {} - {}:{}", scpId, batchCard.size(), batchCard.toString());
                 //添加冻结状态判断 梯控
-                List<CardAdd> cardAddList = new ArrayList<>();
                 try {
                     if (isEleScp) {
                         cardAddList = cardInfoService.getByCardListAndScpIdForEleScp(scpId, batchCard);
@@ -154,13 +171,15 @@ public class AccessConfigService {
                         cardAddList = cardInfoService.getByCardListAndScpId(scpId, batchCard);
                     }
                 } catch (DataAccessException e) {
-                    log.error("[授权关系查询出错batch card] {}-{}", scpId, batchCard.toString());
+                    log.error("[控制器授权关系查询出错batch card] {}-{}", scpId, batchCard.toString());
                     log.error(e.toString());
                 }
-
-                packageCardMessages(request, cardAddList);
             }
+
+            packageCardMessages(request, cardAddList);
+
         }
+
     }
 
     /**

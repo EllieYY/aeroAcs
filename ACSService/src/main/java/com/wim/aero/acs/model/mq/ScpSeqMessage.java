@@ -20,6 +20,7 @@ public class ScpSeqMessage {
     private int reason;
     private Date cmdDate;
     private String detail;
+    private int reCount = 0;    // 重发次数
 
     public ScpSeqMessage(int scpId, long seq, int status, int reason, String detail) {
         this.scpId = scpId;
@@ -28,5 +29,6 @@ public class ScpSeqMessage {
         this.reason = reason;
         cmdDate = new Date();
         this.detail = detail;
+        reCount = 0;
     }
 }

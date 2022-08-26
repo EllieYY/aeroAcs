@@ -38,7 +38,6 @@ public enum TransactionType {
     ACR_COS_ELE(0x09, 0x1A, TypeCoSElevator.class),
     ACR_COS_ELE_ACS(0x09, 0x1D, TypeCoSElevatorAccess.class),
 
-
     ACR_TMPR_COS(0x0A, 0x07, TypeCoS.class),
     ACR_DOOR_COS(0x0B, 0x09, TypeCoSDoor.class),
 

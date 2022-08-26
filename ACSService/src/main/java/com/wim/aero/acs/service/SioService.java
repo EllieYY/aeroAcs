@@ -286,7 +286,7 @@ public class SioService {
             String specificationMsg = RequestMessage.encode(scpId, specification);
             cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
 
-            // TODO:临时屏蔽
+//            // TODO:临时屏蔽
 //            // 控制器scpId、sio板编号、输出点物理编号
 //            int sioId = output.getSioNumber();
 //            int outputNo = output.getOutput();

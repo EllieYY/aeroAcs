@@ -94,8 +94,12 @@ public class RequestPendingCenter implements CacheManagerAware {
         }
 
         // 控制单次发送条数
+        int successCount = 0;
         List<List<ScpCmd>> batchCardList = StringUtil.fixedGrouping(cmdList, Constants.BATCH_CMD_COUNT);
         for (List<ScpCmd> batchCmd:batchCardList) {
+            if (batchCmd.size() <= 0) {
+                continue;
+            }
 
             List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(batchCmd);
             Map<String, ScpCmdResponse>  responseMap =
@@ -107,9 +111,12 @@ public class RequestPendingCenter implements CacheManagerAware {
             commandCollected(request, batchCmd, responseMap);
 
             int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
-            if (sum == 0) {
-                return -1;
-            }
+            successCount += sum;
+
+        }
+
+        if (successCount == 0) {
+            return -1;
         }
 
         return 0;
@@ -333,7 +340,7 @@ public class RequestPendingCenter implements CacheManagerAware {
             return false;
         }
 
-//        log.info("[消息匹配] seq:{}, code:{}, streamId:{}", seqNo, code, streamList.toString());
+        log.info("[消息匹配] seq:{}, code:{}, streamId:{}", seqNo, code, streamList.toString());
 
         List<TaskDetail> taskDetailList = new ArrayList<>();
         for (String key:streamList) {
@@ -356,12 +363,12 @@ public class RequestPendingCenter implements CacheManagerAware {
 //                log.info("[指令结果] seqNo[{}], code[{}], cmd[{}]", seqNo, code, commandInfo.getCommand());
                 }
 
-                // 移除命令集合
-                removeStreamId(key);
+
             }
 
             // 改成单条更新
-            taskDetailService.updateTaskState(state, detail, scpSeqMessage.getCmdDate(), commandInfo.getStreamId());
+            int index = taskDetailService.updateTaskState(state, detail, scpSeqMessage.getCmdDate(), commandInfo.getStreamId());
+            log.info("匹配更新 index:{}, uid:{} state:{}", index, commandInfo.getStreamId(), state);
 
             // 授权表写入
             if (commandInfo.getType() == Constants.SCP_CMD_CARD_ADD ||
@@ -371,6 +378,8 @@ public class RequestPendingCenter implements CacheManagerAware {
 
             }
 
+            // 移除命令集合
+            removeStreamId(key);
         }
 
         return true;

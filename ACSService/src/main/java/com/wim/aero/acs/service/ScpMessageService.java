@@ -87,12 +87,18 @@ public class ScpMessageService {
         // body.process(queueProducer, transaction);
 
         // 筛选后分发
+        // 只有tranCode为4或者5的时候才有状态值
         List<Integer> mqMsgTypeList = new ArrayList<>();
-        if (body instanceof AlarmEvent) {
+        if ((tranType == 7 || tranType == 9) && (tranCode == 4 || tranCode == 5)) {
             int stateCode = ((AlarmEvent) body).getStateCode(tranCode);
             mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, stateCode);
         } else {
             mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, null);
+        }
+
+        // 未定义事件走内部默认处理
+        if (mqMsgTypeList.size() == 0) {
+            body.process(queueProducer, transaction);
         }
 
         int targerSrcCode = eventLogSrcMap.get(sourceType);

@@ -256,20 +256,22 @@
 
 
     <select id="selectScpIdsByCardNo" resultType="java.lang.Integer" parameterType="java.util.List">
+        select
+        distinct controller_id
+        from d_employee_access_reader
+        where card_no IN
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
-            select
-            distinct controller_id
-            from d_employee_access_reader
-            where card_no = #{id}
+            #{id}
         </foreach>
     </select>
 
     <select id="selectScpIdsByCardNoForEle" resultType="java.lang.Integer" parameterType="java.util.List">
+        select
+        distinct controller_id
+        from ele_employee_access_reader
+        where card_no =  IN
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
-            select
-            distinct controller_id
-            from ele_employee_access_reader
-            where card_no = #{id}
+            #{id}
         </foreach>
     </select>
 

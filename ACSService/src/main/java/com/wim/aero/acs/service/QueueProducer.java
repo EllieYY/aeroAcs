@@ -4,6 +4,7 @@ import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.*;
 import com.wim.aero.acs.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.activemq.ScheduledMessage;
 import org.apache.activemq.command.ActiveMQMapMessage;
 import org.apache.activemq.command.ActiveMQObjectMessage;
 import org.apache.activemq.command.ActiveMQQueue;
@@ -16,6 +17,8 @@ import javax.jms.Destination;
 import javax.jms.Queue;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @title: QueueProducer
@@ -95,6 +98,12 @@ public class QueueProducer {
         this.sendMessage(scpSeqQueue, messageStr);
     }
 
+    public void sendDelayScpMessage(ScpSeqMessage scpSeqMessage, long sec) {
+        String messageStr = JsonUtil.toJson(scpSeqMessage);
+//        log.info("[{} - 匹配失败，命令执行结果入队等待] - {}", scpSeqMessage.getScpId(), messageStr);
+        this.sendDelayMessage(scpSeqQueue, messageStr, sec);
+    }
+
     public void sendMessage(Destination destination, String message) {
         threadPoolTaskExecutor.submit(() -> {
             Date date = new Date();
@@ -106,6 +115,20 @@ public class QueueProducer {
 //                        threadPoolTaskExecutor.getThreadPoolExecutor().getTaskCount());
 
                 this.jmsMessagingTemplate.convertAndSend(destination, message);
+            } catch (Throwable e) {
+                log.error("{}", e);
+            }
+        });
+    }
+
+    public void sendDelayMessage(Destination destination, String message, long delaySec) {
+        threadPoolTaskExecutor.submit(() -> {
+            Date date = new Date();
+            try {
+                Map<String, Object> headers = new HashMap<>();
+                // 延迟毫秒
+                headers.put(ScheduledMessage.AMQ_SCHEDULED_DELAY, delaySec * 1000);
+                this.jmsMessagingTemplate.convertAndSend(destination, message, headers);
             } catch (Throwable e) {
                 log.error("{}", e);
             }
@@ -141,4 +164,7 @@ public class QueueProducer {
             }
         });
     }
+
+
+
 }
