@@ -36,21 +36,22 @@ public class ACRController {
         this.sioService = sioService;
     }
 
-    @ApiOperation(value = "开门、关门 （弃用待定中）")
+    @Deprecated
+    @ApiOperation(value = "开门、关门 （弃用）")
     @RequestMapping(value = "/strike/command", method = {RequestMethod.POST})
     public ResultBean<String> doorOpenAndClose(@RequestBody AcrRequestInfo request) {
-        // 命令类型校验
-        int commandCode = request.getCommand();
-        ControlPointCommandType type = ControlPointCommandType.fromTypeCode(commandCode);
-        if (type == ControlPointCommandType.UNKNOWN) {
-            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, request.toString());
-        }
-        int code = sioService.sendControlPointCommand(request, request.getScpId(), request.getId(), type);
-        if (code == Constants.REST_CODE_SUCCESS) {
-            return ResultBeanUtil.makeOkResp("命令下发成功");
-        }
+//        // 命令类型校验
+//        int commandCode = request.getCommand();
+//        ControlPointCommandType type = ControlPointCommandType.fromTypeCode(commandCode);
+//        if (type == ControlPointCommandType.UNKNOWN) {
+//            return ResultBeanUtil.makeResp(RespCode.INVALID_PARAM, request.toString());
+//        }
+//        int code = sioService.sendControlPointCommand(request, request.getScpId(), request.getId(), type);
+//        if (code == Constants.REST_CODE_SUCCESS) {
+//            return ResultBeanUtil.makeOkResp("命令下发成功");
+//        }
 
-        return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
+        return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "接口已弃用，请修改调用");
     }
 
     @ApiOperation(value = "开门")
@@ -65,7 +66,7 @@ public class ACRController {
         return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "错误码：" + code);
     }
 
-    @ApiOperation(value = "读卡器设防撤防")
+    @ApiOperation(value = "读卡器绑定输入点设防撤防")
     @RequestMapping(value = "/mask", method = {RequestMethod.POST})
     public ResultBean<String> acrMask(@RequestBody AcrMaskRequestInfo request) {
 

@@ -37,16 +37,16 @@ public class SCPReplySrAcr extends ReplyBody {
 
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
-        int deviceStatus = ScpMessageService.getPointStatus(door_status);
-        int tranCode = ScpMessageService.getTranCodeByCosState(door_status);
-
-        AlarmMessage sMessage = new AlarmMessage(
-                -1, System.currentTimeMillis(), scpId,
-                Constants.tranSrcACR, number, 0x09, tranCode, deviceStatus,
-                Constants.TRAN_TABLE_SRC_ACR,
-                this.toString(),
-                door_status);
-        queueProducer.sendStatusMessage(sMessage);
+//        int deviceStatus = ScpMessageService.getPointStatus(door_status);
+//        int tranCode = ScpMessageService.getTranCodeByCosState(door_status);
+//
+//        AlarmMessage sMessage = new AlarmMessage(
+//                -1, System.currentTimeMillis(), scpId,
+//                Constants.tranSrcACR, number, 0x09, tranCode, deviceStatus,
+//                Constants.TRAN_TABLE_SRC_ACR,
+//                this.toString(),
+//                door_status);
+//        queueProducer.sendStatusMessage(sMessage);
     }
 
 }

@@ -19,6 +19,6 @@ public class AcrUnlockRequestInfo extends TaskRequest {
     @ApiModelProperty(value = "控制器id", required = true)
     private int scpId;
 
-    @ApiModelProperty(value = "开门时间（未验证，预留）", example = "", required = false)
+    @ApiModelProperty(value = "开门时间，单位秒", example = "", required = false)
     private int strikeTime;
 }

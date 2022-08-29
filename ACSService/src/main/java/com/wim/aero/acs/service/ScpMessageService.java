@@ -197,7 +197,13 @@ public class ScpMessageService {
         body.process(queueProducer, scpId);
     }
 
+    // SCPReply上报的input、output、acr状态解析
     public static int getPointStatus(int cosStateCode) {
+
+
+
+
+
         if (!cosStateCodeMap.containsKey(cosStateCode)) {
             log.error("[getPointStatus] 非法状态 {}", cosStateCode);
             return Constants.TRAGET_STATE_FAULT;

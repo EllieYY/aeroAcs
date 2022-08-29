@@ -48,6 +48,7 @@ public enum OperationType {
     ACR_115(115, ACRConfig.class),
     ELE_ACR_115(115, EleACRConfig.class),
 
+
     MP_GROUP_120(120, MpGroupSpecification.class),
 
     // apb
@@ -86,6 +87,8 @@ public enum OperationType {
     MP_MASK(306, MonitorPointMask.class),
     CP_COMMAND(307, ControlPointCommand.class),
     ACR_MODE(308, ACRModeConfig.class),
+    FORCED_OPEN_MASK(309, ForcedOpenMask.class),
+    HELD_OPEN_MASK(310, HeldOpenMask.class),
     ACR_UNLOCK(311, MomentaryUnlock.class),
 
     MP_GROUP_MASK(321, MpGroupCommand.class),

@@ -133,18 +133,21 @@ public class SioService {
      * @param setAlarm true设防 false 撤防
      */
     public int acrMask(TaskRequest request, int scpId, int acrId, boolean setAlarm) {
-        // TODO:
-//        MomentaryUnlock config = new MomentaryUnlock();
-//        config.setScpNumber(scpId);
-//        config.setAcrNumber(acrId);
-//        config.setStrkTm(strikeTM);
-//
-//        String msg = RequestMessage.encode(scpId, config);
-//        log.info("[{} - ACR MomentaryUnlock]开门 msg={}", scpId, msg);
-//
-//        ScpCmd cmd = new ScpCmd(scpId, msg, IdUtil.nextId());
-//        return requestPendingCenter.sendCmd(request, cmd);
-        return 0;
+        int isClear = setAlarm ? 0 : 1;
+
+        List<ScpCmd> cmdList = new ArrayList<>();
+
+        HeldOpenMask heldOpenMask = new HeldOpenMask(scpId, acrId, isClear);
+        String heldOpenMaskMsg = RequestMessage.encode(scpId, heldOpenMask);
+        log.info("[{} - HeldOpenMask]设防撤防 msg={}", scpId, heldOpenMaskMsg);
+        cmdList.add(new ScpCmd(scpId, heldOpenMaskMsg, IdUtil.nextId()));
+
+        ForcedOpenMask forcedOpenMask = new ForcedOpenMask(scpId, acrId, isClear);
+        String forceOpenMaskMsg = RequestMessage.encode(scpId, forcedOpenMask);
+        log.info("[{} - forceOpenMask]设防撤防 msg={}", scpId, forceOpenMaskMsg);
+        cmdList.add(new ScpCmd(scpId, forceOpenMaskMsg, IdUtil.nextId()));
+
+        return requestPendingCenter.sendCmdList(request, cmdList);
     }
 
 

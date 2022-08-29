@@ -21,13 +21,14 @@ import java.util.Map;
 @Slf4j
 public class SCPReplySrSio extends ReplyBody {
     private int number;				// SIO number
-    private int com_status;			// comm status: encoded per tran codes for tranTypeSioComm
-                                    //  	1	- comm disabled (result of host command)
-                                    //  	2	- off-line: timeout (no/bad response from unit)
-                                    //  	3	- off-line: invalid identification from SIO
-                                    //  	4	- off-line: Encryption could not be established
-                                    //  	5	- on-line: normal connection
-                                    //		6   - hexLoad report: ser_num is address loaded (-1 == last record)
+    private int com_status;
+    // comm status: encoded per tran codes for tranTypeSioComm
+    //  	1	- comm disabled (result of host command)
+    //  	2	- off-line: timeout (no/bad response from unit)
+    //  	3	- off-line: invalid identification from SIO
+    //  	4	- off-line: Encryption could not be established
+    //  	5	- on-line: normal connection
+    //		6   - hexLoad report: ser_num is address loaded (-1 == last record)
 
     private int msp1_dnum;			// MSP1 driver number (0, 1, ...)
                                     // the following block is valid only if the SIO is on-line
