@@ -32,10 +32,10 @@ public class TypeUseLimit extends TransactionBody implements AccessEvent {
         int tranType = transaction.getTranType();
         int tranCode = transaction.getTranCode();
 
-        queueProducer.sendAccessMessage(
-                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
-                        Constants.TRAN_TABLE_SRC_ACR, this.toString())
-        );
+//        queueProducer.sendAccessMessage(
+//                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
+//                        Constants.TRAN_TABLE_SRC_ACR, this.toString())
+//        );
     }
 
     @Override

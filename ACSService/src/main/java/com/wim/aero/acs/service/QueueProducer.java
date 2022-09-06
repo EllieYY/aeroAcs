@@ -69,9 +69,6 @@ public class QueueProducer {
     public void sendAlarmMessage(AlarmMessage alarmMessage) {
         String messageStr = JsonUtil.toJson(alarmMessage);
         log.info("[{} - 报警事件] - {}", alarmMessage.getControllerId(), messageStr);
-
-        // 报警事件同时也报状态
-        sendStatusMessage(alarmMessage);
         this.sendMessage(alarmQueue, messageStr);
 
     }

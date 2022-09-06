@@ -14,15 +14,18 @@ import java.util.Date;
  * @description:
  **/
 @Data
-public class AlarmMessage extends StatusMessage {
+@AllArgsConstructor
+public class AlarmMessage {
+    private long eventIndex;
 
-    private int eventDetailCode;   // 报警详情编码
+    private long eventsTime;    // 事件时间戳
+    private int controllerId;   // 控制器id
+    private int eventSourceType;   // 来源类型
+    private int sourceCode;     // 来源编号
+    private int eventType;      // 事件类型
+    private int eventTypeCode;  // 事件编号
+    private int sourceTypeSerNo;    // 转换之后的来源
+    private Integer eventDetailCode;   // 报警详情编码
+    private String fullMemo;        // 原始事件信息
 
-    public AlarmMessage(long eventIndex, long eventsTime, int controllerId,
-                        int eventSourceType, int sourceCode, int eventType, int eventTypeCode,
-                        int status, int sourceTypeSerNo, String fullMemo, int eventDetailCode) {
-        super(eventIndex, eventsTime, controllerId,
-                eventSourceType, sourceCode, eventType, eventTypeCode, status, sourceTypeSerNo, fullMemo);
-        this.eventDetailCode = eventDetailCode;
-    }
 }

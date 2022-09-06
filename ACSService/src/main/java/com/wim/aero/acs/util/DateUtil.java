@@ -338,4 +338,13 @@ public class DateUtil {
     public static boolean isDateBetweenDates(Date target, Date start, Date end) {
         return (start.getTime() < target.getTime() && end.getTime() > target.getTime());
     }
+
+    public static boolean isSameYear(Date src, Date target) {
+        Calendar srcCal = Calendar.getInstance();
+        Calendar targetCal = Calendar.getInstance();
+        srcCal.setTime(src);
+        targetCal.setTime(target);
+
+        return srcCal.get(Calendar.YEAR) == targetCal.get(Calendar.YEAR);
+    }
 }

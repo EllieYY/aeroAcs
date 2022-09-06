@@ -3,11 +3,15 @@ package com.wim.aero.acs.model.scp.reply;
 import com.wim.aero.acs.config.Constants;
 import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
+import com.wim.aero.acs.model.mq.StatusMessage;
 import com.wim.aero.acs.model.scp.transaction.AlarmEvent;
 import com.wim.aero.acs.service.QueueProducer;
 import com.wim.aero.acs.service.ScpMessageService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @title: SCPReplySrAcr
@@ -37,16 +41,45 @@ public class SCPReplySrAcr extends ReplyBody {
 
     @Override
     public void process(QueueProducer queueProducer, int scpId) {
-//        int deviceStatus = ScpMessageService.getPointStatus(door_status);
+        // TODO： 状态解析
+        Map<Integer, Integer> cosStateCodeMap = new HashMap<>();
+        cosStateCodeMap.put(0x00, Constants.TRAGET_STATE_CLOSE);
+        cosStateCodeMap.put(0x01, Constants.TRAGET_STATE_OPEN);
+        cosStateCodeMap.put(0x02, Constants.TRAGET_STATE_FAULT);
+        cosStateCodeMap.put(0x03, Constants.TRAGET_STATE_FAULT);
+        cosStateCodeMap.put(0x04, Constants.TRAGET_STATE_OPEN);
+        cosStateCodeMap.put(0x05, Constants.TRAGET_STATE_OPEN);
+        cosStateCodeMap.put(0x06, Constants.TRAGET_STATE_FAULT);
+        cosStateCodeMap.put(0x07, Constants.TRAGET_STATE_FAULT);
+        cosStateCodeMap.put(0x08, Constants.TRAGET_STATE_INVALID);
+        cosStateCodeMap.put(0x10, Constants.TRAGET_STATE_CLOSE);
+        cosStateCodeMap.put(0x20, Constants.TRAGET_STATE_OPEN);
+        cosStateCodeMap.put(0x40, Constants.TRAGET_STATE_OPEN);
+        cosStateCodeMap.put(0x80, Constants.TRAGET_STATE_CLOSE);
+
+        int deviceStatus = cosStateCodeMap.get(door_status);
 //        int tranCode = ScpMessageService.getTranCodeByCosState(door_status);
-//
-//        AlarmMessage sMessage = new AlarmMessage(
-//                -1, System.currentTimeMillis(), scpId,
-//                Constants.tranSrcACR, number, 0x09, tranCode, deviceStatus,
-//                Constants.TRAN_TABLE_SRC_ACR,
-//                this.toString(),
-//                door_status);
-//        queueProducer.sendStatusMessage(sMessage);
+
+        // 状态事件
+        StatusMessage sMessage = new StatusMessage(
+                -1, System.currentTimeMillis(), scpId,
+                Constants.tranSrcACR, number, 0x09, 0, deviceStatus,
+                Constants.TRAN_TABLE_SRC_ACR,
+                this.toString());
+        queueProducer.sendStatusMessage(sMessage);
+
+
+        //TODO:报警事件
+        if (ap_status == 4 || ap_status == 16 || ap_status == 20) {
+            AlarmMessage alarmMessage = new AlarmMessage(
+                    -1, System.currentTimeMillis(), scpId,
+                    Constants.tranSrcACR, number, 0x09, 4,
+                    Constants.TRAN_TABLE_SRC_ACR,
+                    ap_status,
+                    this.toString());
+            queueProducer.sendAlarmMessage(alarmMessage);
+        }
+
     }
 
 }

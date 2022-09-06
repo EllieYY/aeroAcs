@@ -43,19 +43,19 @@ public class TypeCardFull extends TransactionBody implements AccessEvent {
 
     @Override
     public void process(QueueProducer queueProducer, SCPReplyTransaction transaction) {
-        String cardHolder = String.valueOf(cardholder_id);
-        int scpId = transaction.getScpId();
-        long date = transaction.getTime() * 1000;
-        long index = transaction.getSerNum();
-        int sourceType = transaction.getSourceType();
-        int sourceNum = transaction.getSourceNumber();
-        int tranType = transaction.getTranType();
-        int tranCode = transaction.getTranCode();
-
-        queueProducer.sendAccessMessage(
-                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
-                        Constants.TRAN_TABLE_SRC_ACR, this.toString())
-        );
+//        String cardHolder = String.valueOf(cardholder_id);
+//        int scpId = transaction.getScpId();
+//        long date = transaction.getTime() * 1000;
+//        long index = transaction.getSerNum();
+//        int sourceType = transaction.getSourceType();
+//        int sourceNum = transaction.getSourceNumber();
+//        int tranType = transaction.getTranType();
+//        int tranCode = transaction.getTranCode();
+//
+//        queueProducer.sendAccessMessage(
+//                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
+//                        Constants.TRAN_TABLE_SRC_ACR, this.toString())
+//        );
     }
 
     @Override

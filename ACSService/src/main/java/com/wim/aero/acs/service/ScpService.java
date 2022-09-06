@@ -27,6 +27,7 @@ import com.wim.aero.acs.protocol.trigger.ActionSpecification;
 import com.wim.aero.acs.protocol.trigger.ProcedureControl;
 import com.wim.aero.acs.protocol.trigger.TriggerSpecificationExtend;
 import com.wim.aero.acs.protocol.trigger.TriggerVariableControl;
+import com.wim.aero.acs.util.DateUtil;
 import com.wim.aero.acs.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -434,15 +435,6 @@ public class ScpService {
         String logMsg = RequestMessage.encode(scpId, operation);
         cmdList.add(new ScpCmd(scpId, logMsg, IdUtil.nextId()));
 
-        // 1116
-        List<DST> dstList = dstConfig.getList();
-        for (DST dst:dstList) {
-            DaylightSavingTimeConfiguration config = new DaylightSavingTimeConfiguration(
-                    scpId, dst.getStart(), dst.getEnd());
-            String dstMsg = RequestMessage.encode(scpId, config);
-            cmdList.add(new ScpCmd(scpId, dstMsg, IdUtil.nextId()));
-        }
-
         // 时钟同步 Command 302: Time Set
         TimeSet timeSet = new TimeSet(scpId);
         String timeMsg = RequestMessage.encode(scpId, timeSet);
@@ -472,6 +464,20 @@ public class ScpService {
 //        requestPendingCenter.sendCmdList(requestInfo, cmdList);
     }
 
+    private void configDST(int scpId, List<ScpCmd> cmdList) {
+        List<DST> dstList = dstConfig.getList();
+        Date now = new Date();
+        for (DST dst:dstList) {
+            if (DateUtil.isSameYear(now, dst.getStart())) {
+                DaylightSavingTimeConfiguration config = new DaylightSavingTimeConfiguration(
+                        scpId, dst.getStart(), dst.getEnd());
+                String dstMsg = RequestMessage.encode(scpId, config);
+                cmdList.add(new ScpCmd(scpId, dstMsg, IdUtil.nextId()));
+                break;
+            }
+        }
+    }
+
 
     /**
      * scp规格及数据库配置
@@ -479,6 +485,9 @@ public class ScpService {
      * @param cmdList
      */
     private void scpSpecification(int scpId, List<ScpCmd> cmdList) {
+        // DST 1116
+        configDST(scpId, cmdList);
+
         // SCPDevice Specification(Command 1107)
         SCPSpecification scpSpecification = new SCPSpecification(scpId);
         String specificationMsg = RequestMessage.encode(scpId, scpSpecification);

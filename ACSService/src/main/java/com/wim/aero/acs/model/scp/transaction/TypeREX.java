@@ -55,10 +55,10 @@ public class TypeREX extends TransactionBody implements AccessEvent {
         // 按钮的描述
         String cardHolder = "REX " + rex_number + " - " + des.get(tranCode);
 
-        queueProducer.sendAccessMessage(
-                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
-                        Constants.TRAN_TABLE_SRC_MP, transaction.toString())
-        );
+//        queueProducer.sendAccessMessage(
+//                new AccessMessage(index, date, scpId, sourceType, sourceNum, tranType, tranCode, cardHolder,
+//                        Constants.TRAN_TABLE_SRC_MP, transaction.toString())
+//        );
 
     }
 

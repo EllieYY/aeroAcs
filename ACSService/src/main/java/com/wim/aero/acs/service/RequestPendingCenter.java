@@ -368,7 +368,7 @@ public class RequestPendingCenter implements CacheManagerAware {
 
             // 改成单条更新
             int index = taskDetailService.updateTaskState(state, detail, scpSeqMessage.getCmdDate(), commandInfo.getStreamId());
-            log.info("匹配更新 index:{}, uid:{} state:{}", index, commandInfo.getStreamId(), state);
+//            log.info("匹配更新 index:{}, uid:{} state:{}", index, commandInfo.getStreamId(), state);
 
             // 授权表写入
             if (commandInfo.getType() == Constants.SCP_CMD_CARD_ADD ||

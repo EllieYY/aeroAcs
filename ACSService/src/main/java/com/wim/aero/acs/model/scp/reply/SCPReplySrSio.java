@@ -77,11 +77,11 @@ public class SCPReplySrSio extends ReplyBody {
 
         // 更新sio状态
         int status = this.sioStateMap.get(com_status);
-        AlarmMessage sMessage = new AlarmMessage(
+        StatusMessage sMessage = new StatusMessage(
                 -1, System.currentTimeMillis(), scpId,
                 Constants.tranSrcSioCom, number, Constants.customTranType, 0, status,
                 Constants.TRAN_TABLE_SRC_SIO,
-                this.toString(), com_status);
+                this.toString());
         queueProducer.sendStatusMessage(sMessage);
     }
 

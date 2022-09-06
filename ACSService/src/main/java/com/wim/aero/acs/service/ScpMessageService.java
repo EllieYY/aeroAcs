@@ -84,7 +84,8 @@ public class ScpMessageService {
         Class<TransactionBody> bodyClazz = TransactionType.fromCode(sourceType, tranType).getTransClazz();
         TransactionBody body = JsonUtil.fromJson(transaction.getArgJsonStr(), bodyClazz);
 
-        // body.process(queueProducer, transaction);
+        // 状态的处理
+        body.process(queueProducer, transaction);
 
         // 筛选后分发
         // 只有tranCode为4或者5的时候才有状态值
@@ -94,11 +95,6 @@ public class ScpMessageService {
             mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, stateCode);
         } else {
             mqMsgTypeList = eventCodeDetailDevService.getMessageType(tranType, tranCode, sourceType, null);
-        }
-
-        // 未定义事件走内部默认处理
-        if (mqMsgTypeList.size() == 0) {
-            body.process(queueProducer, transaction);
         }
 
         int targerSrcCode = eventLogSrcMap.get(sourceType);
@@ -115,23 +111,13 @@ public class ScpMessageService {
                                 targerSrcCode, transaction.toString())
                 );
             } else if (mqType == Constants.MQ_WARNING) {
-                int stateCode = -1;
-                int deviceStatus = -1;
+                Integer stateCode = null;
                 if (body instanceof AlarmEvent) {
-                    deviceStatus = ((AlarmEvent) body).getDeviceState(tranCode);
                     stateCode = ((AlarmEvent) body).getStateCode(tranCode);
-                } else {
-                    log.error("can not get state info, {}", transaction.toString());
                 }
 
-                if (stateCode == -1) {    // 没有状态值的，报状态事件
-                    queueProducer.sendStatusMessage(new StatusMessage(eventNo, date, scpId,
-                         sourceType, sourceNum, tranType, tranCode, deviceStatus, targerSrcCode, transaction.toString()));
-                } else {    // 有状态值的，按报警
-                    queueProducer.sendAlarmMessage(new AlarmMessage(eventNo, date, scpId,
-                        sourceType, sourceNum, tranType, tranCode, deviceStatus, targerSrcCode, transaction.toString(), stateCode));
-                }
-
+                queueProducer.sendAlarmMessage(new AlarmMessage(eventNo, date, scpId,
+                    sourceType, sourceNum, tranType, tranCode, targerSrcCode, stateCode, transaction.toString()));
             } else if (mqType == Constants.MQ_LOG) {
                 LogMessage message = new LogMessage(eventNo, date, scpId, sourceType, sourceNum, tranType, tranCode,
                         targerSrcCode,
