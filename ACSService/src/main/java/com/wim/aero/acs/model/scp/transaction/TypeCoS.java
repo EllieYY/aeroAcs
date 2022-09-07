@@ -49,6 +49,14 @@ public class TypeCoS extends TransactionBody implements AlarmEvent {
         // 状态事件
         int deviceStatus = Constants.TRAN_CODE_MAP.get(tranCode);
         int targetType = this.cosSrcMap.get(sourceType);
+        if (sourceType == Constants.TRAN_TABLE_SRC_CP) {
+            // 开关门状态
+            if (status == 0x01) {
+                deviceStatus = Constants.TRAGET_STATE_OPEN;
+            } else if (status == 0x00) {
+                deviceStatus = Constants.TRAGET_STATE_CLOSE;
+            }
+        }
 
         queueProducer.sendStatusMessage(new StatusMessage(index, date, scpId,
                         sourceType, sourceNum, tranType, tranCode, deviceStatus, targetType, this.toString()));
@@ -71,7 +79,9 @@ public class TypeCoS extends TransactionBody implements AlarmEvent {
 
     @Override
     public int getDeviceState(int tranCode) {
-        return Constants.TRAN_CODE_MAP.get(tranCode);
+        int targetStatus = Constants.TRAN_CODE_MAP.get(tranCode);
+
+        return targetStatus;
     }
 
     @Override

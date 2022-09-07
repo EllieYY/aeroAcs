@@ -60,8 +60,8 @@ public class TypeCoSDoor extends TransactionBody implements AlarmEvent {
         // 报读卡器状态 -- 只有开关门
         queueProducer.sendStatusMessage(
                 new StatusMessage(index, date, scpId,
-                        sourceType, sourceNum, tranType, tranCode,
-                        Constants.TRAN_TABLE_SRC_ACR, deviceStatus, this.toString()));
+                        sourceType, sourceNum, tranType, tranCode, deviceStatus,
+                        Constants.TRAN_TABLE_SRC_ACR, this.toString()));
     }
 
     public int parseStatus(int tranCode, int status) {
