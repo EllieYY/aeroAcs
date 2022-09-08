@@ -63,23 +63,22 @@ public class SCPReplySrAcr extends ReplyBody {
         // 状态事件
         StatusMessage sMessage = new StatusMessage(
                 -1, System.currentTimeMillis(), scpId,
-                Constants.tranSrcACR, number, 0x09, 0, deviceStatus,
+                Constants.tranSrcACR, number, 0x0B, 0, deviceStatus,
                 Constants.TRAN_TABLE_SRC_ACR,
                 this.toString());
         queueProducer.sendStatusMessage(sMessage);
 
 
-        //TODO:报警事件
+        // 报警事件
         if (ap_status == 4 || ap_status == 16 || ap_status == 20) {
             AlarmMessage alarmMessage = new AlarmMessage(
                     -1, System.currentTimeMillis(), scpId,
-                    Constants.tranSrcACR, number, 0x09, 4,
+                    Constants.tranSrcACR, number, 0x0B, 4,
                     Constants.TRAN_TABLE_SRC_ACR,
                     ap_status,
                     this.toString());
             queueProducer.sendAlarmMessage(alarmMessage);
         }
-
     }
 
 }

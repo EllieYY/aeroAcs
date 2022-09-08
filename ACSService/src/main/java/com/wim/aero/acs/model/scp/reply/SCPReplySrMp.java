@@ -31,7 +31,7 @@ public class SCPReplySrMp extends ReplyBody {
     public void process(QueueProducer queueProducer, int scpId) {
         // 状态解析
         Map<Integer, Integer> cosStateCodeMap = new HashMap<>();
-        cosStateCodeMap.put(0x00, Constants.TRAGET_STATE_INVALID);
+        cosStateCodeMap.put(0x00, Constants.TRAGET_STATE_VALID);
         cosStateCodeMap.put(0x01, Constants.TRAGET_STATE_WARN);
         cosStateCodeMap.put(0x02, Constants.TRAGET_STATE_FAULT);
         cosStateCodeMap.put(0x03, Constants.TRAGET_STATE_FAULT);

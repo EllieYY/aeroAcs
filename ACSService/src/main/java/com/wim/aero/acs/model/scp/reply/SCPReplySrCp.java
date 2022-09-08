@@ -51,7 +51,7 @@ public class SCPReplySrCp extends ReplyBody {
 
             StatusMessage sMessage = new StatusMessage(
                     -1, System.currentTimeMillis(), scpId,
-                    Constants.tranSrcCP, first, 0x07, 0, deviceStatus,
+                    Constants.tranSrcCP, first, 0x08, 0, deviceStatus,
                     Constants.TRAN_TABLE_SRC_CP,
                     this.toString());
             queueProducer.sendStatusMessage(sMessage);
