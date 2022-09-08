@@ -269,7 +269,7 @@
         select
         distinct controller_id
         from ele_employee_access_reader
-        where card_no =  IN
+        where card_no  IN
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
             #{id}
         </foreach>

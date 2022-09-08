@@ -223,6 +223,8 @@ public class AccessConfigService {
         List<Integer> scpIdList = cardInfoService.getScpIdsByCardNo(cardList);
 
         // TODO:梯控冻结
+        List<Integer> eleScpList = cardInfoService.getScpIdsByCardNoForEle(cardList);
+        scpIdList.addAll(eleScpList);
 
 
         // 组织报文

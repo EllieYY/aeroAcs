@@ -43,8 +43,19 @@ public class TypeCardBcd extends TransactionBody implements AccessEvent {
 
     @Override
     public String getCardHolder() {
-        int length = bcd_array.length();
-        int targetLength = digit_count > length ? digit_count : length;
-        return bcd_array.substring(0, targetLength);
+//        int length = bcd_array.length();
+//        int targetLength = digit_count < length ? digit_count : length;
+//        return bcd_array.substring(0, targetLength);
+
+        int length = 2 * ((bcd_array.length() + 1) / 2);
+        int srcLength = (digit_count + 3) / 4;
+        int targetLength = srcLength < length ? srcLength : length;
+
+        String hexCardNo = bcd_array.substring(0, targetLength);
+
+//        System.out.println(hexCardNo);
+
+        long put_Vlue = Long.parseLong(hexCardNo, 16);
+        return String.valueOf(put_Vlue);
     }
 }

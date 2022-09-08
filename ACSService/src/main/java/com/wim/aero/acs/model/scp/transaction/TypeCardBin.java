@@ -43,8 +43,15 @@ public class TypeCardBin extends TransactionBody implements AccessEvent {
 
     @Override
     public String getCardHolder() {
-        int length = bit_array.length();
-        int targetLength = bit_count > length ? bit_count : length;
-        return bit_array.substring(0, targetLength);
+        int length = 2 * ((bit_array.length() + 1) / 2);
+        int srcLength = (bit_count + 3) / 4;
+        int targetLength = srcLength < length ? srcLength : length;
+
+        String hexCardNo = bit_array.substring(0, targetLength);
+
+//        System.out.println(hexCardNo);
+
+        long put_Vlue = Long.parseLong(hexCardNo, 16);
+        return String.valueOf(put_Vlue);
     }
 }
