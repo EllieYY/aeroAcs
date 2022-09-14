@@ -38,7 +38,7 @@ public class SCPSpecification extends Operation {
     private long nTransactions = 50000;
 
     @CmdProp(index = 10)
-    private int nSio = 33;  // Number of SIOs - 16 maximum per RS-485 port，需要加上内置SIO板1块
+    private int nSio = 33;  // Number of SIOs - 16 maximum per RS-485 port，需要加上内置SIO板1块   // 32
 
     @CmdProp(index = 11)
     private int nMp = 615;   // Number of monitor points - 615 maximum (32 x X200’s = 608 + 7 (1100) = 615)
@@ -50,40 +50,40 @@ public class SCPSpecification extends Operation {
     private int nAcr = 64;  // Number of access control readers - 64 maximum
 
     @CmdProp(index = 14)
-    private int nAlvl = 32000; // Number of access levels - 32000 maximum
+    private int nAlvl = 32000; // Number of access levels - 32000 maximum  // 255
 
     @CmdProp(index = 15)
-    private int nTrgr = 1024; // Number of triggers - 1024 maximum
+    private int nTrgr = 1024; // Number of triggers - 1024 maximum  // 1000
 
     @CmdProp(index = 16)
-    private int nProc = 1024; // Number of procedures - 1024 maximum
+    private int nProc = 1024; // Number of procedures - 1024 maximum   // 1000
 
     @CmdProp(index = 17)
     private int gmtOffset = -28800;  // Beijing
 
     @CmdProp(index = 18)
-    private int nDstID = 0;  // 夏令时 0-不使用 100-使用
+    private int nDstID = 100;  // 夏令时 0-不使用 100-使用
 
     @CmdProp(index = 19)
     private int nTz = 255; // Number of time zones (schedules) - 255 maximum
 
     @CmdProp(index = 20)
-    private int nHol = 255; // Number of holidays - 255 maximum
+    private int nHol = 255; // Number of holidays - 255 maximum   // 100
 
     @CmdProp(index = 21)
-    private int nMpg = 128; // Number of monitor point groups, up to 128 groups
+    private int nMpg = 128; // Number of monitor point groups, up to 128 groups   // 0
 
     @CmdProp(index = 22)
-    private int nTranLimit = 0; // Number of unreported transactions to log transaction (long).
+    private int nTranLimit = 10000; // Number of unreported transactions to log transaction (long).
 
     @CmdProp(index = 23)
     private int nAuthModType = 0; // Auxiliary Authentication Module Type to use. 0 = None.
 
     @CmdProp(index = 24)
-    private int nOperModes = 0; // Number of operating modes 1-8 (0 = default of 1)
+    private int nOperModes = 1; // Number of operating modes 1-8 (0 = default of 1)
 
     @CmdProp(index = 25)
-    private int operType = 1; // Operating mode type (0 = Access Level Mappings, 1 = Access Level Assignments)
+    private int operType = 0; // Operating mode type (0 = Access Level Mappings, 1 = Access Level Assignments)
 
     @CmdProp(index = 26)
     private int nLanguages = 0; // Number of languages supported 0-16 (0 = default of 1)

@@ -24,13 +24,13 @@ public class AccessDatabaseSpecification extends Operation {
     @CmdProp(index = 3)
     private Integer nScpID;
 
-    @CmdProp(index = 4)
+    @CmdProp(index = 4, defaultValue = "100000")
     private Integer nCards; // 0 - 清除数据，不改变格式。Number of cardholder records to allocate (long)
 
-    @CmdProp(index = 5)
+    @CmdProp(index = 5, defaultValue = "32")
     private Integer nAlvl; // Number of access levels per cardholder. Maximum value of 32.
 
-    @CmdProp(index = 6)
+    @CmdProp(index = 6, defaultValue = "68")
     private Integer nPinDigits;
 
     // 附加码 0 = none, 1 = 8-bit (1byte), 2 = 32-bit (4 bytes)
@@ -50,21 +50,23 @@ public class AccessDatabaseSpecification extends Operation {
     @CmdProp(index = 10, defaultValue = "2")
     private String bDeactDate;
 
-    @CmdProp(index = 11)
+    @CmdProp(index = 11, defaultValue = "0")
     private String bVacationDate;  // 0 or 1
-    @CmdProp(index = 12)
+    @CmdProp(index = 12, defaultValue = "0")
     private String bUpgradeDate;
-    @CmdProp(index = 13)
+
+    @CmdProp(index = 13, defaultValue = "1")
     private Integer bUserLevel; // Valid values are 0-7.
-    @CmdProp(index = 14)
+    @CmdProp(index = 14, defaultValue = "1")
     private String bUseLimit; // Valid values are 0 or 1.
-    @CmdProp(index = 15)
+    @CmdProp(index = 15, defaultValue = "1")
     private String bSupportTimeApb; // Save the time, date and the ACR number of last entry flag. Valid values are 0 or 1.
     @CmdProp(index = 16)
     private Integer nTz; // Precision access: One access level with an array of time zone entries.
-    @CmdProp(index = 17)
+
+    @CmdProp(index = 17, defaultValue = "0")
     private Integer bAssetGroup = 0; // Store asset group code (2 bytes). Valid values are 0 or 1.
-    @CmdProp(index = 18)
+    @CmdProp(index = 18, defaultValue = "5")
     private Integer nHostResponseTimeout; // Time to wait for HOST approved access response. default 5s
     @CmdProp(index = 19)
     private Integer nMxmTypeIndex = 0;
@@ -76,13 +78,13 @@ public class AccessDatabaseSpecification extends Operation {
     @CmdProp(index = 22, enCodec = "formatList")
     private List<Integer> fieldInfo = new ArrayList<>(Collections.nCopies(16, 0));
 
-    @CmdProp(index = 38)
+    @CmdProp(index = 38, defaultValue = "15")
     private Integer nEscortTimeout; // 陪同卡超时时间，default 15s. The valid range is 1 - 60 seconds.
-    @CmdProp(index = 39)
+    @CmdProp(index = 39, defaultValue = "15")
     private Integer nMultiCardTimeout; // 多卡访问超时时间，default 15s. The valid range is 1 - 60 seconds.
-    @CmdProp(index = 40)
+    @CmdProp(index = 40, defaultValue = "10")
     private Integer nAssetTimeout = 0; // Set to 0 - N/A
-    @CmdProp(index = 41)
+    @CmdProp(index = 41, defaultValue = "1")
     private Integer bAccExceptionList = 1; // Indicates if access exception lists are being used
     @CmdProp(index = 42)
     private Integer adbFlags = 0;   // Flags field for specifying additional flags
