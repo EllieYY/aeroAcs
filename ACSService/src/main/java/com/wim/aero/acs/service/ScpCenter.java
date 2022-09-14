@@ -1,5 +1,6 @@
 package com.wim.aero.acs.service;
 
+import com.wim.aero.acs.model.request.TransactionRequestInfo;
 import com.wim.aero.acs.model.scp.ScpShadow;
 import com.wim.aero.acs.model.scp.ScpStatus;
 import com.wim.aero.acs.model.scp.SeqNoInfo;
@@ -110,7 +111,7 @@ public class ScpCenter {
             SeqNoInfo seqNoInfo = scpSeqNoMap.get(scpId);
             seqNoInfo.setExtractStart(start);
             seqNoInfo.setExtractEnd(end);
-            seqNoInfo.setExtractMax(cur);
+            seqNoInfo.setExtractCur(cur);
             scpSeqNoMap.put(scpId, seqNoInfo);
             log.info("[{} - 事件提取] {}", scpId, seqNoInfo.toString());
         } else {
@@ -127,10 +128,20 @@ public class ScpCenter {
     public boolean needIntercept(int scpId, long seqNo) {
         if (scpSeqNoMap.containsKey(scpId)) {
             SeqNoInfo seqNoInfo = scpSeqNoMap.get(scpId);
-            long seqMin = seqNoInfo.getExtractEnd();
-            long seqMax = seqNoInfo.getExtractMax();
-            if (seqNo > seqMin && seqNo <= seqMax) {
+            long seqMax = seqNoInfo.getExtractEnd();
+            long seqCur = seqNoInfo.getExtractCur();
+
+            if (seqNo > seqMax && seqNo < seqCur) {
                 return true;
+//                TransactionRequestInfo requestInfo = new TransactionRequestInfo();
+//                requestInfo.setTaskName(scpId + "事件提取完成，重置索引号：" + seqCur);
+//                requestInfo.setScpId(scpId);
+//                requestInfo.setEventStartNo(seqCur);
+//                scpService.eventExtraction(requestInfo);
+//
+//                // 修改索引值
+//                seqNoInfo.setExtractEnd(Long.MAX_VALUE);
+//                scpSeqNoMap.put(scpId, seqNoInfo);
             }
         }
 

@@ -17,5 +17,5 @@ public class SeqNoInfo {
     private int scpId;
     private long extractStart;   // 提取范围最小值
     private long extractEnd;     // 提取范围最大值
-    private long extractMax;     // 提取事件时最大值
+    private long extractCur;     // 提取事件时最大值
 }

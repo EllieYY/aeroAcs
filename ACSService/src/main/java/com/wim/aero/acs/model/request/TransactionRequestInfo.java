@@ -22,6 +22,6 @@ public class TransactionRequestInfo extends  TaskRequest {
     @ApiModelProperty(value = "事件提取结束序号")
     private long eventEndNo;
 
-    @ApiModelProperty(value = "事件提取最大序号")
+    @ApiModelProperty(value = "事件提取当前序号")
     private long eventCurNo;
 }

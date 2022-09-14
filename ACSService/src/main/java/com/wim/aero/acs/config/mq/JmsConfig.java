@@ -103,7 +103,7 @@ public class JmsConfig {
         factory.setPubSubDomain(false);
         factory.setSessionTransacted(false);
         factory.setSessionAcknowledgeMode(4);
-        factory.setConcurrency("20");
+        factory.setConcurrency("10-20");
 
         DestinationResolver destinationResolver = (session, destinationName, pubSubDomain) -> {
             Destination destination = session.createQueue(destinationName);
@@ -126,7 +126,7 @@ public class JmsConfig {
 
         factory.setPubSubDomain(true);
         factory.setSessionTransacted(true);
-        factory.setConcurrency("6");
+        factory.setConcurrency("1-3");
 
         return factory;
     }

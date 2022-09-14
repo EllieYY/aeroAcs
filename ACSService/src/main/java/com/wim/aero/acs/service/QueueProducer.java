@@ -70,7 +70,6 @@ public class QueueProducer {
         String messageStr = JsonUtil.toJson(alarmMessage);
         log.info("[{} - 报警事件] - {}", alarmMessage.getControllerId(), messageStr);
         this.sendMessage(alarmQueue, messageStr);
-
     }
 
     public void sendAccessMessage(AccessMessage accessMessage) {

@@ -7,7 +7,7 @@ import com.wim.aero.acs.db.service.impl.EEventRecordServiceImpl;
 import com.wim.aero.acs.model.mq.AccessMessage;
 import com.wim.aero.acs.model.mq.AlarmMessage;
 import com.wim.aero.acs.model.mq.LogMessage;
-import com.wim.aero.acs.model.mq.StatusMessage;
+import com.wim.aero.acs.model.request.TransactionRequestInfo;
 import com.wim.aero.acs.model.scp.reply.EnScpReplyType;
 import com.wim.aero.acs.model.scp.reply.ReplyBody;
 import com.wim.aero.acs.model.scp.reply.ReplyType;
@@ -37,16 +37,19 @@ public class ScpMessageService {
     private static Map<Integer, Integer> cosStateCodeMap;
     private static Map<Integer, Integer> stateCode2TranCodeMap;
     private final EEventCodeDetailDevServiceImpl eventCodeDetailDevService;
+    private final ScpService scpService;
 
     @Autowired
     public ScpMessageService(QueueProducer queueProducer,
                              EEventRecordServiceImpl eventRecordService,
                              ScpCenter scpCenter,
-                             EEventCodeDetailDevServiceImpl eventCodeDetailDevService) {
+                             EEventCodeDetailDevServiceImpl eventCodeDetailDevService,
+                             ScpService scpService) {
         this.queueProducer = queueProducer;
         this.eventRecordService = eventRecordService;
         this.scpCenter = scpCenter;
         this.eventCodeDetailDevService = eventCodeDetailDevService;
+        this.scpService = scpService;
 
         initEventLogSrcMap();
         initCosStateMap();
@@ -67,6 +70,9 @@ public class ScpMessageService {
 
         if (scpCenter.needIntercept(scpId, eventNo)) {
             // 过滤掉不处理
+            log.info("[事件过滤] {} - {}", scpId, eventNo);
+
+
             return;
         }
 
