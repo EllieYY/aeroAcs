@@ -74,11 +74,11 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 10, defaultValue = "-1")
     private Integer strkNumber; // Strike link: Relay number on the specified SIO (strk_sio). 0 ~ nOutputs -1. Use -1 for not used.
 
-    @CmdProp(index = 11, defaultValue = "3")
+    @CmdProp(index = 11, defaultValue = "1")
     private Integer strikeTimeMin; // 开门时间 Minimum strike activation time, in seconds. A typical value is 1 second; valid values are 1 to
 
 
-    @CmdProp(index = 12)
+    @CmdProp(index = 12, defaultValue = "5")
     private Integer strikeTimeMax; // 开门提示时间 IMaximum strike activation, in seconds; valid values are strike_t_min to 255.
 
 
@@ -90,8 +90,8 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 14, defaultValue = "-1")
     private Integer doorSio = -1;  //Door contact link: the SIO number on the SCP that contains the input. 0 ~  nSio -1. Use -1 for not used.
 
-    @CmdProp(index = 15, defaultValue = "-1")
-    private Integer doorNumber = -1; // Door contact link: Input number on the specified SIO (door_sio). 0 ~ nInputs -1. Use -1 for not used.
+    @CmdProp(index = 15, defaultValue = "0")
+    private Integer doorNumber = 0; // Door contact link: Input number on the specified SIO (door_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     @CmdProp(index = 16, defaultValue = "10")
     private Integer dcHeld; // Delay before held open alarm is reported (2 second units). Valid values are 1 to 32767.
@@ -101,46 +101,46 @@ public class ACRConfig extends Operation {
     private Integer rex0Sio = -1; //Rex-0 link: the SIO number on the SCP that contains the input. 0~nSio -1. Use -1 for not used.
 
     @CmdProp(index = 18, defaultValue = "0")
-    private Integer rex0Number = -1; // Rex-0 link: Input number on the specified SIO (rex0_sio). 0 ~ nInputs -1. Use -1 for not used.
+    private Integer rex0Number = 0; // Rex-0 link: Input number on the specified SIO (rex0_sio). 0 ~ nInputs -1. Use -1 for not used.
 
     // REX 1 is normally not used.
     @CmdProp(index = 19, defaultValue = "-1")
     private Integer rex1Sio = -1; // Rex-1 link: the SIO number on the SCP that contains the input. 0 ~ nSio -1. Use -1 for not configured.
 
     @CmdProp(index = 20, defaultValue = "0")
-    private Integer rex1Number = -1; //Rex-1 link: Input number on the specified SIO (rex1_sio). 0 ~ nInputs -1. Use -1 for not used.
+    private Integer rex1Number = 0; //Rex-1 link: Input number on the specified SIO (rex1_sio). 0 ~ nInputs -1. Use -1 for not used.
 
-    @CmdProp(index = 21)
+    @CmdProp(index = 21, defaultValue = "0")
     private Integer rex0TzMask = 0; //Time zone for disabling rex0 and rex1. Set to 0 to not disable the rex on a time zone.
 
-    @CmdProp(index = 22)
+    @CmdProp(index = 22, defaultValue = "0")
     private Integer rex1TzMask = 0;
 
     @CmdProp(index = 23, defaultValue = "-1")
     private Integer altrdrSio = -1; // Alternate reader link: the SIO number on the SCP that contains the reader. Use -1 for not used.
 
-    @CmdProp(index = 24, defaultValue = "-1")
+    @CmdProp(index = 24, defaultValue = "0")
     private Integer altrdrNumber = -1; // 0 ~ nReaders
 
     @CmdProp(index = 25, defaultValue = "0")
     private Integer altrdrSpec;
 
-    @CmdProp(index = 26)
+    @CmdProp(index = 26, defaultValue = "255")
     private Integer cdFormat;  // 卡格式目录
 
     @CmdProp(index = 27, defaultValue = "0")
     private Integer apbMode;
 
-    @CmdProp(index = 28)
-    private Integer apbIn = -1;
+    @CmdProp(index = 28, defaultValue = "0")
+    private Integer apbIn = 0;
 
-    @CmdProp(index = 29)
-    private Integer apbTo = 1;
+    @CmdProp(index = 29, defaultValue = "0")
+    private Integer apbTo = 0;
 
     @CmdProp(index = 30, defaultValue = "0")
     private Integer spare = 0;
 
-    @CmdProp(index = 31)
+    @CmdProp(index = 31, defaultValue = "32")
     private Integer actlFlags;
 
     @CmdProp(index = 32, defaultValue = "1")
@@ -152,10 +152,10 @@ public class ACRConfig extends Operation {
     @CmdProp(index = 34, defaultValue = "1")
     private Integer defaultLedMode;
 
-    @CmdProp(index = 35)
+    @CmdProp(index = 35, defaultValue = "0")
     private Integer preAlarm = 0;
 
-    @CmdProp(index = 36)
+    @CmdProp(index = 36, defaultValue = "20")
     private Integer apbDelay;   // apb延时 0~65535，seconds
 
     @CmdProp(index = 37)

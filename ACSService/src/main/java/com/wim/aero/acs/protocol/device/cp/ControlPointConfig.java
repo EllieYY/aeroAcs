@@ -29,7 +29,7 @@ public class ControlPointConfig extends Operation {
     @CmdProp(index = 6)
     private Integer ouputNumber;
 
-    @CmdProp(index = 7)
+    @CmdProp(index = 7, defaultValue = "1")
     private Integer dfltPulse;     // 脉冲次数，每秒一次
 
     public static  ControlPointConfig fromDb(DevOutputDetail detail) {

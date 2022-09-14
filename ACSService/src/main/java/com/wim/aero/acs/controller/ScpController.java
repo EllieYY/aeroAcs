@@ -276,6 +276,33 @@ public class ScpController {
         }
     }
 
+    @ApiOperation(value = "删除指定假日")
+    @RequestMapping(value = "/holiday/del", method = {RequestMethod.POST})
+    public ResultBean<String> holidayDelete(@RequestBody HolidayDeleteRequestInfo request) {
+        // TODO:假日删除
+//        int code = scpService.triggerVarDelete(request);
+//        if (code == Constants.REST_CODE_SUCCESS) {
+//            return ResultBeanUtil.makeOkResp("删除触发器变量命令已下发");
+//        } else {
+            return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "接口预留，未开发");
+//        }
+    }
+
+    @ApiOperation(value = "清除所有假日")
+    @RequestMapping(value = "/holiday/clear", method = {RequestMethod.POST})
+    public ResultBean<String> holidayClear(@RequestBody ScpRequestInfo request) {
+        // TODO:假日清除
+//        int code = scpService.triggerVarDelete(request);
+//        if (code == Constants.REST_CODE_SUCCESS) {
+//            return ResultBeanUtil.makeOkResp("删除触发器变量命令已下发");
+//        } else {
+        return ResultBeanUtil.makeResp(RespCode.CMD_DOWNLOAD_FAIL, "接口预留，未开发");
+//        }
+    }
+
+
+
+
     @ApiOperation(value = "控制器下线")
     @RequestMapping(value = "/offline", method = {RequestMethod.POST})
     public ResultBean<String> doScpOffine(@RequestBody ScpRequestInfo request) {

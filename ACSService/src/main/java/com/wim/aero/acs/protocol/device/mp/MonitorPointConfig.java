@@ -44,17 +44,17 @@ public class MonitorPointConfig extends Operation {
      * 1 = Non-latching mode - 适用开门和关门延迟
      * 2 = Latching mode   封闭型继电器
      */
-    @CmdProp(index = 8)
+    @CmdProp(index = 8, defaultValue = "0")
     private Integer mode = 0;
 
     /**
      * 0 - no delay
      * max - 65535 seconds
      */
-    @CmdProp(index = 9)
+    @CmdProp(index = 9, defaultValue = "0")
     private Integer delayEntry = 0;
 
-    @CmdProp(index = 10)
+    @CmdProp(index = 10, defaultValue = "0")
     private Integer delayExit = 0;
 
     public static MonitorPointConfig fromDb(DevInputDetail detail) {

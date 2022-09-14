@@ -41,7 +41,7 @@ public class OutputPointSpecification extends Operation {
     @CmdProp(index = 5)
     private Integer output;  // 0 ~ nOutputs-1 (Command 109)
 
-    @CmdProp(index = 6)
+    @CmdProp(index = 6, defaultValue = "0")
     private Integer mode;
 
     public static OutputPointSpecification fromDb(DevOutputDetail detail) {

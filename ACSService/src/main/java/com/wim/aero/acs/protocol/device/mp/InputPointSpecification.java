@@ -43,7 +43,7 @@ public class InputPointSpecification extends Operation {
     @CmdProp(index = 5)
     private Integer input; // 0 ~ nInputs-1 (Command 109)
 
-    @CmdProp(index = 6)
+    @CmdProp(index = 6, defaultValue = "1")
     private Integer icvtNum;
 
     @CmdProp(index = 7, defaultValue = "4")
