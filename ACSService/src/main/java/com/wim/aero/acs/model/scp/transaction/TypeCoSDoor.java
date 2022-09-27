@@ -68,11 +68,13 @@ public class TypeCoSDoor extends TransactionBody implements AlarmEvent {
         int targetStatus = Constants.TRAN_CODE_MAP.get(tranCode);
 
 
-        // 开关门状态
-        if (status == 0x01) {
-            targetStatus = Constants.TRAGET_STATE_OPEN;
-        } else if (status == 0x00) {
-            targetStatus = Constants.TRAGET_STATE_CLOSE;
+        // 离线状态优于开关门
+        if (targetStatus != Constants.TRAGET_STATE_INVALID) {
+            if ((status & 0x01) == 0x01) {
+                targetStatus = Constants.TRAGET_STATE_OPEN;
+            } else if ((status & 0x00) == 0x00) {
+                targetStatus = Constants.TRAGET_STATE_CLOSE;
+            }
         }
         return targetStatus;
     }

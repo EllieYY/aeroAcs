@@ -88,19 +88,52 @@ public class StringUtil {
     }
 
 
-    public static void main(String[] args) {
-        List<CardAdd> srcList = new ArrayList<>();
-        for (int i = 0; i < 10000; i++) {
-            CardAdd card = new CardAdd();
-            card.setScpNumber(i+1);
-            card.setCardNumber("92051148" + i);
-            srcList.add(card);
+    public static String hexStr2Str(String hexStr) {
+        String str = "0123456789ABCDEF";
+        char[] hexs = hexStr.toCharArray();
+        byte[] bytes = new byte[hexStr.length() / 2];
+        int n;
+        for (int i = 0; i < bytes.length; i++) {
+            n = str.indexOf(hexs[2 * i]) * 16;
+            n += str.indexOf(hexs[2 * i + 1]);
+            bytes[i] = (byte) (n & 0xff);
         }
-//        List<String> srcList = Arrays.asList("12345", "23456", "34567", "45678", "56789", "67890", "78901");
-        List<List<CardAdd>> targetList1 = fixedGrouping(srcList, 100);
+        return new String(bytes);
+    }
 
-        for (List<CardAdd> tar:targetList1) {
-            System.out.println(tar.toString());
-        }
+
+
+    public static void main(String[] args) {
+//        List<CardAdd> srcList = new ArrayList<>();
+//        for (int i = 0; i < 10000; i++) {
+//            CardAdd card = new CardAdd();
+//            card.setScpNumber(i+1);
+//            card.setCardNumber("92051148" + i);
+//            srcList.add(card);
+//        }
+////        List<String> srcList = Arrays.asList("12345", "23456", "34567", "45678", "56789", "67890", "78901");
+//        List<List<CardAdd>> targetList1 = fixedGrouping(srcList, 100);
+//
+//        for (List<CardAdd> tar:targetList1) {
+//            System.out.println(tar.toString());
+//        }
+
+//        String bit_array = "8027110895961655";
+//        int bit_count = 64;
+//
+//        int length = 2 * ((bit_array.length() + 1) / 2);
+//        int srcLength = (bit_count + 3) / 4;
+//        int targetLength = srcLength < length ? srcLength : length;
+//
+//        String hexCardNo = bit_array.substring(0, targetLength);
+
+//        System.out.println(hexCardNo);
+
+//        long put_Vlue = Long.parseLong(hexCardNo, 16);
+//        System.out.println(String.valueOf(put_Vlue));
+
+//        String hexStr = "703FA579";
+//        String str = hexStr2Str(hexStr);
+//        System.out.println(str);
     }
 }

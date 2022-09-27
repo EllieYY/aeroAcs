@@ -17,4 +17,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DevXDetailMapper extends BaseMapper<DevXDetail> {
     List<DevXDetail> selectAllByControllerId(@Param("controllerId") Integer controllerId);
+
+    List<Integer> selectControllerPortByControllerIdAndModel(@Param("controllerId") Integer controllerId,
+                                                             @Param("list") List<Integer> modelList);
 }

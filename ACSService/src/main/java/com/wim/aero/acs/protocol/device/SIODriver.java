@@ -61,10 +61,11 @@ public class SIODriver extends Operation {
     @CmdProp(index = 9)
     private int nDialect = 0;
 
-    public SIODriver(int scpNumber, int msp1Number, int portNumber, int baudRate) {
+    public SIODriver(int scpNumber, int msp1Number, int portNumber, int baudRate, int type) {
         this.scpNumber = scpNumber;
         this.msp1Number = msp1Number;
         this.portNumber = portNumber;
         this.baudRate = baudRate;
+        this.nProtocol = type;
     }
 }

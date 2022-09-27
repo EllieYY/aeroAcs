@@ -386,6 +386,9 @@ public class ScpService {
     }
 
     private void sioStatusCmds(int scpId, List<Integer> sioList, List<ScpCmd> cmdList) {
+        if (sioList == null) {
+            return;
+        }
         for (Integer sioId:sioList) {
             SIOStatusCommand operation = new SIOStatusCommand(scpId, sioId, 1);
             String msg = RequestMessage.encode(scpId, operation);
@@ -394,6 +397,9 @@ public class ScpService {
     }
 
     private void cpStatusCmds(int scpId, List<Integer> cpList, List<ScpCmd> cmdList) {
+        if (cpList == null) {
+            return;
+        }
         for (Integer cpId:cpList) {
             ControlPointStatusCommand operation = new ControlPointStatusCommand(scpId, cpId, 1);
             String msg = RequestMessage.encode(scpId, operation);
@@ -402,6 +408,9 @@ public class ScpService {
     }
 
     private void mpStatusCmds(int scpId, List<Integer> mpList, List<ScpCmd> cmdList) {
+        if (mpList == null) {
+            return;
+        }
         for (Integer mpId:mpList) {
             MonitorPointStatusCommand operation = new MonitorPointStatusCommand(scpId, mpId, 1);
             String msg = RequestMessage.encode(scpId, operation);
@@ -410,6 +419,9 @@ public class ScpService {
     }
 
     private void acrStatusCmds(int scpId, List<Integer> acrList, List<ScpCmd> cmdList) {
+        if (acrList == null) {
+            return;
+        }
         for (Integer acrId:acrList) {
             AcrStatusCommand operation = new AcrStatusCommand(scpId, acrId, 1);
             String msg = RequestMessage.encode(scpId, operation);

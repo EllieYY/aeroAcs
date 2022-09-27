@@ -46,5 +46,14 @@
         where
         controller_id = #{controllerId,jdbcType=NUMERIC}
     </select>
+    <select id="selectControllerPortByControllerIdAndModel" resultType="java.lang.Integer">
+        select DISTINCT controller_port
+        from dev_x_detail
+        where controller_id = #{controllerId,jdbcType=NUMERIC}
+          AND model IN
+            <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+    </select>
 
 </mapper>

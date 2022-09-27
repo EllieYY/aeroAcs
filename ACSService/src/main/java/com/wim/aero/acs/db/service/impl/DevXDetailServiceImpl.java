@@ -21,4 +21,8 @@ public class DevXDetailServiceImpl extends ServiceImpl<DevXDetailMapper, DevXDet
     public List<DevXDetail> getByScpId(int scpId) {
         return this.baseMapper.selectAllByControllerId(scpId);
     }
+
+    public List<Integer> getPortBySioModel(int scpId, List<Integer> modelList) {
+        return this.baseMapper.selectControllerPortByControllerIdAndModel(scpId, modelList);
+    }
 }

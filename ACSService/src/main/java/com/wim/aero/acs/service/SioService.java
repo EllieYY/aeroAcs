@@ -26,6 +26,7 @@ import com.wim.aero.acs.protocol.device.mp.MonitorPointMask;
 import com.wim.aero.acs.protocol.device.mp.MpGroupCommand;
 import com.wim.aero.acs.protocol.device.reader.*;
 import com.wim.aero.acs.util.IdUtil;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.RequestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -225,9 +226,27 @@ public class SioService {
      */
     public void sioConfig(int scpId, List<ScpCmd> cmdList) {
         // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器2个
-        cmdList.add(packageDriver(scpId, 0,3, 0));
-        cmdList.add(packageDriver(scpId, 1, 1, 38400));
-        cmdList.add(packageDriver(scpId, 2, 2, 38400));
+        cmdList.add(packageDriver(scpId, 0,3, 0, 0));
+        // 查询哪个端口配的V系列，哪个是X系列
+        List<Integer> xPortList = sioDetailService.getPortBySioModel(scpId, Arrays.asList(193, 194, 195));
+        List<Integer> vPortList = sioDetailService.getPortBySioModel(scpId, Arrays.asList(190, 191, 192));
+
+        int xPortSize = xPortList.size();
+        int vPortSize = vPortList.size();
+
+        if ((xPortSize + vPortSize) != 2 || xPortSize == 2) {
+            log.error("[sio驱动端口配置数据错误]{} - x {}:v {}", scpId, xPortList.toString(), vPortList.toString());
+            cmdList.add(packageDriver(scpId, 1, 1, 38400, 0));
+            cmdList.add(packageDriver(scpId, 2, 2, 38400, 0));
+        } else if (vPortSize == 2) {
+            cmdList.add(packageDriver(scpId, 1, 1, 38400, 15));
+            cmdList.add(packageDriver(scpId, 2, 2, 38400, 15));
+        } else {
+            int xPort = xPortList.get(0);
+            int vPort = vPortList.get(0);
+            cmdList.add(packageDriver(scpId, xPort, xPort, 38400, 0));
+            cmdList.add(packageDriver(scpId, vPort, vPort, 38400, 15));
+        }
 
         // 查找所有sio
         List<DevXDetail> sioList = sioDetailService.getByScpId(scpId);
@@ -239,9 +258,13 @@ public class SioService {
         }
     }
 
-    private ScpCmd packageDriver(int scpId, int mspNo, int port, int baudRate) {
+    //    Type of Protocol
+    // *      *  0 = HID Aero™ X100, X200 and X300 protocol
+    // *      * 15 = VertX V100, V200 and V300 protocol
+    // *      * 16 = Aperio
+    private ScpCmd packageDriver(int scpId, int mspNo, int port, int baudRate, int type) {
         // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器3个
-        SIODriver driver = new SIODriver(scpId, mspNo, port, baudRate);
+        SIODriver driver = new SIODriver(scpId, mspNo, port, baudRate, type);
         String driverMsg = RequestMessage.encode(scpId, driver);
         return new ScpCmd(scpId, driverMsg, IdUtil.nextId());
     }
