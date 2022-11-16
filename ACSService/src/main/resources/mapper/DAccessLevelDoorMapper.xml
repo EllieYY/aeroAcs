@@ -119,12 +119,14 @@
         select
             a.controller_id as scpId,
             a.ele_level_id as alId,
+
             b.schedules_group_id as tzId,
             b.ele_floor_id as floor
         from ele_access_level_detail a, ele_level_detail b
         where
             controller_id = #{controllerId,jdbcType=NUMERIC} and
-            a.ele_level_id = b.ele_level_id
+            a.ele_level_id = b.ele_level_id and
+            b.status = '0'
     </select>
 
 

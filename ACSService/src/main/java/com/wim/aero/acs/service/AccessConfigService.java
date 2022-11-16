@@ -126,10 +126,11 @@ public class AccessConfigService {
      */
     @Async
     public void addCards(CardRequestInfo request) {
+        log.info("授权参数：{}", request.toString());
         boolean isEleScp = request.isEleScp();
 
         List<String> cardList = request.getCardList();
-        log.info("加卡 {}", cardList.toString());
+        log.info("梯控标识：{} - 加卡 {}", isEleScp, cardList.toString());
 
         // 卡数量控制
         List<List<String>> batchCardList = StringUtil.fixedGrouping(cardList, Constants.BATCH_CARD_DATA_COUNT);

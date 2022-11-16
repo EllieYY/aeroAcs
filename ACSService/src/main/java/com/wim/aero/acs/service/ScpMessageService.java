@@ -72,7 +72,6 @@ public class ScpMessageService {
             // 过滤掉不处理
             log.info("[事件过滤] {} - {}", scpId, eventNo);
 
-
             return;
         }
 

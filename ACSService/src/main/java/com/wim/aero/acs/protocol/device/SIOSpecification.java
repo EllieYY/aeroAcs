@@ -139,6 +139,10 @@ public class SIOSpecification extends Operation {
 
         switch (model) {
             case 190:  // v100
+                nInputs = 7;
+                nOutputs = 4;
+                nReaders = 2;
+                break;
             case 196:  // x1100
             case 193:  // x100
                 nInputs = 7;

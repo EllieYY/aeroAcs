@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @ApiModel(value = "指定访问级别请求参数")
 public class AlvlListRequestInfo extends TaskRequest {
-    @ApiModelProperty(value = "控制器id")
+    @ApiModelProperty(value = "控制器id，非必填", required = false)
     private int scpId;
 
     @ApiModelProperty(value = "是否梯控")

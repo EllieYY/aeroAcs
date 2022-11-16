@@ -234,7 +234,7 @@ public class SioService {
         int xPortSize = xPortList.size();
         int vPortSize = vPortList.size();
 
-        if ((xPortSize + vPortSize) != 2 || xPortSize == 2) {
+        if ((xPortSize + vPortSize) > 2 || xPortSize == 2) {
             log.error("[sio驱动端口配置数据错误]{} - x {}:v {}", scpId, xPortList.toString(), vPortList.toString());
             cmdList.add(packageDriver(scpId, 1, 1, 38400, 0));
             cmdList.add(packageDriver(scpId, 2, 2, 38400, 0));
@@ -242,10 +242,15 @@ public class SioService {
             cmdList.add(packageDriver(scpId, 1, 1, 38400, 15));
             cmdList.add(packageDriver(scpId, 2, 2, 38400, 15));
         } else {
-            int xPort = xPortList.get(0);
-            int vPort = vPortList.get(0);
-            cmdList.add(packageDriver(scpId, xPort, xPort, 38400, 0));
-            cmdList.add(packageDriver(scpId, vPort, vPort, 38400, 15));
+            if (xPortSize >= 1) {
+                int xPort = xPortList.get(0);
+                cmdList.add(packageDriver(scpId, xPort, xPort, 38400, 0));
+            }
+
+            if (vPortSize >= 1) {
+                int vPort = vPortList.get(0);
+                cmdList.add(packageDriver(scpId, vPort, vPort, 38400, 15));
+            }
         }
 
         // 查找所有sio

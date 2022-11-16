@@ -61,8 +61,8 @@ public class ReaderSpecification extends Operation {
     @CmdProp(index = 8, defaultValue = "1")
     private Integer ledDriveMode = 1;
 
-    @CmdProp(index = 9, defaultValue = "0")
-    private Integer osdpFlags = 0;
+    @CmdProp(index = 9, defaultValue = "8")
+    private Integer osdpFlags = 8;
 
     public static ReaderSpecification fromDb(DevReaderDetail detail) {
         ReaderSpecification result = new ReaderSpecification();
