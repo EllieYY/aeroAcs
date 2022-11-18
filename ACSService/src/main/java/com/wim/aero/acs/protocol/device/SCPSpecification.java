@@ -6,6 +6,8 @@ import com.wim.aero.acs.util.ProtocolFiledUtil.CmdProp;
 import lombok.Data;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Optional;
+
 /**
  * @title: SCPCapacity 设备参数
  * @author: Ellie
@@ -105,7 +107,9 @@ public class SCPSpecification extends Operation {
         this.operType = config.getOperTypes();
     }
 
-    public SCPSpecification(int scpNumber) {
+    public SCPSpecification(int scpNumber, Integer nAlvl) {
+        int n = Optional.ofNullable(nAlvl).orElse(32000);
         this.scpNumber = scpNumber;
+        this.nAlvl = n;
     }
 }

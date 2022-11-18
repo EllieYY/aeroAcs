@@ -172,13 +172,13 @@ public class ScpService {
             cmdList.add(new ScpConnectInfo(scpId, ipStr, msg));
 
             // 1105和1107
+            DevControllerCommonAttribute adDetail = devControllerCommonAttributeService.getADSpecification();
             // SCPDevice Specification(Command 1107)
-            SCPSpecification scpSpecification = new SCPSpecification(scpId);
+            SCPSpecification scpSpecification = new SCPSpecification(scpId, adDetail.getAccessLevelNum());
             String specificationMsg = RequestMessage.encode(scpId, scpSpecification);
             cmdList.add(new ScpConnectInfo(scpId, ipStr, specificationMsg));
 
             // Access Database Specification (Command 1105)
-            DevControllerCommonAttribute adDetail = devControllerCommonAttributeService.getADSpecification();
             AccessDatabaseSpecification adSpecification = AccessDatabaseSpecification.fromDb(scpId, adDetail);
             String adSpecificationMsg = RequestMessage.encode(scpId, adSpecification);
             cmdList.add(new ScpConnectInfo(scpId, ipStr, adSpecificationMsg));
@@ -500,13 +500,14 @@ public class ScpService {
         // DST 1116
         configDST(scpId, cmdList);
 
+        DevControllerCommonAttribute detail = devControllerCommonAttributeService.getADSpecification();
+
         // SCPDevice Specification(Command 1107)
-        SCPSpecification scpSpecification = new SCPSpecification(scpId);
+        SCPSpecification scpSpecification = new SCPSpecification(scpId, detail.getAccessLevelNum());
         String specificationMsg = RequestMessage.encode(scpId, scpSpecification);
         cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
 
         // Access Database Specification (Command 1105)
-        DevControllerCommonAttribute detail = devControllerCommonAttributeService.getADSpecification();
         AccessDatabaseSpecification adSpecification = AccessDatabaseSpecification.fromDb(scpId, detail);
         String adSpecificationMsg = RequestMessage.encode(scpId, adSpecification);
         cmdList.add(new ScpCmd(scpId, adSpecificationMsg, IdUtil.nextId()));

@@ -37,9 +37,21 @@ public class ScpCmd {
     @JsonIgnore
     private int type = Constants.SCP_CMD_NORMAL;
 
+    @ApiModelProperty(value = "是否延时")
+    @JsonProperty("delay")
+    private boolean delay = false;
+
     public ScpCmd(int scpId, String command, String streamId) {
         this.scpId = String.valueOf(scpId);
         this.command = command;
         this.streamId = String.valueOf(streamId);
+        this.delay = false;
+    }
+
+    public ScpCmd(int scpId, String command, String streamId, boolean delay) {
+        this.scpId = String.valueOf(scpId);
+        this.command = command;
+        this.streamId = String.valueOf(streamId);
+        this.delay = delay;
     }
 }

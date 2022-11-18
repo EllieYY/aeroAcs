@@ -60,7 +60,7 @@ public class TestMessageController {
         List<ScpCmd> cmdList = new ArrayList<>();
         sioService.sioConfig(scpId, cmdList);
         cmdList.forEach(it -> {
-            System.out.println(it.getCommand());
+            System.out.println(it.isDelay() + ":" + it.getCommand());
         });
 
         return ResultBeanUtil.makeOkResp(cmdList);
@@ -76,7 +76,7 @@ public class TestMessageController {
         List<ScpCmd> cmdList = new ArrayList<>();
         sioService.inputConfig(scpId, cmdList);
         cmdList.forEach(it -> {
-            System.out.println(it.getCommand());
+            System.out.println(it.isDelay() + ":" + it.getCommand());
         });
 
         return ResultBeanUtil.makeOkResp(cmdList);
@@ -92,7 +92,7 @@ public class TestMessageController {
         List<ScpCmd> cmdList = new ArrayList<>();
         sioService.outputConfig(scpId, cmdList);
         cmdList.forEach(it -> {
-            System.out.println(it.getCommand());
+            System.out.println(it.isDelay() + ":" + it.getCommand());
         });
 
         return ResultBeanUtil.makeOkResp(cmdList);
@@ -108,7 +108,7 @@ public class TestMessageController {
         List<ScpCmd> cmdList = new ArrayList<>();
         sioService.readerConfig(scpId, cmdList);
         cmdList.forEach(it -> {
-            System.out.println(it.getCommand());
+            System.out.println(it.isDelay() + ":" + it.getCommand());
         });
 
         return ResultBeanUtil.makeOkResp(cmdList);

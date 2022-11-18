@@ -20,4 +20,7 @@ public interface DevXDetailMapper extends BaseMapper<DevXDetail> {
 
     List<Integer> selectControllerPortByControllerIdAndModel(@Param("controllerId") Integer controllerId,
                                                              @Param("list") List<Integer> modelList);
+
+    Integer selectModelByControllerIdAndSioNumber(@Param("controllerId") Integer controllerId,
+                                                  @Param("sioNumber") Integer sioNumber);
 }

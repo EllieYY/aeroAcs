@@ -256,10 +256,13 @@ public class SioService {
         // 查找所有sio
         List<DevXDetail> sioList = sioDetailService.getByScpId(scpId);
         for (DevXDetail sio:sioList) {
+            int sioId = sio.getSioNumber();
+            boolean isV = sioDetailService.isVBord(scpId, sioId);
+
             // SIOPanel Configuration (Command 109)
             SIOSpecification specification = SIOSpecification.fromDb(sio);
             String msg = RequestMessage.encode(scpId, specification);
-            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId(), isV));
         }
     }
 
@@ -282,14 +285,16 @@ public class SioService {
     public void inputConfig(int scpId, List<ScpCmd> cmdList) {
         List<DevInputDetail> devInputDetails = inputDetailService.getByScpId(scpId);
         for (DevInputDetail input:devInputDetails) {
-            // Input Point Configuration (Command 110)
-            InputPointSpecification specification = InputPointSpecification.fromDb(input);
-            String specificationMsg = RequestMessage.encode(scpId, specification);
-            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
-
             // 控制器scpId、sio板编号、输入点物理编号
             int sioId = input.getSioNumber();
             int inputNo = input.getInput();
+            boolean isV = sioDetailService.isVBord(scpId, sioId);
+
+            // Input Point Configuration (Command 110)
+            InputPointSpecification specification = InputPointSpecification.fromDb(input);
+            String specificationMsg = RequestMessage.encode(scpId, specification);
+            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId(), isV));
+
             // 判断是否是已配置
             if (readerDetailService.isInputConfigured(scpId, sioId, inputNo)) {
                 continue;
@@ -298,7 +303,7 @@ public class SioService {
             // Monitor Point Configuration(Command113)
             MonitorPointConfig config = MonitorPointConfig.fromDb(input);
             String configMsg = RequestMessage.encode(scpId, config);
-            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId(), isV));
         }
     }
 
@@ -311,13 +316,15 @@ public class SioService {
     public void outputConfig(int scpId, List<ScpCmd> cmdList) {
         List<DevOutputDetail> devOutputDetails = outputDetailService.getByScpId(scpId);
         for (DevOutputDetail output:devOutputDetails) {
+            int sioId = output.getSioNumber();
+            boolean isV = sioDetailService.isVBord(scpId, sioId);
+
             // OutputPointConfiguration (Command 111)
             OutputPointSpecification specification = OutputPointSpecification.fromDb(output);
             String specificationMsg = RequestMessage.encode(scpId, specification);
-            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
+            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId(), isV));
 
             // 控制器scpId、sio板编号、输出点物理编号
-            int sioId = output.getSioNumber();
             int outputNo = output.getOutput();
             // 判断是否是已配置
             if (readerDetailService.isOutputConfigured(scpId, sioId, outputNo)) {
@@ -327,7 +334,7 @@ public class SioService {
             // ControlPointConfiguration (Command 114)
             ControlPointConfig config = ControlPointConfig.fromDb(output);
             String configMsg = RequestMessage.encode(scpId, config);
-            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId(), isV));
 
         }
     }
@@ -340,15 +347,18 @@ public class SioService {
     public void readerConfig(int scpId, List<ScpCmd> cmdList) {
         List<DevReaderDetail> readerDetails = readerDetailService.getByScpId(scpId);
         for (DevReaderDetail reader:readerDetails) {
+            int sioId = reader.getSioNumber();
+            boolean isV = sioDetailService.isVBord(scpId, sioId);
+
             // Card Reader Configuration(Command112)
             ReaderSpecification specification = ReaderSpecification.fromDb(reader);
             String specificationMsg = RequestMessage.encode(scpId, specification);
-            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
+            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId(), isV));
 
             // Access Control Reader Configuration(Command115)
             ACRConfig config = ACRConfig.fromDb(reader);
             String configMsg = RequestMessage.encode(scpId, config);
-            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId(), isV));
         }
     }
 

@@ -25,4 +25,14 @@ public class DevXDetailServiceImpl extends ServiceImpl<DevXDetailMapper, DevXDet
     public List<Integer> getPortBySioModel(int scpId, List<Integer> modelList) {
         return this.baseMapper.selectControllerPortByControllerIdAndModel(scpId, modelList);
     }
+
+
+    public boolean isVBord(int scpId, int sioId) {
+        int model = this.baseMapper.selectModelByControllerIdAndSioNumber(scpId, sioId);
+        if (model >= 190 && model <= 192) {
+            return true;
+        }
+
+        return false;
+    }
 }

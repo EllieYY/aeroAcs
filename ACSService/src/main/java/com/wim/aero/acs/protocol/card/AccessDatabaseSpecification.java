@@ -28,7 +28,7 @@ public class AccessDatabaseSpecification extends Operation {
     private Integer nCards; // 0 - 清除数据，不改变格式。Number of cardholder records to allocate (long)
 
     @CmdProp(index = 5, defaultValue = "32")
-    private Integer nAlvl; // Number of access levels per cardholder. Maximum value of 32.
+    private Integer nAlvl = 32; // Number of access levels per cardholder. Maximum value of 32.
 
     @CmdProp(index = 6, defaultValue = "68")
     private Integer nPinDigits;
@@ -93,7 +93,7 @@ public class AccessDatabaseSpecification extends Operation {
         AccessDatabaseSpecification result = new AccessDatabaseSpecification();
         result.setNScpID(nScpID);
         result.setNCards(detail.getMaxCardNum());
-        result.setNAlvl(detail.getAccessLevelNum());
+//        result.setNAlvl(detail.getAccessLevelNum());
 
         // nPinDigits生成逻辑
         if (StringUtils.hasText(detail.getForceAlarmMode()) &&

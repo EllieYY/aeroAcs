@@ -55,5 +55,11 @@
                 #{id}
             </foreach>
     </select>
+    <select id="selectModelByControllerIdAndSioNumber" resultType="java.lang.Integer">
+        select model
+        from dev_x_detail
+        where controller_id = #{controllerId,jdbcType=NUMERIC}
+          AND sio_number = #{sioNumber,jdbcType=NUMERIC}
+    </select>
 
 </mapper>
