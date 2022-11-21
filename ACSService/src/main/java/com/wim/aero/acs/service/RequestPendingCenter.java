@@ -72,7 +72,6 @@ public class RequestPendingCenter implements CacheManagerAware {
 
         ScpCmdResponse response = restUtil.sendSingleCmd(cmd);
 
-
         Map<String, ScpCmdResponse>  responseMap =
                 Arrays.asList(response).stream().collect(Collectors.toMap(ScpCmdResponse::getStreamId, item -> item));
 
@@ -96,6 +95,46 @@ public class RequestPendingCenter implements CacheManagerAware {
         // 控制单次发送条数
         int successCount = 0;
         List<List<ScpCmd>> batchCardList = StringUtil.fixedGrouping(cmdList, Constants.BATCH_CMD_COUNT);
+        for (List<ScpCmd> batchCmd:batchCardList) {
+            if (batchCmd.size() <= 0) {
+                continue;
+            }
+
+            List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(batchCmd);
+            Map<String, ScpCmdResponse>  responseMap =
+                    responseList.stream().collect(Collectors.toMap(ScpCmdResponse::getStreamId, item -> item));
+
+            // 响应处理
+            log.info("[通信服务响应命令条数] - {}", responseList.size());
+            log.info(responseList.toString());
+            commandCollected(request, batchCmd, responseMap);
+
+            int sum = responseList.stream().mapToInt(response -> (response.getCode() == 0 ? 1 : 0)).sum();
+            successCount += sum;
+
+        }
+
+        if (successCount == 0) {
+            return -1;
+        }
+
+        return 0;
+    }
+
+
+    /**
+     * 向设备发送多条命令
+     * @param request
+     * @param cmdList
+     */
+    public int sendConfigCmdList(TaskRequest request, List<ScpCmd> cmdList) {
+        if (cmdList.size() <= 0) {
+            return 0;
+        }
+
+        // 控制单次发送条数
+        int successCount = 0;
+        List<List<ScpCmd>> batchCardList = StringUtil.fixedGrouping(cmdList, Constants.BATCH_CONFIG_CMD_COUNT);
         for (List<ScpCmd> batchCmd:batchCardList) {
             if (batchCmd.size() <= 0) {
                 continue;

@@ -20,6 +20,7 @@ public interface Constants {
 
     // 单次发送命令条数
     int BATCH_CMD_COUNT = 50;
+    int BATCH_CONFIG_CMD_COUNT = 5;
 
     // 授权单次操作卡数量
     int BATCH_CARD_DATA_COUNT = 1000;

@@ -467,7 +467,7 @@ public class ScpService {
         sioService.configSioForScp(requestInfo, cmdList);
 
         // 报文发送
-        requestPendingCenter.sendCmdList(requestInfo, cmdList);
+        requestPendingCenter.sendConfigCmdList(requestInfo, cmdList);
 
 //        for(ScpCmd cmd:cmdList) {
 //            System.out.println(cmd.getCommand());
