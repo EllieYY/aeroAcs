@@ -458,7 +458,7 @@ public class ScpService {
         // 触发器配置
         triggerConfig(scpId, cmdList);
 
-        log.info("[{} - scp配置]", scpId);
+        log.info("[{} - scp配置， 条数：{}]", scpId, cmdList.size());
 
         // 访问权限配置
         accessConfigService.accessConfig(requestInfo, cmdList);

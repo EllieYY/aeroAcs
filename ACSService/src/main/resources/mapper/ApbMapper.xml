@@ -7,6 +7,7 @@
         <result column="apb_id" property="apbId" />
         <result column="apb_name" property="apbName" />
         <result column="controller_id" property="controllerId" />
+        <result column="scp_apb_id" property="scpApbId" />
         <result column="curr_num_person" property="currNumPerson" />
         <result column="max_num_person" property="maxNumPerson" />
         <result column="max_num_event" property="maxNumEvent" />
@@ -20,11 +21,16 @@
         <result column="create_time" property="createTime" />
         <result column="update_by" property="updateBy" />
         <result column="update_time" property="updateTime" />
+        <result column="area_flag" property="areaFlag" />
+        <result column="area_type" property="areaType" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        apb_id, apb_name, controller_id, curr_num_person, max_num_person, max_num_event, min_num_event, close_flag, apb_rule, init_area, status, remark, create_by, create_time, update_by, update_time
+        apb_id, apb_name, controller_id, scp_apb_id,
+        curr_num_person, max_num_person, max_num_event, min_num_event,
+        close_flag, apb_rule, init_area, status, remark, create_by,
+        create_time, update_by, update_time, area_flag, area_type
     </sql>
     <select id="selectAllByControllerId" resultMap="BaseResultMap">
         select

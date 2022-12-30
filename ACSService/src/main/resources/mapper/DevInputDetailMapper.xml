@@ -54,5 +54,13 @@
         where
         controller_id = #{controllerId,jdbcType=NUMERIC}
     </select>
+    <select id="selectAllByControllerIdAndSioNumber" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dev_input_detail
+        where
+        controller_id = #{controllerId,jdbcType=NUMERIC}
+        AND sio_number = #{sioNumber,jdbcType=NUMERIC}
+    </select>
 
 </mapper>

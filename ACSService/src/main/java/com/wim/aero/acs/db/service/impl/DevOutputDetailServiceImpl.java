@@ -35,4 +35,13 @@ public class DevOutputDetailServiceImpl extends ServiceImpl<DevOutputDetailMappe
     public List<DevOutputDetail> getByScpId(int scpId) {
         return this.baseMapper.selectAllByControllerId(scpId);
     }
+
+    /**
+     * 通过scpId查找
+     * @param scpId
+     * @return
+     */
+    public List<DevOutputDetail> getByScpIdAndSio(int scpId, int sio) {
+        return this.baseMapper.selectAllByControllerIdAndSioNumber(scpId, sio);
+    }
 }

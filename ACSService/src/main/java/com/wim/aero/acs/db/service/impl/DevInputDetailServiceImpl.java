@@ -37,4 +37,13 @@ public class DevInputDetailServiceImpl extends ServiceImpl<DevInputDetailMapper,
         return this.baseMapper.selectAllByControllerId(scpId);
     }
 
+    /**
+     * 按控制器id查找输入点
+     * @param scpId
+     * @return
+     */
+    public List<DevInputDetail> getByScpIdAndSioId(int scpId, int sio) {
+        return this.baseMapper.selectAllByControllerIdAndSioNumber(scpId, sio);
+    }
+
 }

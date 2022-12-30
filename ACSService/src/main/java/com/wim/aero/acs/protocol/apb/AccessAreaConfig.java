@@ -70,7 +70,7 @@ public class AccessAreaConfig extends Operation {
     public static AccessAreaConfig fromDb(Apb src) {
         AccessAreaConfig result = new AccessAreaConfig();
         result.setScpNumber(src.getControllerId());
-        result.setAreaNumber(src.getApbId());
+        result.setAreaNumber(src.getScpApbId());
 
         if (StringUtils.hasText(src.getApbRule())) {
             result.setMultiOccupancy(Integer.parseInt(src.getApbRule()));
@@ -82,6 +82,8 @@ public class AccessAreaConfig extends Operation {
         result.setOccMax(src.getMaxNumPerson());
         result.setOccUp(src.getMinNumEvent());
         result.setOccDown(src.getMaxNumEvent());
+
+        result.setAreaFlags(src.getAreaFlag());
 
         return result;
     }

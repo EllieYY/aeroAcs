@@ -85,8 +85,8 @@ public class SIOSpecification extends Operation {
     private Integer address;
 
     /** 离线周期判断 */
-    @CmdProp(index = 17, defaultValue = "3")
-    private Integer e_max = 3;
+    @CmdProp(index = 17, defaultValue = "4")
+    private Integer e_max = 4;
 
     @CmdProp(index = 18, defaultValue = "0")
     private Integer flags = 0;

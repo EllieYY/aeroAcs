@@ -23,6 +23,9 @@ public interface DevReaderDetailMapper extends BaseMapper<DevReaderDetail> {
 
     List<DevReaderDetail> selectAllByControllerId(@Param("controllerId") Integer controllerId);
 
+    List<DevReaderDetail> selectAllByControllerIdAndSioNumber(@Param("controllerId") Integer controllerId,
+                                                              @Param("sioNumber") Integer sioNumber);
+
     AcrStrikeInfo selectStrikeByDeviceId(@Param("deviceId") Integer deviceId);
 
     int CountByInputInfo(@Param("scpId") Integer controllerId,

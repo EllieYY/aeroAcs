@@ -20,5 +20,7 @@ public interface DevInputDetailMapper extends BaseMapper<DevInputDetail> {
 
     List<DevInputDetail> selectAllByControllerId(@Param("controllerId") Integer controllerId);
 
+    List<DevInputDetail> selectAllByControllerIdAndSioNumber(@Param("controllerId") Integer controllerId,
+                                                             @Param("sioNumber") Integer sioNumber);
 
 }

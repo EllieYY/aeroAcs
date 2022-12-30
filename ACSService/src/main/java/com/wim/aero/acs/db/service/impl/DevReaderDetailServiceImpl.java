@@ -38,6 +38,15 @@ public class DevReaderDetailServiceImpl extends ServiceImpl<DevReaderDetailMappe
     }
 
     /**
+     * 通过scpId查找
+     * @param scpId
+     * @return
+     */
+    public List<DevReaderDetail> getByScpIdAndSio(int scpId, int sioId) {
+        return this.baseMapper.selectAllByControllerIdAndSioNumber(scpId, sioId);
+    }
+
+    /**
      * 查找锁的信息
      * @param deviceId
      * @return

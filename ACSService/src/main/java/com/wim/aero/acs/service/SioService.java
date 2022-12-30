@@ -74,10 +74,13 @@ public class SioService {
         int scpId = requestInfo.getScpId();
 //        List<ScpCmd> cmdList = new ArrayList<>();
 
-        sioConfig(scpId, cmdList);
-        inputConfig(scpId, cmdList);
-        outputConfig(scpId, cmdList);
-        readerConfig(scpId, cmdList);
+        // 按照sio板配置
+        sioDriverConfig(scpId, cmdList);
+        sioAllConfig(scpId, cmdList);
+//        sioConfig(scpId, cmdList);
+//        inputConfig(scpId, cmdList);
+//        outputConfig(scpId, cmdList);
+//        readerConfig(scpId, cmdList);
 
         // readerLED配置
         readerLEDConfig(scpId, cmdList);
@@ -266,6 +269,66 @@ public class SioService {
         }
     }
 
+    /**
+     * sio配置，包含input | output | reader的配置
+     * @param scpId
+     * @param cmdList
+     */
+    public void sioDriverConfig(int scpId, List<ScpCmd> cmdList) {
+        // MSP1(SIO)Comm. Driver Configuration (Command 108) -- // 一个控制器2个
+        cmdList.add(packageDriver(scpId, 0,3, 0, 0));
+        // 查询哪个端口配的V系列，哪个是X系列
+        List<Integer> xPortList = sioDetailService.getPortBySioModel(scpId, Arrays.asList(193, 194, 195));
+        List<Integer> vPortList = sioDetailService.getPortBySioModel(scpId, Arrays.asList(190, 191, 192));
+
+        int xPortSize = xPortList.size();
+        int vPortSize = vPortList.size();
+
+        if ((xPortSize + vPortSize) > 2 || xPortSize == 2) {
+            log.error("[sio驱动端口配置数据错误]{} - x {}:v {}", scpId, xPortList.toString(), vPortList.toString());
+            cmdList.add(packageDriver(scpId, 1, 1, 38400, 0));
+            cmdList.add(packageDriver(scpId, 2, 2, 38400, 0));
+        } else if (vPortSize == 2) {
+            cmdList.add(packageDriver(scpId, 1, 1, 38400, 15));
+            cmdList.add(packageDriver(scpId, 2, 2, 38400, 15));
+        } else {
+            if (xPortSize >= 1) {
+                int xPort = xPortList.get(0);
+                cmdList.add(packageDriver(scpId, xPort, xPort, 38400, 0));
+            }
+
+            if (vPortSize >= 1) {
+                int vPort = vPortList.get(0);
+                cmdList.add(packageDriver(scpId, vPort, vPort, 38400, 15));
+            }
+        }
+    }
+
+    /**
+     * sio配置，包含input | output | reader的配置
+     * @param scpId
+     * @param cmdList
+     */
+    public void sioAllConfig(int scpId, List<ScpCmd> cmdList) {
+        // 查找所有sio
+        List<DevXDetail> sioList = sioDetailService.getByScpId(scpId);
+        for (DevXDetail sio:sioList) {
+            int sioId = sio.getSioNumber();
+            boolean isV = sioDetailService.isVBord(scpId, sioId);
+
+            // SIOPanel Configuration (Command 109)
+            SIOSpecification specification = SIOSpecification.fromDb(sio);
+            String msg = RequestMessage.encode(scpId, specification);
+            cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId(), isV));
+
+            inputConfigBySio(scpId, sioId, cmdList);
+            outputConfigBySio(scpId, sioId, cmdList);
+            readerConfigBySio(scpId, sioId, cmdList);
+
+        }
+    }
+
+
     //    Type of Protocol
     // *      *  0 = HID Aero™ X100, X200 and X300 protocol
     // *      * 15 = VertX V100, V200 and V300 protocol
@@ -303,7 +366,36 @@ public class SioService {
             // Monitor Point Configuration(Command113)
             MonitorPointConfig config = MonitorPointConfig.fromDb(input);
             String configMsg = RequestMessage.encode(scpId, config);
-            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId(), isV));
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
+        }
+    }
+
+    /**
+     * 输入点（报警点）配置
+     * @param scpId
+     * @param cmdList
+     */
+    public void inputConfigBySio(int scpId, int sioId, List<ScpCmd> cmdList) {
+        List<DevInputDetail> devInputDetails = inputDetailService.getByScpIdAndSioId(scpId, sioId);
+        for (DevInputDetail input:devInputDetails) {
+            // 控制器scpId、sio板编号、输入点物理编号
+            int inputNo = input.getInput();
+//            boolean isV = sioDetailService.isVBord(scpId, sioId);
+
+            // Input Point Configuration (Command 110)
+            InputPointSpecification specification = InputPointSpecification.fromDb(input);
+            String specificationMsg = RequestMessage.encode(scpId, specification);
+            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
+
+            // 判断是否是已配置
+            if (readerDetailService.isInputConfigured(scpId, sioId, inputNo)) {
+                continue;
+            }
+
+            // Monitor Point Configuration(Command113)
+            MonitorPointConfig config = MonitorPointConfig.fromDb(input);
+            String configMsg = RequestMessage.encode(scpId, config);
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
         }
     }
 
@@ -317,12 +409,12 @@ public class SioService {
         List<DevOutputDetail> devOutputDetails = outputDetailService.getByScpId(scpId);
         for (DevOutputDetail output:devOutputDetails) {
             int sioId = output.getSioNumber();
-            boolean isV = sioDetailService.isVBord(scpId, sioId);
+//            boolean isV = sioDetailService.isVBord(scpId, sioId);
 
             // OutputPointConfiguration (Command 111)
             OutputPointSpecification specification = OutputPointSpecification.fromDb(output);
             String specificationMsg = RequestMessage.encode(scpId, specification);
-            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId(), isV));
+            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
 
             // 控制器scpId、sio板编号、输出点物理编号
             int outputNo = output.getOutput();
@@ -334,10 +426,41 @@ public class SioService {
             // ControlPointConfiguration (Command 114)
             ControlPointConfig config = ControlPointConfig.fromDb(output);
             String configMsg = RequestMessage.encode(scpId, config);
-            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId(), isV));
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
 
         }
     }
+
+    /**
+     * 输出点（控制点）配置
+     * @param scpId
+     * @param cmdList
+     */
+    public void outputConfigBySio(int scpId, int sioId, List<ScpCmd> cmdList) {
+        List<DevOutputDetail> devOutputDetails = outputDetailService.getByScpIdAndSio(scpId, sioId);
+        for (DevOutputDetail output:devOutputDetails) {
+//            boolean isV = sioDetailService.isVBord(scpId, sioId);
+
+            // OutputPointConfiguration (Command 111)
+            OutputPointSpecification specification = OutputPointSpecification.fromDb(output);
+            String specificationMsg = RequestMessage.encode(scpId, specification);
+            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId()));
+
+            // 控制器scpId、sio板编号、输出点物理编号
+            int outputNo = output.getOutput();
+            // 判断是否是已配置
+            if (readerDetailService.isOutputConfigured(scpId, sioId, outputNo)) {
+                continue;
+            }
+
+            // ControlPointConfiguration (Command 114)
+            ControlPointConfig config = ControlPointConfig.fromDb(output);
+            String configMsg = RequestMessage.encode(scpId, config);
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
+
+        }
+    }
+
 
     /**
      * 读卡器（ACR）配置
@@ -358,7 +481,30 @@ public class SioService {
             // Access Control Reader Configuration(Command115)
             ACRConfig config = ACRConfig.fromDb(reader);
             String configMsg = RequestMessage.encode(scpId, config);
-            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId(), isV));
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
+        }
+    }
+
+    /**
+     * 读卡器（ACR）配置
+     * @param scpId
+     * @param cmdList
+     */
+    public void readerConfigBySio(int scpId, int sioId, List<ScpCmd> cmdList) {
+        List<DevReaderDetail> readerDetails = readerDetailService.getByScpIdAndSio(scpId, sioId);
+        for (DevReaderDetail reader:readerDetails) {
+//            int sioId = reader.getSioNumber();
+            boolean isV = sioDetailService.isVBord(scpId, sioId);
+
+            // Card Reader Configuration(Command112)
+            ReaderSpecification specification = ReaderSpecification.fromDb(reader);
+            String specificationMsg = RequestMessage.encode(scpId, specification);
+            cmdList.add(new ScpCmd(scpId, specificationMsg, IdUtil.nextId(), isV));
+
+            // Access Control Reader Configuration(Command115)
+            ACRConfig config = ACRConfig.fromDb(reader);
+            String configMsg = RequestMessage.encode(scpId, config);
+            cmdList.add(new ScpCmd(scpId, configMsg, IdUtil.nextId()));
         }
     }
 

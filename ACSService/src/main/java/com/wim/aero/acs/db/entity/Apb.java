@@ -36,6 +36,9 @@ public class Apb implements Serializable {
     @TableField("controller_id")
     private Integer controllerId;
 
+    @TableField("scp_apb_id")
+    private Integer scpApbId;
+
     @TableField("curr_num_person")
     private Integer currNumPerson;
 
@@ -75,5 +78,10 @@ public class Apb implements Serializable {
     @TableField("update_time")
     private Date updateTime;
 
+    @TableField("area_flag")
+    private Integer areaFlag;
+
+    @TableField("area_type")
+    private Integer areaType;
 
 }

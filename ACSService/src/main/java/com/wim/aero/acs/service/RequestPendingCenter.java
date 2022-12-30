@@ -140,6 +140,8 @@ public class RequestPendingCenter implements CacheManagerAware {
                 continue;
             }
 
+//            System.out.println(batchCmd.toString());
+
             List<ScpCmdResponse> responseList = restUtil.sendMultiCmd(batchCmd);
             Map<String, ScpCmdResponse>  responseMap =
                     responseList.stream().collect(Collectors.toMap(ScpCmdResponse::getStreamId, item -> item));
