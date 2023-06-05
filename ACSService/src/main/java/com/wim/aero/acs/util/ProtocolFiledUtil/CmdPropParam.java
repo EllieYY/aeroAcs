@@ -16,13 +16,15 @@ import java.lang.reflect.Field;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CmdPropParam implements Comparable<CmdPropParam>{
-    Integer idx;
+    private Integer idx;
 
-    String defaultVal;
+    private String defaultVal;
 
-    String codec;
 
-    Field field;
+
+    private String codec;
+
+    private Field field;
 
     @Override
     public int compareTo(CmdPropParam o) {

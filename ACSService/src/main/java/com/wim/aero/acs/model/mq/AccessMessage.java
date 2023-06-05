@@ -19,7 +19,6 @@ public class AccessMessage {
     private long eventIndex;
 
     private long eventsTime;
-
     private int controllerId;
     private int eventSourceType;
     private int sourceCode;

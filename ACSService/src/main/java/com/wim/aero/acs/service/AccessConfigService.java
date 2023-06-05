@@ -215,6 +215,7 @@ public class AccessConfigService {
 
     /**
      * 卡冻结解冻
+     * TODO：有问题，对于
      * @param request
      */
     public void cardBlocked(CardBlockedRequestInfo request) {
@@ -234,7 +235,6 @@ public class AccessConfigService {
             AccessLevelException operation = new AccessLevelException(scpId, cardNo, request.getReaderIdList());
             String msg = RequestMessage.encode(scpId, operation);
             cmdList.add(new ScpCmd(scpId, msg, IdUtil.nextId()));
-
         }
 
         log.info("卡冻结-卡挂失 {}", cmdList.toString());

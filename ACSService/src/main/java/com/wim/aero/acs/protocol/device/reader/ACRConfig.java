@@ -235,6 +235,7 @@ public class ACRConfig extends Operation {
         result.setCdFormat(detail.getCdFormat());
 //        result.setCdFormat(255);
 
+        result.setApbDelay(detail.getApbDelay());
         result.setApbMode(detail.getApbMode());
         result.setApbIn(detail.getApbIn());
         result.setApbTo(detail.getApbOut());

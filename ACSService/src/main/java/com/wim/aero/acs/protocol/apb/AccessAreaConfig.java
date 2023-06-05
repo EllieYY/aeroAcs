@@ -39,7 +39,7 @@ public class AccessAreaConfig extends Operation {
     //1 = Change current occupancy to occ_set
     //2 = Reserved, do not use
     @CmdProp(index = 7)
-    private Integer occControl;
+    private Integer occControl = 1;
 
     @CmdProp(index = 8)
     private Integer occSet; // Change current occupancy count to this value if occ_control is non-zero (long)

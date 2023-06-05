@@ -25,6 +25,4 @@ public class LogMessage {
     private int eventTypeCode;
     private int sourceTypeSerNo;    // 转换之后的来源
     private String fullMemo;
-
-
 }
